@@ -235,13 +235,13 @@ class JaxPeriodDrwFit():
         t = t[sorted_indices]
         y = y[sorted_indices]
         yerr = yerr[sorted_indices]
-
+        """
         if use_pad:
             n_pad = determine_pad(t)
         else:
             n_pad = 0
 
-        # any0 large number to make the padded values irrelevant
+        # any large number to make the padded values irrelevant
         very_large_number = 900000000
         print(very_large_number)
 
@@ -252,7 +252,7 @@ class JaxPeriodDrwFit():
         t = jnp.array(t_pad)
         y = jnp.array(y_pad)
         yerr = jnp.array(yerr_pad)
-
+        """
         if self.jsoln_jax_ty_cpu is None:
             jsoln_jax_ty_cpu = jax.jit(self.optimize, backend="cpu")
             self.jsoln_jax_ty_cpu = jsoln_jax_ty_cpu
