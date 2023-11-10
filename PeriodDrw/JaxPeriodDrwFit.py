@@ -171,14 +171,14 @@ class JaxPeriodDrwFit():
         jsoln.fun, jsoln.x : Jax array (1,), Jax array(4,)
             Optimized parameters for the Gaussian Process model.
         """
-
-        jsoln = jsco.minimize(self.neg_log_likelihood, x0=jnp.array(theta),
+        initial_params = jnp.array(theta)
+        jsoln = jsco.minimize(self.neg_log_likelihood, x0=initial_params,
                               method="bfgs",
                               args=(jnp.array(t),
                                     jnp.array(y),
                                     jnp.array(yerr)))
 
-        return jsoln.fun, jsoln.x
+        return jsoln.fun, jsoln.x, initial_params
 
     def optimize_drw(self, theta, t, y, yerr):
         """Optimize the parameters of a damped random walk Gaussian Process model.
@@ -199,14 +199,14 @@ class JaxPeriodDrwFit():
         jsoln.fun, jsoln.x : Jax array (1,), Jax array(4,)
             Optimized parameters for the Gaussian Process model.
         """
-
-        jsoln = jsco.minimize(self.neg_log_likelihood_drw, x0=jnp.array(theta),
+        initial_params = jnp.array(theta)
+        jsoln = jsco.minimize(self.neg_log_likelihood_drw, x0=initial_params,
                               method="bfgs",
                               args=(jnp.array(t),
                                     jnp.array(y),
                                     jnp.array(yerr)))
-
-        return jsoln.fun, jsoln.x
+    
+        return jsoln.fun, jsoln.x, initial_params
 
     def optimize_map(self, t, y, yerr, n_init=100, use_pad=True):
         """Optimize the parameters of a Gaussian Process model using `map`.
@@ -446,7 +446,7 @@ def concatenate_arrays(array_tuple):
     # Convert zero-dimensional array to a one-dimensional array
     array1 = array_tuple[0].flatten()
     # Concatenate the arrays
-    return np.concatenate((array1, array_tuple[1]))
+    return np.concatenate((array1, array_tuple[1], array_tuple[2]))
 
 
 def determine_pad(t):
