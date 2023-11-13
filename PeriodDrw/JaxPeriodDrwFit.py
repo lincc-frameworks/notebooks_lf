@@ -49,7 +49,7 @@ class JaxPeriodDrwFit():
         gp = build_gp(theta, t, y, yerr)
         """
 
-        assert len(theta) == 4
+        assert len(theta) == 8
 
         log_drw_scale = theta[0]
         log_drw_amp = theta[1]
@@ -91,7 +91,7 @@ class JaxPeriodDrwFit():
         gp = build_gp(theta, t, y, yerr)
         """
 
-        assert len(theta) == 2
+        assert len(theta) == 4
 
         log_drw_scale = theta[0]
         log_drw_amp = theta[1]
