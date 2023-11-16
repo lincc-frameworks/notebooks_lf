@@ -48,8 +48,7 @@ class JaxPeriodDrwFit():
         theta = [0.5, -1.0, 0.8, -2.0]
         gp = build_gp(theta, t, y, yerr)
         """
-
-        assert len(theta) == 8
+        assert len(theta) == 4
 
         log_drw_scale = theta[0]
         log_drw_amp = theta[1]
@@ -91,7 +90,7 @@ class JaxPeriodDrwFit():
         gp = build_gp(theta, t, y, yerr)
         """
 
-        assert len(theta) == 4
+        assert len(theta) == 2
 
         log_drw_scale = theta[0]
         log_drw_amp = theta[1]
@@ -152,7 +151,7 @@ class JaxPeriodDrwFit():
         gp = self.build_gp_drw(theta, t, y, yerr)
         return -gp.log_probability(y)
 
-    def optimize(self, theta, t, y, yerr):
+    def optimize(self, theta, t, y, yerr, minimize=True):
         """Optimize the parameters of a Gaussian Process model.
 
         Parameters
@@ -178,9 +177,20 @@ class JaxPeriodDrwFit():
                                     jnp.array(y),
                                     jnp.array(yerr)))
 
-        return jsoln.fun, jsoln.x, initial_params
 
-    def optimize_drw(self, theta, t, y, yerr):
+        """
+        if not minimize:
+            param_space = jnp.concat(
+                (initial_params.reshape(1, len(initial_params)), jsoln.x), axis=0)
+            param_space
+            likelihoods = jnp.insert(jsoln.fun, 0, np.nan)
+
+            return jsoln.fun, param_space
+        return jsoln.fun, jsoln.x
+        """
+        return jsoln.fun, jnp.concatenate((jsoln.x, initial_params))
+
+    def optimize_drw(self, theta, t, y, yerr, minimize = True):
         """Optimize the parameters of a damped random walk Gaussian Process model.
 
         Parameters
@@ -205,10 +215,21 @@ class JaxPeriodDrwFit():
                               args=(jnp.array(t),
                                     jnp.array(y),
                                     jnp.array(yerr)))
-    
-        return jsoln.fun, jsoln.x, initial_params
+        """
+        if not minimize:
+            param_space = jnp.concat(
+                (initial_params.reshape(1, len(initial_params)), jsoln.x), axis=0)
+            param_space
+            likelihoods = jnp.insert(jsoln.fun, 0, np.nan)
 
-    def optimize_map(self, t, y, yerr, n_init=100, use_pad=True):
+            return jsoln.fun, param_space
+        return jsoln.fun, jsoln.x
+        """
+        return jsoln.fun, jnp.concatenate((jsoln.x, initial_params))
+
+
+
+    def optimize_map(self, t, y, yerr, n_init=100, minimize=True, use_pad=True):
         """Optimize the parameters of a Gaussian Process model using `map`.
 
         Parameters
@@ -271,12 +292,18 @@ class JaxPeriodDrwFit():
         res = np.vstack(list(map(concatenate_arrays,
                                  jax.device_get(many_init_res))))
         self.res = res
+        if not minimize:
+            iterations = np.arange(1, n_init+1) 
+            iterations = iterations.reshape(n_init, 1)
+            self.res = np.concatenate((iterations, self.res), axis=1)
+            return self.res
+
         res_min = self.find_best_res(res)
         self.res_min = res_min
 
         return res_min
 
-    def optimize_map_drw(self, t, y, yerr, n_init=100, use_pad=True):
+    def optimize_map_drw(self, t, y, yerr, n_init=100, minimize=True, use_pad=True):
         """Optimize the parameters of a Gaussian Process model using `map`.
 
         Parameters
@@ -326,7 +353,7 @@ class JaxPeriodDrwFit():
 
         # Create a partially applied function
         # with fixed values of t, y, and yerr
-        partial_optimize = partial(self.jsoln_jax_ty_cpu, t=t, y=y, yerr=yerr)
+        partial_optimize = partial(self.jsoln_jax_ty_cpu, t=t, y=y, yerr=yerr, minimize=minimize)
 
         theta_init_matrix = \
             np.transpose(self.create_theta_init(n_init))
@@ -338,6 +365,12 @@ class JaxPeriodDrwFit():
         res = np.vstack(list(map(concatenate_arrays,
                                  jax.device_get(many_init_res))))
         self.res = res
+        if not minimize:
+            iterations = np.arange(1, n_init+1) 
+            iterations = iterations.reshape(n_init, 1)
+            self.res = np.concatenate((iterations, self.res), axis=1)
+            return self.res
+
         res_min = self.find_best_res(res)
         self.res_min = res_min
 
@@ -446,7 +479,7 @@ def concatenate_arrays(array_tuple):
     # Convert zero-dimensional array to a one-dimensional array
     array1 = array_tuple[0].flatten()
     # Concatenate the arrays
-    return np.concatenate((array1, array_tuple[1], array_tuple[2]))
+    return np.concatenate((array1, array_tuple[1]))
 
 
 def determine_pad(t):
