@@ -151,7 +151,7 @@ class JaxPeriodDrwFit():
         gp = self.build_gp_drw(theta, t, y, yerr)
         return -gp.log_probability(y)
 
-    def optimize(self, theta, t, y, yerr, minimize=True):
+    def optimize(self, theta, t, y, yerr):
         """Optimize the parameters of a Gaussian Process model.
 
         Parameters
@@ -190,7 +190,7 @@ class JaxPeriodDrwFit():
         """
         return jsoln.fun, jnp.concatenate((jsoln.x, initial_params))
 
-    def optimize_drw(self, theta, t, y, yerr, minimize = True):
+    def optimize_drw(self, theta, t, y, yerr):
         """Optimize the parameters of a damped random walk Gaussian Process model.
 
         Parameters
