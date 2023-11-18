@@ -265,7 +265,6 @@ class JaxPeriodDrwFit():
             jsoln_jax_ty_cpu = jax.jit(self.optimize, backend="cpu")
             self.jsoln_jax_ty_cpu = jsoln_jax_ty_cpu
         else:
-            print("using GPU")
             pass
 
         # Create a partially applied function
@@ -283,7 +282,18 @@ class JaxPeriodDrwFit():
         res_min = self.find_best_res(res)
         self.res_min = res_min
 
-        return res_min
+        min_log_likelihood = self.res_min[0]
+        if full:
+            # Add the minimum log likelihood column as part of the result. Users can filter
+            # to ust those rows by seeing where minimum log likelihood == likelihood
+            self.res = jnp.concatenate(
+                (np.full((len(self.res), 1), min_log_likelihood), self.res), axis=1)
+            return self.res
+        else:
+            # Here we still add a minimum log likelihood column to keep the parameter column
+            # indices consistent with full=True.
+            self.res_min = jnp.concatenate((jnp.array([min_log_likelihood]), self.res_min))
+            return self.res_min
 
     def optimize_map_drw(self, t, y, yerr, n_init=100, use_pad=True, full=False):
         """Optimize the parameters of a Gaussian Process model using `map`.
@@ -358,13 +368,17 @@ class JaxPeriodDrwFit():
         res_min = self.find_best_res(res)
         self.res_min = res_min
 
-        min_log_likelihood = res_min[0]
+        min_log_likelihood = self.res_min[0]
         if full:
+            # Add the minimum log likelihood column as part of the result. Users can filter
+            # to ust those rows by seeing where minimum log likelihood == likelihood
             self.res = jnp.concatenate(
                 (np.full((len(self.res), 1), min_log_likelihood), self.res), axis=1)
             return self.res
         else:
-            self.res_min = jnp.concatenate(([min_log_likelihood], self.res_min))
+            # Here we still add a minimum log likelihood column to keep the parameter column
+            # indices consistent with full=True.
+            self.res_min = jnp.concatenate((jnp.array([min_log_likelihood]), self.res_min))
             return self.res_min
 
     def find_best_res(self, res):
@@ -483,7 +497,7 @@ def concatenate_arrays(array_tuple):
     # Convert zero-dimensional array to a one-dimensional array
     array1 = array_tuple[0].flatten()
     # Concatenate the arrays
-    return np.concatenate((array1, array_tuple[1]))
+    return np.concatenate((array1, array_tuple[1], array_tuple[2]))
 
 
 def determine_pad(t):
