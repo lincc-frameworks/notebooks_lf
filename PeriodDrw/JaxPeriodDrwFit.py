@@ -285,7 +285,7 @@ class JaxPeriodDrwFit():
         min_log_likelihood = self.res_min[0]
         if full:
             # Add the minimum log likelihood column as part of the result. Users can filter
-            # to ust those rows by seeing where minimum log likelihood == likelihood
+            # to just those rows by seeing where minimum log likelihood == likelihood
             self.res = jnp.concatenate(
                 (np.full((len(self.res), 1), min_log_likelihood), self.res), axis=1)
             return self.res
@@ -371,7 +371,7 @@ class JaxPeriodDrwFit():
         min_log_likelihood = self.res_min[0]
         if full:
             # Add the minimum log likelihood column as part of the result. Users can filter
-            # to ust those rows by seeing where minimum log likelihood == likelihood
+            # to just those rows by seeing where minimum log likelihood == likelihood
             self.res = jnp.concatenate(
                 (np.full((len(self.res), 1), min_log_likelihood), self.res), axis=1)
             return self.res
