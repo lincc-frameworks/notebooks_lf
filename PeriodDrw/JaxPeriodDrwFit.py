@@ -168,17 +168,17 @@ class JaxPeriodDrwFit():
 
         Returns
         -------
-        jsoln.fun, jsoln.x : Jax array (1,), Jax array(4,)
+        jsoln.fun, jsoln.x, inital_params : Jax array (1,), Jax array(4,), Jax array (4,),
             Optimized parameters for the Gaussian Process model.
         """
-
-        jsoln = jsco.minimize(self.neg_log_likelihood, x0=jnp.array(theta),
+        initial_params = jnp.array(theta)
+        jsoln = jsco.minimize(self.neg_log_likelihood, x0=initial_params,
                               method="bfgs",
                               args=(jnp.array(t),
                                     jnp.array(y),
                                     jnp.array(yerr)))
 
-        return jsoln.fun, jsoln.x
+        return jsoln.fun, jsoln.x, initial_params
 
     def optimize_drw(self, theta, t, y, yerr):
         """Optimize the parameters of a damped random walk Gaussian Process model.
@@ -196,19 +196,19 @@ class JaxPeriodDrwFit():
 
         Returns
         -------
-        jsoln.fun, jsoln.x : Jax array (1,), Jax array(4,)
+        jsoln.fun, jsoln.x, inital_params : Jax array (1,), Jax array(2,), Jax array (2,),
             Optimized parameters for the Gaussian Process model.
         """
-
-        jsoln = jsco.minimize(self.neg_log_likelihood_drw, x0=jnp.array(theta),
+        initial_params = jnp.array(theta)
+        jsoln = jsco.minimize(self.neg_log_likelihood_drw, x0=initial_params,
                               method="bfgs",
                               args=(jnp.array(t),
                                     jnp.array(y),
                                     jnp.array(yerr)))
 
-        return jsoln.fun, jsoln.x
+        return jsoln.fun, jsoln.x, initial_params
 
-    def optimize_map(self, t, y, yerr, n_init=100, use_pad=True):
+    def optimize_map(self, t, y, yerr, n_init=100, use_pad=True, full=False):
         """Optimize the parameters of a Gaussian Process model using `map`.
 
         Parameters
@@ -221,12 +221,20 @@ class JaxPeriodDrwFit():
             Observations corresponding to the time domain data.
         yerr : array-like
             Uncertainties (errors) associated with the observations.
+        full: bool, optional
+            If true, returns all solutions rather than just the parameters
+            with the minimum negative log likelhood. Default is False.
 
         Returns
         -------
         res : array-like
             Array containing the results of the optimization process
             for different initial guesses.
+            Is of the form:
+            [min_likelihood, likelihood, {theta}, {initial_theta}]
+
+            If full is True, returns an array for all n_init iterations,
+            otherwise just the iteration with the minimum log likelihood.
         """
 
         sorted_indices = np.argsort(t)
@@ -274,9 +282,20 @@ class JaxPeriodDrwFit():
         res_min = self.find_best_res(res)
         self.res_min = res_min
 
-        return res_min
+        min_log_likelihood = self.res_min[0]
+        if full:
+            # Add the minimum log likelihood column as part of the result. Users can filter
+            # to just those rows by seeing where minimum log likelihood == likelihood
+            self.res = jnp.concatenate(
+                (np.full((len(self.res), 1), min_log_likelihood), self.res), axis=1)
+            return self.res
+        else:
+            # Here we still add a minimum log likelihood column to keep the parameter column
+            # indices consistent with full=True.
+            self.res_min = jnp.concatenate((jnp.array([min_log_likelihood]), self.res_min))
+            return self.res_min
 
-    def optimize_map_drw(self, t, y, yerr, n_init=100, use_pad=True):
+    def optimize_map_drw(self, t, y, yerr, n_init=100, use_pad=True, full=False):
         """Optimize the parameters of a Gaussian Process model using `map`.
 
         Parameters
@@ -289,12 +308,20 @@ class JaxPeriodDrwFit():
             Observations corresponding to the time domain data.
         yerr : array-like
             Uncertainties (errors) associated with the observations.
+        full: bool, optional
+            If true, returns all solutions rather than just the parameters
+            with the minimum negative log likelhood. Default is False.
 
         Returns
         -------
         res : array-like
             Array containing the results of the optimization process
             for different initial guesses.
+            Is of the form:
+            [min_likelihood, likelihood, {theta}, {initial_theta}]
+
+            If full is True, returns an array for all n_init iterations,
+            otherwise just the iteration with the minimum log likelihood.
         """
 
         sorted_indices = np.argsort(t)
@@ -341,7 +368,18 @@ class JaxPeriodDrwFit():
         res_min = self.find_best_res(res)
         self.res_min = res_min
 
-        return res_min
+        min_log_likelihood = self.res_min[0]
+        if full:
+            # Add the minimum log likelihood column as part of the result. Users can filter
+            # to just those rows by seeing where minimum log likelihood == likelihood
+            self.res = jnp.concatenate(
+                (np.full((len(self.res), 1), min_log_likelihood), self.res), axis=1)
+            return self.res
+        else:
+            # Here we still add a minimum log likelihood column to keep the parameter column
+            # indices consistent with full=True.
+            self.res_min = jnp.concatenate((jnp.array([min_log_likelihood]), self.res_min))
+            return self.res_min
 
     def find_best_res(self, res):
         """Find the best result from the optimization results.
@@ -390,51 +428,64 @@ class JaxPeriodDrwFit():
     def plot_res_1d(self, res):
         res_min = self.find_best_res(res)
 
+        # indices for various parameters in the res and res_min arrays
+        log_drw_scale = 2
+        log_drw_amp = 3
+        log_per_scale = 4
+        log_per_amp = 5
+
         plt.figure(figsize=(16, 8))
         plt.subplot(221)
-        plt.scatter(x=res[:, 1], y=res[:, 0])
-        plt.scatter(x=res_min[1], y=res_min[0])
+        plt.scatter(x=res[:, log_drw_scale], y=res[:, 0])
+        plt.scatter(x=res_min[log_drw_scale], y=res_min[0])
         plt.xlabel('log_drw_scale')
-        plt.xlim(np.quantile(res[:, 1], [0.05, 0.95]))
+        plt.xlim(np.quantile(res[:, ], [0.05, 0.95]))
         plt.ylim(res_min[0]-1, res_min[0]+10)
 
         plt.subplot(222)
-        plt.scatter(x=res[:, 2], y=res[:, 0])
-        plt.scatter(x=res_min[2], y=res_min[0])
+        plt.scatter(x=res[:, log_drw_amp], y=res[:, 0])
+        plt.scatter(x=res_min[log_drw_amp], y=res_min[0])
         plt.xlabel('log_drw_amp')
-        plt.xlim(np.quantile(res[:, 2], [0.05, 0.95]))
+        plt.xlim(np.quantile(res[:, log_drw_amp], [0.05, 0.95]))
         plt.ylim(res_min[0]-1, res_min[0]+10)
 
         plt.subplot(223)
-        plt.scatter(x=res[:, 3], y=res[:, 0])
-        plt.scatter(x=res_min[3], y=res_min[0])
+        plt.scatter(x=res[:, log_per_scale], y=res[:, 0])
+        plt.scatter(x=res_min[log_per_scale], y=res_min[0])
         plt.xlabel('log_per_scale')
-        plt.xlim(np.quantile(res[:, 3], [0.05, 0.95]))
+        plt.xlim(np.quantile(res[:, log_per_scale], [0.05, 0.95]))
         plt.ylim(res_min[0]-1, res_min[0]+10)
 
         plt.subplot(224)
-        plt.scatter(x=res[:, 4], y=res[:, 0])
-        plt.scatter(x=res_min[4], y=res_min[0])
+        plt.scatter(x=res[:, log_per_amp], y=res[:, 0])
+        plt.scatter(x=res_min[log_per_amp], y=res_min[0])
         plt.xlabel('log_per_amp')
-        plt.xlim(np.quantile(res[:, 4], [0.05, 0.95]))
+        plt.xlim(np.quantile(res[:, log_per_amp], [0.05, 0.95]))
         plt.ylim(res_min[0]-1, res_min[0]+10)
 
     def plot_res_2d(self, res):
         res_min = self.find_best_res(res)
+        
+        # indices for various parameters in the res and res_min arrays
+        log_drw_scale = 2
+        log_drw_amp = 3
+        log_per_scale = 4
+        log_per_amp = 5
+
         plt.figure(figsize=(16, 8))
         plt.subplot(121)
-        plt.scatter(x=res[:, 1], y=res[:, 2], c=res[:, 0])
-        plt.axvline(res_min[1], ls=':')
-        plt.axhline(res_min[2], ls=':')
+        plt.scatter(x=res[:, log_drw_scale], y=res[:, log_drw_amp], c=res[:, 0])
+        plt.axvline(res_min[log_drw_scale], ls=':')
+        plt.axhline(res_min[log_drw_amp], ls=':')
         plt.xlabel('log_drw_scale')
         plt.ylabel('log_drw_amp')
         plt.ylim(-3, 0)
         plt.xlim(0, 4)
 
         plt.subplot(122)
-        plt.scatter(x=res[:, 3], y=res[:, 4], c=res[:, 0])
-        plt.axvline(res_min[3], ls=':')
-        plt.axhline(res_min[4], ls=':')
+        plt.scatter(x=res[:, log_per_scale], y=res[:, log_per_amp], c=res[:, 0])
+        plt.axvline(res_min[log_per_scale], ls=':')
+        plt.axhline(res_min[log_per_amp], ls=':')
         plt.xlabel('log_per_scale')
         plt.ylabel('log_per_amp')
         plt.ylim(-3, 0)
@@ -446,7 +497,7 @@ def concatenate_arrays(array_tuple):
     # Convert zero-dimensional array to a one-dimensional array
     array1 = array_tuple[0].flatten()
     # Concatenate the arrays
-    return np.concatenate((array1, array_tuple[1]))
+    return np.concatenate((array1, array_tuple[1], array_tuple[2]))
 
 
 def determine_pad(t):
