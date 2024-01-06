@@ -243,6 +243,7 @@ class JaxPeriodDrwFit():
         t = t[sorted_indices]
         y = y[sorted_indices]
         yerr = yerr[sorted_indices]
+        t -= t[0]
         """
         if use_pad:
             n_pad = determine_pad(t)
@@ -330,6 +331,7 @@ class JaxPeriodDrwFit():
         t = t[sorted_indices]
         y = y[sorted_indices]
         yerr = yerr[sorted_indices]
+        t -= t[0]
         """
         if use_pad:
             n_pad = determine_pad(t)
@@ -344,7 +346,7 @@ class JaxPeriodDrwFit():
         t = jnp.array(t_pad)
         y = jnp.array(y_pad)
         yerr = jnp.array(yerr_pad)
-        """ 
+        """
         if self.jsoln_jax_ty_cpu is None:
             jsoln_jax_ty_cpu = jax.jit(self.optimize_drw, backend="cpu")
             self.jsoln_jax_ty_cpu = jsoln_jax_ty_cpu
@@ -364,6 +366,7 @@ class JaxPeriodDrwFit():
         # transforms jax outputs to single numpy array
         res = np.vstack(list(map(concatenate_arrays,
                                  jax.device_get(many_init_res))))
+        # TODO: remove results that are outside of the reasonable range
         self.res = res
         res_min = self.find_best_res(res)
         self.res_min = res_min
@@ -465,7 +468,7 @@ class JaxPeriodDrwFit():
 
     def plot_res_2d(self, res):
         res_min = self.find_best_res(res)
-        
+
         # indices for various parameters in the res and res_min arrays
         log_drw_scale = 2
         log_drw_amp = 3
@@ -517,8 +520,8 @@ def determine_pad(t):
     #                       250, 300, 350, 400, 450, 500, 600, 700, 800, 900,
     #                       1000, 1200, 1400, 1600, 1800, 2000, 2500, 3000,
     #                       3500, 4000, 4500, 5000, 6000, 7000, 8000, 9000])
-    
+
     comp_sizes = np.array([100, 200, 500, 2000, 5000, 9000])
-    
+
     n_pad = comp_sizes[np.where(comp_sizes > len(t))][0] - len(t)
     return n_pad
