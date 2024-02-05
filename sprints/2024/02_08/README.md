@@ -41,3 +41,9 @@ Demo: Show that the new stuff is faster than the old stuff.
 * [issue 196](https://github.com/astronomy-commons/hipscat-import/issues/196)
 
 Demo: Can conda install hipscat/lsdb packages
+
+## Mi
+
+* [PR 142](https://github.com/astronomy-commons/lsdb/pull/142)
+
+Demo: ZTF BTS vs NGC tutorial introduced by the PR
