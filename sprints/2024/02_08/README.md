@@ -36,9 +36,11 @@ Demo: Show that the new stuff is faster than the old stuff.
 
 ## Mario
 
-* [issue 105](https://github.com/astronomy-commons/lsdb/issues/105)
-* [issue 188](https://github.com/astronomy-commons/hipscat/issues/188)
-* [issue 196](https://github.com/astronomy-commons/hipscat-import/issues/196)
+* [https://github.com/astronomy-commons/lsdb/issues/105]
+* [https://github.com/astronomy-commons/hipscat/issues/188]
+* [https://github.com/astronomy-commons/hipscat-import/issues/196]
+* [https://github.com/astronomy-commons/hipscat/issues/198]
+* [https://github.com/astronomy-commons/lsdb/issues/136]
 
 Demo: [conda-install.md]
 
