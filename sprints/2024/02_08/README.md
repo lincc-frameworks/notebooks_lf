@@ -40,7 +40,7 @@ Demo: Show that the new stuff is faster than the old stuff.
 * [issue 188](https://github.com/astronomy-commons/hipscat/issues/188)
 * [issue 196](https://github.com/astronomy-commons/hipscat-import/issues/196)
 
-Demo: Can conda install hipscat/lsdb packages
+Demo: [conda-install.md]
 
 ## Mi
 
