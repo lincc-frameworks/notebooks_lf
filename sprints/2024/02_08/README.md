@@ -4,7 +4,7 @@
 
 * [issue 90](https://github.com/astronomy-commons/lsdb/issues/90)
 
-Potential demo:
+[Demo](./box_search.ipynb):
 
     lsdb.read_hipscat("ztf")
         .box(ra=[],dec=[])
@@ -15,7 +15,7 @@ Potential demo:
 * [issue 7](https://github.com/astronomy-commons/lsdb/issues/7)
 * [issue 51](https://github.com/astronomy-commons/lsdb/issues/51)
 
-Potential demo:
+[Demo](./Margin%20generation.ipynb):
 
     gaia = lsdb.read_hipscat("gaia")
     ztf = lsdb.read_hipscat("ztf")
@@ -34,6 +34,11 @@ Potential demo:
 
 Demo: Show that the new stuff is faster than the old stuff.
 
+- [`Association_table_stats.ipynb`](./Association_table_stats.ipynb)
+- [`macauff_association_cardinality.ipynb`](./macauff_association_cardinality.ipynb)
+- [`npy_stuff.ipynb`](./npy_stuff.ipynb)
+- [`partition_info_load_speed.ipynb`](./partition_info_load_speed.ipynb)
+
 ## Mario
 
 * [https://github.com/astronomy-commons/lsdb/issues/105]
@@ -42,16 +47,16 @@ Demo: Show that the new stuff is faster than the old stuff.
 * [https://github.com/astronomy-commons/hipscat/issues/198]
 * [https://github.com/astronomy-commons/lsdb/issues/136]
 
-Demo: [conda-install.md]
+[Demo](./conda-install.md)
 
 ## Mi
 
 * [PR 142](https://github.com/astronomy-commons/lsdb/pull/142)
 
-Demo: ZTF BTS vs NGC tutorial introduced by the PR
+[Demo](./ztf_bts-ngc.ipynb): ZTF BTS vs NGC tutorial introduced by the PR
 
 ## Kostya
 
 * https://github.com/lincc-frameworks/pandas-ts
 
-Demo: work with `pandas-ts`, [`nested-df.ipynb`](./nested-df.ipynb)
+[Demo](./nested-df.ipynb): work with `pandas-ts`.
