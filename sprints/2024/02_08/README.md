@@ -49,3 +49,9 @@ Demo: [conda-install.md]
 * [PR 142](https://github.com/astronomy-commons/lsdb/pull/142)
 
 Demo: ZTF BTS vs NGC tutorial introduced by the PR
+
+## Kostya
+
+* https://github.com/lincc-frameworks/pandas-ts
+
+Demo: work with `pandas-ts`, [`nested-df.ipynb`](./nested-df.ipynb)
