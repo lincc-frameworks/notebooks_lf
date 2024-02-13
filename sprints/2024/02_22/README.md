@@ -15,7 +15,7 @@ TODO
 
 ## Kostya/Mi
 
-* LSDB  vs `cp -r` benchmarking
+* [Demo](./banch-vs-cp.md) LSDB  vs `cp -r` benchmarking
 * Documentation thing
 
 ## Doug
