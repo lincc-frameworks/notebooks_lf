@@ -2,7 +2,8 @@
 
 ## Sandro
 
-TODO
+* Empty partition notebook
+* head()
 
 ## Sean
 
@@ -10,11 +11,17 @@ TODO
 
 ## Melissa
 
-TODO
+* Margin data
+
+## Kostya/Mi
+
+* [Demo](./banch-vs-cp.md) LSDB  vs `cp -r` benchmarking
+* Documentation thing
 
 ## Doug
 
-TODO
+* LSDB / TAPE demo. TAPE's read_hipscat with LSDB.
+* Demo from publicly hosted GAIA datasets (!!!!!!!!!!!!!!!!!!!!!~!!!!)
 
 ## Wilson
 
