@@ -16,6 +16,7 @@ TODO
 ## Kostya/Mi
 
 * [Demo](./banch-vs-cp.md) LSDB  vs `cp -r` benchmarking
+* [Demo](./bench-vs-pyarrow.md) LSDB vs `pyarrow` benchmarking
 * Documentation thing
 
 ## Doug
