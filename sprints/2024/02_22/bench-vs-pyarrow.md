@@ -107,8 +107,8 @@ with limit_pyarrow_threading(N_CPUS):
 
 ## Summary
 
-I can find better `N_CPUS` for both approaches.
+I can find better `N_CPUS` for both approaches. LSDB — ~21s for `N_CPUS=40`, Pyarrow —21s for `N_CPUS=10`.
 
 Does it mean that LSDB is optimal? No.
 
-How to set limit CPU count for LSDB (and prevent Dask to use more)? How to limit I/O?
+How do we set limit CPU count for LSDB (and prevent Dask to use more)? How to limit I/O?
