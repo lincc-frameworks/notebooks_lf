@@ -20,9 +20,7 @@ TODO
 * Documentation thing
 
 ## Doug
-
-* LSDB / TAPE demo. TAPE's read_hipscat with LSDB.
-* Demo from publicly hosted GAIA datasets (!!!!!!!!!!!!!!!!!!!!!~!!!!)
+* [Demo](./gaia_ztf_box_crossmatch.ipynb) LSDB+TAPE from publicly hosted GAIA datasets (!!!!!!!!!!!!!!!!!!!!!~!!!!)
 
 ## Wilson
 
