@@ -2,7 +2,7 @@
 
 ## Sandro
 
-* Empty partition notebook
+* [Empty partitions](./empty-partitions.ipynb)
 * head()
 
 ## Sean
@@ -11,7 +11,7 @@ TODO
 
 ## Melissa
 
-* Margin data
+* [Margin data](./almanac_margins.ipynb)
 
 ## Kostya/Mi
 
