@@ -1,5 +1,9 @@
 # Sprint demos for week of Feb 19, 2024
 
+[Recording](https://cmu.zoom.us/rec/share/9oCRKcdp4U556nXJ4x1nFWeiEKi9jqPKUn9_zDesqGFbrnRJTm2yzNFRTf2JCouR.6St9ptF7jfjN6BoJ?startTime=1708621578000)
+
+Passcode: `X1$.FFz$`
+
 ## Sandro
 
 * [Empty partitions](./empty-partitions.ipynb)
