@@ -7,11 +7,10 @@ Passcode: `X1$.FFz$`
 ## Sandro
 
 * [Empty partitions](./empty-partitions.ipynb)
-* head()
 
 ## Sean
 
-TODO
+* [Joining with margins](./join_margin.ipynb)
 
 ## Melissa
 
@@ -21,11 +20,6 @@ TODO
 
 * [Demo](./banch-vs-cp.md) LSDB  vs `cp -r` benchmarking
 * [Demo](./bench-vs-pyarrow.md) LSDB vs `pyarrow` benchmarking
-* Documentation thing
 
 ## Doug
 * [Demo](./gaia_ztf_box_crossmatch.ipynb) LSDB+TAPE from publicly hosted GAIA datasets (!!!!!!!!!!!!!!!!!!!!!~!!!!)
-
-## Wilson
-
-TODO

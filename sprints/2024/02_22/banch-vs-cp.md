@@ -1,5 +1,7 @@
 # Benchmarking LSDB overheads
 
+**Author**: Konstantin Malanchev
+
 Here we measure time of cross-matching two catalogs (ZTF AXS vs Gaia DR4) versus copy-pasting these catalogs.
 We do everything on LSDB
 

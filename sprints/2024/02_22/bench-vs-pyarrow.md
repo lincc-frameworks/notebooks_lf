@@ -1,5 +1,7 @@
 # Benchmarking LSDB (Dask) vs `pyarrow`
 
+**Author**: Konstantin Malanchev
+
 It is ongoing work to resolve https://github.com/astronomy-commons/lsdb/issues/127 and based on Troy Raen's DC2 notebook.
 He implemented the same analysis twice: loading the catalog with LSDB and filter it with `.query`, and loading the catalog with `pyarrow` and filtering while reading files on fly.
 Here I explore the performance of both approaches and thinking about a hybrid approach we may apply in LSDB.

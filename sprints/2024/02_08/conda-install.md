@@ -1,5 +1,7 @@
 # hipscat, hipscat-import, lsdb now packaged for conda-forge
 
+**Author**: Mario Juric
+
 ## End-user demo
 
 LSDB + hipscat modules/tools are now packaged for conda-forge. Here's how
