@@ -4,24 +4,20 @@ REMEMBER TO RECORD.
 
 ## Sandro
 
-TODO
+- Margins in `from_dataframe`
+- Documentation (pending ZTF + index)
+- Maybe re-partitioning
+- Maybe Cloud buckets
 
 ## Sean
 
-TODO
+- Margin spatial filtering
+- Skymap plotting in LSDB
 
 ## Melissa
 
-TODO
-
-## Kostya/Mi
-
-TODO
+- Mismatch margin errors
 
 ## Doug
 
-TODO
-
-## Wilson
-
-TODO
+- Analysis for 300k partition ZTF
