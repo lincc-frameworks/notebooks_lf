@@ -20,4 +20,4 @@ REMEMBER TO RECORD.
 
 ## Doug
 
-- Analysis for 300k partition ZTF
+- Dask Investigations: Partition Sizes, Bad Code, Dask Expressions
