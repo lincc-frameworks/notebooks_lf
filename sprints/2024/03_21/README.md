@@ -4,17 +4,16 @@ REMEMBER TO RECORD.
 
 ## Sandro
 
-- TODO
-- Maybe re-partitioning
-- Maybe Cloud buckets
+- Read subsets
 
 ## Sean
 
-TODO
+- Speed-ups
+- Profiling
 
 ## Melissa
 
-TODO
+- Supplemental tables in the cloud
 
 ## Doug
 
