@@ -4,7 +4,7 @@ REMEMBER TO RECORD.
 
 ## Sandro
 
-- Reading catalog subsets
+- [Loading catalog subsets](./loading_subsets.ipynb)
 - [Extracting the galactic plane](./order_search.ipynb)
 
 ## Sean
