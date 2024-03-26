@@ -4,12 +4,14 @@ REMEMBER TO RECORD
 
 ## Sandro
 
-TODO
+- Miniumum radius for KDTree Crossmatch
+- Non-matches
 
 ## Sean
 
-TODO
+- More pixel tree
+- Performance in path generation
 
 ## Melissa
 
-TODO
+- GAIA photometry / ECSV
