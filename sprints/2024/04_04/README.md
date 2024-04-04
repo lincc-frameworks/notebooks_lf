@@ -8,7 +8,8 @@ REMEMBER TO RECORD
 
 ## Sean
 
-- More pixel tree
+- More pixel tree: [doc](https://docs.google.com/document/d/1gqb8qb3HiEhLGNav55LKKFlNjuusBIsDW7FdTkc5mJU/edit#heading=h.rmz8988nl0o4) and [PR](https://github.com/astronomy-commons/hipscat/pull/249)
+- Small catalog x big catalog matches efficiently [proposal](https://docs.google.com/presentation/d/1btkgi-ijqHsFSEsdlQ0uMiLYpf7jQwhwR989EXYi3-M/edit#slide=id.p) and [design doc](https://docs.google.com/document/d/1_3DqjLOpuDiqxwQyqGVb01LBiwO0dqn6EwDHS1-STqU/edit#heading=h.rmz8988nl0o4)
 - Performance in path generation
 
 ## Melissa
