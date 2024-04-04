@@ -4,8 +4,7 @@ REMEMBER TO RECORD
 
 ## Sandro
 
-- Miniumum radius for KDTree Crossmatch
-- Non-matches
+- [More options for KDTree nearest neighbors crossmatch](kdtree-crossmatch-options.ipynb)
 
 ## Sean
 
