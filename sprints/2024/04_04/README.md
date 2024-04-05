@@ -1,6 +1,7 @@
 # Sprint demos for week of Apr 4, 2024
 
-REMEMBER TO RECORD
+* [Recording](https://cmu.zoom.us/rec/share/JIYSrubdbaKh2NBQx3vUy7erTVI1pxOYTQ_QBL7hvpvnqTJWr5FE0XMPDdyqatN0.OxdvZujwApOwfA4i)
+* Passcode: 3$uGGP&D
 
 ## Sandro
 
@@ -15,6 +16,7 @@ REMEMBER TO RECORD
 ## Melissa
 
 - GAIA photometry / ECSV
+- [current state of almanac implementation](almanac.ipynb)
 
 ## Kostya & Doug
 
