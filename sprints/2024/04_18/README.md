@@ -1,10 +1,10 @@
-# Sprint demos for week of Apr 4, 2024
+# Sprint demos for week of Apr 18, 2024
 
 REMEMBER TO RECORD
 
 ## Sandro
 
-- Crossmatching options
+- [Reading data from the cloud](./reading-from-cloud/reading-from-cloud.ipynb)
 
 ## Sean
 
