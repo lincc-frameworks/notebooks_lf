@@ -5,6 +5,7 @@ REMEMBER TO RECORD
 ## Sandro
 
 - [Reading data from the cloud](./reading-from-cloud/reading-from-cloud.ipynb)
+- [Resuming import at different pixel order](./resuming-import.ipynb)
 
 ## Sean
 
