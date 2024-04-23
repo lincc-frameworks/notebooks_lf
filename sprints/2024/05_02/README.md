@@ -4,11 +4,14 @@ REMEMBER TO RECORD
 
 ## Sandro
 
-TODO
+(OoO)
 
 ## Sean
 
-TODO
+- dask-expr (if it works) filter columns easily
+- catalog accessor
+- MOC filtering
+
 ## Melissa
 
 TODO
