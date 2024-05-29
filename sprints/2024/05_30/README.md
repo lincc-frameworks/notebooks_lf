@@ -4,8 +4,9 @@ REMEMBER TO RECORD
 
 ## Sandro
 
-- read_hipscat(search_filter) re-naming options
-- search method renames (maybe)
+- Renaming options for `read_hipscat(search_filter)` and search methods
+- [Performance improvements with MOCs](./repartitioning-and-mocs.ipynb) (what repartitioning is still relevant?)
+- [Catalog partitions accessor](partitions-accessor.ipynb)
 
 ## Sean
 
