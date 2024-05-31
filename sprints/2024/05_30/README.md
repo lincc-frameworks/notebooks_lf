@@ -18,4 +18,4 @@ OoO
 
 ## Kostya
 
-- benchmarks (astropy crossmatch vs LSDB)
+- benchmarks vs astropy vs [`smatch`](https://github.com/esheldon/smatch/tree/master): [script](./xmatch_bench/xmatch.py), [notebook with plots](./xmatch_bench/plot_bench.ipynb)
