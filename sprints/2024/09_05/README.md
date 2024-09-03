@@ -9,7 +9,7 @@
 
 ## Kostya
 
-- TODO
+- Running Dask on SLURM
 
 ## Doug
 
