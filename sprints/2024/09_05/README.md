@@ -4,7 +4,8 @@
 
 ## Sean
 
-- TODO
+- Plotting stuff
+- Additional nested wrappers.
 
 ## Kostya
 
@@ -12,7 +13,11 @@
 
 ## Doug
 
-- TODO
+- Giving demo to dask people. We'll use that grade instead.
+
+## Olivia
+
+Still ramping up.
 
 ## Sandro
 
