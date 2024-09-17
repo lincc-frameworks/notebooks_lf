@@ -1,23 +1,25 @@
 ## Melissa
 
-- TODO
+- column statistics
+- 
 
 ## Sean
 
-- TODO
+- Plotting
+- Nested wrapping
 
 ## Kostya
 
-- TODO
+- ??
 
 ## Doug
 
-- TODO
+- Memory usage!!!!!!!!!!!!!!!
 
 ## Olivia
 
-- TODO
+- 
 
 ## Sandro
 
-- TODO
+- OoO
