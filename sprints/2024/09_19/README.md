@@ -1,7 +1,6 @@
 ## Melissa
 
-- column statistics
-- 
+- [column statistics](./column_statistics.ipynb) 
 
 ## Sean
 
