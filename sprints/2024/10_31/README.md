@@ -24,4 +24,4 @@
 
 ## Derek
 
-- ??
+- [nested pandas eval improvements](./nested_pandas_eval.ipynb)
