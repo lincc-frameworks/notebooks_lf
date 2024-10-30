@@ -18,8 +18,7 @@
 
 ## Sandro
 
-- Writing `point_map.fits` in LSDB
-    - Smaller features: skymap with empty partitions, length of catalogs
+- [Writing `point_map.fits`](point_map.ipynb) in LSDB, and other smaller features
 - [SDSS DR18](sdss_dr18_specphotoall.ipynb), and [2MASS](2mass.ipynb) with verification checks
 - [Optional] [Generic parquet readers](parquet_readers/readers.ipynb)
 
