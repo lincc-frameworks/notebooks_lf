@@ -17,7 +17,7 @@ Catalyst-DSFP hack day 2024 notebooks
 
 ## Olivia
 
-- ??
+- (RSP stuff for next time!)
 
 ## Sandro
 
