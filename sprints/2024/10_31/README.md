@@ -6,7 +6,7 @@
 ## Sean
 
 - plotting
-- iceberg
+- [iceberg](https://docs.google.com/presentation/d/1pmge7Nvv-glPsxAh261Q2mxMfpovoKVFDBuIVc3sF4o/edit?usp=sharing)
 
 ## Kostya
 
