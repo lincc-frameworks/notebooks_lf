@@ -10,7 +10,10 @@
 
 ## Kostya
 
-- SDSS DR7 catalog loading
+Catalyst-DSFP hack day 2024 notebooks
+- [ZTF Alerts](https://github.com/lincc-frameworks/notebooks_lf/blob/main/catalyst-dsfp-hack-day-2024/ztf-alerts-sne.ipynb) ([LSDB PR](https://github.com/astronomy-commons/lsdb/pull/479))
+- [RACS vs Gaia](https://github.com/lincc-frameworks/notebooks_lf/blob/main/catalyst-dsfp-hack-day-2024/racs-gaia.ipynb)
+- [SDSS DR7 spectra (not used on the hack day)](https://github.com/lincc-frameworks/notebooks_lf/blob/main/catalyst-dsfp-hack-day-2024/sdss-dr7-spectra.ipynb)
 
 ## Olivia
 
