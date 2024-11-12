@@ -8,6 +8,8 @@
 
 ## Olivia
 
+- USDF: notebook to cover butler commands and walkthrough of pipeline
+
 ## Doug
 
 ## Melissa
