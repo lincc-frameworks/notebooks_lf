@@ -1,4 +1,4 @@
-from hipscat_import.catalog.file_readers import InputReader
+from hats_import.catalog.file_readers import InputReader
 
 import asdf
 
