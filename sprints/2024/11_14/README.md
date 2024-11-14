@@ -15,5 +15,6 @@
 - [fun size analysis](./ZTF%20source%20hipscat%20vs%20hats%20size.ipynb)
 
 ## Sean
+- [plot_points](./plotting_points.ipynb)
 
 ## Sandro
