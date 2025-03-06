@@ -7,6 +7,7 @@
 
 - HSC import: [file reader](./hsc-hats/hsc_fits_reader.py), [notebook](./hsc-hats/hsc_pdr3-forced.ipynb)
 - ComCam 'splosions and wiggles.
+- [Embed base columns into nested](./nested_embed_based_column_demo.ipynb)
 
 ## Sandro
 
