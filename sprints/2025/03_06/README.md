@@ -11,7 +11,7 @@
 
 ## Sandro
 
-- DASH Overview. Verification stuff.
+- [DASH Overview. Verification stuff](https://github.com/lsst-sitcom/linccf/tree/main/dash).
 
 ## Doug
 
