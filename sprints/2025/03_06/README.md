@@ -5,7 +5,7 @@
 ## Wilson
 ## Kostya
 
-- HSC import
+- HSC import: [file reader](./hsc-hats/hsc_fits_reader.py), [notebook](./hsc-hats/hsc_pdr3-forced.ipynb)
 - ComCam 'splosions and wiggles.
 
 ## Sandro
