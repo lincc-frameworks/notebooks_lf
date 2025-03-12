@@ -6,3 +6,5 @@
 ## Melissa
 ## Kostya
 ## Derek
+
+- [Demonstrate map_partitions](./demo_map_partitions.ipynb)
