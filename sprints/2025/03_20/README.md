@@ -2,6 +2,7 @@
 ## Wilson
 ## Sean
 ## Doug
+- NestedFrame.reduce "nesting inference" demo
 ## Olivia
 ## Melissa
 
