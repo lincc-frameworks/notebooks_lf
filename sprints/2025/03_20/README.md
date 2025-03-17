@@ -4,6 +4,9 @@
 ## Doug
 ## Olivia
 ## Melissa
+
+- ideas for displaying [statistics of leaf parquet files](./leaf_statistics.ipynb)
+
 ## Kostya
 ## Derek
 
