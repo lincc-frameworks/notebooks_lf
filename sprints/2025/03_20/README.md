@@ -1,4 +1,7 @@
 ## Sandro
+- [Instructions](https://github.com/lsst-sitcom/linccf/blob/main/dash/README.md) on how to run DASH
+- Initial DASH [benchmarking](https://github.com/lsst-sitcom/linccf/blob/main/dash_doc/README.md)
+
 ## Wilson
 ## Sean
 ## Doug
