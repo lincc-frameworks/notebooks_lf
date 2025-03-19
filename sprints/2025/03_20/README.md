@@ -1,3 +1,6 @@
+* [Recording](https://cmu.zoom.us/rec/share/f_mlPUn4twQt29g-WT6Bv05yEMHgHi7c5xQsCgkT4I1eOCZFONisdbncmrRrX6WV.wTrtxbZ0h9uwM4PU)
+* Passcode: `v^V9SEw=`
+
 ## Sandro
 
 - DASH: [README instructions](https://github.com/lsst-sitcom/linccf/blob/main/dash/README.md) and initial [benchmarking](https://github.com/lsst-sitcom/linccf/blob/main/dash_doc/README.md)
