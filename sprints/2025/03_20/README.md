@@ -8,7 +8,7 @@
 - NestedFrame.reduce "nesting inference" [demo](./nesting_inference.ipynb)
 
 ## Olivia
-- Standalone crossmatch method: let's crossmatch frames, too [demo](./demo_crossmatch_method.ipynb)
+- [Standalone crossmatch method: let's crossmatch frames, too](./demo_crossmatch_method.ipynb)
 
 ## Melissa
 
