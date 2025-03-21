@@ -12,6 +12,10 @@ python -m pip install -r requirements.txt
 python ./prepare.py
 ```
 
+It should take few minutes to download the files (one Gaia and one ZTF HATS partitions)
+and create 26 different row-group splits per each of these catalogs.
+You need 31GiB of storage for this.
+
 ### Start S3 server
 
 Install [Docker](https://docs.docker.com/get-docker/) and [MinIO client](https://github.com/minio/mc).
@@ -35,6 +39,8 @@ lsdb-bench/bucket
 mc cp ./data/*.parquet lsdb_bench/bucket/
 ```
 
+It will use additional 31 GiB of storage.
+
 ## Running benchmarks
 
 ```sh
@@ -43,6 +49,9 @@ python -m pip install -r requirements.txt
 python ./bench.py --help
 python ./bench.py # args if needed
 ```
+
+You can run the "local" and "remote" storage benchmarks separately using `-s local` and `-s remote`.
+Local benchmarks took roughly an hour, while remote ones took ~10 hours on my machine.
 
 ## Analysis
 
