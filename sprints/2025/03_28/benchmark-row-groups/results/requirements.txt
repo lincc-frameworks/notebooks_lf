@@ -1,0 +1,5 @@
+astropy
+mocpy
+numpy
+pyarrow
+universal_pathlib
