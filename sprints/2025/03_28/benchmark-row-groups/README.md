@@ -27,7 +27,7 @@ cd ./minio
 docker compose up --build -d
 ```
 
-Please note that MinIO data will live at `./minio/minio_data` and the download speed will be limited to 15 MiB/s (120 Mib/s).
+Please note that MinIO data will live at `./minio/minio_data` and the download speed will be limited to 40 MiB/s (320 Mib/s).
 You can change the speed by edditing `./minio/nginx.conf`, docker container restart is required.
 
 Upload data:
