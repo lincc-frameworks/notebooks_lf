@@ -30,7 +30,7 @@ Upload data:
 
 ```
 mc alias set lsdb_bench http://localhost:9000 admin password
-lsdb-bench/bucket
+mc mb lsdb_bench/bucket
 # From the project root
 mc cp ./data/*.parquet lsdb_bench/bucket/
 ```

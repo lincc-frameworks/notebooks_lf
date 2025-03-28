@@ -1,2 +1,2 @@
+ipywidgets
 jupyter
-jupyter-widgets
