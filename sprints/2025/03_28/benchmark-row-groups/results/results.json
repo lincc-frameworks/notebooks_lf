@@ -1,7 +1,36 @@
 {
   "-_healpix_29-1024": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.39314920315518975,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.5163824572227895,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 2.6594657828100026,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.21139304339885712,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.9525914341211319,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.0528976046480238,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -34,7 +63,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 2.7987019075080752,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.7966514588333666,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 3.0648506162688136,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.36398526979610324,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.6805085767991841,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.6303777610883117,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -67,7 +125,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.9340055035427213,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.0352172353304923,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.205167204141617,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.36848449939861894,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 3.768384187016636,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 5.551753913983703,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -100,7 +187,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 2.4087635301984847,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 2.4825887423940003,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 2.860450940672308,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.918608124833554,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 7.24142044596374,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 9.788097683805972,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -133,7 +249,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.38697477197274566,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.5058488789945841,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.9827403449453413,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.25093561178073287,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.3263295316137373,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.4489563000388443,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -166,7 +311,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.3994166855700314,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.5687858499586582,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.683170468080789,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.17187889572232962,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.176659069955349,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.5224216901697218,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -201,7 +375,36 @@
   },
   "-_healpix_29-1048576": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.07331880927085876,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.11549706291407347,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.7368730446323752,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.020074650645256042,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 2.333772893063724,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 2.8425331213511527,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -234,7 +437,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.9034004011191428,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.2122186860069633,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 6.688540240749717,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.40369729278609157,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 22.7610876779072,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 26.48965903557837,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -267,7 +499,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.21210240572690964,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.328588486649096,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.8823714843019843,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.11583797121420503,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 9.486923030111939,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 12.701328886672854,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -300,7 +561,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.532566208858043,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 1.137385836802423,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 6.443574523087591,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.32570776203647256,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 23.389856453519315,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 26.498097407165915,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -333,7 +623,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.04627590673044324,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.11766396975144744,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.8022562582045794,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.044830441009253263,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.31667227903381,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.7534220879897475,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -366,7 +685,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.06559340888634324,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.11783871706575155,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.8881908962503076,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03222957160323858,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.2132004317827523,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.565822644624859,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -401,7 +749,36 @@
   },
   "-_healpix_29-16384": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.13210987905040383,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.15011903690174222,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.6227338751778007,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.029840337112545967,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.9309348450042307,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.4056704733520746,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -434,7 +811,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.3196605215780437,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.4186200611293316,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.7850973117165267,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.12642009556293488,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.8869797387160361,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.1783724734559655,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -467,7 +873,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.14226297056302428,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.2438439019024372,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.5723396358080208,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.07583620678633451,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 3.729782523121685,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 5.953315411694348,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -500,7 +935,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.3215102725662291,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.4627985144034028,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 0.6578892772085965,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.1734109427779913,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 8.921568029560149,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 16.105634146835655,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -533,7 +997,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.11544097913429141,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.22386929020285606,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.9788424829021096,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03346854168921709,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.233595211058855,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.815847487654537,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -566,7 +1059,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.07455065427348018,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.14559247391298413,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.0710236788727343,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.0284245777875185,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.2738175941631198,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.9348551738075912,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -601,7 +1123,36 @@
   },
   "-_healpix_29-262144": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.07645102497190237,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.17209764011204243,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.9114140779711306,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.033220339100807905,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 2.369058867916465,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 2.939334469847381,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -634,7 +1185,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.47640640335157514,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.7119881678372622,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 3.29989973641932,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.3262733705341816,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 15.809238599147648,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 19.203395542688668,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -667,7 +1247,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.11370335286483169,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.2076765918172896,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.0788402468897402,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.096037439070642,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 8.777094148099422,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 12.798372012097389,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -700,7 +1309,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.48553877230733633,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.682554199360311,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 2.838343531358987,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.39275929890573025,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 19.179403653834015,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 24.60080370446667,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -733,7 +1371,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.04289236105978489,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.12305504875257611,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.716649561189115,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03123042918741703,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.9796432103030384,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.5372813642024994,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -766,7 +1433,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.0751089327968657,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.09847629722207785,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.8162789572961628,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.0344874351285398,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.9264199268072844,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.632443531882018,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -801,7 +1497,36 @@
   },
   "-_healpix_29-4096": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.21672479389235377,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.22461273288354278,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.1189990942366421,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.05952455196529627,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.993101819884032,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.3156781122088432,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -834,7 +1559,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.7315825009718537,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.77108323154971,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.180084359832108,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.13840573001652956,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.5387155152857304,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.6342163858935237,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -867,7 +1621,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.3216891484335065,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.33588035264983773,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.9033776489086449,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.12396648665890098,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 3.670605623163283,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 5.4430575664155185,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -900,7 +1683,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.696832655929029,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.7141053322702646,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 0.9873007112182677,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.32668344769626856,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 6.4769633850082755,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 10.791435337625444,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -933,7 +1745,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.1438673078082502,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.24162603914737701,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.3611222067847848,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.08802408678457141,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.2372618024237454,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.510422262828797,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -966,7 +1807,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.1516869980841875,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.26279449788853526,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.6356778861954808,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.12794326804578304,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.9652029820717871,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.5534796202555299,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1001,7 +1871,36 @@
   },
   "-_healpix_29-65536": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.0626479359343648,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.12194236880168319,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.7749063121154904,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.02771497005596757,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 1.6335212290287018,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 2.7044519199989736,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1034,7 +1933,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.2151894960552454,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.4357974515296519,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.0419615819118917,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.18360837129876018,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 3.6649021822959185,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 4.927641801070422,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1067,7 +1995,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.08630475262179971,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.14155823783949018,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.7748694391921163,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.09021416027098894,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 6.075061602983624,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 10.072035234887153,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1100,7 +2057,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.3535576038993895,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.29364031087607145,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 1.129458683077246,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.1874621119350195,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 11.850048516411334,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 19.55687841353938,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1133,7 +2119,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.04601457994431257,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.11710694106295705,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.7966290088370442,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.029620674904435873,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.507194135338068,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.263826214708388,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1166,7 +2181,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.054504794999957085,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.10735617205500603,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.647490824572742,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03594385925680399,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.3090155269019306,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.282335695810616,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1201,7 +2245,36 @@
   },
   "-filter-1024": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.3812714070081711,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.5791661478579044,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 2.3176221949979663,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.18546141032129526,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 1.07301602140069,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.372023289091885,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1234,7 +2307,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 4.464817543048412,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 5.960504456423223,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 27.437246095389128,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 1.003258129581809,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 9.216319663915783,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 12.359641425777227,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1267,7 +2369,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 1.2953912899829447,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.8003272232599556,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 8.322581655811518,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.37276933155953884,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 4.355239149183035,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 5.552550205029547,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1300,7 +2431,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 4.28309276746586,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 5.898621451109648,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 28.87089765165001,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 1.0004466180689633,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 3.5221852753311396,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 4.172585881315172,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1333,7 +2493,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.23622162407264113,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.3171509737148881,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.37435247702524066,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.06731738476082683,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.14617428462952375,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.1891191299073398,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1366,7 +2555,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.2795132100582123,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.3463304820470512,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.8128738719969988,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.07347577810287476,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.13469455996528268,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.17776598501950502,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1401,7 +2619,36 @@
   },
   "-filter-1048576": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.0683836922980845,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.13374199997633696,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.716631431132555,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03244684590026736,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 2.417586205061525,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 2.9538873811252415,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1434,7 +2681,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.7321772268041968,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.20212870137766,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 6.513126626145095,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.38480176543816924,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 22.61239861091599,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 26.04508711863309,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1467,7 +2743,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.1515087434090674,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.3980092890560627,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.509981857612729,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.14369451301172376,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 12.270364384166896,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 16.441590800415725,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1500,7 +2805,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.7393937343731523,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 1.0526561862789094,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 6.4735272051766515,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.43238780414685607,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 21.91499243211001,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 25.8480730089359,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1533,7 +2867,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.03738143714144826,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.09161838795989752,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.5652615400031209,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.032865545712411404,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.4276800858788192,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.7763668168336153,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1566,7 +2929,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.04676762968301773,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.11686569964513183,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.7461506240069866,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.04212790774181485,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.2919215499423444,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.547528885770589,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1601,7 +2993,36 @@
   },
   "-filter-16384": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.1345888590440154,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.16204611770808697,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.7315918910317123,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03661162266507745,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 1.2423050720244646,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 2.0091963675804436,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1634,7 +3055,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.6836438723839819,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.1171073224395514,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 6.3024891926907,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.25004975823685527,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 12.290100828744471,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 20.581190263386816,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1667,7 +3117,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.21347826160490513,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.4078044006600976,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.225134673062712,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.0998196522705257,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 5.736489261034876,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 9.13240149943158,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1700,7 +3179,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.8579249149188399,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 1.4273363263346255,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 6.195526205468923,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.19315687473863363,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 3.6369857196696103,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 6.176858332008123,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1733,7 +3241,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.028991263825446367,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.03395385295152664,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.09594553615897894,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.008583253249526024,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.599640395026654,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.7385614439845085,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1766,7 +3303,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.04598860768601298,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.09583920473232865,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.18854690296575427,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.009791599120944738,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.08508675498887897,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.12900574505329132,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1801,7 +3367,36 @@
   },
   "-filter-262144": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.11842470709234476,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.12428931705653667,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.7187687926925719,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.020532092079520226,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 1.9892123816534877,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 2.51860533375293,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1834,7 +3429,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.5782694071531296,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.9802749087102711,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 5.970522084273398,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.31021686689928174,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 20.94587734527886,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 26.620470103342086,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1867,7 +3491,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.1993242520838976,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.3656758451834321,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.6131991264410317,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.09807408228516579,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 12.42696595005691,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 17.6803033715114,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1900,7 +3553,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.7206299183890224,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 1.03458281327039,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 6.012405825778842,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.2070964020676911,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 8.545940229203552,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 11.929624859709293,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1933,7 +3615,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.03690427402034402,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.03724026493728161,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.24320494383573532,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.0070651620626449585,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.1034633591771126,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.496090394910425,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -1966,7 +3677,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.0453561102040112,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.10021094884723425,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.41034768894314766,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.029623116832226515,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.5125732976011932,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.6857601050287485,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2001,7 +3741,36 @@
   },
   "-filter-4096": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.2630479228682816,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.305322899017483,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.9266908140853047,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.040746305137872696,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.9624323658645153,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.4951960919424891,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2034,7 +3803,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 1.7572699151933193,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.5976116163656116,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 9.97284992178902,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.41797892516478896,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 9.454880617093295,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 14.325949653517455,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2067,7 +3865,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.45671465806663036,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.6421344196423888,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 3.3563495804555714,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.14586976310238242,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 4.038975526578724,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 6.549819036852568,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2100,7 +3927,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 1.50747607415542,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 2.401290452107787,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 9.806367125362158,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.3613913836888969,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 2.8626380125060678,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 4.5668886308558285,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2133,7 +3989,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.06927644927054644,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.09585655573755503,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.1323335487395525,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.020411215256899595,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.24948067497462034,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.3920783088542521,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2166,7 +4051,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.08080137940123677,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.10599318705499172,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.3348631518892944,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.020676041953265667,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.08311890717595816,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.10493883676826954,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2201,7 +4115,36 @@
   },
   "-filter-65536": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.12436395091935992,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.1304934690706432,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.742186218034476,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03640399361029267,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 1.775311317294836,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.9890334820374846,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2234,7 +4177,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.6127178515307605,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.0771299535408616,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 6.224841226357967,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.24584601633250713,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 15.829541826155037,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 22.991999966092408,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2267,7 +4239,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.21353683853521943,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.36472676834091544,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.345764477737248,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.07215467281639576,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 9.118032953701913,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 13.92548078391701,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2300,7 +4301,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.5024332390166819,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.980206863489002,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 5.8854779857210815,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.19160258257761598,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 6.089547317009419,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 7.74272840237245,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2333,7 +4363,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.050462489016354084,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.038082289043813944,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.10277385078370571,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.009314442053437233,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.5289323078468442,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.7299067880958319,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2366,7 +4425,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.030317726079374552,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.04209523322060704,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.24958713864907622,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.010978360194712877,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.3410641374066472,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.4178414917550981,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2401,7 +4489,36 @@
   },
   "-healpix-1": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.06790711032226682,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.11874804925173521,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.859183750115335,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.027059387881308794,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 1.4458667477592826,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.922987475991249,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2434,7 +4551,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.546557133551687,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.8386723715811968,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.120923488866538,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.1842920077033341,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 5.272786253597587,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 6.7736270246095955,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2467,7 +4613,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.14063468854874372,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.2264819066040218,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.893488802947104,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.08382997615262866,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 5.978270577266812,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 10.185849598608911,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2500,7 +4675,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.5366625031456351,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.6132318209856749,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 2.3348043472506106,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.21802548645064235,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 12.515263547189534,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 19.932443659286946,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2533,7 +4737,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.05686575174331665,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.09964142879471183,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.7165281279012561,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.034172466956079006,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.4597346540540457,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.216646849643439,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2566,7 +4799,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.057419031858444214,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.10493475990369916,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.8971730200573802,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03345715068280697,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.471199712716043,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.3757061418145895,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2601,7 +4863,36 @@
   },
   "-healpix-2": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.09619401209056377,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.14587793871760368,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.712002154905349,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03307391097769141,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 1.0432632057927549,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.4701608237810433,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2634,7 +4925,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.27590588480234146,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.5604971027933061,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.7835276830010116,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.13833895232528448,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.2858161083422601,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.4727134322747588,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2667,7 +4987,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.09067581314593554,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.1260424586944282,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.5857111620716751,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.08710735710337758,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 4.284564519766718,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 6.354879837017506,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2700,7 +5049,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.21186709823086858,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.3124960856512189,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 0.9491661069914699,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.2127954512834549,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 7.785649014171213,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 12.241085048764944,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2733,7 +5111,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.058098265901207924,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.10611102497205138,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.7158960709348321,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.030875088181346655,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.9979883930645883,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.5964605459012091,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2766,7 +5173,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.08574734907597303,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.1165804392658174,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.663145842961967,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.04038048489019275,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.0151264392770827,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.5232691457495093,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2801,7 +5237,36 @@
   },
   "-healpix-3": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.13163649197667837,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.260837045032531,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.7393402568995953,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.04305462911725044,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.8987089139409363,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.2868985133245587,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2834,7 +5299,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.4059792961925268,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.38620868511497974,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.7021778635680676,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.1283055734820664,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.7552809966728091,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.6709557389840484,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2867,7 +5361,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.17308095283806324,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.22139857802540064,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.5404274291358888,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.0941101061180234,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 3.4395431173034012,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 5.916520324535668,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2900,7 +5423,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.37203286634758115,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.374341310467571,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 0.6670203367248178,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.256412984803319,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 6.891230427660048,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 9.952176459133625,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2933,7 +5485,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.08276829682290554,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.13506524497643113,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.82666170084849,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.04084489122033119,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.8819892443716526,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.2396274986676872,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -2966,7 +5547,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.06916008284315467,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.13336341083049774,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.882332235109061,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.05116005800664425,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.9503300548531115,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.3250442338176072,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3001,7 +5611,36 @@
   },
   "-healpix-4": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.19447223003953695,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.3656443548388779,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.551087954081595,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.13380498392507434,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 1.0830287761054933,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.180163810029626,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3034,7 +5673,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 1.0759096592664719,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.0775412004441023,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.3199754827655852,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.2756206910125911,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.553861282300204,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.5825602528639138,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3067,7 +5735,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.3704917379654944,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.44010389456525445,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.1515317931771278,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.2687194854952395,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 4.321431665215641,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 5.519374267663807,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3100,7 +5797,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.9634902873076499,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.9253394976258278,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 1.1897161277011037,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.7706202697008848,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 6.262028430122882,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 8.611235480755568,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3133,7 +5859,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.21464603813365102,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.243945290800184,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.415901686064899,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.14018066599965096,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.02766741393134,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.201399436686188,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3166,7 +5921,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.19823668291792274,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.27316746208816767,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.496212210971862,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.13460092479363084,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.1465887166559696,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.2212899597361684,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3201,7 +5985,36 @@
   },
   "-healpix-5": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.5209969519637525,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.7928705289959908,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 3.4465139941312373,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.2969934311695397,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 1.0030708429403603,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.3045197501778603,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3234,7 +6047,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 4.031617829110473,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 4.082251236774027,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 4.445614991243929,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 1.0163626922294497,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.1187967699952424,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.1584410639479756,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3267,7 +6109,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 1.3972483174875379,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.4430469633080065,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 3.110602273605764,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.7672156542539597,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 4.468692373018712,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 5.842223981395364,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3300,7 +6171,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 3.68476117355749,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 4.163657400757074,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 3.9558024904690683,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 2.0404689302667975,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 7.3439552038908005,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 9.468128390610218,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3333,7 +6233,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.5345246368087828,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.8905445281416178,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 4.122456298209727,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.37230258295312524,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.018081460148096,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.289142063818872,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3366,7 +6295,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.5466247219592333,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.7932594129815698,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 4.225020756945014,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.38934054877609015,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.219345869962126,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.498193871229887,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3401,7 +6359,36 @@
   },
   "-healpix-6": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 1.9197813961654902,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 2.7556412052363157,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 13.311939088162035,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.9950132337398827,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 1.807223322801292,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 2.518288013059646,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3434,7 +6421,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 16.07174656772986,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 16.922015940304846,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 18.010727593675256,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 4.361852569039911,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 4.046365907881409,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 4.094931866507977,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3467,7 +6483,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 5.221568253822625,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 5.7954215942882,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 11.607488233130425,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 3.3704241812229156,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 7.1484890803694725,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 10.4987937300466,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3500,7 +6545,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 15.24706974811852,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 15.454035501461476,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 16.097505650948733,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 7.219100498128682,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 12.648845947347581,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 18.20213594287634,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3533,7 +6607,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 2.2657802840694785,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.5970843750983477,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 14.427040046080947,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 1.2062863041646779,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.8174107233062387,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.482383725233376,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3566,7 +6669,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 2.1683592619374394,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 3.1007386008277535,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 16.37137312721461,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 1.3819443490356207,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.477893892675638,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 3.2724159616045654,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3601,7 +6733,36 @@
   },
   "-id-1024": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.6006412599235773,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.6090972232632339,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 2.360580044798553,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.17578995088115335,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 1.0374865322373807,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.2452298826538026,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3634,7 +6795,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 2.6993335904553533,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.956981912255287,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 3.0730592580512166,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.8894708324223757,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 4.369020467624068,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 5.495176423806697,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3667,7 +6857,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.9349194588139653,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.0824433383531868,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.455625081900507,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.3639404415152967,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 3.7485260483808815,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 5.243343019858003,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3700,7 +6919,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 2.4422143367119133,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 2.630189095623791,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 2.899387155659497,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.3770071095786989,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.4446983295492828,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 0.44100667582824826,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3733,7 +6981,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.419239052105695,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.5438767657615244,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.948365019634366,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.08600655617192388,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.5661849179305136,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.6370730185881257,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3766,7 +7043,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.380020200740546,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.5503723137080669,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.6844256329350173,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.1581782097928226,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.8711573742330074,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.1480917381122708,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3801,7 +7107,36 @@
   },
   "-id-1048576": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.057092487812042236,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.11461325688287616,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.61092888424173,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.02805792260915041,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 2.3267578380182385,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 2.896013935096562,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3834,7 +7169,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.9291046368889511,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.1623901361599565,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 6.830071513541043,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.3614338771440089,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 23.410898339003325,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 25.901326462160796,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3867,7 +7231,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.19082406535744667,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.32869745371863246,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.9147239970043302,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.08984742220491171,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 10.030667507555336,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 13.208982896059752,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3900,7 +7293,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.7459737053140998,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 1.2006083545275033,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 6.310111442115158,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.3157278262078762,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 23.08423450915143,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 26.67564415000379,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3933,7 +7355,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.06030727690085769,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.12555817933753133,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.7938264301046729,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03484745789319277,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.4013620000332594,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.872307341080159,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -3966,7 +7417,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.07184065319597721,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.14353797724470496,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.8043092940934002,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03598417900502682,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.410023166332394,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.5908189630135894,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4001,7 +7481,36 @@
   },
   "-id-16384": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.1025655074045062,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.15934749692678452,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.7255684421397746,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.021736411843448877,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 1.0871605263091624,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.6694386950694025,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4034,7 +7543,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.36019528564065695,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.4122674772515893,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.7730799582786858,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.22286473540589213,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 8.351089569274336,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 13.090907235629857,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4067,7 +7605,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.1469487282447517,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.1890915036201477,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.607680578250438,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.06248684786260128,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 3.9673682008869946,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 7.065007671713829,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4100,7 +7667,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.2599256867542863,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.3465563436038792,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 0.531828360632062,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.07359469216316938,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.9892632993869483,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 1.2245139363221824,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4133,7 +7729,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.08124683611094952,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.15827190317213535,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.6023485511541367,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.014154810924082994,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.5951676890254021,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.8542525214143097,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4166,7 +7791,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.1080472469329834,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.1816936070099473,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.6801966391503811,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.042030153796076775,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.928023295942694,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.4921763488091528,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4201,7 +7855,36 @@
   },
   "-id-262144": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.06642541661858559,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.11990961572155356,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.6784805590286851,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.01989787584170699,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 2.227161366958171,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 2.476328243035823,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4234,7 +7917,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.6267106090672314,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.7409120807424188,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.5198413245379925,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.3327855230309069,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 21.655839340761304,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 24.54361396562308,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4267,7 +7979,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.12588309356942773,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.180065528023988,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.9909871220588684,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.0718062836676836,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 9.649647263344377,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 12.821755555924028,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4300,7 +8041,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.37869022181257606,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.612209371291101,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 2.468470874708146,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.23205993929877877,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 17.379910360556096,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 20.33382331766188,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4333,7 +8103,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.06442117877304554,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.10431805532425642,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.6464664856903255,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.030022123362869024,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.2688247561454773,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.498365554958582,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4366,7 +8165,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.04771780641749501,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.10851828381419182,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.9430887312628329,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.027589226141572,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.1571599319577217,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.472667413763702,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4401,7 +8229,36 @@
   },
   "-id-4096": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.2332077892497182,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.33759192703291774,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.9644887819886208,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.045926850754767656,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.7859485000371933,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 1.0872769611887634,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4434,7 +8291,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.7440158864483237,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.859196335542947,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.192132420372218,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.40555376978591084,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 5.22731355112046,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 8.096244759857655,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4467,7 +8353,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.27427968056872487,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.34278230043128133,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.9638057257980108,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.12212452804669738,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 3.8667089948430657,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 7.333244225941598,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4500,7 +8415,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.6542820963077247,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.7043212233111262,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 0.825475943274796,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.09292150568217039,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.4633539956994355,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 0.46381860971450806,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4533,7 +8477,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.13126946799457073,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.20792367588728666,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.3341637221165001,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03023457806557417,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.6517737451940775,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.9497385863214731,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4566,7 +8539,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.1421912368386984,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.28171204030513763,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.5937418187968433,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.06524974387139082,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.202586974017322,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.8502080328762531,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4601,7 +8603,36 @@
   },
   "-id-65536": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.10039703221991658,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.1535849110223353,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.8166742492467165,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03876123856753111,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 1.9236471159383655,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 2.7409298117272556,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4634,7 +8665,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.2051179138943553,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.32133242255076766,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.4164257594384253,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.20200532395392656,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 17.534397307783365,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 27.922250029165298,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4667,7 +8727,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.11764956079423428,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.19737973622977734,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.1199141549877822,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.09395194472745061,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 10.265485019888729,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 15.489738448057324,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4700,7 +8789,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.16673729522153735,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 0.29568603495135903,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 1.148961527273059,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.13087748363614082,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 4.801450985018164,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 5.766311122570187,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4733,7 +8851,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.06586106400936842,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.16643834579735994,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.917786261998117,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03466109372675419,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.358982127159834,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.678725232835859,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4766,7 +8913,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.06475246790796518,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.11070065386593342,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 1.0916170510463417,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.02870745025575161,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.8169106608256698,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.051555474754423,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4801,7 +8977,36 @@
   },
   "": {
     "Full read": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.060931145679205656,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 0.12912544468417764,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 0.823142419103533,
+            "weight": 4.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.030190829653292894,
+            "weight": 4.0
+          },
+          "default": {
+            "time": 2.3051025262102485,
+            "weight": 4.0
+          },
+          "all": {
+            "time": 2.98861497733742,
+            "weight": 4.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4834,7 +9039,36 @@
       }
     },
     "Small cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.8129395917057991,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 1.4150232789106667,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 6.617321793921292,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.4156478811055422,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 23.237043891567737,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 26.4178339750506,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4867,7 +9101,36 @@
       }
     },
     "Large cone": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.16030942043289542,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.3517633993178606,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.407023511826992,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.09264998137950897,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 9.435521522536874,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 11.82629102608189,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4900,7 +9163,36 @@
       }
     },
     "Select by ID": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.6712175197899342,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 1.1660575424320996,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 6.818011032417417,
+            "weight": 2.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.35272087529301643,
+            "weight": 2.0
+          },
+          "default": {
+            "time": 22.496839388739318,
+            "weight": 2.0
+          },
+          "all": {
+            "time": 25.587405897211283,
+            "weight": 2.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4933,7 +9225,36 @@
       }
     },
     "Filter column with few result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.043384332209825516,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.12039794586598873,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.7172858449630439,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.04317437810823321,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.3788815238513052,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.6780425840988755,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
@@ -4966,7 +9287,36 @@
       }
     },
     "Filter column with many result rows": {
-      "local": {},
+      "local": {
+        "gaia": {
+          "required": {
+            "time": 0.07275472208857536,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 0.10825112508609891,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 0.7653663121163845,
+            "weight": 1.0
+          }
+        },
+        "ztf": {
+          "required": {
+            "time": 0.03421622794121504,
+            "weight": 1.0
+          },
+          "default": {
+            "time": 2.313218465074897,
+            "weight": 1.0
+          },
+          "all": {
+            "time": 2.6465031718835235,
+            "weight": 1.0
+          }
+        }
+      },
       "remote": {
         "gaia": {
           "required": {
