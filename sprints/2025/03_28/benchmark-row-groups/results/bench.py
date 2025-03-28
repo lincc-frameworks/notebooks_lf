@@ -199,8 +199,8 @@ class Runner:
         "remote": UPath("s3://bucket", key="admin", secret="password", endpoint_url="http://localhost:9000"),
     }
 
-    timeit_iters = {"local": 5, "remote": 2}
-    timeit_index = {"local": 1, "remote": 0}
+    timeit_iters = {"local": 2, "remote": 1}
+    timeit_index = {"local": 0, "remote": 0}
 
     prefixes = {"gaia": "gaia_dr3-2-0", "ztf": "ztf_dr22-6-21554"}
 
@@ -236,11 +236,25 @@ class Runner:
         self.storages = storages or list(self.path_roots)
         self.catalogs = catalogs or list(self.prefixes)
 
-        if not self.output.exists() or force:
-            self.previous_results = {}
+        if not self.output.exists():
+            previous_results = {}
         else:
             with self.output.open() as f:
-                self.previous_results = json.load(f)
+                previous_results = json.load(f)
+        self.previous_results = deepcopy(previous_results)
+        
+        if force:
+            for suffix, suffix_results in previous_results.items():
+                for measurer, measurer_results in suffix_results.items():
+                    for storage, storage_results in measurer_results.items():
+                        if storage in self.storages:
+                            del self.previous_results[suffix][measurer][storage]
+                            continue
+                        for catalog, catalog_results in storage_results.items():
+                            if catalog in self.catalogs:
+                                del self.previous_results[suffix][measurer][storage][catalog]
+
+
 
     def get_suffixes(self):
         root = list(self.path_roots.values())[0]
