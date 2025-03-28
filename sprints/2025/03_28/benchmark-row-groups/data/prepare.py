@@ -130,7 +130,7 @@ def main(argv: list[str] | None = None):
 
             _ = sort_and_split(orig_file, name="id", column=column, row_group_size=row_group_size, force=args.force)
 
-    for diff_order in range(1, 9):
+    for diff_order in range(1, 7):
         for orig_file in original_files:
             _prefix, order, _pix = parse_filename(orig_file)
             _ = deeper_healpix(orig_file, order=order, diff_order=diff_order)
