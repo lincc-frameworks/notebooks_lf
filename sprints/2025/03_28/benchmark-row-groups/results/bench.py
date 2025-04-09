@@ -181,7 +181,7 @@ class SmallBox(Box):
     weight = 1.0
 
     def __init__(self, *, n_samples: int = 10):
-        super().__init__(name="Small cone", size_arcsec=6.0, n_samples=n_samples)
+        super().__init__(name="Small box", size_arcsec=6.0, n_samples=n_samples)
 
     def get_ra_dec_limits(self, obj_ra: float, obj_dec: float, random_state) -> dict[str, tuple[float, float]]:
         del random_state
@@ -324,6 +324,7 @@ class Runner:
             catalogs: list[str] | None = None,
     ):
         self.measurers = m
+        assert len(set(meas.name for meas in self.measurers)) == len(self.measurers), 'Non-unique measurer names'
         self.output = output
         self.force = force
         self.storages = storages or list(self.path_roots)
