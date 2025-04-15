@@ -2,7 +2,7 @@
 ## Wilson
 ## Sean
 ## Doug
-Nested Serialization
+[Nested Serialization](./serialization.ipynb)
 ## Olivia
 ## Melissa
 ## Kostya
