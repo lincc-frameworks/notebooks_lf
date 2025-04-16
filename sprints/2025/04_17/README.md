@@ -7,3 +7,4 @@
 ## Melissa
 ## Kostya
 ## Derek
+[Survey the effect of other Parquet compressions on observatory data](https://github.com/lsst-sitcom/linccf/blob/main/internal/compress_lsdb_695/object_forced_source_survey.ipynb)
