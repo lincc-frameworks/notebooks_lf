@@ -6,13 +6,13 @@
 
 # View-only Demos
 
-## Olivia
-## Kostya
-## Wilson
-## Sean
-## Melissa
-## Derek
-## Sandro
-## Doug
+## Olivia [5 minutes]
+## Kostya [5 minutes]
+## Wilson [5 minutes]
+## Sean [5 minutes]
+## Melissa [5 minutes]
+## Derek [5 minutes]
+## Sandro [5 minutes]
+## Doug [5 minutes]
 
 # Input Requested
