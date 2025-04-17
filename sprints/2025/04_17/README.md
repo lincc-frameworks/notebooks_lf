@@ -1,3 +1,5 @@
+# Day one
+
 ## Sandro
 
 - [Catalog collections / ID search](./catalog_collections/collections.ipynb)
@@ -8,10 +10,13 @@
 [Nest Lists](./nest_lists.ipynb)
 
 ## Sean
+[Assorted things](./reimport_allcols_crossmatchnested.ipynb)
 
 ## Doug
 
 [Nested Serialization](./serialization.ipynb)
+
+# Day 2
 
 ## Olivia
 [HealpixCatShardTask Tutorial Notebook](https://github.com/OliviaLynn/HealpixCatShardTask/blob/main/docs/Tutorial.ipynb)
