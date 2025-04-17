@@ -1,7 +1,7 @@
 ## Sandro
 
-[Catalog collections / ID search](./catalog_collections/collections.ipynb)
-[DASH benchmarks](./dash_benchmarks/bench.ipynb)
+- [Catalog collections / ID search](./catalog_collections/collections.ipynb)
+- [DASH benchmarks](./dash_benchmarks/bench.ipynb)
 
 ## Wilson
 
