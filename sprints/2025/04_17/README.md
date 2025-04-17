@@ -14,6 +14,7 @@
 [Nested Serialization](./serialization.ipynb)
 
 ## Olivia
+[HealpixCatShardTask Tutorial Notebook](https://github.com/OliviaLynn/HealpixCatShardTask/blob/main/docs/Tutorial.ipynb)
 
 ## Melissa
 
