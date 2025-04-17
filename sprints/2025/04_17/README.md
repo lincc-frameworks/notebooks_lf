@@ -18,6 +18,10 @@
 
 ## Melissa
 
+Pixel search
+- [melissa is a silly goose](./for%20theophile.ipynb)
+- [new way to do it](./pixel_search.ipynb)
+
 ## Kostya
 
 ## Derek
