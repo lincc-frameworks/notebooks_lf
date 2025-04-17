@@ -1,5 +1,6 @@
 ## Sandro
 ## Wilson
+[Nest Lists](./nest_lists.ipynb)
 ## Sean
 ## Doug
 [Nested Serialization](./serialization.ipynb)
