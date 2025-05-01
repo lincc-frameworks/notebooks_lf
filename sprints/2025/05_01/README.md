@@ -16,16 +16,17 @@
 Originally intended to show off left-join, but it won the battle!  So
 instead I'm showing some data thumbnail work and recommendations.
 
-[Generating data thumbnail local to catalog](local_data_thumbnail.ipynb): ~5m
+[Generating data thumbnail local to
+catalog](local_data_thumbnail.ipynb): ~5m
 
 [Generating data thumbnail over HTTPS](remote_data_thumbnail.ipynb):
 ~40m (LSST to epyc), but took all afternoon because of the maddening
 resource tuning, which is a low-level crisis.  On the upside, having
 the data thumbnail already would save at least 40m!
 
-It is dramatically preferable to do it local to the original catalog.
-I think it can and should be a short postprocessing step to HATS
-import.
+I think it should be a stage in the HATS import pipeline, next, but
+certainly for sanity's sake, it ought to be done while the partitions
+are being created.
 
 Would love to have a progress bar, and could, if this could be managed
 with `.map_partitions`.  Maybe by using `.to_delayed`?  Ideas?
