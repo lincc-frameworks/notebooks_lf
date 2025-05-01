@@ -14,6 +14,8 @@
 
 ## Sean [5 minutes]
 
+[Nested Serialization in LSDB](.nested_serialization.ipynb)
+
 ## Melissa [5 minutes]
 
 [quick collection demo](./may01demo.ipynb)
