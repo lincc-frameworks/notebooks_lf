@@ -38,7 +38,23 @@ certainly for sanity's sake, it ought to be done while the partitions
 are being created.
 
 Would love to have a progress bar, and could, if this could be managed
-with `.map_partitions`. Maybe by using `.to_delayed`? Ideas?
+with `.map_partitions`. Maybe by using `.to_delayed`? Ideas?  The
+answer is "yes", this way:
+
+```python
+from tqdm import tqdm
+from pathlib import Path
+import lsdb
+from dask.distributed import Client, as_completed
+client = Client()
+gaia3 = lsdb.read_hats(
+    "http://data.lsdb.io/hats/gaia_dr3/gaia/",
+    columns=["ra", "dec", "phot_g_mean_mag", "parallax", "source_id"])
+answers = []; delays = gaia3.map_partitions(lambda df: df.head(1)).to_delayed()
+futures = [client.compute(d) for d in delays]
+for f in tqdm(as_completed(futures), total=len(futures)):
+    answers.append(f.result())
+```
 
 ## Sandro [5 minutes]
 
