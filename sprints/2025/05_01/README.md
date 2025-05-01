@@ -16,6 +16,8 @@
 
 ## Melissa [5 minutes]
 
+[quick collection demo](./may01demo.ipynb)
+
 ## Derek [5 minutes]
 
 Originally intended to show off left-join, but it won the battle! So
@@ -40,6 +42,8 @@ with `.map_partitions`. Maybe by using `.to_delayed`? Ideas?
 
 [Customizing row-groups](./row_group_splitting/row_group_splitting.ipynb) according to two splitting strategies (_num_rows_ and _subtile_order_delta_).
 
-## Doug [5 minutes] - [Toy Catalog Generation](./catalog_generation.ipynb)
+## Doug [5 minutes] 
+
+- [Toy Catalog Generation](./catalog_generation.ipynb)
 
 # Input Requested
