@@ -13,6 +13,7 @@
 ## Melissa [5 minutes]
 ## Derek [5 minutes]
 ## Sandro [5 minutes]
-## Doug [5 minutes]
+## Doug [5 minutes] - [Toy Catalog Generation](./catalog_generation.ipynb)
+
 
 # Input Requested
