@@ -1,18 +1,21 @@
 ## Derek
 
-  - [profiling effect of row groups on storage](https://github.com/astronomy-commons/lsdb/issues/726)
-  - [flagging use of valid but unloaded columns](https://github.com/astronomy-commons/lsdb/issues/726)
+- [profiling effect of row groups on storage](https://github.com/astronomy-commons/lsdb/issues/726)
+- [flagging use of valid but unloaded columns](https://github.com/astronomy-commons/lsdb/issues/726)
 
 ## Sandro
 
-  - data thumbnail (?)
+- Data thumbnail
+- HATS embargo S3 bucket
 
 ## Sean
 
 loading lists of nested columns
 
 ## Kostya
+
 ## Wilson
+
 No demo this week
 
 ## Melissa
