@@ -13,6 +13,8 @@ loading lists of nested columns
 
 ## Kostya
 ## Wilson
+No demo this week
+
 ## Melissa
 
 - [Updated hats-cloudtests README](https://github.com/astronomy-commons/hats-cloudtests)
