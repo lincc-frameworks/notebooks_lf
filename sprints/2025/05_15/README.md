@@ -1,3 +1,8 @@
+# Recording information
+
+- [zoom link](https://cmu.zoom.us/rec/share/xonZnbSKxt69vB2SI16P24cwHSxjAsCHMpg-dCXVkxfPvio32qI0h5ZPJFRU4jr7.xbJFTxzGhy6reJfS)
+- Passcode: `^5^XvVRU`
+
 ## Derek
 
 - [profiling effect of row groups on storage](https://github.com/astronomy-commons/lsdb/issues/726)
