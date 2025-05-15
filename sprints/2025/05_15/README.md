@@ -15,7 +15,8 @@ loading lists of nested columns
 ## Wilson
 ## Melissa
 
-GCS testing
+- [Updated hats-cloudtests README](https://github.com/astronomy-commons/hats-cloudtests)
+- [GCS testing and smoke test matrix](https://github.com/astronomy-commons/hats-cloudtests/actions/runs/15052205344)
 
 ## Doug
 
