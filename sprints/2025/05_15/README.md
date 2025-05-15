@@ -1,7 +1,7 @@
 ## Derek
 
-  - profiling effect of row groups on storage
-  - flagging use of valid but unloaded columns
+  - [profiling effect of row groups on storage](https://github.com/astronomy-commons/lsdb/issues/726)
+  - [flagging use of valid but unloaded columns](https://github.com/astronomy-commons/lsdb/issues/726)
 
 ## Sandro
 
