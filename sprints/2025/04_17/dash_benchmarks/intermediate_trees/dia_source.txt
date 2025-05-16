@@ -1,0 +1,100 @@
+/sdf/data/rubin/shared/lsdb_commissioning/sandro_test/dia_source/intermediate
+├── alignment.pickle
+├── histograms
+│   ├── map_0.npz
+│   ├── map_10.npz
+│   ├── map_11.npz
+│   ├── map_12.npz
+│   ├── map_13.npz
+│   ├── map_14.npz
+│   ├── map_15.npz
+│   ├── map_16.npz
+│   ├── map_17.npz
+│   ├── map_18.npz
+│   ├── map_19.npz
+│   ├── map_1.npz
+│   ├── map_20.npz
+│   ├── map_21.npz
+│   ├── map_22.npz
+│   ├── map_23.npz
+│   ├── map_24.npz
+│   ├── map_2.npz
+│   ├── map_3.npz
+│   ├── map_4.npz
+│   ├── map_5.npz
+│   ├── map_6.npz
+│   ├── map_7.npz
+│   ├── map_8.npz
+│   └── map_9.npz
+├── input_paths.txt
+├── mapping_done
+├── mapping_histogram.npz
+├── order_0
+│   └── dir_0
+│       ├── pixel_0
+│       │   ├── shard_split_0_0.parquet
+│       │   ├── shard_split_17_0.parquet
+│       │   ├── shard_split_7_0.parquet
+│       │   └── shard_split_8_0.parquet
+│       ├── pixel_4
+│       │   └── shard_split_8_0.parquet
+│       ├── pixel_5
+│       │   ├── shard_split_1_0.parquet
+│       │   ├── shard_split_11_0.parquet
+│       │   ├── shard_split_12_0.parquet
+│       │   ├── shard_split_13_0.parquet
+│       │   ├── shard_split_18_0.parquet
+│       │   ├── shard_split_2_0.parquet
+│       │   ├── shard_split_24_0.parquet
+│       │   └── shard_split_6_0.parquet
+│       └── pixel_8
+│           ├── shard_split_10_0.parquet
+│           ├── shard_split_14_0.parquet
+│           ├── shard_split_15_0.parquet
+│           ├── shard_split_16_0.parquet
+│           ├── shard_split_19_0.parquet
+│           ├── shard_split_20_0.parquet
+│           ├── shard_split_21_0.parquet
+│           ├── shard_split_22_0.parquet
+│           ├── shard_split_23_0.parquet
+│           ├── shard_split_3_0.parquet
+│           ├── shard_split_4_0.parquet
+│           ├── shard_split_5_0.parquet
+│           ├── shard_split_5_1.parquet
+│           └── shard_split_9_0.parquet
+├── reader.pickle
+├── reducing
+│   ├── 0_0_done
+│   ├── 0_4_done
+│   ├── 0_5_done
+│   └── 0_8_done
+├── reducing_done
+├── splitting
+│   ├── split_0_done
+│   ├── split_10_done
+│   ├── split_11_done
+│   ├── split_12_done
+│   ├── split_13_done
+│   ├── split_14_done
+│   ├── split_15_done
+│   ├── split_16_done
+│   ├── split_17_done
+│   ├── split_18_done
+│   ├── split_19_done
+│   ├── split_1_done
+│   ├── split_20_done
+│   ├── split_21_done
+│   ├── split_22_done
+│   ├── split_23_done
+│   ├── split_24_done
+│   ├── split_2_done
+│   ├── split_3_done
+│   ├── split_4_done
+│   ├── split_5_done
+│   ├── split_6_done
+│   ├── split_7_done
+│   ├── split_8_done
+│   └── split_9_done
+└── splitting_done
+
+9 directories, 88 files
