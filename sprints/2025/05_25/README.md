@@ -8,6 +8,9 @@ Nothing today, in import jail.
 ## Wilson
 ## Kostya
 ## Sandro
+
+- [Overview of updates to DASH pipeline](https://github.com/lsst-sitcom/linccf/tree/main/dash)
+
 ## Derek
 
 Nothing this time.
