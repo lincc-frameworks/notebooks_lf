@@ -6,6 +6,7 @@ Nothing today, in import jail.
 - [Performance of alternative skymaps](./skymap_timeit.ipynb)
 
 ## Wilson
+Nothing today
 ## Kostya
 ## Sandro
 
