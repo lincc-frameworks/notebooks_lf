@@ -1,6 +1,7 @@
 ## Doug
 Nothing today, in import jail.
 ## Olivia
+- [https://github.com/astronomy-commons/lsdb/issues/782](https://github.com/astronomy-commons/lsdb/issues/782)
 - [Taking the time to gather comments on potential new template notebook](https://app.reviewnb.com/astronomy-commons/lsdb/pull/784/)
 
 
