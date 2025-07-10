@@ -8,7 +8,8 @@ The glories and frustrations of transplanting code from in-memory to Dask:
 ## Kostya
 ## Doug
 ## Olivia
-Skymap convert package (link(s) incoming)
+[Skymap convert package](https://github.com/lincc-frameworks/skymap-convert)
+
 ## Sean
 ## Sandro
 Association catalogs proposal
