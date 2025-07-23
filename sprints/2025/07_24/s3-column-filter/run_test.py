@@ -37,11 +37,33 @@ def usage_local(**_kwargs):
     return proc.io_counters().read_bytes
 
 
+def usage_nginx(**_kwargs):
+    output = subprocess.check_output(
+        [
+            'docker',
+            'compose',
+            'logs',
+            'web',
+            '--no-log-prefix',
+        ],
+        cwd='nginx',
+    )
+    total_bytes = 0
+    for line in output.decode().splitlines():
+        try:
+            total_bytes += int(line.split()[9])
+        except (ValueError, IndexError):
+            pass
+    return total_bytes
+
+
 def get_usage_fn(location, **kwargs):
     if location == 'minio':
         return partial(usage_minio, **kwargs)
     if location == 'local':
         return usage_local
+    if location == 'nginx':
+        return usage_nginx
     raise ValueError(f'Unknown location: {location}')
 
 
@@ -50,7 +72,7 @@ def parse_args(argv):
     parser.add_argument('--minio-name', default='lsdb')
     parser.add_argument('--filename', default='gaia_dr3-2-0-healpix-2.parquet')
     parser.add_argument('--block-size-kb', default=None, type=int)
-    parser.add_argument('--location', choices=['local', 'minio'], default='minio')
+    parser.add_argument('--location', choices=['local', 'minio', 'nginx'], default='minio')
     parser.add_argument('--columns', nargs='+', default=None)
     return parser.parse_args(argv)
 
@@ -67,6 +89,11 @@ def get_root_path(location, *, block_size_kb=None):
         return UPath('s3://bucket', **upath_kwargs)
     if location == 'local':
         return UPath('data/')
+    if location == 'nginx':
+        upath_kwargs = {}
+        if block_size_kb is not None:
+            upath_kwargs['block_size'] = block_size_kb * 1024
+        return UPath('http://localhost:8000/', **upath_kwargs)
     raise ValueError(f'Unknown location: {location}')
 
 

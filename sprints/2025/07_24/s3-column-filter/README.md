@@ -16,6 +16,17 @@ It should take few minutes to download the files (one Gaia and one ZTF HATS part
 and create 26 different row-group splits per each of these catalogs.
 You need 31GiB of storage for this.
 
+### Start HTTP server
+
+Install [Docker](https://docs.docker.com/get-docker/).
+
+Launch the server:
+
+```sh
+cd ./nginx
+docker compose up --build -d
+```
+
 ### Start S3 server
 
 Install [Docker](https://docs.docker.com/get-docker/) and [MinIO client](https://github.com/minio/mc).
@@ -51,7 +62,8 @@ python ./run-test.py --help
 ```
 
 When using `--location=minio`, minio client `mc` will be used to check how much data was sent.
-That means that you shouldn't get data from the minio server from any other place when running this.
+When using `--location=nginx`, Nginx logs accessed via `docker compose` will be used to check how much data was sent.
+That means that you shouldn't concurrently access minio and nginx servers when running these tests.
 On macOS `--location=local` counting of read bytes is not supported, but you would still see the timing results.
 
-Try to use different files with `--filename` and set different `--block-size-kb` (supported by `minio` only).
+Try to use different files with `--filename` and set different `--block-size-kb` (bot supported by `--location=local`).
