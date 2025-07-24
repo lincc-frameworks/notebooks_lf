@@ -15,4 +15,9 @@ make next time even easier.
 ## Olivia
 ## Sean
 ## Sandro
+
+# Seeking feedback
+
 ## Melissa
+
+- Extrema search
