@@ -28,6 +28,7 @@ make next time even easier.
 ## Sandro
 
 [Saving collections to disk](./write_catalog.ipynb)
+[WIP implementation of association catalogs](./association_catalogs.ipynb)
 
 # Seeking feedback
 
