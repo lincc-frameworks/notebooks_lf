@@ -1,0 +1,1625 @@
+/sdf/data/rubin/shared/lsdb_commissioning/sandro_test/object_forced_source/intermediate
+├── alignment.pickle
+├── histograms
+│   ├── map_0.npz
+│   ├── map_10.npz
+│   ├── map_11.npz
+│   ├── map_12.npz
+│   ├── map_13.npz
+│   ├── map_14.npz
+│   ├── map_15.npz
+│   ├── map_16.npz
+│   ├── map_17.npz
+│   ├── map_18.npz
+│   ├── map_19.npz
+│   ├── map_1.npz
+│   ├── map_20.npz
+│   ├── map_21.npz
+│   ├── map_22.npz
+│   ├── map_23.npz
+│   ├── map_24.npz
+│   ├── map_25.npz
+│   ├── map_26.npz
+│   ├── map_27.npz
+│   ├── map_28.npz
+│   ├── map_2.npz
+│   ├── map_3.npz
+│   ├── map_4.npz
+│   ├── map_5.npz
+│   ├── map_6.npz
+│   ├── map_7.npz
+│   ├── map_8.npz
+│   └── map_9.npz
+├── input_paths.txt
+├── mapping_done
+├── mapping_histogram.npz
+├── order_0
+│   └── dir_0
+│       ├── pixel_0
+│       │   ├── shard_split_10_0.parquet
+│       │   ├── shard_split_10_1.parquet
+│       │   ├── shard_split_10_2.parquet
+│       │   ├── shard_split_10_3.parquet
+│       │   ├── shard_split_10_4.parquet
+│       │   ├── shard_split_10_5.parquet
+│       │   ├── shard_split_11_0.parquet
+│       │   ├── shard_split_11_10.parquet
+│       │   ├── shard_split_11_11.parquet
+│       │   ├── shard_split_11_12.parquet
+│       │   ├── shard_split_11_13.parquet
+│       │   ├── shard_split_11_14.parquet
+│       │   ├── shard_split_11_15.parquet
+│       │   ├── shard_split_11_16.parquet
+│       │   ├── shard_split_11_17.parquet
+│       │   ├── shard_split_11_18.parquet
+│       │   ├── shard_split_11_19.parquet
+│       │   ├── shard_split_11_1.parquet
+│       │   ├── shard_split_11_2.parquet
+│       │   ├── shard_split_11_3.parquet
+│       │   ├── shard_split_11_4.parquet
+│       │   ├── shard_split_11_5.parquet
+│       │   ├── shard_split_11_6.parquet
+│       │   ├── shard_split_11_7.parquet
+│       │   ├── shard_split_11_8.parquet
+│       │   ├── shard_split_11_9.parquet
+│       │   ├── shard_split_14_0.parquet
+│       │   ├── shard_split_14_1.parquet
+│       │   ├── shard_split_9_0.parquet
+│       │   ├── shard_split_9_1.parquet
+│       │   ├── shard_split_9_2.parquet
+│       │   ├── shard_split_9_3.parquet
+│       │   ├── shard_split_9_4.parquet
+│       │   ├── shard_split_9_5.parquet
+│       │   ├── shard_split_9_6.parquet
+│       │   ├── shard_split_9_7.parquet
+│       │   ├── shard_split_9_8.parquet
+│       │   └── shard_split_9_9.parquet
+│       └── pixel_4
+│           ├── shard_split_11_0.parquet
+│           ├── shard_split_11_10.parquet
+│           ├── shard_split_11_12.parquet
+│           ├── shard_split_11_13.parquet
+│           ├── shard_split_11_18.parquet
+│           ├── shard_split_11_19.parquet
+│           ├── shard_split_11_2.parquet
+│           ├── shard_split_11_4.parquet
+│           ├── shard_split_11_7.parquet
+│           └── shard_split_11_8.parquet
+├── order_1
+│   └── dir_0
+│       ├── pixel_21
+│       │   ├── shard_split_18_0.parquet
+│       │   ├── shard_split_18_1.parquet
+│       │   ├── shard_split_19_0.parquet
+│       │   ├── shard_split_19_1.parquet
+│       │   ├── shard_split_19_2.parquet
+│       │   ├── shard_split_23_0.parquet
+│       │   ├── shard_split_28_0.parquet
+│       │   ├── shard_split_28_1.parquet
+│       │   └── shard_split_28_2.parquet
+│       └── pixel_32
+│           ├── shard_split_22_0.parquet
+│           ├── shard_split_3_0.parquet
+│           ├── shard_split_3_1.parquet
+│           └── shard_split_3_2.parquet
+├── order_2
+│   └── dir_0
+│       └── pixel_81
+│           ├── shard_split_7_18.parquet
+│           └── shard_split_7_24.parquet
+├── order_3
+│   └── dir_0
+│       ├── pixel_321
+│       │   ├── shard_split_0_0.parquet
+│       │   ├── shard_split_0_1.parquet
+│       │   ├── shard_split_0_2.parquet
+│       │   ├── shard_split_0_3.parquet
+│       │   ├── shard_split_0_4.parquet
+│       │   ├── shard_split_0_5.parquet
+│       │   ├── shard_split_0_6.parquet
+│       │   ├── shard_split_0_7.parquet
+│       │   ├── shard_split_0_8.parquet
+│       │   ├── shard_split_7_14.parquet
+│       │   ├── shard_split_7_19.parquet
+│       │   ├── shard_split_7_20.parquet
+│       │   ├── shard_split_7_21.parquet
+│       │   ├── shard_split_7_24.parquet
+│       │   ├── shard_split_7_28.parquet
+│       │   ├── shard_split_7_29.parquet
+│       │   ├── shard_split_7_30.parquet
+│       │   ├── shard_split_7_31.parquet
+│       │   ├── shard_split_7_33.parquet
+│       │   ├── shard_split_7_34.parquet
+│       │   ├── shard_split_7_35.parquet
+│       │   ├── shard_split_7_36.parquet
+│       │   ├── shard_split_7_37.parquet
+│       │   ├── shard_split_7_38.parquet
+│       │   ├── shard_split_7_39.parquet
+│       │   ├── shard_split_7_3.parquet
+│       │   ├── shard_split_7_40.parquet
+│       │   ├── shard_split_7_41.parquet
+│       │   ├── shard_split_7_42.parquet
+│       │   ├── shard_split_7_45.parquet
+│       │   ├── shard_split_7_46.parquet
+│       │   ├── shard_split_7_47.parquet
+│       │   ├── shard_split_7_4.parquet
+│       │   ├── shard_split_7_53.parquet
+│       │   ├── shard_split_7_54.parquet
+│       │   ├── shard_split_7_55.parquet
+│       │   ├── shard_split_7_5.parquet
+│       │   ├── shard_split_7_6.parquet
+│       │   ├── shard_split_7_7.parquet
+│       │   └── shard_split_7_8.parquet
+│       ├── pixel_560
+│       │   ├── shard_split_15_0.parquet
+│       │   ├── shard_split_15_1.parquet
+│       │   ├── shard_split_15_2.parquet
+│       │   ├── shard_split_5_0.parquet
+│       │   ├── shard_split_5_1.parquet
+│       │   ├── shard_split_5_2.parquet
+│       │   └── shard_split_5_3.parquet
+│       └── pixel_562
+│           ├── shard_split_15_0.parquet
+│           ├── shard_split_15_1.parquet
+│           ├── shard_split_15_2.parquet
+│           ├── shard_split_15_3.parquet
+│           ├── shard_split_17_0.parquet
+│           ├── shard_split_25_0.parquet
+│           ├── shard_split_25_1.parquet
+│           ├── shard_split_25_2.parquet
+│           ├── shard_split_5_0.parquet
+│           ├── shard_split_5_1.parquet
+│           ├── shard_split_5_2.parquet
+│           └── shard_split_5_3.parquet
+├── order_4
+│   └── dir_0
+│       ├── pixel_2144
+│       │   ├── shard_split_1_0.parquet
+│       │   ├── shard_split_1_1.parquet
+│       │   ├── shard_split_1_2.parquet
+│       │   ├── shard_split_13_10.parquet
+│       │   ├── shard_split_13_11.parquet
+│       │   ├── shard_split_13_12.parquet
+│       │   ├── shard_split_13_13.parquet
+│       │   ├── shard_split_13_14.parquet
+│       │   ├── shard_split_13_19.parquet
+│       │   ├── shard_split_13_20.parquet
+│       │   ├── shard_split_13_21.parquet
+│       │   ├── shard_split_13_22.parquet
+│       │   ├── shard_split_13_23.parquet
+│       │   ├── shard_split_13_24.parquet
+│       │   ├── shard_split_13_25.parquet
+│       │   ├── shard_split_13_26.parquet
+│       │   ├── shard_split_13_27.parquet
+│       │   ├── shard_split_13_28.parquet
+│       │   ├── shard_split_13_39.parquet
+│       │   ├── shard_split_13_44.parquet
+│       │   ├── shard_split_13_45.parquet
+│       │   ├── shard_split_13_46.parquet
+│       │   ├── shard_split_13_47.parquet
+│       │   ├── shard_split_13_4.parquet
+│       │   ├── shard_split_13_50.parquet
+│       │   ├── shard_split_13_51.parquet
+│       │   ├── shard_split_13_52.parquet
+│       │   ├── shard_split_13_53.parquet
+│       │   ├── shard_split_13_54.parquet
+│       │   ├── shard_split_13_55.parquet
+│       │   ├── shard_split_13_61.parquet
+│       │   ├── shard_split_13_63.parquet
+│       │   ├── shard_split_13_64.parquet
+│       │   ├── shard_split_13_65.parquet
+│       │   ├── shard_split_13_66.parquet
+│       │   ├── shard_split_13_67.parquet
+│       │   ├── shard_split_13_6.parquet
+│       │   ├── shard_split_13_79.parquet
+│       │   ├── shard_split_13_7.parquet
+│       │   ├── shard_split_13_83.parquet
+│       │   ├── shard_split_13_93.parquet
+│       │   ├── shard_split_13_94.parquet
+│       │   ├── shard_split_13_9.parquet
+│       │   ├── shard_split_1_3.parquet
+│       │   ├── shard_split_1_4.parquet
+│       │   ├── shard_split_1_5.parquet
+│       │   ├── shard_split_1_6.parquet
+│       │   ├── shard_split_1_7.parquet
+│       │   └── shard_split_2_0.parquet
+│       └── pixel_2247
+│           ├── shard_split_24_110.parquet
+│           ├── shard_split_24_111.parquet
+│           ├── shard_split_24_112.parquet
+│           ├── shard_split_24_113.parquet
+│           ├── shard_split_24_114.parquet
+│           ├── shard_split_24_129.parquet
+│           ├── shard_split_24_170.parquet
+│           ├── shard_split_24_171.parquet
+│           ├── shard_split_24_172.parquet
+│           ├── shard_split_24_173.parquet
+│           ├── shard_split_24_194.parquet
+│           ├── shard_split_24_204.parquet
+│           ├── shard_split_24_205.parquet
+│           ├── shard_split_24_206.parquet
+│           ├── shard_split_24_207.parquet
+│           ├── shard_split_24_208.parquet
+│           ├── shard_split_24_209.parquet
+│           ├── shard_split_24_216.parquet
+│           ├── shard_split_24_21.parquet
+│           ├── shard_split_24_22.parquet
+│           ├── shard_split_24_23.parquet
+│           ├── shard_split_24_24.parquet
+│           ├── shard_split_24_251.parquet
+│           ├── shard_split_24_252.parquet
+│           ├── shard_split_24_253.parquet
+│           ├── shard_split_24_254.parquet
+│           ├── shard_split_24_255.parquet
+│           ├── shard_split_24_256.parquet
+│           ├── shard_split_24_25.parquet
+│           ├── shard_split_24_26.parquet
+│           ├── shard_split_24_27.parquet
+│           ├── shard_split_24_28.parquet
+│           ├── shard_split_24_29.parquet
+│           ├── shard_split_24_30.parquet
+│           ├── shard_split_24_31.parquet
+│           ├── shard_split_24_32.parquet
+│           ├── shard_split_24_33.parquet
+│           ├── shard_split_24_43.parquet
+│           ├── shard_split_24_44.parquet
+│           ├── shard_split_24_45.parquet
+│           ├── shard_split_24_46.parquet
+│           ├── shard_split_24_47.parquet
+│           ├── shard_split_24_48.parquet
+│           ├── shard_split_24_49.parquet
+│           ├── shard_split_24_50.parquet
+│           ├── shard_split_24_51.parquet
+│           ├── shard_split_24_52.parquet
+│           ├── shard_split_24_53.parquet
+│           ├── shard_split_24_54.parquet
+│           ├── shard_split_24_55.parquet
+│           ├── shard_split_24_56.parquet
+│           ├── shard_split_24_57.parquet
+│           ├── shard_split_24_73.parquet
+│           └── shard_split_8_19.parquet
+├── order_6
+│   ├── dir_20000
+│   │   ├── pixel_20692
+│   │   │   ├── shard_split_0_1.parquet
+│   │   │   ├── shard_split_0_2.parquet
+│   │   │   ├── shard_split_0_6.parquet
+│   │   │   ├── shard_split_0_7.parquet
+│   │   │   ├── shard_split_0_8.parquet
+│   │   │   ├── shard_split_16_0.parquet
+│   │   │   ├── shard_split_27_10.parquet
+│   │   │   ├── shard_split_27_11.parquet
+│   │   │   ├── shard_split_27_12.parquet
+│   │   │   ├── shard_split_27_13.parquet
+│   │   │   ├── shard_split_27_14.parquet
+│   │   │   ├── shard_split_27_18.parquet
+│   │   │   ├── shard_split_27_19.parquet
+│   │   │   ├── shard_split_27_1.parquet
+│   │   │   ├── shard_split_27_20.parquet
+│   │   │   ├── shard_split_27_21.parquet
+│   │   │   ├── shard_split_27_22.parquet
+│   │   │   ├── shard_split_27_23.parquet
+│   │   │   ├── shard_split_27_2.parquet
+│   │   │   ├── shard_split_27_7.parquet
+│   │   │   ├── shard_split_27_8.parquet
+│   │   │   ├── shard_split_27_9.parquet
+│   │   │   └── shard_split_7_37.parquet
+│   │   └── pixel_20693
+│   │       ├── shard_split_27_0.parquet
+│   │       ├── shard_split_27_10.parquet
+│   │       ├── shard_split_27_11.parquet
+│   │       ├── shard_split_27_12.parquet
+│   │       ├── shard_split_27_13.parquet
+│   │       ├── shard_split_27_15.parquet
+│   │       ├── shard_split_27_16.parquet
+│   │       ├── shard_split_27_17.parquet
+│   │       ├── shard_split_27_18.parquet
+│   │       ├── shard_split_27_19.parquet
+│   │       ├── shard_split_27_20.parquet
+│   │       ├── shard_split_27_21.parquet
+│   │       ├── shard_split_27_23.parquet
+│   │       ├── shard_split_27_2.parquet
+│   │       ├── shard_split_27_3.parquet
+│   │       ├── shard_split_27_4.parquet
+│   │       ├── shard_split_27_5.parquet
+│   │       ├── shard_split_27_6.parquet
+│   │       ├── shard_split_27_7.parquet
+│   │       ├── shard_split_27_8.parquet
+│   │       ├── shard_split_27_9.parquet
+│   │       ├── shard_split_7_0.parquet
+│   │       ├── shard_split_7_10.parquet
+│   │       ├── shard_split_7_11.parquet
+│   │       ├── shard_split_7_12.parquet
+│   │       ├── shard_split_7_13.parquet
+│   │       ├── shard_split_7_14.parquet
+│   │       ├── shard_split_7_15.parquet
+│   │       ├── shard_split_7_16.parquet
+│   │       ├── shard_split_7_17.parquet
+│   │       ├── shard_split_7_18.parquet
+│   │       ├── shard_split_7_1.parquet
+│   │       ├── shard_split_7_22.parquet
+│   │       ├── shard_split_7_23.parquet
+│   │       ├── shard_split_7_24.parquet
+│   │       ├── shard_split_7_25.parquet
+│   │       ├── shard_split_7_26.parquet
+│   │       ├── shard_split_7_27.parquet
+│   │       ├── shard_split_7_28.parquet
+│   │       ├── shard_split_7_29.parquet
+│   │       ├── shard_split_7_2.parquet
+│   │       ├── shard_split_7_30.parquet
+│   │       ├── shard_split_7_31.parquet
+│   │       ├── shard_split_7_32.parquet
+│   │       ├── shard_split_7_33.parquet
+│   │       ├── shard_split_7_34.parquet
+│   │       ├── shard_split_7_35.parquet
+│   │       ├── shard_split_7_36.parquet
+│   │       ├── shard_split_7_37.parquet
+│   │       ├── shard_split_7_38.parquet
+│   │       ├── shard_split_7_39.parquet
+│   │       ├── shard_split_7_3.parquet
+│   │       ├── shard_split_7_43.parquet
+│   │       ├── shard_split_7_44.parquet
+│   │       ├── shard_split_7_45.parquet
+│   │       ├── shard_split_7_46.parquet
+│   │       ├── shard_split_7_47.parquet
+│   │       ├── shard_split_7_48.parquet
+│   │       ├── shard_split_7_49.parquet
+│   │       ├── shard_split_7_4.parquet
+│   │       ├── shard_split_7_50.parquet
+│   │       ├── shard_split_7_51.parquet
+│   │       ├── shard_split_7_52.parquet
+│   │       ├── shard_split_7_54.parquet
+│   │       ├── shard_split_7_55.parquet
+│   │       ├── shard_split_7_5.parquet
+│   │       ├── shard_split_7_6.parquet
+│   │       ├── shard_split_7_7.parquet
+│   │       ├── shard_split_7_8.parquet
+│   │       └── shard_split_7_9.parquet
+│   └── dir_30000
+│       ├── pixel_34328
+│       │   ├── shard_split_1_1.parquet
+│       │   ├── shard_split_1_2.parquet
+│       │   ├── shard_split_13_0.parquet
+│       │   ├── shard_split_13_10.parquet
+│       │   ├── shard_split_13_11.parquet
+│       │   ├── shard_split_13_12.parquet
+│       │   ├── shard_split_13_13.parquet
+│       │   ├── shard_split_13_14.parquet
+│       │   ├── shard_split_13_15.parquet
+│       │   ├── shard_split_13_16.parquet
+│       │   ├── shard_split_13_17.parquet
+│       │   ├── shard_split_13_18.parquet
+│       │   ├── shard_split_13_19.parquet
+│       │   ├── shard_split_13_1.parquet
+│       │   ├── shard_split_13_20.parquet
+│       │   ├── shard_split_13_21.parquet
+│       │   ├── shard_split_13_22.parquet
+│       │   ├── shard_split_13_23.parquet
+│       │   ├── shard_split_13_24.parquet
+│       │   ├── shard_split_13_25.parquet
+│       │   ├── shard_split_13_28.parquet
+│       │   ├── shard_split_13_29.parquet
+│       │   ├── shard_split_13_2.parquet
+│       │   ├── shard_split_13_30.parquet
+│       │   ├── shard_split_13_31.parquet
+│       │   ├── shard_split_13_32.parquet
+│       │   ├── shard_split_13_33.parquet
+│       │   ├── shard_split_13_37.parquet
+│       │   ├── shard_split_13_38.parquet
+│       │   ├── shard_split_13_39.parquet
+│       │   ├── shard_split_13_3.parquet
+│       │   ├── shard_split_13_40.parquet
+│       │   ├── shard_split_13_41.parquet
+│       │   ├── shard_split_13_42.parquet
+│       │   ├── shard_split_13_43.parquet
+│       │   ├── shard_split_13_48.parquet
+│       │   ├── shard_split_13_49.parquet
+│       │   ├── shard_split_13_4.parquet
+│       │   ├── shard_split_13_50.parquet
+│       │   ├── shard_split_13_51.parquet
+│       │   ├── shard_split_13_52.parquet
+│       │   ├── shard_split_13_53.parquet
+│       │   ├── shard_split_13_54.parquet
+│       │   ├── shard_split_13_55.parquet
+│       │   ├── shard_split_13_5.parquet
+│       │   ├── shard_split_13_61.parquet
+│       │   ├── shard_split_13_64.parquet
+│       │   ├── shard_split_13_68.parquet
+│       │   ├── shard_split_13_69.parquet
+│       │   ├── shard_split_13_70.parquet
+│       │   ├── shard_split_13_71.parquet
+│       │   ├── shard_split_13_72.parquet
+│       │   ├── shard_split_13_74.parquet
+│       │   ├── shard_split_13_75.parquet
+│       │   ├── shard_split_13_76.parquet
+│       │   ├── shard_split_13_77.parquet
+│       │   ├── shard_split_13_78.parquet
+│       │   ├── shard_split_13_79.parquet
+│       │   ├── shard_split_13_80.parquet
+│       │   ├── shard_split_13_81.parquet
+│       │   ├── shard_split_13_82.parquet
+│       │   ├── shard_split_13_83.parquet
+│       │   ├── shard_split_13_84.parquet
+│       │   ├── shard_split_13_85.parquet
+│       │   ├── shard_split_13_86.parquet
+│       │   ├── shard_split_13_87.parquet
+│       │   ├── shard_split_13_88.parquet
+│       │   ├── shard_split_13_89.parquet
+│       │   ├── shard_split_13_8.parquet
+│       │   ├── shard_split_13_90.parquet
+│       │   ├── shard_split_13_91.parquet
+│       │   ├── shard_split_13_92.parquet
+│       │   ├── shard_split_13_94.parquet
+│       │   ├── shard_split_13_9.parquet
+│       │   ├── shard_split_1_3.parquet
+│       │   ├── shard_split_1_6.parquet
+│       │   └── shard_split_1_7.parquet
+│       ├── pixel_34329
+│       │   ├── shard_split_13_28.parquet
+│       │   ├── shard_split_13_29.parquet
+│       │   ├── shard_split_13_43.parquet
+│       │   ├── shard_split_13_62.parquet
+│       │   ├── shard_split_13_83.parquet
+│       │   └── shard_split_13_89.parquet
+│       ├── pixel_34330
+│       │   ├── shard_split_13_10.parquet
+│       │   ├── shard_split_13_11.parquet
+│       │   ├── shard_split_13_12.parquet
+│       │   ├── shard_split_13_13.parquet
+│       │   ├── shard_split_13_14.parquet
+│       │   ├── shard_split_13_15.parquet
+│       │   ├── shard_split_13_16.parquet
+│       │   ├── shard_split_13_17.parquet
+│       │   ├── shard_split_13_18.parquet
+│       │   ├── shard_split_13_21.parquet
+│       │   ├── shard_split_13_22.parquet
+│       │   ├── shard_split_13_23.parquet
+│       │   ├── shard_split_13_24.parquet
+│       │   ├── shard_split_13_25.parquet
+│       │   ├── shard_split_13_28.parquet
+│       │   ├── shard_split_13_34.parquet
+│       │   ├── shard_split_13_35.parquet
+│       │   ├── shard_split_13_36.parquet
+│       │   ├── shard_split_13_44.parquet
+│       │   ├── shard_split_13_45.parquet
+│       │   ├── shard_split_13_46.parquet
+│       │   ├── shard_split_13_47.parquet
+│       │   ├── shard_split_13_49.parquet
+│       │   ├── shard_split_13_56.parquet
+│       │   ├── shard_split_13_57.parquet
+│       │   ├── shard_split_13_58.parquet
+│       │   ├── shard_split_13_59.parquet
+│       │   ├── shard_split_13_5.parquet
+│       │   ├── shard_split_13_60.parquet
+│       │   ├── shard_split_13_61.parquet
+│       │   ├── shard_split_13_62.parquet
+│       │   ├── shard_split_13_64.parquet
+│       │   ├── shard_split_13_65.parquet
+│       │   ├── shard_split_13_66.parquet
+│       │   ├── shard_split_13_67.parquet
+│       │   ├── shard_split_13_73.parquet
+│       │   ├── shard_split_13_74.parquet
+│       │   ├── shard_split_13_75.parquet
+│       │   ├── shard_split_13_76.parquet
+│       │   ├── shard_split_13_77.parquet
+│       │   ├── shard_split_13_78.parquet
+│       │   ├── shard_split_13_79.parquet
+│       │   ├── shard_split_13_7.parquet
+│       │   ├── shard_split_13_84.parquet
+│       │   ├── shard_split_13_85.parquet
+│       │   ├── shard_split_13_86.parquet
+│       │   ├── shard_split_13_87.parquet
+│       │   ├── shard_split_13_88.parquet
+│       │   ├── shard_split_13_89.parquet
+│       │   ├── shard_split_13_8.parquet
+│       │   ├── shard_split_13_90.parquet
+│       │   ├── shard_split_13_91.parquet
+│       │   ├── shard_split_13_92.parquet
+│       │   ├── shard_split_13_93.parquet
+│       │   ├── shard_split_13_94.parquet
+│       │   └── shard_split_13_9.parquet
+│       ├── pixel_35932
+│       │   ├── shard_split_26_19.parquet
+│       │   ├── shard_split_26_20.parquet
+│       │   ├── shard_split_26_33.parquet
+│       │   └── shard_split_26_63.parquet
+│       └── pixel_35933
+│           ├── shard_split_24_109.parquet
+│           ├── shard_split_24_194.parquet
+│           ├── shard_split_26_14.parquet
+│           ├── shard_split_26_19.parquet
+│           ├── shard_split_26_20.parquet
+│           ├── shard_split_26_33.parquet
+│           ├── shard_split_26_45.parquet
+│           ├── shard_split_26_56.parquet
+│           ├── shard_split_26_57.parquet
+│           ├── shard_split_26_58.parquet
+│           ├── shard_split_26_59.parquet
+│           └── shard_split_26_8.parquet
+├── order_7
+│   └── dir_140000
+│       ├── pixel_143736
+│       │   ├── shard_split_8_19.parquet
+│       │   ├── shard_split_8_4.parquet
+│       │   └── shard_split_8_5.parquet
+│       ├── pixel_143737
+│       │   ├── shard_split_26_0.parquet
+│       │   ├── shard_split_26_10.parquet
+│       │   ├── shard_split_26_11.parquet
+│       │   ├── shard_split_26_12.parquet
+│       │   ├── shard_split_26_13.parquet
+│       │   ├── shard_split_26_15.parquet
+│       │   ├── shard_split_26_16.parquet
+│       │   ├── shard_split_26_17.parquet
+│       │   ├── shard_split_26_18.parquet
+│       │   ├── shard_split_26_19.parquet
+│       │   ├── shard_split_26_20.parquet
+│       │   ├── shard_split_26_21.parquet
+│       │   ├── shard_split_26_22.parquet
+│       │   ├── shard_split_26_23.parquet
+│       │   ├── shard_split_26_24.parquet
+│       │   ├── shard_split_26_25.parquet
+│       │   ├── shard_split_26_26.parquet
+│       │   ├── shard_split_26_27.parquet
+│       │   ├── shard_split_26_28.parquet
+│       │   ├── shard_split_26_29.parquet
+│       │   ├── shard_split_26_30.parquet
+│       │   ├── shard_split_26_31.parquet
+│       │   ├── shard_split_26_32.parquet
+│       │   ├── shard_split_26_33.parquet
+│       │   ├── shard_split_26_34.parquet
+│       │   ├── shard_split_26_35.parquet
+│       │   ├── shard_split_26_36.parquet
+│       │   ├── shard_split_26_37.parquet
+│       │   ├── shard_split_26_38.parquet
+│       │   ├── shard_split_26_39.parquet
+│       │   ├── shard_split_26_40.parquet
+│       │   ├── shard_split_26_41.parquet
+│       │   ├── shard_split_26_42.parquet
+│       │   ├── shard_split_26_43.parquet
+│       │   ├── shard_split_26_44.parquet
+│       │   ├── shard_split_26_46.parquet
+│       │   ├── shard_split_26_47.parquet
+│       │   ├── shard_split_26_48.parquet
+│       │   ├── shard_split_26_49.parquet
+│       │   ├── shard_split_26_50.parquet
+│       │   ├── shard_split_26_51.parquet
+│       │   ├── shard_split_26_52.parquet
+│       │   ├── shard_split_26_53.parquet
+│       │   ├── shard_split_26_54.parquet
+│       │   ├── shard_split_26_55.parquet
+│       │   ├── shard_split_26_63.parquet
+│       │   ├── shard_split_26_64.parquet
+│       │   ├── shard_split_26_65.parquet
+│       │   ├── shard_split_26_9.parquet
+│       │   ├── shard_split_8_10.parquet
+│       │   ├── shard_split_8_13.parquet
+│       │   ├── shard_split_8_14.parquet
+│       │   ├── shard_split_8_15.parquet
+│       │   ├── shard_split_8_16.parquet
+│       │   ├── shard_split_8_17.parquet
+│       │   ├── shard_split_8_18.parquet
+│       │   ├── shard_split_8_19.parquet
+│       │   ├── shard_split_8_27.parquet
+│       │   ├── shard_split_8_4.parquet
+│       │   ├── shard_split_8_5.parquet
+│       │   ├── shard_split_8_6.parquet
+│       │   ├── shard_split_8_7.parquet
+│       │   ├── shard_split_8_8.parquet
+│       │   └── shard_split_8_9.parquet
+│       ├── pixel_143738
+│       │   ├── shard_split_8_19.parquet
+│       │   ├── shard_split_8_20.parquet
+│       │   ├── shard_split_8_21.parquet
+│       │   ├── shard_split_8_4.parquet
+│       │   └── shard_split_8_5.parquet
+│       ├── pixel_143741
+│       │   ├── shard_split_24_0.parquet
+│       │   ├── shard_split_24_102.parquet
+│       │   ├── shard_split_24_103.parquet
+│       │   ├── shard_split_24_104.parquet
+│       │   ├── shard_split_24_105.parquet
+│       │   ├── shard_split_24_106.parquet
+│       │   ├── shard_split_24_107.parquet
+│       │   ├── shard_split_24_108.parquet
+│       │   ├── shard_split_24_109.parquet
+│       │   ├── shard_split_24_10.parquet
+│       │   ├── shard_split_24_113.parquet
+│       │   ├── shard_split_24_11.parquet
+│       │   ├── shard_split_24_129.parquet
+│       │   ├── shard_split_24_12.parquet
+│       │   ├── shard_split_24_13.parquet
+│       │   ├── shard_split_24_14.parquet
+│       │   ├── shard_split_24_15.parquet
+│       │   ├── shard_split_24_16.parquet
+│       │   ├── shard_split_24_17.parquet
+│       │   ├── shard_split_24_18.parquet
+│       │   ├── shard_split_24_193.parquet
+│       │   ├── shard_split_24_194.parquet
+│       │   ├── shard_split_24_19.parquet
+│       │   ├── shard_split_24_1.parquet
+│       │   ├── shard_split_24_20.parquet
+│       │   ├── shard_split_24_21.parquet
+│       │   ├── shard_split_24_2.parquet
+│       │   ├── shard_split_24_34.parquet
+│       │   ├── shard_split_24_35.parquet
+│       │   ├── shard_split_24_36.parquet
+│       │   ├── shard_split_24_37.parquet
+│       │   ├── shard_split_24_38.parquet
+│       │   ├── shard_split_24_39.parquet
+│       │   ├── shard_split_24_3.parquet
+│       │   ├── shard_split_24_40.parquet
+│       │   ├── shard_split_24_41.parquet
+│       │   ├── shard_split_24_42.parquet
+│       │   ├── shard_split_24_6.parquet
+│       │   ├── shard_split_24_7.parquet
+│       │   ├── shard_split_24_8.parquet
+│       │   ├── shard_split_24_93.parquet
+│       │   ├── shard_split_24_9.parquet
+│       │   ├── shard_split_26_14.parquet
+│       │   └── shard_split_6_0.parquet
+│       └── pixel_143743
+│           ├── shard_split_24_0.parquet
+│           ├── shard_split_24_102.parquet
+│           ├── shard_split_24_103.parquet
+│           ├── shard_split_24_104.parquet
+│           ├── shard_split_24_105.parquet
+│           ├── shard_split_24_106.parquet
+│           ├── shard_split_24_107.parquet
+│           ├── shard_split_24_108.parquet
+│           ├── shard_split_24_109.parquet
+│           ├── shard_split_24_10.parquet
+│           ├── shard_split_24_113.parquet
+│           ├── shard_split_24_11.parquet
+│           ├── shard_split_24_12.parquet
+│           ├── shard_split_24_130.parquet
+│           ├── shard_split_24_131.parquet
+│           ├── shard_split_24_132.parquet
+│           ├── shard_split_24_133.parquet
+│           ├── shard_split_24_134.parquet
+│           ├── shard_split_24_135.parquet
+│           ├── shard_split_24_136.parquet
+│           ├── shard_split_24_137.parquet
+│           ├── shard_split_24_138.parquet
+│           ├── shard_split_24_139.parquet
+│           ├── shard_split_24_13.parquet
+│           ├── shard_split_24_14.parquet
+│           ├── shard_split_24_15.parquet
+│           ├── shard_split_24_16.parquet
+│           ├── shard_split_24_171.parquet
+│           ├── shard_split_24_172.parquet
+│           ├── shard_split_24_173.parquet
+│           ├── shard_split_24_17.parquet
+│           ├── shard_split_24_18.parquet
+│           ├── shard_split_24_19.parquet
+│           ├── shard_split_24_1.parquet
+│           ├── shard_split_24_203.parquet
+│           ├── shard_split_24_20.parquet
+│           ├── shard_split_24_21.parquet
+│           ├── shard_split_24_2.parquet
+│           ├── shard_split_24_3.parquet
+│           ├── shard_split_24_43.parquet
+│           ├── shard_split_24_44.parquet
+│           ├── shard_split_24_45.parquet
+│           ├── shard_split_24_58.parquet
+│           ├── shard_split_24_59.parquet
+│           ├── shard_split_24_60.parquet
+│           ├── shard_split_24_61.parquet
+│           ├── shard_split_24_62.parquet
+│           ├── shard_split_24_63.parquet
+│           ├── shard_split_24_64.parquet
+│           ├── shard_split_24_65.parquet
+│           ├── shard_split_24_66.parquet
+│           ├── shard_split_24_67.parquet
+│           ├── shard_split_24_68.parquet
+│           ├── shard_split_24_69.parquet
+│           ├── shard_split_24_6.parquet
+│           ├── shard_split_24_70.parquet
+│           ├── shard_split_24_71.parquet
+│           ├── shard_split_24_72.parquet
+│           ├── shard_split_24_7.parquet
+│           ├── shard_split_24_8.parquet
+│           └── shard_split_24_9.parquet
+├── order_8
+│   └── dir_570000
+│       ├── pixel_574956
+│       │   ├── shard_split_8_10.parquet
+│       │   ├── shard_split_8_11.parquet
+│       │   ├── shard_split_8_12.parquet
+│       │   ├── shard_split_8_13.parquet
+│       │   ├── shard_split_8_14.parquet
+│       │   ├── shard_split_8_15.parquet
+│       │   ├── shard_split_8_16.parquet
+│       │   ├── shard_split_8_17.parquet
+│       │   ├── shard_split_8_18.parquet
+│       │   ├── shard_split_8_19.parquet
+│       │   ├── shard_split_8_20.parquet
+│       │   ├── shard_split_8_21.parquet
+│       │   ├── shard_split_8_22.parquet
+│       │   ├── shard_split_8_23.parquet
+│       │   ├── shard_split_8_24.parquet
+│       │   ├── shard_split_8_25.parquet
+│       │   ├── shard_split_8_26.parquet
+│       │   ├── shard_split_8_4.parquet
+│       │   ├── shard_split_8_5.parquet
+│       │   ├── shard_split_8_6.parquet
+│       │   ├── shard_split_8_7.parquet
+│       │   ├── shard_split_8_8.parquet
+│       │   └── shard_split_8_9.parquet
+│       ├── pixel_574957
+│       │   ├── shard_split_24_115.parquet
+│       │   ├── shard_split_24_116.parquet
+│       │   ├── shard_split_24_117.parquet
+│       │   ├── shard_split_24_118.parquet
+│       │   ├── shard_split_24_119.parquet
+│       │   ├── shard_split_24_120.parquet
+│       │   ├── shard_split_24_121.parquet
+│       │   ├── shard_split_24_122.parquet
+│       │   ├── shard_split_24_123.parquet
+│       │   ├── shard_split_24_124.parquet
+│       │   ├── shard_split_24_125.parquet
+│       │   ├── shard_split_24_126.parquet
+│       │   ├── shard_split_24_127.parquet
+│       │   ├── shard_split_24_128.parquet
+│       │   ├── shard_split_24_129.parquet
+│       │   ├── shard_split_24_144.parquet
+│       │   ├── shard_split_24_145.parquet
+│       │   ├── shard_split_24_146.parquet
+│       │   ├── shard_split_24_147.parquet
+│       │   ├── shard_split_24_148.parquet
+│       │   ├── shard_split_24_149.parquet
+│       │   ├── shard_split_24_150.parquet
+│       │   ├── shard_split_24_151.parquet
+│       │   ├── shard_split_24_152.parquet
+│       │   ├── shard_split_24_153.parquet
+│       │   ├── shard_split_24_154.parquet
+│       │   ├── shard_split_24_155.parquet
+│       │   ├── shard_split_24_156.parquet
+│       │   ├── shard_split_24_157.parquet
+│       │   ├── shard_split_24_158.parquet
+│       │   ├── shard_split_24_159.parquet
+│       │   ├── shard_split_24_160.parquet
+│       │   ├── shard_split_24_161.parquet
+│       │   ├── shard_split_24_162.parquet
+│       │   ├── shard_split_24_163.parquet
+│       │   ├── shard_split_24_164.parquet
+│       │   ├── shard_split_24_165.parquet
+│       │   ├── shard_split_24_166.parquet
+│       │   ├── shard_split_24_167.parquet
+│       │   ├── shard_split_24_168.parquet
+│       │   ├── shard_split_24_169.parquet
+│       │   ├── shard_split_24_170.parquet
+│       │   ├── shard_split_24_210.parquet
+│       │   ├── shard_split_24_211.parquet
+│       │   ├── shard_split_24_212.parquet
+│       │   ├── shard_split_24_213.parquet
+│       │   ├── shard_split_24_214.parquet
+│       │   ├── shard_split_24_215.parquet
+│       │   ├── shard_split_24_216.parquet
+│       │   ├── shard_split_26_10.parquet
+│       │   ├── shard_split_26_11.parquet
+│       │   ├── shard_split_26_12.parquet
+│       │   ├── shard_split_26_13.parquet
+│       │   ├── shard_split_26_15.parquet
+│       │   ├── shard_split_26_16.parquet
+│       │   ├── shard_split_26_17.parquet
+│       │   ├── shard_split_26_18.parquet
+│       │   ├── shard_split_26_37.parquet
+│       │   ├── shard_split_26_38.parquet
+│       │   ├── shard_split_26_39.parquet
+│       │   ├── shard_split_26_40.parquet
+│       │   ├── shard_split_26_41.parquet
+│       │   ├── shard_split_26_42.parquet
+│       │   ├── shard_split_26_43.parquet
+│       │   ├── shard_split_26_44.parquet
+│       │   ├── shard_split_26_9.parquet
+│       │   ├── shard_split_8_0.parquet
+│       │   ├── shard_split_8_10.parquet
+│       │   ├── shard_split_8_13.parquet
+│       │   ├── shard_split_8_14.parquet
+│       │   ├── shard_split_8_15.parquet
+│       │   ├── shard_split_8_16.parquet
+│       │   ├── shard_split_8_17.parquet
+│       │   ├── shard_split_8_18.parquet
+│       │   ├── shard_split_8_19.parquet
+│       │   ├── shard_split_8_1.parquet
+│       │   ├── shard_split_8_22.parquet
+│       │   ├── shard_split_8_23.parquet
+│       │   ├── shard_split_8_24.parquet
+│       │   ├── shard_split_8_25.parquet
+│       │   ├── shard_split_8_26.parquet
+│       │   ├── shard_split_8_2.parquet
+│       │   ├── shard_split_8_3.parquet
+│       │   ├── shard_split_8_6.parquet
+│       │   ├── shard_split_8_7.parquet
+│       │   ├── shard_split_8_8.parquet
+│       │   └── shard_split_8_9.parquet
+│       ├── pixel_574958
+│       │   ├── shard_split_24_204.parquet
+│       │   ├── shard_split_24_205.parquet
+│       │   ├── shard_split_24_206.parquet
+│       │   ├── shard_split_24_207.parquet
+│       │   ├── shard_split_24_208.parquet
+│       │   ├── shard_split_24_209.parquet
+│       │   ├── shard_split_24_216.parquet
+│       │   ├── shard_split_24_4.parquet
+│       │   ├── shard_split_24_5.parquet
+│       │   ├── shard_split_24_6.parquet
+│       │   ├── shard_split_8_11.parquet
+│       │   ├── shard_split_8_12.parquet
+│       │   ├── shard_split_8_19.parquet
+│       │   ├── shard_split_8_20.parquet
+│       │   ├── shard_split_8_21.parquet
+│       │   ├── shard_split_8_22.parquet
+│       │   ├── shard_split_8_23.parquet
+│       │   ├── shard_split_8_24.parquet
+│       │   ├── shard_split_8_25.parquet
+│       │   └── shard_split_8_26.parquet
+│       ├── pixel_574959
+│       │   ├── shard_split_24_110.parquet
+│       │   ├── shard_split_24_111.parquet
+│       │   ├── shard_split_24_112.parquet
+│       │   ├── shard_split_24_113.parquet
+│       │   ├── shard_split_24_115.parquet
+│       │   ├── shard_split_24_116.parquet
+│       │   ├── shard_split_24_117.parquet
+│       │   ├── shard_split_24_118.parquet
+│       │   ├── shard_split_24_119.parquet
+│       │   ├── shard_split_24_120.parquet
+│       │   ├── shard_split_24_121.parquet
+│       │   ├── shard_split_24_122.parquet
+│       │   ├── shard_split_24_123.parquet
+│       │   ├── shard_split_24_124.parquet
+│       │   ├── shard_split_24_125.parquet
+│       │   ├── shard_split_24_126.parquet
+│       │   ├── shard_split_24_127.parquet
+│       │   ├── shard_split_24_128.parquet
+│       │   ├── shard_split_24_129.parquet
+│       │   ├── shard_split_24_144.parquet
+│       │   ├── shard_split_24_145.parquet
+│       │   ├── shard_split_24_146.parquet
+│       │   ├── shard_split_24_147.parquet
+│       │   ├── shard_split_24_148.parquet
+│       │   ├── shard_split_24_149.parquet
+│       │   ├── shard_split_24_150.parquet
+│       │   ├── shard_split_24_151.parquet
+│       │   ├── shard_split_24_152.parquet
+│       │   ├── shard_split_24_153.parquet
+│       │   ├── shard_split_24_154.parquet
+│       │   ├── shard_split_24_155.parquet
+│       │   ├── shard_split_24_156.parquet
+│       │   ├── shard_split_24_157.parquet
+│       │   ├── shard_split_24_158.parquet
+│       │   ├── shard_split_24_159.parquet
+│       │   ├── shard_split_24_160.parquet
+│       │   ├── shard_split_24_161.parquet
+│       │   ├── shard_split_24_205.parquet
+│       │   ├── shard_split_24_206.parquet
+│       │   ├── shard_split_24_207.parquet
+│       │   ├── shard_split_24_208.parquet
+│       │   ├── shard_split_24_209.parquet
+│       │   ├── shard_split_24_210.parquet
+│       │   ├── shard_split_24_211.parquet
+│       │   ├── shard_split_24_212.parquet
+│       │   ├── shard_split_24_213.parquet
+│       │   ├── shard_split_24_214.parquet
+│       │   ├── shard_split_24_215.parquet
+│       │   ├── shard_split_24_216.parquet
+│       │   ├── shard_split_24_46.parquet
+│       │   ├── shard_split_24_47.parquet
+│       │   ├── shard_split_24_48.parquet
+│       │   ├── shard_split_24_49.parquet
+│       │   ├── shard_split_24_4.parquet
+│       │   ├── shard_split_24_50.parquet
+│       │   ├── shard_split_24_51.parquet
+│       │   ├── shard_split_24_52.parquet
+│       │   ├── shard_split_24_53.parquet
+│       │   ├── shard_split_24_54.parquet
+│       │   ├── shard_split_24_55.parquet
+│       │   ├── shard_split_24_56.parquet
+│       │   ├── shard_split_24_57.parquet
+│       │   ├── shard_split_24_5.parquet
+│       │   ├── shard_split_24_6.parquet
+│       │   ├── shard_split_8_11.parquet
+│       │   ├── shard_split_8_12.parquet
+│       │   ├── shard_split_8_22.parquet
+│       │   ├── shard_split_8_23.parquet
+│       │   ├── shard_split_8_24.parquet
+│       │   ├── shard_split_8_25.parquet
+│       │   └── shard_split_8_26.parquet
+│       ├── pixel_574960
+│       │   ├── shard_split_26_19.parquet
+│       │   ├── shard_split_26_1.parquet
+│       │   ├── shard_split_26_20.parquet
+│       │   ├── shard_split_26_21.parquet
+│       │   ├── shard_split_26_22.parquet
+│       │   ├── shard_split_26_23.parquet
+│       │   ├── shard_split_26_24.parquet
+│       │   ├── shard_split_26_25.parquet
+│       │   ├── shard_split_26_26.parquet
+│       │   ├── shard_split_26_27.parquet
+│       │   ├── shard_split_26_28.parquet
+│       │   ├── shard_split_26_29.parquet
+│       │   ├── shard_split_26_2.parquet
+│       │   ├── shard_split_26_30.parquet
+│       │   ├── shard_split_26_31.parquet
+│       │   ├── shard_split_26_32.parquet
+│       │   ├── shard_split_26_33.parquet
+│       │   ├── shard_split_26_3.parquet
+│       │   ├── shard_split_26_46.parquet
+│       │   ├── shard_split_26_47.parquet
+│       │   ├── shard_split_26_48.parquet
+│       │   ├── shard_split_26_49.parquet
+│       │   ├── shard_split_26_4.parquet
+│       │   ├── shard_split_26_50.parquet
+│       │   ├── shard_split_26_51.parquet
+│       │   ├── shard_split_26_52.parquet
+│       │   ├── shard_split_26_53.parquet
+│       │   ├── shard_split_26_54.parquet
+│       │   ├── shard_split_26_55.parquet
+│       │   ├── shard_split_26_56.parquet
+│       │   ├── shard_split_26_57.parquet
+│       │   ├── shard_split_26_58.parquet
+│       │   ├── shard_split_26_59.parquet
+│       │   ├── shard_split_26_5.parquet
+│       │   ├── shard_split_26_60.parquet
+│       │   ├── shard_split_26_61.parquet
+│       │   ├── shard_split_26_62.parquet
+│       │   ├── shard_split_26_63.parquet
+│       │   ├── shard_split_26_6.parquet
+│       │   ├── shard_split_26_7.parquet
+│       │   └── shard_split_26_8.parquet
+│       ├── pixel_574961
+│       │   ├── shard_split_24_140.parquet
+│       │   ├── shard_split_24_141.parquet
+│       │   ├── shard_split_24_142.parquet
+│       │   ├── shard_split_24_143.parquet
+│       │   ├── shard_split_24_193.parquet
+│       │   ├── shard_split_24_194.parquet
+│       │   ├── shard_split_24_34.parquet
+│       │   ├── shard_split_24_35.parquet
+│       │   ├── shard_split_24_36.parquet
+│       │   ├── shard_split_24_37.parquet
+│       │   ├── shard_split_24_38.parquet
+│       │   ├── shard_split_24_39.parquet
+│       │   ├── shard_split_24_40.parquet
+│       │   ├── shard_split_24_41.parquet
+│       │   ├── shard_split_24_42.parquet
+│       │   ├── shard_split_26_14.parquet
+│       │   ├── shard_split_26_1.parquet
+│       │   ├── shard_split_26_2.parquet
+│       │   ├── shard_split_26_3.parquet
+│       │   ├── shard_split_26_45.parquet
+│       │   ├── shard_split_26_4.parquet
+│       │   ├── shard_split_26_56.parquet
+│       │   ├── shard_split_26_57.parquet
+│       │   ├── shard_split_26_58.parquet
+│       │   ├── shard_split_26_59.parquet
+│       │   ├── shard_split_26_5.parquet
+│       │   ├── shard_split_26_60.parquet
+│       │   ├── shard_split_26_61.parquet
+│       │   ├── shard_split_26_62.parquet
+│       │   ├── shard_split_26_63.parquet
+│       │   ├── shard_split_26_6.parquet
+│       │   ├── shard_split_26_7.parquet
+│       │   └── shard_split_26_8.parquet
+│       ├── pixel_574962
+│       │   ├── shard_split_24_100.parquet
+│       │   ├── shard_split_24_101.parquet
+│       │   ├── shard_split_24_195.parquet
+│       │   ├── shard_split_24_196.parquet
+│       │   ├── shard_split_24_197.parquet
+│       │   ├── shard_split_24_198.parquet
+│       │   ├── shard_split_24_199.parquet
+│       │   ├── shard_split_24_200.parquet
+│       │   ├── shard_split_24_201.parquet
+│       │   ├── shard_split_24_202.parquet
+│       │   ├── shard_split_24_203.parquet
+│       │   ├── shard_split_24_217.parquet
+│       │   ├── shard_split_24_218.parquet
+│       │   ├── shard_split_24_219.parquet
+│       │   ├── shard_split_24_220.parquet
+│       │   ├── shard_split_24_221.parquet
+│       │   ├── shard_split_24_222.parquet
+│       │   ├── shard_split_24_223.parquet
+│       │   ├── shard_split_24_224.parquet
+│       │   ├── shard_split_24_225.parquet
+│       │   ├── shard_split_24_226.parquet
+│       │   ├── shard_split_24_227.parquet
+│       │   ├── shard_split_24_228.parquet
+│       │   ├── shard_split_24_229.parquet
+│       │   ├── shard_split_24_230.parquet
+│       │   ├── shard_split_24_231.parquet
+│       │   ├── shard_split_24_232.parquet
+│       │   ├── shard_split_24_233.parquet
+│       │   ├── shard_split_24_234.parquet
+│       │   ├── shard_split_24_235.parquet
+│       │   ├── shard_split_24_236.parquet
+│       │   ├── shard_split_24_237.parquet
+│       │   ├── shard_split_24_238.parquet
+│       │   ├── shard_split_24_239.parquet
+│       │   ├── shard_split_24_240.parquet
+│       │   ├── shard_split_24_241.parquet
+│       │   ├── shard_split_24_242.parquet
+│       │   ├── shard_split_24_243.parquet
+│       │   ├── shard_split_24_244.parquet
+│       │   ├── shard_split_24_245.parquet
+│       │   ├── shard_split_24_246.parquet
+│       │   ├── shard_split_24_247.parquet
+│       │   ├── shard_split_24_248.parquet
+│       │   ├── shard_split_24_249.parquet
+│       │   ├── shard_split_24_250.parquet
+│       │   ├── shard_split_24_94.parquet
+│       │   ├── shard_split_24_95.parquet
+│       │   ├── shard_split_24_96.parquet
+│       │   ├── shard_split_24_97.parquet
+│       │   ├── shard_split_24_98.parquet
+│       │   ├── shard_split_24_99.parquet
+│       │   ├── shard_split_26_1.parquet
+│       │   ├── shard_split_26_21.parquet
+│       │   ├── shard_split_26_22.parquet
+│       │   ├── shard_split_26_23.parquet
+│       │   ├── shard_split_26_24.parquet
+│       │   ├── shard_split_26_25.parquet
+│       │   ├── shard_split_26_26.parquet
+│       │   ├── shard_split_26_27.parquet
+│       │   ├── shard_split_26_28.parquet
+│       │   ├── shard_split_26_29.parquet
+│       │   ├── shard_split_26_2.parquet
+│       │   ├── shard_split_26_30.parquet
+│       │   ├── shard_split_26_31.parquet
+│       │   ├── shard_split_26_32.parquet
+│       │   ├── shard_split_26_33.parquet
+│       │   ├── shard_split_26_37.parquet
+│       │   ├── shard_split_26_38.parquet
+│       │   ├── shard_split_26_39.parquet
+│       │   ├── shard_split_26_3.parquet
+│       │   ├── shard_split_26_40.parquet
+│       │   ├── shard_split_26_41.parquet
+│       │   ├── shard_split_26_42.parquet
+│       │   ├── shard_split_26_43.parquet
+│       │   ├── shard_split_26_44.parquet
+│       │   ├── shard_split_26_46.parquet
+│       │   ├── shard_split_26_47.parquet
+│       │   ├── shard_split_26_48.parquet
+│       │   ├── shard_split_26_49.parquet
+│       │   ├── shard_split_26_4.parquet
+│       │   ├── shard_split_26_50.parquet
+│       │   ├── shard_split_26_51.parquet
+│       │   ├── shard_split_26_52.parquet
+│       │   ├── shard_split_26_53.parquet
+│       │   ├── shard_split_26_54.parquet
+│       │   ├── shard_split_26_55.parquet
+│       │   ├── shard_split_26_5.parquet
+│       │   ├── shard_split_26_6.parquet
+│       │   ├── shard_split_26_7.parquet
+│       │   └── shard_split_26_8.parquet
+│       ├── pixel_574963
+│       │   ├── shard_split_24_100.parquet
+│       │   ├── shard_split_24_101.parquet
+│       │   ├── shard_split_24_102.parquet
+│       │   ├── shard_split_24_103.parquet
+│       │   ├── shard_split_24_104.parquet
+│       │   ├── shard_split_24_105.parquet
+│       │   ├── shard_split_24_106.parquet
+│       │   ├── shard_split_24_107.parquet
+│       │   ├── shard_split_24_108.parquet
+│       │   ├── shard_split_24_109.parquet
+│       │   ├── shard_split_24_10.parquet
+│       │   ├── shard_split_24_11.parquet
+│       │   ├── shard_split_24_12.parquet
+│       │   ├── shard_split_24_13.parquet
+│       │   ├── shard_split_24_140.parquet
+│       │   ├── shard_split_24_141.parquet
+│       │   ├── shard_split_24_142.parquet
+│       │   ├── shard_split_24_143.parquet
+│       │   ├── shard_split_24_14.parquet
+│       │   ├── shard_split_24_15.parquet
+│       │   ├── shard_split_24_16.parquet
+│       │   ├── shard_split_24_17.parquet
+│       │   ├── shard_split_24_18.parquet
+│       │   ├── shard_split_24_19.parquet
+│       │   ├── shard_split_24_20.parquet
+│       │   ├── shard_split_24_217.parquet
+│       │   ├── shard_split_24_218.parquet
+│       │   ├── shard_split_24_219.parquet
+│       │   ├── shard_split_24_21.parquet
+│       │   ├── shard_split_24_220.parquet
+│       │   ├── shard_split_24_221.parquet
+│       │   ├── shard_split_24_222.parquet
+│       │   ├── shard_split_24_223.parquet
+│       │   ├── shard_split_24_224.parquet
+│       │   ├── shard_split_24_225.parquet
+│       │   ├── shard_split_24_226.parquet
+│       │   ├── shard_split_24_227.parquet
+│       │   ├── shard_split_24_228.parquet
+│       │   ├── shard_split_24_229.parquet
+│       │   ├── shard_split_24_230.parquet
+│       │   ├── shard_split_24_231.parquet
+│       │   ├── shard_split_24_232.parquet
+│       │   ├── shard_split_24_233.parquet
+│       │   ├── shard_split_24_234.parquet
+│       │   ├── shard_split_24_235.parquet
+│       │   ├── shard_split_24_236.parquet
+│       │   ├── shard_split_24_237.parquet
+│       │   ├── shard_split_24_238.parquet
+│       │   ├── shard_split_24_239.parquet
+│       │   ├── shard_split_24_240.parquet
+│       │   ├── shard_split_24_241.parquet
+│       │   ├── shard_split_24_242.parquet
+│       │   ├── shard_split_24_243.parquet
+│       │   ├── shard_split_24_244.parquet
+│       │   ├── shard_split_24_245.parquet
+│       │   ├── shard_split_24_246.parquet
+│       │   ├── shard_split_24_247.parquet
+│       │   ├── shard_split_24_248.parquet
+│       │   ├── shard_split_24_249.parquet
+│       │   ├── shard_split_24_250.parquet
+│       │   ├── shard_split_24_34.parquet
+│       │   ├── shard_split_24_35.parquet
+│       │   ├── shard_split_24_36.parquet
+│       │   ├── shard_split_24_37.parquet
+│       │   ├── shard_split_24_38.parquet
+│       │   ├── shard_split_24_39.parquet
+│       │   ├── shard_split_24_40.parquet
+│       │   ├── shard_split_24_41.parquet
+│       │   ├── shard_split_24_42.parquet
+│       │   ├── shard_split_24_7.parquet
+│       │   ├── shard_split_24_8.parquet
+│       │   ├── shard_split_24_94.parquet
+│       │   ├── shard_split_24_95.parquet
+│       │   ├── shard_split_24_96.parquet
+│       │   ├── shard_split_24_97.parquet
+│       │   ├── shard_split_24_98.parquet
+│       │   ├── shard_split_24_99.parquet
+│       │   ├── shard_split_24_9.parquet
+│       │   ├── shard_split_26_1.parquet
+│       │   ├── shard_split_26_2.parquet
+│       │   ├── shard_split_26_3.parquet
+│       │   ├── shard_split_26_4.parquet
+│       │   ├── shard_split_26_5.parquet
+│       │   ├── shard_split_26_60.parquet
+│       │   ├── shard_split_26_61.parquet
+│       │   ├── shard_split_26_62.parquet
+│       │   ├── shard_split_26_63.parquet
+│       │   ├── shard_split_26_6.parquet
+│       │   ├── shard_split_26_7.parquet
+│       │   └── shard_split_26_8.parquet
+│       ├── pixel_574968
+│       │   ├── shard_split_24_144.parquet
+│       │   ├── shard_split_24_145.parquet
+│       │   ├── shard_split_24_146.parquet
+│       │   ├── shard_split_24_147.parquet
+│       │   ├── shard_split_24_148.parquet
+│       │   ├── shard_split_24_149.parquet
+│       │   ├── shard_split_24_150.parquet
+│       │   ├── shard_split_24_151.parquet
+│       │   ├── shard_split_24_152.parquet
+│       │   ├── shard_split_24_153.parquet
+│       │   ├── shard_split_24_154.parquet
+│       │   ├── shard_split_24_155.parquet
+│       │   ├── shard_split_24_156.parquet
+│       │   ├── shard_split_24_157.parquet
+│       │   ├── shard_split_24_158.parquet
+│       │   ├── shard_split_24_159.parquet
+│       │   ├── shard_split_24_160.parquet
+│       │   ├── shard_split_24_161.parquet
+│       │   ├── shard_split_24_162.parquet
+│       │   ├── shard_split_24_163.parquet
+│       │   ├── shard_split_24_164.parquet
+│       │   ├── shard_split_24_165.parquet
+│       │   ├── shard_split_24_166.parquet
+│       │   ├── shard_split_24_167.parquet
+│       │   ├── shard_split_24_168.parquet
+│       │   ├── shard_split_24_169.parquet
+│       │   ├── shard_split_24_170.parquet
+│       │   ├── shard_split_24_174.parquet
+│       │   ├── shard_split_24_175.parquet
+│       │   ├── shard_split_24_176.parquet
+│       │   ├── shard_split_24_177.parquet
+│       │   ├── shard_split_24_178.parquet
+│       │   ├── shard_split_24_179.parquet
+│       │   ├── shard_split_24_180.parquet
+│       │   ├── shard_split_24_181.parquet
+│       │   ├── shard_split_24_182.parquet
+│       │   ├── shard_split_24_183.parquet
+│       │   ├── shard_split_24_184.parquet
+│       │   ├── shard_split_24_185.parquet
+│       │   ├── shard_split_24_186.parquet
+│       │   ├── shard_split_24_187.parquet
+│       │   ├── shard_split_24_188.parquet
+│       │   ├── shard_split_24_189.parquet
+│       │   ├── shard_split_24_190.parquet
+│       │   ├── shard_split_24_191.parquet
+│       │   ├── shard_split_24_192.parquet
+│       │   ├── shard_split_24_195.parquet
+│       │   ├── shard_split_24_196.parquet
+│       │   ├── shard_split_24_197.parquet
+│       │   ├── shard_split_24_198.parquet
+│       │   ├── shard_split_24_199.parquet
+│       │   ├── shard_split_24_200.parquet
+│       │   ├── shard_split_24_201.parquet
+│       │   ├── shard_split_24_202.parquet
+│       │   ├── shard_split_24_203.parquet
+│       │   ├── shard_split_24_234.parquet
+│       │   ├── shard_split_24_235.parquet
+│       │   ├── shard_split_24_236.parquet
+│       │   ├── shard_split_24_237.parquet
+│       │   ├── shard_split_24_238.parquet
+│       │   ├── shard_split_24_239.parquet
+│       │   ├── shard_split_24_240.parquet
+│       │   ├── shard_split_24_241.parquet
+│       │   ├── shard_split_24_242.parquet
+│       │   ├── shard_split_24_243.parquet
+│       │   ├── shard_split_24_244.parquet
+│       │   ├── shard_split_24_245.parquet
+│       │   ├── shard_split_24_246.parquet
+│       │   ├── shard_split_24_247.parquet
+│       │   ├── shard_split_24_248.parquet
+│       │   ├── shard_split_24_249.parquet
+│       │   ├── shard_split_24_250.parquet
+│       │   ├── shard_split_24_74.parquet
+│       │   ├── shard_split_24_75.parquet
+│       │   ├── shard_split_24_76.parquet
+│       │   ├── shard_split_24_77.parquet
+│       │   ├── shard_split_24_78.parquet
+│       │   ├── shard_split_24_79.parquet
+│       │   ├── shard_split_24_80.parquet
+│       │   ├── shard_split_24_81.parquet
+│       │   ├── shard_split_24_82.parquet
+│       │   ├── shard_split_24_83.parquet
+│       │   ├── shard_split_24_84.parquet
+│       │   ├── shard_split_24_85.parquet
+│       │   ├── shard_split_24_86.parquet
+│       │   ├── shard_split_24_87.parquet
+│       │   ├── shard_split_24_88.parquet
+│       │   ├── shard_split_24_89.parquet
+│       │   ├── shard_split_24_90.parquet
+│       │   ├── shard_split_24_91.parquet
+│       │   ├── shard_split_24_92.parquet
+│       │   ├── shard_split_26_15.parquet
+│       │   ├── shard_split_26_16.parquet
+│       │   ├── shard_split_26_17.parquet
+│       │   ├── shard_split_26_18.parquet
+│       │   ├── shard_split_26_37.parquet
+│       │   ├── shard_split_26_38.parquet
+│       │   ├── shard_split_26_39.parquet
+│       │   ├── shard_split_26_40.parquet
+│       │   ├── shard_split_26_41.parquet
+│       │   ├── shard_split_26_42.parquet
+│       │   ├── shard_split_26_43.parquet
+│       │   └── shard_split_26_44.parquet
+│       ├── pixel_574969
+│       │   ├── shard_split_24_10.parquet
+│       │   ├── shard_split_24_11.parquet
+│       │   ├── shard_split_24_12.parquet
+│       │   ├── shard_split_24_130.parquet
+│       │   ├── shard_split_24_131.parquet
+│       │   ├── shard_split_24_132.parquet
+│       │   ├── shard_split_24_133.parquet
+│       │   ├── shard_split_24_134.parquet
+│       │   ├── shard_split_24_135.parquet
+│       │   ├── shard_split_24_136.parquet
+│       │   ├── shard_split_24_137.parquet
+│       │   ├── shard_split_24_138.parquet
+│       │   ├── shard_split_24_139.parquet
+│       │   ├── shard_split_24_13.parquet
+│       │   ├── shard_split_24_14.parquet
+│       │   ├── shard_split_24_15.parquet
+│       │   ├── shard_split_24_16.parquet
+│       │   ├── shard_split_24_174.parquet
+│       │   ├── shard_split_24_175.parquet
+│       │   ├── shard_split_24_176.parquet
+│       │   ├── shard_split_24_177.parquet
+│       │   ├── shard_split_24_178.parquet
+│       │   ├── shard_split_24_179.parquet
+│       │   ├── shard_split_24_17.parquet
+│       │   ├── shard_split_24_180.parquet
+│       │   ├── shard_split_24_181.parquet
+│       │   ├── shard_split_24_182.parquet
+│       │   ├── shard_split_24_183.parquet
+│       │   ├── shard_split_24_184.parquet
+│       │   ├── shard_split_24_185.parquet
+│       │   ├── shard_split_24_186.parquet
+│       │   ├── shard_split_24_187.parquet
+│       │   ├── shard_split_24_188.parquet
+│       │   ├── shard_split_24_189.parquet
+│       │   ├── shard_split_24_18.parquet
+│       │   ├── shard_split_24_190.parquet
+│       │   ├── shard_split_24_191.parquet
+│       │   ├── shard_split_24_192.parquet
+│       │   ├── shard_split_24_19.parquet
+│       │   ├── shard_split_24_20.parquet
+│       │   ├── shard_split_24_217.parquet
+│       │   ├── shard_split_24_218.parquet
+│       │   ├── shard_split_24_219.parquet
+│       │   ├── shard_split_24_21.parquet
+│       │   ├── shard_split_24_220.parquet
+│       │   ├── shard_split_24_221.parquet
+│       │   ├── shard_split_24_222.parquet
+│       │   ├── shard_split_24_223.parquet
+│       │   ├── shard_split_24_224.parquet
+│       │   ├── shard_split_24_225.parquet
+│       │   ├── shard_split_24_226.parquet
+│       │   ├── shard_split_24_227.parquet
+│       │   ├── shard_split_24_228.parquet
+│       │   ├── shard_split_24_229.parquet
+│       │   ├── shard_split_24_230.parquet
+│       │   ├── shard_split_24_231.parquet
+│       │   ├── shard_split_24_232.parquet
+│       │   ├── shard_split_24_233.parquet
+│       │   ├── shard_split_24_234.parquet
+│       │   ├── shard_split_24_235.parquet
+│       │   ├── shard_split_24_236.parquet
+│       │   ├── shard_split_24_237.parquet
+│       │   ├── shard_split_24_238.parquet
+│       │   ├── shard_split_24_239.parquet
+│       │   ├── shard_split_24_240.parquet
+│       │   ├── shard_split_24_241.parquet
+│       │   ├── shard_split_24_242.parquet
+│       │   ├── shard_split_24_243.parquet
+│       │   ├── shard_split_24_244.parquet
+│       │   ├── shard_split_24_245.parquet
+│       │   ├── shard_split_24_246.parquet
+│       │   ├── shard_split_24_247.parquet
+│       │   ├── shard_split_24_248.parquet
+│       │   ├── shard_split_24_249.parquet
+│       │   ├── shard_split_24_250.parquet
+│       │   ├── shard_split_24_58.parquet
+│       │   ├── shard_split_24_59.parquet
+│       │   ├── shard_split_24_60.parquet
+│       │   ├── shard_split_24_61.parquet
+│       │   ├── shard_split_24_62.parquet
+│       │   ├── shard_split_24_63.parquet
+│       │   ├── shard_split_24_64.parquet
+│       │   ├── shard_split_24_65.parquet
+│       │   ├── shard_split_24_66.parquet
+│       │   ├── shard_split_24_67.parquet
+│       │   ├── shard_split_24_68.parquet
+│       │   ├── shard_split_24_69.parquet
+│       │   ├── shard_split_24_70.parquet
+│       │   ├── shard_split_24_74.parquet
+│       │   ├── shard_split_24_75.parquet
+│       │   ├── shard_split_24_76.parquet
+│       │   ├── shard_split_24_77.parquet
+│       │   ├── shard_split_24_78.parquet
+│       │   ├── shard_split_24_79.parquet
+│       │   ├── shard_split_24_7.parquet
+│       │   ├── shard_split_24_80.parquet
+│       │   ├── shard_split_24_81.parquet
+│       │   ├── shard_split_24_82.parquet
+│       │   ├── shard_split_24_83.parquet
+│       │   ├── shard_split_24_84.parquet
+│       │   ├── shard_split_24_85.parquet
+│       │   ├── shard_split_24_86.parquet
+│       │   ├── shard_split_24_87.parquet
+│       │   ├── shard_split_24_88.parquet
+│       │   ├── shard_split_24_89.parquet
+│       │   ├── shard_split_24_8.parquet
+│       │   ├── shard_split_24_90.parquet
+│       │   ├── shard_split_24_91.parquet
+│       │   ├── shard_split_24_92.parquet
+│       │   └── shard_split_24_9.parquet
+│       ├── pixel_574970
+│       │   ├── shard_split_24_115.parquet
+│       │   ├── shard_split_24_116.parquet
+│       │   ├── shard_split_24_117.parquet
+│       │   ├── shard_split_24_118.parquet
+│       │   ├── shard_split_24_119.parquet
+│       │   ├── shard_split_24_120.parquet
+│       │   ├── shard_split_24_121.parquet
+│       │   ├── shard_split_24_122.parquet
+│       │   ├── shard_split_24_123.parquet
+│       │   ├── shard_split_24_124.parquet
+│       │   ├── shard_split_24_125.parquet
+│       │   ├── shard_split_24_126.parquet
+│       │   ├── shard_split_24_127.parquet
+│       │   ├── shard_split_24_128.parquet
+│       │   ├── shard_split_24_129.parquet
+│       │   ├── shard_split_24_144.parquet
+│       │   ├── shard_split_24_145.parquet
+│       │   ├── shard_split_24_146.parquet
+│       │   ├── shard_split_24_147.parquet
+│       │   ├── shard_split_24_148.parquet
+│       │   ├── shard_split_24_149.parquet
+│       │   ├── shard_split_24_150.parquet
+│       │   ├── shard_split_24_151.parquet
+│       │   ├── shard_split_24_152.parquet
+│       │   ├── shard_split_24_153.parquet
+│       │   ├── shard_split_24_154.parquet
+│       │   ├── shard_split_24_155.parquet
+│       │   ├── shard_split_24_156.parquet
+│       │   ├── shard_split_24_157.parquet
+│       │   ├── shard_split_24_158.parquet
+│       │   ├── shard_split_24_159.parquet
+│       │   ├── shard_split_24_160.parquet
+│       │   ├── shard_split_24_161.parquet
+│       │   ├── shard_split_24_22.parquet
+│       │   ├── shard_split_24_23.parquet
+│       │   ├── shard_split_24_24.parquet
+│       │   ├── shard_split_24_251.parquet
+│       │   ├── shard_split_24_252.parquet
+│       │   ├── shard_split_24_253.parquet
+│       │   ├── shard_split_24_254.parquet
+│       │   ├── shard_split_24_255.parquet
+│       │   ├── shard_split_24_256.parquet
+│       │   ├── shard_split_24_25.parquet
+│       │   ├── shard_split_24_26.parquet
+│       │   ├── shard_split_24_27.parquet
+│       │   ├── shard_split_24_28.parquet
+│       │   ├── shard_split_24_29.parquet
+│       │   ├── shard_split_24_30.parquet
+│       │   ├── shard_split_24_31.parquet
+│       │   ├── shard_split_24_32.parquet
+│       │   ├── shard_split_24_33.parquet
+│       │   ├── shard_split_24_46.parquet
+│       │   ├── shard_split_24_47.parquet
+│       │   ├── shard_split_24_48.parquet
+│       │   ├── shard_split_24_49.parquet
+│       │   ├── shard_split_24_50.parquet
+│       │   ├── shard_split_24_51.parquet
+│       │   ├── shard_split_24_52.parquet
+│       │   ├── shard_split_24_53.parquet
+│       │   ├── shard_split_24_54.parquet
+│       │   ├── shard_split_24_55.parquet
+│       │   ├── shard_split_24_56.parquet
+│       │   ├── shard_split_24_57.parquet
+│       │   ├── shard_split_24_74.parquet
+│       │   ├── shard_split_24_75.parquet
+│       │   ├── shard_split_24_76.parquet
+│       │   ├── shard_split_24_77.parquet
+│       │   ├── shard_split_24_78.parquet
+│       │   ├── shard_split_24_79.parquet
+│       │   ├── shard_split_24_80.parquet
+│       │   ├── shard_split_24_81.parquet
+│       │   ├── shard_split_24_82.parquet
+│       │   ├── shard_split_24_83.parquet
+│       │   ├── shard_split_24_84.parquet
+│       │   ├── shard_split_24_85.parquet
+│       │   ├── shard_split_24_86.parquet
+│       │   ├── shard_split_24_87.parquet
+│       │   ├── shard_split_24_88.parquet
+│       │   ├── shard_split_24_89.parquet
+│       │   ├── shard_split_24_90.parquet
+│       │   ├── shard_split_24_91.parquet
+│       │   └── shard_split_24_92.parquet
+│       └── pixel_574971
+│           ├── shard_split_24_171.parquet
+│           ├── shard_split_24_172.parquet
+│           ├── shard_split_24_173.parquet
+│           ├── shard_split_24_174.parquet
+│           ├── shard_split_24_175.parquet
+│           ├── shard_split_24_176.parquet
+│           ├── shard_split_24_177.parquet
+│           ├── shard_split_24_178.parquet
+│           ├── shard_split_24_179.parquet
+│           ├── shard_split_24_180.parquet
+│           ├── shard_split_24_181.parquet
+│           ├── shard_split_24_182.parquet
+│           ├── shard_split_24_183.parquet
+│           ├── shard_split_24_184.parquet
+│           ├── shard_split_24_185.parquet
+│           ├── shard_split_24_186.parquet
+│           ├── shard_split_24_187.parquet
+│           ├── shard_split_24_188.parquet
+│           ├── shard_split_24_189.parquet
+│           ├── shard_split_24_190.parquet
+│           ├── shard_split_24_191.parquet
+│           ├── shard_split_24_192.parquet
+│           ├── shard_split_24_22.parquet
+│           ├── shard_split_24_23.parquet
+│           ├── shard_split_24_24.parquet
+│           ├── shard_split_24_25.parquet
+│           ├── shard_split_24_26.parquet
+│           ├── shard_split_24_27.parquet
+│           ├── shard_split_24_28.parquet
+│           ├── shard_split_24_29.parquet
+│           ├── shard_split_24_30.parquet
+│           ├── shard_split_24_31.parquet
+│           ├── shard_split_24_32.parquet
+│           ├── shard_split_24_33.parquet
+│           ├── shard_split_24_43.parquet
+│           ├── shard_split_24_44.parquet
+│           ├── shard_split_24_45.parquet
+│           ├── shard_split_24_58.parquet
+│           ├── shard_split_24_59.parquet
+│           ├── shard_split_24_60.parquet
+│           ├── shard_split_24_61.parquet
+│           ├── shard_split_24_62.parquet
+│           ├── shard_split_24_63.parquet
+│           ├── shard_split_24_64.parquet
+│           ├── shard_split_24_65.parquet
+│           ├── shard_split_24_66.parquet
+│           ├── shard_split_24_67.parquet
+│           ├── shard_split_24_68.parquet
+│           ├── shard_split_24_69.parquet
+│           ├── shard_split_24_70.parquet
+│           ├── shard_split_24_74.parquet
+│           ├── shard_split_24_75.parquet
+│           ├── shard_split_24_76.parquet
+│           ├── shard_split_24_77.parquet
+│           ├── shard_split_24_78.parquet
+│           ├── shard_split_24_79.parquet
+│           ├── shard_split_24_80.parquet
+│           ├── shard_split_24_81.parquet
+│           ├── shard_split_24_82.parquet
+│           ├── shard_split_24_83.parquet
+│           ├── shard_split_24_84.parquet
+│           ├── shard_split_24_85.parquet
+│           ├── shard_split_24_86.parquet
+│           ├── shard_split_24_87.parquet
+│           ├── shard_split_24_88.parquet
+│           ├── shard_split_24_89.parquet
+│           ├── shard_split_24_90.parquet
+│           ├── shard_split_24_91.parquet
+│           └── shard_split_24_92.parquet
+├── reader.pickle
+├── reducing
+│   ├── 0_0_done
+│   ├── 0_4_done
+│   ├── 1_21_done
+│   ├── 1_32_done
+│   ├── 2_81_done
+│   ├── 3_321_done
+│   ├── 3_560_done
+│   ├── 3_562_done
+│   ├── 4_2144_done
+│   ├── 4_2247_done
+│   ├── 6_20692_done
+│   ├── 6_20693_done
+│   ├── 6_34328_done
+│   ├── 6_34329_done
+│   ├── 6_34330_done
+│   ├── 6_35932_done
+│   ├── 6_35933_done
+│   ├── 7_143736_done
+│   ├── 7_143737_done
+│   ├── 7_143738_done
+│   ├── 7_143741_done
+│   ├── 7_143743_done
+│   ├── 8_574956_done
+│   ├── 8_574957_done
+│   ├── 8_574958_done
+│   ├── 8_574959_done
+│   ├── 8_574960_done
+│   ├── 8_574961_done
+│   ├── 8_574962_done
+│   ├── 8_574963_done
+│   ├── 8_574968_done
+│   ├── 8_574969_done
+│   ├── 8_574970_done
+│   └── 8_574971_done
+├── reducing_done
+├── splitting
+│   ├── split_0_done
+│   ├── split_10_done
+│   ├── split_11_done
+│   ├── split_12_done
+│   ├── split_13_done
+│   ├── split_14_done
+│   ├── split_15_done
+│   ├── split_16_done
+│   ├── split_17_done
+│   ├── split_18_done
+│   ├── split_19_done
+│   ├── split_1_done
+│   ├── split_20_done
+│   ├── split_21_done
+│   ├── split_22_done
+│   ├── split_23_done
+│   ├── split_24_done
+│   ├── split_25_done
+│   ├── split_26_done
+│   ├── split_27_done
+│   ├── split_28_done
+│   ├── split_2_done
+│   ├── split_3_done
+│   ├── split_4_done
+│   ├── split_5_done
+│   ├── split_6_done
+│   ├── split_7_done
+│   ├── split_8_done
+│   └── split_9_done
+└── splitting_done
+
+54 directories, 1568 files

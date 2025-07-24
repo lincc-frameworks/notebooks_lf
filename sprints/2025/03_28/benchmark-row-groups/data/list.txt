@@ -1,0 +1,2 @@
+https://data.lsdb.io/hats/gaia_dr3/gaia/dataset/Norder=2/Dir=0/Npix=0.parquet gaia_dr3-2-0.parquet
+https://data.lsdb.io/hats/ztf_dr22/ztf_lc/dataset/Norder=6/Dir=20000/Npix=21554.parquet ztf_dr22-6-21554.parquet

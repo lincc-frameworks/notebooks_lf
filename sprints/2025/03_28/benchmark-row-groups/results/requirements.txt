@@ -1,0 +1,6 @@
+astropy
+mocpy
+numpy
+pyarrow
+s3fs
+universal_pathlib
