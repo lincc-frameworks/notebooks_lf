@@ -26,6 +26,7 @@ make next time even easier.
 ## Sean
 
 [Pyarrow filters from searches](https://github.com/lincc-frameworks/notebooks_lf/blob/main/sprints/2025/07_24/filtering.ipynb)
+
 [Source Association](https://github.com/lincc-frameworks/notebooks_lf/blob/main/sprints/2025/07_24/source_association.ipynb)
 
 ## Sandro
