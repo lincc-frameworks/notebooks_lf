@@ -1,4 +1,5 @@
 ## Wilson
+
 ## Derek
 
 [Weekly Release 23 of the LSST Cam data is
@@ -9,12 +10,20 @@ pipeline](https://github.com/lsst-sitcom/linccf/pull/10) completed, to
 make next time even easier.
 
 ## Kostya
+
 [Column filters and read efficiency](./column-filter)
+
 ## Doug
+
 [Workflow Scaling Notebook Walkthrough](https://docs.lsdb.io/en/latest/tutorials/pre_executed/scaling_workflows.html)
+
 ## Olivia
+
 ## Sean
+
 ## Sandro
+
+[Saving collections to disk](./write_catalog.ipynb)
 
 # Seeking feedback
 
