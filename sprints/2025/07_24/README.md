@@ -2,6 +2,10 @@
 
 ## Derek
 
+[Guide to Dask
+Messages](https://github.com/astronomy-commons/lsdb/pull/944) So, it's
+in PR, but I want to mention it even as a draft!
+
 [Weekly Release 23 of the LSST Cam data is
 complete!](https://data.lsdb.io/rubin#w_2025_23/object_collection)
 
