@@ -1,3 +1,6 @@
+Share link: https://cmu.zoom.us/rec/share/v1VT7EtzHsv-xFx6f-WQ-wdh_qe6_Ed66Dp2Wzc6z8voZo0wyGfRA5AmZjc9J_t1.6uvO2zd_MQ7qqmhu
+Passcode: ZR&9iJ*R
+
 ## Wilson
 
 ## Derek
