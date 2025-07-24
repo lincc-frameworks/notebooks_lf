@@ -1,5 +1,8 @@
 # Benchmark column filters
 
+- `benchmark-colummn-filters.ipynb` is for LSDB tests. Rendered at Fornax
+- `rub-test.py` and everything else are for finer nested-pandas/pandas/pyarrow tests
+
 ## Preparation
 
 ### Getting data
