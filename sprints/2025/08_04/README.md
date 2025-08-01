@@ -13,7 +13,5 @@
 
 ## Sandro
 
-# Seeking feedback
-
 ## Melissa
 
