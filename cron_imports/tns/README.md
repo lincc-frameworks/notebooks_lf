@@ -8,4 +8,4 @@ CRON_TZ=UTC
 0 1 * * * /astro/users/smcampos/jobs/run_tns.sh
 ```
 
-The latest catalog is available at https://data.lsdb.io/hats/tns/tns_latest. All catalogs are retained for one week at https://data.lsdb.io/hats/tns. After this period, they expire and are removed.
+They are retained for one week at https://data.lsdb.io/hats/tns. After this period, they expire and are removed.
