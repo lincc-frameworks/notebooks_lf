@@ -65,6 +65,16 @@ def get_filter_column(file: UPath) -> str:
     raise ValueError(f"Unsupported file format: {file}")
 
 
+def apply_random_offset(ra: float, dec: float, offset_arcsec: float, random_state):
+    rng = np.random.default_rng(random_state)
+    angle = Angle(rng.uniform(0, 360), "deg")
+    offset = Angle(rng.uniform(0, offset_arcsec), "arcsec")
+    obj_coord = SkyCoord(ra, dec, unit="deg")
+    result = obj_coord.directional_offset_by(angle, offset)
+
+    return float(result.ra.deg), float(result.dec.deg)
+
+
 class Measurer(ABC):
     weight: float
     name: str
@@ -99,7 +109,7 @@ class Cone(Measurer):
         return moc.min_index, moc.max_index
 
     @abstractmethod
-    def get_ra_dec(self, obj_ra: float, obj_dec: float) -> tuple[float, float]:
+    def get_ra_dec(self, obj_ra: float, obj_dec: float, random_state) -> tuple[float, float]:
         raise NotImplemented
 
     def measure(self, file: UPath, timeit_decorator, *, columns: list[str] | None) -> float:
@@ -109,7 +119,7 @@ class Cone(Measurer):
         idx = rng.choice(table.num_rows, self.n_samples)
         result = 0
         for i in idx:
-            ra, dec = self.get_ra_dec(table[ra_column][i].as_py(), table[dec_column][i].as_py())
+            ra, dec = self.get_ra_dec(table[ra_column][i].as_py(), table[dec_column][i].as_py(), rng)
             min_healpix_29, max_healpix_29 = self.get_healpix_29_range(ra, dec, self.radius_arcsec)
             expression = (pc.field("_healpix_29") >= min_healpix_29) & (pc.field("_healpix_29") <= max_healpix_29)
             result += timeit_decorator(read_table)(file, columns=columns, filters=expression)
@@ -122,7 +132,8 @@ class SmallCone(Cone):
     def __init__(self, *, n_samples: int = 10):
         super().__init__(name="Small cone", radius_arcsec=3.0, n_samples=n_samples)
 
-    def get_ra_dec(self, obj_ra: float, obj_dec: float) -> tuple[float, float]:
+    def get_ra_dec(self, obj_ra: float, obj_dec: float, random_state) -> tuple[float, float]:
+        del random_state
         return obj_ra, obj_dec
 
 
@@ -134,31 +145,112 @@ class LargeCone(Cone):
         self.offset_factor = 0.9
         self.offset_arcsec = self.radius_arcsec * self.offset_factor
 
-    def get_ra_dec(self, obj_ra: float, obj_dec: float) -> tuple[float, float]:
+    def get_ra_dec(self, obj_ra: float, obj_dec: float, random_state) -> tuple[float, float]:
+        return apply_random_offset(obj_ra, obj_dec, self.offset_arcsec, random_state)
+
+
+class Box(Measurer):
+    def __init__(self, *, name: str, size_arcsec: float, n_samples: int):
+        self.name = name
+        self.size_arcsec = size_arcsec
+        self.n_samples = n_samples
+
+    @abstractmethod
+    def get_ra_dec_limits(self, obj_ra: float, obj_dec: float, random_state) -> dict[str, tuple[float, float]]:
+        raise NotImplemented
+
+    def measure(self, file: UPath, timeit_decorator, *, columns: list[str] | None) -> float:
+        ra_column, dec_column = ra_dec_columns(file)
+        table = read_table(file, columns=[ra_column, dec_column])
         rng = np.random.default_rng(0)
-        angle = Angle(rng.uniform(0, 360), "deg")
-        offset = Angle(rng.uniform(0, self.offset_arcsec), "arcsec")
-        obj_coord = SkyCoord(obj_ra, obj_dec, unit="deg")
-        cone_center = obj_coord.directional_offset_by(angle, offset)
+        idx = rng.choice(table.num_rows, self.n_samples)
+        result = 0
+        for i in idx:
+            limits = self.get_ra_dec_limits(table[ra_column][i].as_py(), table[dec_column][i].as_py(), rng)
+            expression = (
+                (pc.field(ra_column) >= limits["ra"][0])
+                & (pc.field(ra_column) <= limits["ra"][1])
+                & (pc.field(dec_column) >= limits["dec"][0])
+                & (pc.field(dec_column) <= limits["dec"][1])
+            )
+            result += timeit_decorator(read_table)(file, columns=columns, filters=expression)
+        return result
 
-        return float(cone_center.ra.deg), float(cone_center.dec.deg)
+
+class SmallBox(Box):
+    weight = 1.0
+
+    def __init__(self, *, n_samples: int = 10):
+        super().__init__(name="Small box", size_arcsec=6.0, n_samples=n_samples)
+
+    def get_ra_dec_limits(self, obj_ra: float, obj_dec: float, random_state) -> dict[str, tuple[float, float]]:
+        del random_state
+        cos_dec = np.cos(np.deg2rad(obj_dec))
+        return {
+            "ra": (np.clip(obj_ra - 0.5 * self.size_arcsec / cos_dec, 0, 360),
+                   np.clip(obj_ra + 0.5 * self.size_arcsec / cos_dec, 0, 360)),
+            "dec": (np.clip(obj_dec - 0.5 * self.size_arcsec, -90, 90),
+                    np.clip(obj_dec + 0.5 * self.size_arcsec, -90, 90))
+        }
 
 
-class SelectById(Measurer):
-    weight = 2.0
-    name = "Select by ID"
+class LargeBox(Box):
+    weight = 1.0
 
-    def __init__(self, *, num_samples: int = 10):
-        self.num_samples = num_samples
+    def __init__(self, *, n_samples: int = 3):
+        super().__init__(name="Large box", size_arcsec=7200.0, n_samples=n_samples)
+        self.offset_factor = 0.25  # smaller than 0.5
+        self.offset_arcsec = self.size_arcsec * self.offset_factor
+
+    def get_ra_dec_limits(self, obj_ra: float, obj_dec: float, random_state) -> dict[str, tuple[float, float]]:
+        ra, dec = apply_random_offset(obj_ra, obj_dec, self.offset_arcsec, random_state)
+        cos_dec = np.cos(np.deg2rad(dec))
+        return {
+            "ra": (np.clip(ra - 0.5 * self.size_arcsec / cos_dec, 0, 360),
+                   np.clip(ra + 0.5 * self.size_arcsec / cos_dec, 0, 360)),
+            "dec": (np.clip(dec - 0.5 * self.size_arcsec, -90, 90),
+                    np.clip(dec + 0.5 * self.size_arcsec, -90, 90))
+        }
+
+
+class SelectSingleId(Measurer):
+    weight = 1.0
+    name = "Select single ID"
+
+    def __init__(self, *, n_samples: int = 100):
+        self.n_samples = n_samples
 
     def measure(self, file: UPath, timeit_decorator, *, columns: list[str] | None) -> float:
         id_column = get_id_column(file)
         table = read_table(file, columns=[id_column])
         rng = np.random.default_rng(0)
-        id_values = rng.choice(table[id_column], self.num_samples)
+        id_values = rng.choice(table[id_column], self.n_samples)
         result = 0
         for id_value in id_values:
             expression = pc.field(id_column) == id_value
+            result += timeit_decorator(read_table)(file, columns=columns, filters=expression)
+
+        return result
+
+
+class SelectFractionOfIds(Measurer):
+    weight = 1.0
+    name = "Select fraction of IDs"
+
+    def __init__(self, *, n_samples: int = 10, ids_fraction: float = 1e-3):
+        self.n_samples = n_samples
+        self.ids_fraction = ids_fraction
+
+    def measure(self, file: UPath, timeit_decorator, *, columns: list[str] | None) -> float:
+        id_column = get_id_column(file)
+        table = read_table(file, columns=[id_column])
+        ids = table[id_column].unique()
+        num_ids = int(np.round(len(ids) * self.ids_fraction))
+        rng = np.random.default_rng(0)
+        result = 0
+        for _ in range(self.n_samples):
+            id_values = rng.choice(ids, num_ids)
+            expression = pc.field(id_column).isin(id_values)
             result += timeit_decorator(read_table)(file, columns=columns, filters=expression)
 
         return result
@@ -185,6 +277,7 @@ class FilterColumnFewRows(FilterColumn):
 
     def __init__(self):
         super().__init__("Filter column with few result rows", (0.98, 0.99))
+
 
 class FilterColumnManyRows(FilterColumn):
     weight = 1.0
@@ -231,18 +324,19 @@ class Runner:
             catalogs: list[str] | None = None,
     ):
         self.measurers = m
+        assert len(set(meas.name for meas in self.measurers)) == len(self.measurers), 'Non-unique measurer names'
         self.output = output
         self.force = force
         self.storages = storages or list(self.path_roots)
         self.catalogs = catalogs or list(self.prefixes)
 
-        if not self.output.exists():
+        if not self.output.exists() or force:
             previous_results = {}
         else:
             with self.output.open() as f:
                 previous_results = json.load(f)
         self.previous_results = deepcopy(previous_results)
-        
+
         if force:
             for suffix, suffix_results in previous_results.items():
                 for measurer, measurer_results in suffix_results.items():
@@ -253,7 +347,6 @@ class Runner:
                         for catalog, catalog_results in storage_results.items():
                             if catalog in self.catalogs:
                                 del self.previous_results[suffix][measurer][storage][catalog]
-
 
 
     def get_suffixes(self):
@@ -320,7 +413,10 @@ def main(argv: list[str] | None = None):
         FullRead(),
         SmallCone(),
         LargeCone(),
-        SelectById(),
+        SmallBox(),
+        LargeBox(),
+        SelectSingleId(),
+        SelectFractionOfIds(),
         FilterColumnFewRows(),
         FilterColumnManyRows(),
     ]
