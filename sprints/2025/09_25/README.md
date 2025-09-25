@@ -1,6 +1,5 @@
 REMEMBER TO RECORD
 
-
 ## Olivia
 
 - import with in-memory size and histograms
@@ -17,21 +16,20 @@ REMEMBER TO RECORD
 
 - `map_rows` examples
 
-## Sandro
-
-- PPDB incremental imports
-- maybe association catalog re-imports
-
 ## Melissa
 
 - nway (if nothing more exciting comes up)
 
 # Seeking feedback
 
+## Sandro
+
+- PPDB incremental imports
+- [Association catalog re-imports](./reimport_associations.ipynb)
+
 ## Sean
 
 - options for more-than-just-default columns.
 - and suffixes on join
 
-
-*If your demo will be long, or you want to have a discussion, please put your name at the end*
+_If your demo will be long, or you want to have a discussion, please put your name at the end_
