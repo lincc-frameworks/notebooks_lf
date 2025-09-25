@@ -25,7 +25,7 @@ REMEMBER TO RECORD
 
 ## Sandro
 
-- PPDB incremental imports
+- [PPDB incremental imports](https://github.com/lsst-sitcom/linccf/blob/main/ppdb/04-Generate_collection.ipynb)
 - [Association catalog re-imports](./reimport_associations.ipynb)
 
 ## Sean
