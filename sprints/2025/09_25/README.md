@@ -18,7 +18,8 @@ REMEMBER TO RECORD
 
 ## Melissa
 
-- nway (if nothing more exciting comes up)
+- [nway crossmatch / crossmatch-nested](./nway_demo.ipynb)
+- [RSP and release](./rsp_and_release.md)
 
 # Seeking feedback
 
