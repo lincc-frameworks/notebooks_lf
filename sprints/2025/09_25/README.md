@@ -10,7 +10,7 @@ REMEMBER TO RECORD
 
 ## Kostya
 
-- uncle val (test, initial stuff)
+- Uncle Val: using LSDB as a chunk-iterator, which prefetches data in the background. [Notebook](https://github.com/lincc-frameworks/uncle-val/blob/7dc364d8e54d565ca280415f260cd497b5166ee3/docs/pre_executed/demo.ipynb), [iterator code](https://github.com/lincc-frameworks/uncle-val/blob/7dc364d8e54d565ca280415f260cd497b5166ee3/src/uncle_val/learning/lsdb_data_generator.py)
 
 ## Doug
 
