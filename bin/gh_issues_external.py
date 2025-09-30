@@ -181,7 +181,7 @@ a:hover { text-decoration: underline; }
     html_footer = """
 </tbody>
 </table>
-</body>
+n</body>
 </html>
 """
     with open(html_file, "w", encoding="utf-8") as f:
@@ -193,20 +193,19 @@ a:hover { text-decoration: underline; }
 
 def main():
     parser = argparse.ArgumentParser(
-        description="List open issues created by external users in a GitHub organization."
+        description="List open issues created by external users in a GitHub organization.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(
         "--org",
         type=str,
         default=ORG,
-        help="GitHub organization (default: astronomy-commons)",
+        help="GitHub organization",
     )
     parser.add_argument(
         "--html",
         type=str,
-        nargs="?",
-        const="external_issues.html",
-        help="Output to HTML file. Optionally specify file name (default: external_issues.html)",
+        help="Output to HTML file.",
     )
     args = parser.parse_args()
 
