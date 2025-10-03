@@ -76,7 +76,7 @@ def paginate_github_api(session: requests.Session, url: str) -> List[Dict]:
 def get_org_members(org: str) -> Set[str]:
     print("Fetching org members...")
     session = create_github_session()
-    url = f"{GITHUB_API_BASE}/orgs/{org}/members"
+    url = f"{GITHUB_API_BASE}/orgs/{org}/members?per_page=100"
     members_data = paginate_github_api(session, url)
     members = {member["login"] for member in members_data}
     print(f"Found {len(members)} org members.")
@@ -86,7 +86,7 @@ def get_org_members(org: str) -> Set[str]:
 def get_org_repos(org: str) -> List[str]:
     print("Fetching org repositories...")
     session = create_github_session()
-    url = f"{GITHUB_API_BASE}/orgs/{org}/repos"
+    url = f"{GITHUB_API_BASE}/orgs/{org}/repos?per_page=100"
     repos_data = paginate_github_api(session, url)
     repos = [repo["name"] for repo in repos_data]
     print(f"Found {len(repos)} repositories.")
@@ -100,7 +100,7 @@ def get_open_issues(org: str, repos: List[str]) -> List[Dict]:
     for repo in repos:
         print(f"  {repo}...")
         try:
-            url = f"{GITHUB_API_BASE}/repos/{org}/{repo}/issues?state=open"
+            url = f"{GITHUB_API_BASE}/repos/{org}/{repo}/issues?state=open&per_page=100"
             issues_data = paginate_github_api(session, url)
             
             # Filter out pull requests (they also come through the issues API)
