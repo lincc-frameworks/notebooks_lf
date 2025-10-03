@@ -160,7 +160,7 @@ a:hover { text-decoration: underline; }
     html_footer = """
 </tbody>
 </table>
-n</body>
+</body>
 </html>
 """
     with open(html_file, "w", encoding="utf-8") as f:
