@@ -4,6 +4,9 @@
 issues, filters out all issues created by members of the organization,
 and reports them either to text or HTML.
 
+Supports fetching repositories from one organization and filtering
+by members from a different organization using --org-repos and --org-members.
+
 Depends on the GitHub CLI.
 """
 
@@ -14,7 +17,8 @@ from typing import Set, List, Dict
 from datetime import datetime, timezone
 import human_readable
 
-ORG = "astronomy-commons"
+ORG_REPOS = "astronomy-commons"
+ORG_MEMBERS = "astronomy-commons"
 
 
 def get_org_members(org: str) -> Set[str]:
@@ -174,8 +178,19 @@ def main():
     parser.add_argument(
         "--org",
         type=str,
-        default=ORG,
-        help="GitHub organization",
+        help="GitHub organization (sets both --org-repos and --org-members)",
+    )
+    parser.add_argument(
+        "--org-repos",
+        type=str,
+        default=ORG_REPOS,
+        help="GitHub organization to fetch repositories and issues from",
+    )
+    parser.add_argument(
+        "--org-members",
+        type=str,
+        default=ORG_MEMBERS,
+        help="GitHub organization to fetch members from for filtering",
     )
     parser.add_argument(
         "--html",
@@ -184,9 +199,13 @@ def main():
     )
     args = parser.parse_args()
 
-    org_members = get_org_members(args.org)
-    repos = get_org_repos(args.org)
-    all_issues = get_open_issues(args.org, repos)
+    # If --org is provided, use it for both repos and members
+    org_repos = args.org if args.org else args.org_repos
+    org_members_arg = args.org if args.org else args.org_members
+
+    org_members = get_org_members(org_members_arg)
+    repos = get_org_repos(org_repos)
+    all_issues = get_open_issues(org_repos, repos)
     external_issues = filter_external_issues(all_issues, org_members)
     # Sort by most recent activity
     external_issues.sort(key=lambda x: x["updatedAt"], reverse=True)
