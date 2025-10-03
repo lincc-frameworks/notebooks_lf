@@ -7,7 +7,8 @@ This directory contains scripts to be run by LSDB maintainers for managing and m
 Before running the scripts in this directory, ensure you have the following:
 
 1. **GitHub Personal Access Token**: A token with appropriate permissions to read organization data and issues.
-   - Create a token at: https://github.com/settings/tokens
+   - Create a **classic** personal access token at: https://github.com/settings/tokens
+   - **Important**: Use a "classic" token, not a "fine-grained" token (fine-grained tokens may not return all organization members)
    - Required scopes: `read:org`, `repo` (or `public_repo` for public repositories only)
    - Set the token as an environment variable:
      ```bash
