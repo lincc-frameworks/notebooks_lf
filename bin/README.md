@@ -4,18 +4,22 @@ This directory contains scripts to be run by LSDB maintainers for managing and m
 
 ## Prerequisites
 
-Before running the scripts in this directory, ensure you have the following installed:
+Before running the scripts in this directory, ensure you have the following:
 
-1. **GitHub CLI** (`gh`): The GitHub command-line tool for interacting with GitHub's API.
-   - Installation instructions: https://cli.github.com/
-   - Verify installation: `gh --version`
-   - Authentication required: Run `gh auth login` to authenticate with GitHub
+1. **GitHub Personal Access Token**: A token with appropriate permissions to read organization data and issues.
+   - Create a **classic** personal access token at: https://github.com/settings/tokens
+   - **Important**: Use a "classic" token, not a "fine-grained" token (fine-grained tokens may not return all organization members)
+   - Required scopes: `read:org`, `repo` (or `public_repo` for public repositories only)
+   - Set the token as an environment variable:
+     ```bash
+     export GITHUB_TOKEN="your_personal_access_token_here"
+     ```
 
 2. **Python packages**: Install the required Python dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-   This will install the `human_readable` package, which provides human-readable formatting for dates and times.
+   This will install the `human_readable` and `requests` packages, which provide human-readable formatting for dates and times, and HTTP request functionality.
 
 ## Scripts
 
