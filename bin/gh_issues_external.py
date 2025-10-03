@@ -12,7 +12,7 @@ import json
 import argparse
 from typing import Set, List, Dict
 from datetime import datetime, timezone
-import math
+import human_readable
 
 ORG = "astronomy-commons"
 
@@ -84,37 +84,12 @@ def filter_external_issues(issues: List[Dict], org_members: Set[str]) -> List[Di
     return external_issues
 
 
-def humanize_time(dt: datetime, now: datetime) -> str:
-    delta = now - dt
-    seconds = delta.total_seconds()
-    if seconds < 60:
-        return "just now"
-    minutes = seconds / 60
-    if minutes < 60:
-        mins = math.floor(minutes)
-        return f"{mins} minute{'s' if mins != 1 else ''} ago"
-    hours = minutes / 60
-    if hours < 24:
-        hrs = math.floor(hours)
-        return f"{hrs} hour{'s' if hrs != 1 else ''} ago"
-    days = hours / 24
-    if days < 30:
-        dys = math.floor(days)
-        return f"{dys} day{'s' if dys != 1 else ''} ago"
-    months = days / 30
-    if months < 12:
-        mths = math.floor(months)
-        return f"{mths} month{'s' if mths != 1 else ''} ago"
-    yrs = math.floor(months / 12)
-    return f"{yrs} year{'s' if yrs != 1 else ''} ago"
-
-
 def get_humanized_updated_at(iso_time: str, now: datetime) -> str:
     try:
         dt = datetime.strptime(iso_time, "%Y-%m-%dT%H:%M:%SZ").replace(
             tzinfo=timezone.utc
         )
-        return humanize_time(dt, now)
+        return human_readable.date_time(dt, when=now)
     except Exception:
         return iso_time
 
