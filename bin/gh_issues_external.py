@@ -13,6 +13,7 @@ Requires a GitHub personal access token set in the GITHUB_TOKEN environment vari
 import os
 import json
 import argparse
+import re
 from typing import Set, List, Dict, Optional
 from datetime import datetime, timezone
 import human_readable
@@ -47,7 +48,11 @@ def create_github_session() -> requests.Session:
 
 
 def paginate_github_api(session: requests.Session, url: str) -> List[Dict]:
-    """Paginate through GitHub API responses."""
+    """Paginate through GitHub API responses.
+    
+    Follows the Link header for pagination as documented in:
+    https://docs.github.com/en/rest/guides/using-pagination-in-the-rest-api
+    """
     results = []
     while url:
         response = session.get(url)
@@ -60,15 +65,16 @@ def paginate_github_api(session: requests.Session, url: str) -> List[Dict]:
         else:
             results.append(data)
         
-        # Check for pagination
+        # Check for pagination using Link header (RFC 8288)
+        # Format: <https://api.github.com/...?page=2>; rel="next", <...>; rel="last"
         link_header = response.headers.get("Link", "")
         url = None
         if link_header:
-            links = link_header.split(",")
-            for link in links:
-                if 'rel="next"' in link:
-                    url = link[link.find("<") + 1:link.find(">")]
-                    break
+            # Match URLs within angle brackets that have rel="next"
+            # Pattern: <URL>; rel="next"
+            match = re.search(r'<([^>]+)>;\s*rel="next"', link_header)
+            if match:
+                url = match.group(1)
     
     return results
 
