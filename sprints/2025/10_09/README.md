@@ -1,0 +1,35 @@
+REMEMBER TO RECORD
+
+## Olivia
+
+- check for nan values in position columns
+
+## Derek
+
+- weekly release 39.
+
+## Kostya
+
+- uncle val something something
+
+## Doug
+
+- nested pandas compatibility
+
+## Melissa
+
+- alternative healpix index column
+
+## Sandro
+
+- PPDB
+
+## Sean
+
+- empty margin catalogs
+- skymap optmizations
+
+# Seeking feedback
+
+
+_If your demo will be long, or you want to have a discussion, please put your name at the end_
