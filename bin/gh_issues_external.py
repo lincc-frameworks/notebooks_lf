@@ -7,72 +7,123 @@ and reports them either to text or HTML.
 Supports fetching repositories from one organization and filtering
 by members from a different organization using --org-repos and --org-members.
 
-Depends on the GitHub CLI.
+Requires a GitHub personal access token set in the GITHUB_TOKEN environment variable.
 """
 
-import subprocess
+import os
 import json
 import argparse
-from typing import Set, List, Dict
+import re
+from typing import Set, List, Dict, Optional
 from datetime import datetime, timezone
 import human_readable
+import requests
 
 ORG_REPOS = "astronomy-commons"
 ORG_MEMBERS = "astronomy-commons"
+GITHUB_API_BASE = "https://api.github.com"
+
+
+def get_github_token() -> str:
+    """Get GitHub token from environment variable."""
+    token = os.environ.get("GITHUB_TOKEN")
+    if not token:
+        raise ValueError(
+            "GITHUB_TOKEN environment variable is not set. "
+            "Please set it to your GitHub personal access token."
+        )
+    return token
+
+
+def create_github_session() -> requests.Session:
+    """Create a requests session with GitHub authentication."""
+    session = requests.Session()
+    token = get_github_token()
+    session.headers.update({
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28"
+    })
+    return session
+
+
+def paginate_github_api(session: requests.Session, url: str) -> List[Dict]:
+    """Paginate through GitHub API responses.
+    
+    Follows the Link header for pagination as documented in:
+    https://docs.github.com/en/rest/guides/using-pagination-in-the-rest-api
+    """
+    results = []
+    while url:
+        response = session.get(url)
+        response.raise_for_status()
+        data = response.json()
+        
+        # Handle both list and dict responses
+        if isinstance(data, list):
+            results.extend(data)
+        else:
+            results.append(data)
+        
+        # Check for pagination using Link header (RFC 8288)
+        # Format: <https://api.github.com/...?page=2>; rel="next", <...>; rel="last"
+        link_header = response.headers.get("Link", "")
+        url = None
+        if link_header:
+            # Match URLs within angle brackets that have rel="next"
+            # Pattern: <URL>; rel="next"
+            match = re.search(r'<([^>]+)>;\s*rel="next"', link_header)
+            if match:
+                url = match.group(1)
+    
+    return results
 
 
 def get_org_members(org: str) -> Set[str]:
     print("Fetching org members...")
-    result = subprocess.run(
-        ["gh", "api", f"orgs/{org}/members", "--paginate", "--jq", ".[].login"],
-        capture_output=True,
-        text=True,
-        check=True,
-    )
-    members = set(result.stdout.strip().splitlines())
+    session = create_github_session()
+    url = f"{GITHUB_API_BASE}/orgs/{org}/members?per_page=100"
+    members_data = paginate_github_api(session, url)
+    members = {member["login"] for member in members_data}
     print(f"Found {len(members)} org members.")
     return members
 
 
 def get_org_repos(org: str) -> List[str]:
     print("Fetching org repositories...")
-    result = subprocess.run(
-        ["gh", "api", f"orgs/{org}/repos", "--paginate", "--jq", ".[].name"],
-        capture_output=True,
-        text=True,
-        check=True,
-    )
-    repos = result.stdout.strip().splitlines()
+    session = create_github_session()
+    url = f"{GITHUB_API_BASE}/orgs/{org}/repos?per_page=100"
+    repos_data = paginate_github_api(session, url)
+    repos = [repo["name"] for repo in repos_data]
     print(f"Found {len(repos)} repositories.")
     return repos
 
 
 def get_open_issues(org: str, repos: List[str]) -> List[Dict]:
     print("Fetching open issues for all repositories...")
+    session = create_github_session()
     all_issues = []
     for repo in repos:
         print(f"  {repo}...")
-        result = subprocess.run(
-            [
-                "gh",
-                "issue",
-                "list",
-                "-R",
-                f"{org}/{repo}",
-                "--state",
-                "open",
-                "--json",
-                "number,title,author,updatedAt,url",
-            ],
-            capture_output=True,
-            text=True,
-        )
-        if result.returncode == 0 and result.stdout.strip():
-            try:
-                issues = json.loads(result.stdout)
-                all_issues.extend(issues)
-            except json.JSONDecodeError as e:
-                print(f"Error decoding JSON for repo {repo}: {e}")
+        try:
+            url = f"{GITHUB_API_BASE}/repos/{org}/{repo}/issues?state=open&per_page=100"
+            issues_data = paginate_github_api(session, url)
+            
+            # Filter out pull requests (they also come through the issues API)
+            issues = [
+                {
+                    "number": issue["number"],
+                    "title": issue["title"],
+                    "author": issue["user"],
+                    "updatedAt": issue["updated_at"],
+                    "url": issue["html_url"]
+                }
+                for issue in issues_data
+                if "pull_request" not in issue
+            ]
+            all_issues.extend(issues)
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching issues for repo {repo}: {e}")
     print(f"Collected {len(all_issues)} open issues.")
     return all_issues
 
