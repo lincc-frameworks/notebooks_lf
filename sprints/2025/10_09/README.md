@@ -24,7 +24,7 @@ PR: https://github.com/lincc-frameworks/nested-pandas/pull/385
 
 ## Doug
 
-- nested pandas compatibility
+- ~~nested pandas compatibility~~ Nothing to show so far just applying new names of nested-pandas functions internally in LSDB
 
 ## Melissa
 
