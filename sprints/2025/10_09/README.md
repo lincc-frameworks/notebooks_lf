@@ -28,7 +28,7 @@ PR: https://github.com/lincc-frameworks/nested-pandas/pull/385
 
 ## Melissa
 
-- alternative healpix index column
+- [alternative healpix index column](./healpix_column.ipynb)
 
 ## Sandro
 
