@@ -32,8 +32,8 @@ PR: https://github.com/lincc-frameworks/nested-pandas/pull/385
 
 ## Sean
 
-- empty margin catalogs
-- skymap optmizations
+- [empty margin catalogs](./compressed_mocs.ipynb)
+- [skymap optmizations](./compressed_mocs.ipynb)
 
 ## Sandro
 
