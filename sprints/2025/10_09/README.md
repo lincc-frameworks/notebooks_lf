@@ -30,16 +30,15 @@ PR: https://github.com/lincc-frameworks/nested-pandas/pull/385
 
 - [alternative healpix index column](./healpix_column.ipynb)
 
-## Sandro
-
-- PPDB
-
 ## Sean
 
 - empty margin catalogs
 - skymap optmizations
 
-# Seeking feedback
+## Sandro
 
+- [Updates to PPDB import](https://github.com/lsst-sitcom/linccf/blob/main/ppdb/incremental/main.ipynb)
+
+# Seeking feedback
 
 _If your demo will be long, or you want to have a discussion, please put your name at the end_
