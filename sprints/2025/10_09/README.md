@@ -1,12 +1,5 @@
 REMEMBER TO RECORD
 
-## Olivia
-
-- check for nan values in position columns
-- let's talk about doctests (: (: (:
-- [https://github.com/astronomy-commons/lsdb/pull/1072/files](https://github.com/astronomy-commons/lsdb/pull/1072/files)
-
-
 ## Derek
 
 - [left-join: pixel choices](./left-join-plan.ipynb) Still working on getting `.compute()` to be correct,
@@ -49,3 +42,10 @@ PR: https://github.com/lincc-frameworks/nested-pandas/pull/385
 # Seeking feedback
 
 _If your demo will be long, or you want to have a discussion, please put your name at the end_
+
+
+## Olivia
+
+- check for nan values in position columns
+- let's talk about doctests (: (: (:
+- [https://github.com/astronomy-commons/lsdb/pull/1072/files](https://github.com/astronomy-commons/lsdb/pull/1072/files)
