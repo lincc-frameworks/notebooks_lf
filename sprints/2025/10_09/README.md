@@ -6,6 +6,10 @@ REMEMBER TO RECORD
 
 ## Derek
 
+- [left-join: pixel choices](./left-join-plan.ipynb) Still working on getting `.compute()` to be correct,
+  but this notebook demonstrates the expected pixel output for cases when the catalog resolutions are
+  different.
+
 - fsspec.parquet optimization for remote files
 
 PR: https://github.com/lincc-frameworks/nested-pandas/pull/385
