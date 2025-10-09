@@ -3,6 +3,9 @@ REMEMBER TO RECORD
 ## Olivia
 
 - check for nan values in position columns
+- let's talk about doctests (: (: (:
+- [https://github.com/astronomy-commons/lsdb/pull/1072/files](https://github.com/astronomy-commons/lsdb/pull/1072/files)
+
 
 ## Derek
 
