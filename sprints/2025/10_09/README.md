@@ -24,7 +24,7 @@ PR: https://github.com/lincc-frameworks/nested-pandas/pull/385
 
 ## Kostya
 
-- uncle val something something
+- Uncle Val: [new demo notebook](https://github.com/lincc-frameworks/uncle-val/blob/pipelines/docs/pre_executed/demo.ipynb)
 
 ## Doug
 
