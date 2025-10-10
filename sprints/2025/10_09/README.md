@@ -1,4 +1,5 @@
-REMEMBER TO RECORD
+Recording: https://cmu.zoom.us/rec/share/nwcKPh5qcyZKp4CN7am4e9LuoicY1os11FbgIp4QgYzX8y8rLI6WkX5VDEgdmK8a.6hMFhQR69ztIIFnp
+Passcode: bMm$90$+
 
 ## Derek
 
