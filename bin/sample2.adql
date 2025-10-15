@@ -1,9 +1,9 @@
 SELECT TOP 15
-    source_id, ra, dec, phot_g_mean_mag, phot_variable_flag
+    objectid, objra, objdec, nepochs, mag, magerr
 FROM ztf_dr22
 WHERE 1 = CONTAINS(
-    POINT('ICRS', 270.0, 23.0),
-    CIRCLE('ICRS', ra, dec, 1.0)
+    POINT('ICRS', 280.0, 0.0),
+    CIRCLE('ICRS', 280.0, 0.0, 0.1)
 )
-AND phot_g_mean_mag < 10
-AND phot_variable_flag = 'VARIABLE'
+AND nepochs > 10
+AND mag < 16

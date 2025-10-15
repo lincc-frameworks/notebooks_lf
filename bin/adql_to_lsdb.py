@@ -451,9 +451,9 @@ def format_lsdb_code(entities: dict) -> str:
     # Handle limit if present
     if entities.get('limits'):
         limit_value = entities['limits']
-        code += f"result = filtered_cat.head({limit_value})\n"
+        code += f"result = cat.head({limit_value})\n"
     else:
-        code += "result = filtered_cat.compute()\n"
+        code += "result = cat.compute()\n"
 
     return code
 
