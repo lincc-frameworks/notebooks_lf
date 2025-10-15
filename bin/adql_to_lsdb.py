@@ -215,6 +215,27 @@ class LSDBFormatListener(FormatListener):
 
         return text
 
+    def enterSet_limit(self, ctx):
+        """Extract limit from SET LIMIT clause using pre-parsed limit_contexts."""
+        # The SelectQueryListener has already extracted the limit information
+        # limit_contexts is a dictionary where values contain the limit info
+        if self.limit_contexts:
+            print(self.limit_contexts)
+            for limit_text in self.limit_contexts.values():
+                # Extract number specifically from LIMIT/TOP clause patterns
+                import re
+                # Match "LIMIT n" or "TOP n" patterns specifically
+                match = re.search(r'(?:LIMIT|TOP)\s+(\d+)', limit_text, re.IGNORECASE)
+                if match:
+                    try:
+                        limit_value = int(match.group(1))
+                        if limit_value <= 0:
+                            raise ValueError(f"TOP/LIMIT must be positive, got {limit_value}")
+                        self.entities['limits'] = limit_value
+                        return
+                    except ValueError as e:
+                        raise ValueError(f"Invalid TOP/LIMIT value: {e}")
+
     def enterFrom_clause(self, ctx):
         """Extract table names from the FROM clause."""
         # Check for unsupported constructs first
@@ -319,6 +340,13 @@ def format_lsdb_code(entities: dict) -> str:
             radius = spatial['radius']
             code += f"    search_filter=lsdb.ConeSearch(ra={ra}, dec={dec}, radius_arcsec={radius * 3600}),\n"
     code += "    )\n\n"
+
+    # Handle limit if present
+    if entities.get('limits'):
+        limit_value = entities['limits']
+        code += f"result = cat.head({limit_value})\n"
+    else:
+        code += "result = cat.compute()\n"
 
     return code
 
