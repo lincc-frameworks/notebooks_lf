@@ -24,14 +24,23 @@ from antlr4 import ParseTreeWalker
 class LSDBFormatListener(FormatListener):
     """
     Listens to parsing events from a known subset of ADQL, building up the data in these
-    events into equivalent LSDB calls.  These include:
+    events into data for parameters to LSDB.  These include:
+
+    - Tables to catalogs -> gaia_dr3.gaia -> "https://lsdb.data/io/hats/gaia_dr3/gaia/"
+    - Columns to columns -> SELECT source_id, ra, dec -> columns=["source_id", "ra", "dec"]
     - CONTAINS(POINT(...), CIRCLE(...))  -> lsdb.ConeSearch(...)
     - Basic conditions (e.g. phot_g_mean_mag < 10) -> filters= or cat.query(...)
     - Limits (e.g. TOP 10) -> q.head(limit)
     """
     def __init__(self, parser, contexts, limit_contexts):
         super().__init__(parser, contexts, limit_contexts)
-        self.formatted_query = ""
+        self.entities = {
+            'tables': [],
+            'columns': [],
+            'spatial_search': None,
+            'conditions': [],
+            'limits': None
+        }
 
     def enterContains(self, ctx):
         children = ctx.children[1:]
@@ -56,17 +65,28 @@ class LSDBFormatListener(FormatListener):
                 current_arg.append(t)
         if current_arg:
             arg_texts.append(''.join(current_arg).strip())
-        lsdb_call = f"lsdb.ConeSearch({', '.join(arg_texts)})"
-        self.formatted_query += lsdb_call
+        
+        # Store spatial search information
+        self.entities['spatial_search'] = {
+            'type': 'ConeSearch',
+            'args': arg_texts
+        }
 
-    def format_query(self):
-        return self.formatted_query
+    def get_entities(self):
+        return self.entities
 
-def adql_to_lsdb(adql: str) -> str:
+def parse_adql_entities(adql: str) -> dict:
     """
-    Convert ADQL query to Python code that uses LSDB calls.
+    Parse ADQL query and extract the five entities of interest:
+    - tables: List of table names
+    - columns: List of column names  
+    - spatial_search: Spatial search parameters (e.g., ConeSearch)
+    - conditions: List of filter conditions
+    - limits: Row limit information
+    
+    Returns:
+        dict: Dictionary containing the extracted entities
     """
-
     translator = ADQLQueryTranslator(adql)
     walker = ParseTreeWalker()
     select_query_listener = SelectQueryListener()
@@ -79,9 +99,40 @@ def adql_to_lsdb(adql: str) -> str:
     )
     walker.walk(my_listener, translator.tree)
 
+    return my_listener.get_entities()
+
+
+def format_lsdb_code(entities: dict) -> str:
+    """
+    Convert parsed ADQL entities to Python code that uses LSDB calls.
+    
+    Args:
+        entities: Dictionary containing parsed ADQL entities with keys:
+                 'tables', 'columns', 'spatial_search', 'conditions', 'limits'
+    
+    Returns:
+        str: Python code string using LSDB calls
+    """
     code = "import lsdb\n\n"
-    code += my_listener.format_query()
+    
+    # For now, this is a basic implementation that handles spatial search
+    # Additional logic would be needed to handle tables, columns, conditions, and limits
+    if entities.get('spatial_search'):
+        spatial = entities['spatial_search']
+        if spatial['type'] == 'ConeSearch':
+            code += f"lsdb.ConeSearch({', '.join(spatial['args'])})"
+    
     return code
+
+
+def adql_to_lsdb(adql: str) -> str:
+    """
+    Convert ADQL query to Python code that uses LSDB calls.
+    
+    This function combines parsing and formatting by calling the two separate functions.
+    """
+    entities = parse_adql_entities(adql)
+    return format_lsdb_code(entities)
 
 
 def main():
