@@ -165,6 +165,56 @@ class LSDBFormatListener(FormatListener):
 
         return values
 
+    def enterSelect_list(self, ctx):
+        """Parse the SELECT list to extract column names."""
+        # Extract column names from the SELECT clause
+        columns = self._extract_select_columns(ctx)
+        self.entities['columns'].extend(columns)
+
+    def _extract_select_columns(self, ctx):
+        """Extract column names from a SELECT list context."""
+        columns = []
+
+        # Walk through the children to find column references
+        for child in ctx.children:
+            if hasattr(child, 'children'):
+                # This might be a select_sublist or derived_column
+                column_name = self._extract_column_name(child)
+                if column_name:
+                    columns.append(column_name)
+
+        return columns
+
+    def _extract_column_name(self, node):
+        """
+        Extract a column name from a parse tree node.
+        Handles simple column names and ignores complex expressions.
+        """
+        # For now, only handle simple column references
+        # Get the text and clean it up
+        text = node.getText().strip()
+
+        # Skip if it's a comma or other punctuation
+        if text in [',', '(', ')', '*']:
+            return None
+
+        # Handle SELECT * case
+        if text == '*':
+            return '*'
+
+        # For simple column names, just return the text
+        # In a more complete implementation, we'd need to handle:
+        # - table.column references
+        # - aliased columns (column AS alias)
+        # - function calls
+        # - expressions
+
+        # Skip SQL keywords that might appear
+        if text.upper() in ['SELECT', 'FROM', 'WHERE', 'TOP', 'DISTINCT']:
+            return None
+
+        return text
+
     def enterFrom_clause(self, ctx):
         """Extract table names from the FROM clause."""
         # Check for unsupported constructs first
@@ -251,10 +301,14 @@ def format_lsdb_code(entities: dict) -> str:
     # Convert table name like 'gaiadr3.gaia' to URL format
     if '.' in table:
         parts = table.split('.')
-        catalog_url = f"https://lsdb.data/io/hats/{parts[0]}/{parts[1]}/"
+        catalog_url = f"https://data.lsdb.io/hats/{parts[0]}/{parts[1]}/"
     else:
-        catalog_url = f"https://lsdb.data/io/hats/{table}/"
+        catalog_url = f"https://data.lsdb.io/hats/{table}/"
     code += f"    '{catalog_url}',\n"
+    if entities['columns']:
+        code += "    columns=[\n"
+        code += "        " + ", ".join(f'"{col}"' for col in entities['columns']) + "\n"
+        code += "    ],\n"
 
     # Handle spatial search if present
     if entities.get('spatial_search'):
