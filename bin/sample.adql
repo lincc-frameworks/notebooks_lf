@@ -1,0 +1,9 @@
+SELECT TOP 15
+    source_id, ra, dec, phot_g_mean_mag, phot_variable_flag
+FROM gaiadr3.gaia
+WHERE 1 = CONTAINS(
+    POINT('ICRS', 270.0, 23.0),
+    CIRCLE('ICRS', ra, dec, 1.0)
+)
+AND phot_g_mean_mag < 10
+AND phot_variable_flag = 'VARIABLE'
