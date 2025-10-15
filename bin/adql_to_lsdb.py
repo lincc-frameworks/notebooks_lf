@@ -45,6 +45,9 @@ class LSDBFormatListener(FormatListener):
         self._in_contains = False
         self._current_point = None
         self._current_circle = None
+        # Track WHERE clause parsing
+        self._in_where = False
+        self._current_conditions = []
 
     def enterContains(self, ctx):
         """Enter a CONTAINS clause - set context flag."""
@@ -220,7 +223,6 @@ class LSDBFormatListener(FormatListener):
         # The SelectQueryListener has already extracted the limit information
         # limit_contexts is a dictionary where values contain the limit info
         if self.limit_contexts:
-            print(self.limit_contexts)
             for limit_text in self.limit_contexts.values():
                 # Extract number specifically from LIMIT/TOP clause patterns
                 import re
@@ -235,6 +237,104 @@ class LSDBFormatListener(FormatListener):
                         return
                     except ValueError as e:
                         raise ValueError(f"Invalid TOP/LIMIT value: {e}")
+
+    def enterWhere_clause(self, ctx):
+        """Enter WHERE clause - start parsing conditions."""
+        self._in_where = True
+        self._current_conditions = []
+
+    def exitWhere_clause(self, ctx):
+        """Exit WHERE clause - finalize condition parsing."""
+        if self._in_where:
+            # Store conditions in simple format for AND-only cases
+            if self._current_conditions:
+                # For simple AND conditions, store as single list
+                # When we add OR support, we'll use full DNF: [[cond1, cond2], [cond3, cond4]]
+                self.entities['conditions'] = self._current_conditions
+            
+            # Reset context
+            self._in_where = False
+            self._current_conditions = []
+
+    def enterComparison_predicate(self, ctx):
+        """Parse comparison predicates like 'column < value'."""
+        if not self._in_where:
+            return  # Only process comparisons within WHERE clause
+        
+        # Skip CONTAINS comparisons - they're handled separately
+        comparison_text = ctx.getText().upper()
+        if 'CONTAINS' in comparison_text:
+            return
+        
+        # Extract the comparison components
+        try:
+            condition = self._parse_comparison(ctx)
+            if condition:
+                self._current_conditions.append(condition)
+        except Exception as e:
+            print(f"Warning: Could not parse comparison '{ctx.getText()}': {e}")
+
+    def _parse_comparison(self, ctx):
+        """
+        Parse a comparison context into (column, operator, value) tuple.
+        
+        Examples:
+        - 'phot_g_mean_mag < 10' -> ('phot_g_mean_mag', '<', 10)
+        - "phot_variable_flag = 'VARIABLE'" -> ('phot_variable_flag', '==', 'VARIABLE')
+        """
+        # Get all tokens from the comparison
+        tokens = []
+        for child in ctx.children:
+            if hasattr(child, 'getText'):
+                text = child.getText().strip()
+                if text:
+                    tokens.append(text)
+        
+        # Look for basic pattern: column operator value
+        if len(tokens) >= 3:
+            # Find the operator (typically in the middle)
+            operators = ['<', '>', '<=', '>=', '=', '!=', '<>']
+            
+            for i, token in enumerate(tokens):
+                if token in operators:
+                    if i > 0 and i < len(tokens) - 1:
+                        column = tokens[i-1]
+                        operator = self._translate_operator(token)
+                        value = self._parse_value(tokens[i+1])                        
+                        return (column, operator, value)        
+        return None
+
+    def _translate_operator(self, sql_operator):
+        """Translate SQL operators to Python operators."""
+        operator_map = {
+            '=': '==',
+            '<>': '!=',
+            '!=': '!=',
+            '<': '<',
+            '>': '>',
+            '<=': '<=',
+            '>=': '>='
+        }
+        return operator_map.get(sql_operator, sql_operator)
+
+    def _parse_value(self, value_text):
+        """Parse a value, handling strings, numbers, etc."""
+        # Remove quotes from string literals
+        if value_text.startswith("'") and value_text.endswith("'"):
+            return value_text[1:-1]  # Remove single quotes
+        if value_text.startswith('"') and value_text.endswith('"'):
+            return value_text[1:-1]  # Remove double quotes
+        
+        # Try to parse as number
+        try:
+            # Try integer first
+            if '.' not in value_text:
+                return int(value_text)
+            else:
+                return float(value_text)
+        except ValueError:
+            # Return as string if not a number
+            return value_text
 
     def enterFrom_clause(self, ctx):
         """Extract table names from the FROM clause."""
@@ -339,14 +439,21 @@ def format_lsdb_code(entities: dict) -> str:
             dec = spatial['dec']
             radius = spatial['radius']
             code += f"    search_filter=lsdb.ConeSearch(ra={ra}, dec={dec}, radius_arcsec={radius * 3600}),\n"
+
+    # Apply conditions if present
+    if entities.get('conditions'):
+        conditions = entities['conditions']
+        code += f"    filters={conditions},\n"
+
+    # Conclude open_catalog call
     code += "    )\n\n"
 
     # Handle limit if present
     if entities.get('limits'):
         limit_value = entities['limits']
-        code += f"result = cat.head({limit_value})\n"
+        code += f"result = filtered_cat.head({limit_value})\n"
     else:
-        code += "result = cat.compute()\n"
+        code += "result = filtered_cat.compute()\n"
 
     return code
 

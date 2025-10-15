@@ -5,5 +5,5 @@ WHERE 1 = CONTAINS(
     POINT('ICRS', 270.0, 23.0),
     CIRCLE('ICRS', 270.0, 23.0, 0.25)
 )
-AND phot_g_mean_mag < 10
+AND phot_g_mean_mag < 16
 AND phot_variable_flag = 'VARIABLE'
