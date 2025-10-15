@@ -6,4 +6,4 @@ WHERE 1 = CONTAINS(
     CIRCLE('ICRS', 280.0, 0.0, 0.1)
 )
 AND nepochs > 10
-AND mag < 16
+AND lc.mag < 16
