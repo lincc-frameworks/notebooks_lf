@@ -41,36 +41,129 @@ class LSDBFormatListener(FormatListener):
             'conditions': [],
             'limits': None
         }
+        # Track parsing context
+        self._in_contains = False
+        self._current_point = None
+        self._current_circle = None
 
     def enterContains(self, ctx):
-        children = ctx.children[1:]
-        if not children:
+        """Enter a CONTAINS clause - set context flag."""
+        self._in_contains = True
+        self._current_point = None
+        self._current_circle = None
+
+    def exitContains(self, ctx):
+        """Exit CONTAINS clause - validate and store spatial search info."""
+        if not self._in_contains:
             return
 
-        arg_texts = []
-        current_arg = []
-        paren_level = 0
-        for child in children:
-            t = getattr(child, 'getText', lambda: str(child))()
-            if t == '(':
-                paren_level += 1
-                continue
-            if t == ')':
-                paren_level -= 1
-                continue
-            if t == ',' and paren_level == 1:
-                arg_texts.append(''.join(current_arg).strip())
-                current_arg = []
-            else:
-                current_arg.append(t)
-        if current_arg:
-            arg_texts.append(''.join(current_arg).strip())
+        # Validate that we have both POINT and CIRCLE
+        if not self._current_point:
+            raise NotImplementedError("CONTAINS clause must include a POINT")
+        if not self._current_circle:
+            raise NotImplementedError("CONTAINS clause must include a CIRCLE")
+
+        # Validate that POINT coordinates match CIRCLE center
+        if (self._current_point['ra'] != self._current_circle['ra'] or
+            self._current_point['dec'] != self._current_circle['dec']):
+            raise ValueError(
+                f"POINT coordinates ({self._current_point['ra']}, {self._current_point['dec']}) "
+                f"must match CIRCLE center ({self._current_circle['ra']}, {self._current_circle['dec']})"
+            )
 
         # Store spatial search information
         self.entities['spatial_search'] = {
             'type': 'ConeSearch',
-            'args': arg_texts
+            'ra': self._current_point['ra'],
+            'dec': self._current_point['dec'],
+            'radius': self._current_circle['radius']
         }
+
+        # Reset context
+        self._in_contains = False
+        self._current_point = None
+        self._current_circle = None
+
+    def enterPoint(self, ctx):
+        """Parse POINT('ICRS', ra, dec) within CONTAINS."""
+        if not self._in_contains:
+            return  # Ignore points outside CONTAINS
+
+        # Extract arguments from the parsed context
+        args = self._extract_function_args_from_context(ctx)
+        assert args.pop(0).upper() == 'POINT'
+
+        if len(args) != 3:
+            raise ValueError(f"POINT function expects 3 arguments, got {len(args)}")
+
+        coord_system = args[0].strip("'\"")
+        if coord_system.upper() != 'ICRS':
+            raise NotImplementedError(f"Only 'ICRS' coordinate system is supported, got '{coord_system}'")
+
+        try:
+            ra = float(args[1])
+            dec = float(args[2])
+        except ValueError as e:
+            raise ValueError(f"Invalid coordinates in POINT: {e}")
+
+        self._current_point = {'ra': ra, 'dec': dec}
+
+    def enterCircle(self, ctx):
+        """Parse CIRCLE('ICRS', ra, dec, radius) within CONTAINS."""
+        if not self._in_contains:
+            return  # Ignore circles outside CONTAINS
+
+        # Extract arguments from the parsed context
+        args = self._extract_function_args_from_context(ctx)
+        assert args.pop(0).upper() == 'CIRCLE'
+
+        if len(args) != 4:
+            raise ValueError(f"CIRCLE function expects 4 arguments, got {len(args)}")
+
+        coord_system = args[0].strip("'\"")
+        if coord_system.upper() != 'ICRS':
+            raise NotImplementedError(f"Only 'ICRS' coordinate system is supported, got '{coord_system}'")
+
+        try:
+            ra = float(args[1])
+            dec = float(args[2])
+            radius = float(args[3])
+        except ValueError as e:
+            raise ValueError(f"Invalid values in CIRCLE: {e}")
+
+        self._current_circle = {'ra': ra, 'dec': dec, 'radius': radius}
+
+    def _extract_function_args_from_context(self, ctx):
+        """Extract function arguments from ANTLR context by traversing the parse tree."""
+        args = []
+
+        # Walk through the children of the context
+        for child in ctx.children:
+            # Look for terminal nodes that represent the actual values
+            if hasattr(child, 'children'):
+                # This is a non-terminal, recurse into it
+                args.extend(self._extract_values_from_node(child))
+            else:
+                # Never mind punctuation like commas or parentheses
+                if (text := str(child)) not in ('(', ')', ','):
+                    args.append(text)
+
+        return args
+
+    def _extract_values_from_node(self, node):
+        """Recursively extract values from a parse tree node."""
+        values = []
+
+        if hasattr(node, 'children'):
+            for child in node.children:
+                values.extend(self._extract_values_from_node(child))
+        else:
+            # Terminal node
+            # Never mind punctuation like commas or parentheses
+            if (text := str(node)) not in ('(', ')', ','):
+                values.append(text)
+
+        return values
 
     def enterFrom_clause(self, ctx):
         """Extract table names from the FROM clause."""
@@ -163,12 +256,14 @@ def format_lsdb_code(entities: dict) -> str:
         catalog_url = f"https://lsdb.data/io/hats/{table}/"
     code += f"    '{catalog_url}',\n"
 
-    # For now, this is a basic implementation that handles spatial search
-    # Additional logic would be needed to handle columns, conditions, and limits
+    # Handle spatial search if present
     if entities.get('spatial_search'):
         spatial = entities['spatial_search']
         if spatial['type'] == 'ConeSearch':
-            code += f"    search_filter=lsdb.ConeSearch({', '.join(spatial['args'])}),\n"
+            ra = spatial['ra']
+            dec = spatial['dec']
+            radius = spatial['radius']
+            code += f"    search_filter=lsdb.ConeSearch(ra={ra}, dec={dec}, radius_arcsec={radius * 3600}),\n"
     code += "    )\n\n"
 
     return code
