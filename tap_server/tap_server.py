@@ -27,12 +27,12 @@ app = Flask(__name__)
 def create_votable_response(data, columns, query_info):
     """
     Create a VOTable XML response.
-    
+
     Args:
         data: List of dictionaries containing row data
         columns: List of column names
         query_info: Dictionary with query metadata
-        
+
     Returns:
         String containing VOTable XML
     """
@@ -42,29 +42,29 @@ def create_votable_response(data, columns, query_info):
         'xmlns': 'http://www.ivoa.net/xml/VOTable/v1.4',
         'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance'
     })
-    
+
     # Add RESOURCE element
     resource = ET.SubElement(votable, 'RESOURCE', {'type': 'results'})
-    
+
     # Add INFO elements for query metadata
     ET.SubElement(resource, 'INFO', {
         'name': 'QUERY_STATUS',
         'value': 'OK'
     })
-    
+
     ET.SubElement(resource, 'INFO', {
         'name': 'QUERY',
         'value': query_info.get('query', '')
     })
-    
+
     ET.SubElement(resource, 'INFO', {
         'name': 'TIMESTAMP',
         'value': datetime.utcnow().isoformat()
     })
-    
+
     # Add TABLE element
     table = ET.SubElement(resource, 'TABLE', {'name': query_info.get('table', 'results')})
-    
+
     # Add FIELD elements for each column
     for col in columns:
         field_attrs = {
@@ -82,13 +82,13 @@ def create_votable_response(data, columns, query_info):
         elif col.lower() in ['mag', 'magnitude']:
             field_attrs['unit'] = 'mag'
             field_attrs['ucd'] = 'phot.mag'
-        
+
         ET.SubElement(table, 'FIELD', field_attrs)
-    
+
     # Add DATA element with TABLEDATA
     data_elem = ET.SubElement(table, 'DATA')
     tabledata = ET.SubElement(data_elem, 'TABLEDATA')
-    
+
     # Add rows
     for row_data in data:
         tr = ET.SubElement(tabledata, 'TR')
@@ -96,10 +96,10 @@ def create_votable_response(data, columns, query_info):
             td = ET.SubElement(tr, 'TD')
             value = row_data.get(col, '')
             td.text = str(value) if value is not None else ''
-    
+
     # Convert to string
     xml_str = ET.tostring(votable, encoding='unicode', method='xml')
-    
+
     # Add XML declaration
     return '<?xml version="1.0" encoding="UTF-8"?>\n' + xml_str
 
@@ -107,11 +107,11 @@ def create_votable_response(data, columns, query_info):
 def create_error_votable(error_message, query=''):
     """
     Create a VOTable error response.
-    
+
     Args:
         error_message: Error message string
         query: The original query
-        
+
     Returns:
         String containing VOTable XML with error
     """
@@ -119,25 +119,25 @@ def create_error_votable(error_message, query=''):
         'version': '1.4',
         'xmlns': 'http://www.ivoa.net/xml/VOTable/v1.4'
     })
-    
+
     resource = ET.SubElement(votable, 'RESOURCE', {'type': 'results'})
-    
+
     ET.SubElement(resource, 'INFO', {
         'name': 'QUERY_STATUS',
         'value': 'ERROR'
     })
-    
+
     ET.SubElement(resource, 'INFO', {
         'name': 'ERROR',
         'value': error_message
     })
-    
+
     if query:
         ET.SubElement(resource, 'INFO', {
             'name': 'QUERY',
             'value': query
         })
-    
+
     xml_str = ET.tostring(votable, encoding='unicode', method='xml')
     return '<?xml version="1.0" encoding="UTF-8"?>\n' + xml_str
 
@@ -145,22 +145,22 @@ def create_error_votable(error_message, query=''):
 def execute_lsdb_code(code_string):
     """
     Execute the LSDB code string and return the result DataFrame.
-    
+
     For now, this returns sample data as we don't have actual LSDB catalogs available.
     In production, this would execute the actual LSDB code.
-    
+
     Args:
         code_string: Python code to execute that assigns to 'result' variable
-        
+
     Returns:
         pandas DataFrame containing sample query results
-        
+
     Raises:
         Exception: If code generation fails
     """
     import pandas as pd
     import re
-    
+
     # For prototype, generate sample data based on the code
     # Extract column names from the code
     columns_match = re.search(r'columns=\[(.*?)\]', code_string, re.DOTALL)
@@ -169,14 +169,14 @@ def execute_lsdb_code(code_string):
         columns = [col.strip().strip('"').strip("'") for col in columns_str.split(',')]
     else:
         columns = ['ra', 'dec', 'mag', 'id']
-    
+
     # Extract limit from the code
     limit_match = re.search(r'\.head\((\d+)\)', code_string)
     if limit_match:
         limit = int(limit_match.group(1))
     else:
         limit = 10
-    
+
     # Generate sample data
     data = {}
     for i, col in enumerate(columns):
@@ -195,29 +195,29 @@ def execute_lsdb_code(code_string):
             data[col] = ['VARIABLE' if i % 2 == 0 else 'CONSTANT' for i in range(limit)]
         else:
             data[col] = [float(i) for i in range(limit)]
-    
+
     # Create DataFrame
     df = pd.DataFrame(data)
-    
+
     return df
 
 
 def dataframe_to_votable_data(df):
     """
     Convert a pandas DataFrame to VOTable data format.
-    
+
     Args:
         df: pandas DataFrame
-        
+
     Returns:
         Tuple of (data_list, columns_list) where data_list is a list of dicts
     """
     # Get column names
     columns = df.columns.tolist()
-    
+
     # Convert DataFrame to list of dictionaries
     data = df.to_dict('records')
-    
+
     return data, columns
 
 
@@ -230,14 +230,14 @@ def index():
     <body>
         <h1>TAP Server Prototype</h1>
         <p>This is a prototype implementation of a TAP (Table Access Protocol) server.</p>
-        
+
         <h2>Endpoints</h2>
         <ul>
             <li><strong>GET/POST /sync</strong> - Synchronous query endpoint</li>
             <li><strong>GET /capabilities</strong> - Service capabilities</li>
             <li><strong>GET /tables</strong> - Available tables</li>
         </ul>
-        
+
         <h2>Example Query</h2>
         <p>Submit an ADQL query to the /sync endpoint:</p>
         <pre>
@@ -246,7 +246,7 @@ curl -X POST http://localhost:5000/sync \\
   -d "LANG=ADQL" \\
   -d "QUERY=SELECT TOP 10 ra, dec, mag FROM ztf_dr14 WHERE mag < 20"
         </pre>
-        
+
         <h2>Supported ADQL Features</h2>
         <ul>
             <li>SELECT with column list or *</li>
@@ -255,7 +255,7 @@ curl -X POST http://localhost:5000/sync \\
             <li>CONTAINS with POINT and CIRCLE for cone searches</li>
             <li>TOP/LIMIT clause</li>
         </ul>
-        
+
         <p><em>Note: This server uses the queryparser library to convert ADQL to LSDB operations. Query execution returns sample data for testing.</em></p>
     </body>
     </html>
@@ -267,7 +267,7 @@ curl -X POST http://localhost:5000/sync \\
 def sync_query():
     """
     Synchronous query endpoint following TAP specification.
-    
+
     Accepts parameters:
         REQUEST: Must be 'doQuery'
         LANG: Query language (ADQL)
@@ -279,7 +279,7 @@ def sync_query():
         params = request.form
     else:
         params = request.args
-    
+
     # Validate REQUEST parameter
     request_type = params.get('REQUEST', '')
     if request_type != 'doQuery':
@@ -289,7 +289,7 @@ def sync_query():
             mimetype='application/xml',
             status=400
         )
-    
+
     # Validate LANG parameter
     lang = params.get('LANG', 'ADQL')
     if lang.upper() != 'ADQL':
@@ -299,7 +299,7 @@ def sync_query():
             mimetype='application/xml',
             status=400
         )
-    
+
     # Get query
     query = params.get('QUERY', '')
     if not query:
@@ -309,27 +309,27 @@ def sync_query():
             mimetype='application/xml',
             status=400
         )
-    
+
     # Get format (default to votable)
     output_format = params.get('FORMAT', 'votable').lower()
-    
+
     try:
         # Convert ADQL query to LSDB code using bin/adql_to_lsdb
         lsdb_code = adql_to_lsdb(query)
-        
+
         # Execute the LSDB code to get results
         # Note: This will execute the code and get a DataFrame in the 'result' variable
         result_df = execute_lsdb_code(lsdb_code)
-        
+
         # Convert DataFrame to VOTable data format
         data, columns = dataframe_to_votable_data(result_df)
-        
+
         # Extract table name from query for metadata using regex
         # Good examples that match: "FROM ztf_dr14", "FROM gaia_dr3.gaia", "from MyTable WHERE"
         # Bad examples that don't match (return 'results'): "FROMAGE", "FROM WHERE", "FROM LIMIT"
         table_name = 'results'
         import re
-        
+
         # SQL keywords that should not be considered table names
         sql_keywords = {
             'WHERE', 'SELECT', 'ORDER', 'GROUP', 'HAVING', 'LIMIT', 'OFFSET',
@@ -337,27 +337,27 @@ def sync_query():
             'OUTER', 'CROSS', 'ON', 'AS', 'AND', 'OR', 'NOT', 'IN', 'EXISTS',
             'BETWEEN', 'LIKE', 'IS', 'NULL', 'DISTINCT', 'ALL', 'ANY', 'SOME'
         }
-        
+
         # Match FROM keyword followed by table name (optionally schema.table)
         # Pattern: \bFROM\s+ matches FROM with word boundary followed by whitespace
         # ([a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)?) captures table or schema.table
         match = re.search(
             r'\bFROM\s+([a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)?)\b',
             query, re.IGNORECASE)
-        
+
         if match:
             candidate = match.group(1)
             # Validate the candidate is not a SQL keyword (check table part for schema.table)
             table_part = candidate.split('.')[-1]
             if table_part.upper() not in sql_keywords:
                 table_name = candidate
-        
+
         # Create query info
         query_info = {
             'query': query,
             'table': table_name
         }
-        
+
         # Generate response based on format
         if output_format in ['votable', 'votable/td']:
             xml_response = create_votable_response(data, columns, query_info)
@@ -369,7 +369,7 @@ def sync_query():
                 mimetype='application/xml',
                 status=400
             )
-    
+
     except Exception as e:
         error_msg = f"Error processing query: {str(e)}"
         return Response(
