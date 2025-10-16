@@ -66,14 +66,6 @@ class LSDBFormatListener(FormatListener):
         if not self._current_circle:
             raise NotImplementedError("CONTAINS clause must include a CIRCLE")
 
-        # Validate that POINT coordinates match CIRCLE center
-        if (self._current_point['ra'] != self._current_circle['ra'] or
-            self._current_point['dec'] != self._current_circle['dec']):
-            raise ValueError(
-                f"POINT coordinates ({self._current_point['ra']}, {self._current_point['dec']}) "
-                f"must match CIRCLE center ({self._current_circle['ra']}, {self._current_circle['dec']})"
-            )
-
         # Store spatial search information
         self.entities['spatial_search'] = {
             'type': 'ConeSearch',
@@ -104,12 +96,14 @@ class LSDBFormatListener(FormatListener):
             raise NotImplementedError(f"Only 'ICRS' coordinate system is supported, got '{coord_system}'")
 
         try:
-            ra = float(args[1])
-            dec = float(args[2])
+            # These should match the RA, DEC columns from SELECT, but
+            # we can ignore this sort of validation for now.
+            pass
         except ValueError as e:
             raise ValueError(f"Invalid coordinates in POINT: {e}")
 
-        self._current_point = {'ra': ra, 'dec': dec}
+        # Again, these don't matter *yet* and would only matter for query validation.
+        self._current_point = {'ra': 'ra', 'dec': 'dec'}
 
     def enterCircle(self, ctx):
         """Parse CIRCLE('ICRS', ra, dec, radius) within CONTAINS."""
