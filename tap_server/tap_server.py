@@ -324,15 +324,33 @@ def sync_query():
         # Convert DataFrame to VOTable data format
         data, columns = dataframe_to_votable_data(result_df)
         
-        # Extract table name from query for metadata
-        # Try to parse table name from the query
+        # Extract table name from query for metadata using regex
+        # Good examples that match: "FROM ztf_dr14", "FROM gaia_dr3.gaia", "from MyTable WHERE"
+        # Bad examples that don't match (return 'results'): "FROMAGE", "FROM WHERE", "FROM LIMIT"
         table_name = 'results'
-        if 'FROM' in query.upper():
-            try:
-                from_part = query.upper().split('FROM')[1].split('WHERE')[0].split('LIMIT')[0]
-                table_name = from_part.strip().split()[0]
-            except:
-                pass
+        import re
+        
+        # SQL keywords that should not be considered table names
+        sql_keywords = {
+            'WHERE', 'SELECT', 'ORDER', 'GROUP', 'HAVING', 'LIMIT', 'OFFSET',
+            'UNION', 'INTERSECT', 'EXCEPT', 'JOIN', 'INNER', 'LEFT', 'RIGHT',
+            'OUTER', 'CROSS', 'ON', 'AS', 'AND', 'OR', 'NOT', 'IN', 'EXISTS',
+            'BETWEEN', 'LIKE', 'IS', 'NULL', 'DISTINCT', 'ALL', 'ANY', 'SOME'
+        }
+        
+        # Match FROM keyword followed by table name (optionally schema.table)
+        # Pattern: \bFROM\s+ matches FROM with word boundary followed by whitespace
+        # ([a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)?) captures table or schema.table
+        match = re.search(
+            r'\bFROM\s+([a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)?)\b',
+            query, re.IGNORECASE)
+        
+        if match:
+            candidate = match.group(1)
+            # Validate the candidate is not a SQL keyword (check table part for schema.table)
+            table_part = candidate.split('.')[-1]
+            if table_part.upper() not in sql_keywords:
+                table_name = candidate
         
         # Create query info
         query_info = {
