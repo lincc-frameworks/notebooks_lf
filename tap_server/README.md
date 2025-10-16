@@ -4,24 +4,31 @@ A prototype implementation of a TAP (Table Access Protocol) server following the
 
 ## Overview
 
-This TAP server prototype accepts ADQL (Astronomical Data Query Language) queries and returns results in VOTable format. The server is built using Flask and includes:
+This TAP server prototype accepts ADQL (Astronomical Data Query Language) queries and returns results in VOTable format. The server is built using Flask and integrates with the `bin/adql_to_lsdb` module to convert ADQL queries to LSDB-compatible operations.
 
-- **ADQL Query Parser** (`adql_to_lsdb.py`): Parses ADQL queries and converts them to LSDB-compatible operations
+Components:
+- **ADQL to LSDB Converter** (`../bin/adql_to_lsdb.py`): Comprehensive ADQL parser using queryparser library
 - **TAP Server** (`tap_server.py`): Flask-based HTTP server implementing TAP protocol endpoints
 
 ## Features
 
 ### Implemented
 - ✅ Synchronous query endpoint (`/sync`)
-- ✅ ADQL query parsing (SELECT, FROM, WHERE, LIMIT)
+- ✅ Advanced ADQL query parsing using queryparser library
+  - SELECT with column list or *
+  - FROM with table names (including schema.table)
+  - WHERE clause with comparison operators
+  - CONTAINS with POINT and CIRCLE for cone searches
+  - TOP/LIMIT clauses
+- ✅ ADQL to LSDB code generation
 - ✅ VOTable XML response format
 - ✅ Service capabilities endpoint (`/capabilities`)
 - ✅ Tables metadata endpoint (`/tables`)
 - ✅ Error handling with VOTable error responses
-- ✅ Sample data generation
+- ✅ Sample data generation (for testing without actual LSDB catalogs)
 
 ### Not Yet Implemented
-- ⏳ Actual query execution against database
+- ⏳ Actual query execution against LSDB catalogs (currently returns sample data)
 - ⏳ Asynchronous query support (`/async`)
 - ⏳ Additional output formats (CSV, JSON, FITS)
 - ⏳ Authentication and authorization
@@ -52,12 +59,20 @@ The server will start on `http://localhost:5000`
 curl -X POST http://localhost:5000/sync \
   -d "REQUEST=doQuery" \
   -d "LANG=ADQL" \
-  -d "QUERY=SELECT ra, dec, mag FROM ztf_dr14 WHERE mag < 20 LIMIT 10"
+  -d "QUERY=SELECT TOP 10 ra, dec, mag FROM ztf_dr14 WHERE mag < 20"
+```
+
+#### Cone Search Query:
+```bash
+curl -X POST http://localhost:5000/sync \
+  -d "REQUEST=doQuery" \
+  -d "LANG=ADQL" \
+  -d "QUERY=SELECT TOP 15 source_id, ra, dec, phot_g_mean_mag FROM gaia_dr3.gaia WHERE 1 = CONTAINS(POINT('ICRS', 270.0, 23.0), CIRCLE('ICRS', 270.0, 23.0, 0.25))"
 ```
 
 #### Using curl (GET request):
 ```bash
-curl "http://localhost:5000/sync?REQUEST=doQuery&LANG=ADQL&QUERY=SELECT%20*%20FROM%20ztf_dr14%20LIMIT%205"
+curl "http://localhost:5000/sync?REQUEST=doQuery&LANG=ADQL&QUERY=SELECT%20TOP%205%20*%20FROM%20ztf_dr14"
 ```
 
 #### Using Python requests:
@@ -68,7 +83,7 @@ url = 'http://localhost:5000/sync'
 params = {
     'REQUEST': 'doQuery',
     'LANG': 'ADQL',
-    'QUERY': 'SELECT ra, dec, mag FROM ztf_dr14 WHERE mag < 20 LIMIT 10'
+    'QUERY': 'SELECT TOP 10 ra, dec, mag FROM ztf_dr14 WHERE mag < 20'
 }
 
 response = requests.post(url, data=params)
@@ -84,41 +99,64 @@ print(response.text)
 
 ### ADQL Query Examples
 
-Select all columns:
+Select all columns with TOP:
 ```sql
-SELECT * FROM ztf_dr14 LIMIT 10
+SELECT TOP 10 * FROM ztf_dr14
 ```
 
 Select specific columns:
 ```sql
-SELECT ra, dec, mag FROM ztf_dr14 LIMIT 100
+SELECT TOP 100 ra, dec, mag FROM ztf_dr14
 ```
 
 With WHERE clause:
 ```sql
-SELECT ra, dec, mag FROM ztf_dr14 WHERE mag < 20 LIMIT 50
+SELECT TOP 50 ra, dec, mag FROM ztf_dr14 WHERE mag < 20
+```
+
+Cone search with spatial constraint:
+```sql
+SELECT TOP 15 source_id, ra, dec, phot_g_mean_mag 
+FROM gaia_dr3.gaia 
+WHERE 1 = CONTAINS(
+    POINT('ICRS', 270.0, 23.0),
+    CIRCLE('ICRS', 270.0, 23.0, 0.25)
+)
 ```
 
 ## ADQL to LSDB Conversion
 
-The `adql_to_lsdb.py` module can also be used standalone to convert ADQL queries to LSDB code:
+The TAP server uses the `bin/adql_to_lsdb` module to convert ADQL queries to LSDB Python code. This module can also be used standalone:
 
+```bash
+cd ../bin
+python adql_to_lsdb.py < sample.adql
+```
+
+Or from Python:
 ```python
-from adql_to_lsdb import adql_to_lsdb, parse_adql
+import sys
+sys.path.insert(0, '../bin')
+from adql_to_lsdb import adql_to_lsdb
 
-# Parse an ADQL query
-query = "SELECT ra, dec, mag FROM ztf_dr14 WHERE mag < 20 LIMIT 100"
-parsed = parse_adql(query)
-print(parsed)
-
-# Generate LSDB code
+query = "SELECT TOP 15 source_id, ra, dec FROM gaia_dr3.gaia WHERE phot_g_mean_mag < 16"
 lsdb_code = adql_to_lsdb(query)
 print(lsdb_code)
 ```
 
-Run the module directly to see example usage:
-```bash
-python adql_to_lsdb.py
+The generated code will look like:
+```python
+import lsdb
+
+cat = lsdb.open_catalog(
+    'https://data.lsdb.io/hats/gaia_dr3/gaia/',
+    columns=[
+        "source_id", "ra", "dec"
+    ],
+    filters=[('phot_g_mean_mag', '<', 16)],
+    )
+
+result = cat.head(15)
 ```
 
 ## Response Format

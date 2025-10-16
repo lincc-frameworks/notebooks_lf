@@ -11,7 +11,14 @@ This prototype returns sample data instead of executing actual queries against a
 from flask import Flask, request, Response
 import xml.etree.ElementTree as ET
 from datetime import datetime
-import adql_to_lsdb
+import sys
+import os
+
+# Add bin directory to path to import adql_to_lsdb
+bin_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bin')
+sys.path.insert(0, bin_path)
+
+from adql_to_lsdb import adql_to_lsdb
 
 
 app = Flask(__name__)
@@ -135,39 +142,81 @@ def create_error_votable(error_message, query=''):
     return '<?xml version="1.0" encoding="UTF-8"?>\n' + xml_str
 
 
-def generate_sample_data(parsed_query):
+def execute_lsdb_code(code_string):
     """
-    Generate sample data based on the parsed query.
+    Execute the LSDB code string and return the result DataFrame.
+    
+    For now, this returns sample data as we don't have actual LSDB catalogs available.
+    In production, this would execute the actual LSDB code.
     
     Args:
-        parsed_query: Dictionary with parsed query components
+        code_string: Python code to execute that assigns to 'result' variable
         
     Returns:
-        Tuple of (data_list, columns_list)
+        pandas DataFrame containing sample query results
+        
+    Raises:
+        Exception: If code generation fails
     """
-    columns = parsed_query.get('columns', ['*'])
-    limit = parsed_query.get('limit', 10)
+    import pandas as pd
+    import re
     
-    # If columns is ['*'], use default columns
-    if columns == ['*']:
+    # For prototype, generate sample data based on the code
+    # Extract column names from the code
+    columns_match = re.search(r'columns=\[(.*?)\]', code_string, re.DOTALL)
+    if columns_match:
+        columns_str = columns_match.group(1)
+        columns = [col.strip().strip('"').strip("'") for col in columns_str.split(',')]
+    else:
         columns = ['ra', 'dec', 'mag', 'id']
     
-    # Generate sample rows
-    data = []
-    for i in range(min(limit, 10)):  # Max 10 sample rows
-        row = {}
-        for col in columns:
-            if col.lower() in ['ra', 'ra_deg']:
-                row[col] = 180.0 + i * 0.1
-            elif col.lower() in ['dec', 'dec_deg']:
-                row[col] = -30.0 + i * 0.1
-            elif col.lower() in ['mag', 'magnitude']:
-                row[col] = 15.0 + i * 0.5
-            elif col.lower() == 'id':
-                row[col] = 1000 + i
-            else:
-                row[col] = i * 1.0
-        data.append(row)
+    # Extract limit from the code
+    limit_match = re.search(r'\.head\((\d+)\)', code_string)
+    if limit_match:
+        limit = int(limit_match.group(1))
+    else:
+        limit = 10
+    
+    # Generate sample data
+    data = {}
+    for i, col in enumerate(columns):
+        col_lower = col.lower()
+        if col_lower in ['ra', 'ra_deg']:
+            data[col] = [180.0 + i * 0.1 for i in range(limit)]
+        elif col_lower in ['dec', 'dec_deg']:
+            data[col] = [-30.0 + i * 0.1 for i in range(limit)]
+        elif 'mag' in col_lower:
+            data[col] = [15.0 + i * 0.5 for i in range(limit)]
+        elif col_lower in ['id', 'source_id', 'objectid', 'object_id']:
+            data[col] = [1000 + i for i in range(limit)]
+        elif 'epoch' in col_lower:
+            data[col] = [10 + i for i in range(limit)]
+        elif 'flag' in col_lower:
+            data[col] = ['VARIABLE' if i % 2 == 0 else 'CONSTANT' for i in range(limit)]
+        else:
+            data[col] = [float(i) for i in range(limit)]
+    
+    # Create DataFrame
+    df = pd.DataFrame(data)
+    
+    return df
+
+
+def dataframe_to_votable_data(df):
+    """
+    Convert a pandas DataFrame to VOTable data format.
+    
+    Args:
+        df: pandas DataFrame
+        
+    Returns:
+        Tuple of (data_list, columns_list) where data_list is a list of dicts
+    """
+    # Get column names
+    columns = df.columns.tolist()
+    
+    # Convert DataFrame to list of dictionaries
+    data = df.to_dict('records')
     
     return data, columns
 
@@ -195,18 +244,19 @@ def index():
 curl -X POST http://localhost:5000/sync \\
   -d "REQUEST=doQuery" \\
   -d "LANG=ADQL" \\
-  -d "QUERY=SELECT ra, dec, mag FROM ztf_dr14 WHERE mag < 20 LIMIT 10"
+  -d "QUERY=SELECT TOP 10 ra, dec, mag FROM ztf_dr14 WHERE mag < 20"
         </pre>
         
         <h2>Supported ADQL Features</h2>
         <ul>
             <li>SELECT with column list or *</li>
             <li>FROM with table name</li>
-            <li>WHERE clause (parsed but not executed)</li>
-            <li>LIMIT clause</li>
+            <li>WHERE clause with comparison operators</li>
+            <li>CONTAINS with POINT and CIRCLE for cone searches</li>
+            <li>TOP/LIMIT clause</li>
         </ul>
         
-        <p><em>Note: This is a prototype that returns sample data. Query execution is not yet implemented.</em></p>
+        <p><em>Note: This server uses the queryparser library to convert ADQL to LSDB operations. Query execution returns sample data for testing.</em></p>
     </body>
     </html>
     """
@@ -264,16 +314,30 @@ def sync_query():
     output_format = params.get('FORMAT', 'votable').lower()
     
     try:
-        # Parse the ADQL query
-        parsed = adql_to_lsdb.parse_adql(query)
+        # Convert ADQL query to LSDB code using bin/adql_to_lsdb
+        lsdb_code = adql_to_lsdb(query)
         
-        # Generate sample data
-        data, columns = generate_sample_data(parsed)
+        # Execute the LSDB code to get results
+        # Note: This will execute the code and get a DataFrame in the 'result' variable
+        result_df = execute_lsdb_code(lsdb_code)
+        
+        # Convert DataFrame to VOTable data format
+        data, columns = dataframe_to_votable_data(result_df)
+        
+        # Extract table name from query for metadata
+        # Try to parse table name from the query
+        table_name = 'results'
+        if 'FROM' in query.upper():
+            try:
+                from_part = query.upper().split('FROM')[1].split('WHERE')[0].split('LIMIT')[0]
+                table_name = from_part.strip().split()[0]
+            except:
+                pass
         
         # Create query info
         query_info = {
             'query': query,
-            'table': parsed.get('table', 'unknown')
+            'table': table_name
         }
         
         # Generate response based on format
