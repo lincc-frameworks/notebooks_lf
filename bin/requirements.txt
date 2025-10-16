@@ -1,2 +1,4 @@
 human_readable
 requests
+ipython
+queryparser-python3
