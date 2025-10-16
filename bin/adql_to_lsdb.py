@@ -69,8 +69,8 @@ class LSDBFormatListener(FormatListener):
         # Store spatial search information
         self.entities['spatial_search'] = {
             'type': 'ConeSearch',
-            'ra': self._current_point['ra'],
-            'dec': self._current_point['dec'],
+            'ra': self._current_circle['ra'],
+            'dec': self._current_circle['dec'],
             'radius': self._current_circle['radius']
         }
 
