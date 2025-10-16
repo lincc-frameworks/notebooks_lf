@@ -14,11 +14,13 @@ from datetime import datetime
 import sys
 import os
 
+import lsdb
+
 # Add bin directory to path to import adql_to_lsdb
 bin_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'bin')
 sys.path.insert(0, bin_path)
 
-from adql_to_lsdb import adql_to_lsdb
+from adql_to_lsdb import adql_to_lsdb, parse_adql_entities
 
 
 app = Flask(__name__)
@@ -142,66 +144,6 @@ def create_error_votable(error_message, query=''):
     return '<?xml version="1.0" encoding="UTF-8"?>\n' + xml_str
 
 
-def execute_lsdb_code(code_string):
-    """
-    Execute the LSDB code string and return the result DataFrame.
-
-    For now, this returns sample data as we don't have actual LSDB catalogs available.
-    In production, this would execute the actual LSDB code.
-
-    Args:
-        code_string: Python code to execute that assigns to 'result' variable
-
-    Returns:
-        pandas DataFrame containing sample query results
-
-    Raises:
-        Exception: If code generation fails
-    """
-    import pandas as pd
-    import re
-
-    # For prototype, generate sample data based on the code
-    # Extract column names from the code
-    columns_match = re.search(r'columns=\[(.*?)\]', code_string, re.DOTALL)
-    if columns_match:
-        columns_str = columns_match.group(1)
-        columns = [col.strip().strip('"').strip("'") for col in columns_str.split(',')]
-    else:
-        columns = ['ra', 'dec', 'mag', 'id']
-
-    # Extract limit from the code
-    limit_match = re.search(r'\.head\((\d+)\)', code_string)
-    if limit_match:
-        limit = int(limit_match.group(1))
-    else:
-        limit = 10
-
-    # Generate sample data
-    data = {}
-    for i, col in enumerate(columns):
-        col_lower = col.lower()
-        if col_lower in ['ra', 'ra_deg']:
-            data[col] = [180.0 + i * 0.1 for i in range(limit)]
-        elif col_lower in ['dec', 'dec_deg']:
-            data[col] = [-30.0 + i * 0.1 for i in range(limit)]
-        elif 'mag' in col_lower:
-            data[col] = [15.0 + i * 0.5 for i in range(limit)]
-        elif col_lower in ['id', 'source_id', 'objectid', 'object_id']:
-            data[col] = [1000 + i for i in range(limit)]
-        elif 'epoch' in col_lower:
-            data[col] = [10 + i for i in range(limit)]
-        elif 'flag' in col_lower:
-            data[col] = ['VARIABLE' if i % 2 == 0 else 'CONSTANT' for i in range(limit)]
-        else:
-            data[col] = [float(i) for i in range(limit)]
-
-    # Create DataFrame
-    df = pd.DataFrame(data)
-
-    return df
-
-
 def dataframe_to_votable_data(df):
     """
     Convert a pandas DataFrame to VOTable data format.
@@ -315,11 +257,40 @@ def sync_query():
 
     try:
         # Convert ADQL query to LSDB code using bin/adql_to_lsdb
-        lsdb_code = adql_to_lsdb(query)
+        entities = parse_adql_entities(query)
 
-        # Execute the LSDB code to get results
-        # Note: This will execute the code and get a DataFrame in the 'result' variable
-        result_df = execute_lsdb_code(lsdb_code)
+        # Convert table names to catalog URLs (basic mapping for now)
+        assert entities['tables']
+        # For now, use the first table and convert to URL format
+        table = entities['tables'][0]
+        # Convert table name like 'gaiadr3.gaia' to URL format
+        # catalog_prefix = "https://data.lsdb.io/hats"
+        catalog_prefix = "http://epyc.astro.washington.edu:43210/hats"
+        if '.' in table:
+            parts = table.split('.')
+            catalog_url = f"{catalog_prefix}/{parts[0]}/{parts[1]}/"
+        else:
+            catalog_url = f"{catalog_prefix}/{table}/"
+
+        search_filter = None
+        if entities.get('spatial_search'):
+            spatial = entities['spatial_search']
+            if spatial['type'] == 'ConeSearch':
+                ra = spatial['ra']
+                dec = spatial['dec']
+                filters=entities['conditions'],
+                search_filter = lsdb.ConeSearch(
+                    ra=spatial['ra'],
+                    dec=spatial['dec'],
+                    radius_arcsec=spatial['radius'] * 3600,
+                    )
+
+        cat = lsdb.open_catalog(
+            catalog_url,
+            columns=entities['columns'],
+            search_filter=search_filter,
+            )
+        result_df = cat.head(entities['limits'])
 
         # Convert DataFrame to VOTable data format
         data, columns = dataframe_to_votable_data(result_df)
