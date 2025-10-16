@@ -2,7 +2,7 @@ SELECT TOP 15
     objectid, objra, objdec, nepochs, mag, magerr
 FROM ztf_dr22
 WHERE 1 = CONTAINS(
-    POINT('ICRS', 280.0, 0.0),
+    POINT('ICRS', ra, dec),
     CIRCLE('ICRS', 280.0, 0.0, 0.1)
 )
 AND nepochs > 10

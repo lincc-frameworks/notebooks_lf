@@ -251,7 +251,7 @@ class LSDBFormatListener(FormatListener):
                 # For simple AND conditions, store as single list
                 # When we add OR support, we'll use full DNF: [[cond1, cond2], [cond3, cond4]]
                 self.entities['conditions'] = self._current_conditions
-            
+
             # Reset context
             self._in_where = False
             self._current_conditions = []
@@ -260,12 +260,12 @@ class LSDBFormatListener(FormatListener):
         """Parse comparison predicates like 'column < value'."""
         if not self._in_where:
             return  # Only process comparisons within WHERE clause
-        
+
         # Skip CONTAINS comparisons - they're handled separately
         comparison_text = ctx.getText().upper()
         if 'CONTAINS' in comparison_text:
             return
-        
+
         # Extract the comparison components
         try:
             condition = self._parse_comparison(ctx)
@@ -277,7 +277,7 @@ class LSDBFormatListener(FormatListener):
     def _parse_comparison(self, ctx):
         """
         Parse a comparison context into (column, operator, value) tuple.
-        
+
         Examples:
         - 'phot_g_mean_mag < 10' -> ('phot_g_mean_mag', '<', 10)
         - "phot_variable_flag = 'VARIABLE'" -> ('phot_variable_flag', '==', 'VARIABLE')
@@ -289,19 +289,19 @@ class LSDBFormatListener(FormatListener):
                 text = child.getText().strip()
                 if text:
                     tokens.append(text)
-        
+
         # Look for basic pattern: column operator value
         if len(tokens) >= 3:
             # Find the operator (typically in the middle)
             sql_operators = ['<', '>', '<=', '>=', '=', '!=', '<>']
-            
+
             for i, token in enumerate(tokens):
                 if token in sql_operators:
                     if i > 0 and i < len(tokens) - 1:
                         column = tokens[i-1]
                         py_operator = self._translate_operator(token)
-                        value = self._parse_value(tokens[i+1])                        
-                        return (column, py_operator, value)        
+                        value = self._parse_value(tokens[i+1])
+                        return (column, py_operator, value)
         return None
 
     def _translate_operator(self, sql_operator):
@@ -324,7 +324,7 @@ class LSDBFormatListener(FormatListener):
             return value_text[1:-1]  # Remove single quotes
         if value_text.startswith('"') and value_text.endswith('"'):
             return value_text[1:-1]  # Remove double quotes
-        
+
         # Try to parse as number
         try:
             # Try integer first

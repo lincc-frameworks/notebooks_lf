@@ -2,7 +2,7 @@ SELECT TOP 15
     source_id, ra, dec, phot_g_mean_mag, phot_variable_flag
 FROM gaia_dr3.gaia
 WHERE 1 = CONTAINS(
-    POINT('ICRS', 270.0, 23.0),
+    POINT('ICRS', ra, dec),
     CIRCLE('ICRS', 270.0, 23.0, 0.25)
 )
 AND phot_g_mean_mag < 16
