@@ -293,15 +293,15 @@ class LSDBFormatListener(FormatListener):
         # Look for basic pattern: column operator value
         if len(tokens) >= 3:
             # Find the operator (typically in the middle)
-            operators = ['<', '>', '<=', '>=', '=', '!=', '<>']
+            sql_operators = ['<', '>', '<=', '>=', '=', '!=', '<>']
             
             for i, token in enumerate(tokens):
-                if token in operators:
+                if token in sql_operators:
                     if i > 0 and i < len(tokens) - 1:
                         column = tokens[i-1]
-                        operator = self._translate_operator(token)
+                        py_operator = self._translate_operator(token)
                         value = self._parse_value(tokens[i+1])                        
-                        return (column, operator, value)        
+                        return (column, py_operator, value)        
         return None
 
     def _translate_operator(self, sql_operator):
