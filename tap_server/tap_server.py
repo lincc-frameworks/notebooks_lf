@@ -26,6 +26,653 @@ from adql_to_lsdb import adql_to_lsdb, parse_adql_entities
 app = Flask(__name__)
 
 
+# TAP_SCHEMA metadata tables as defined in IVOA TAP v1.1 spec section 4.3
+TAP_SCHEMA_DATA = {
+    'TAP_SCHEMA.schemas': [
+        {
+            'schema_name': 'TAP_SCHEMA',
+            'description': 'Schema describing the TAP service metadata',
+            'utype': None
+        },
+        {
+            'schema_name': 'public',
+            'description': 'Default schema for astronomical catalogs',
+            'utype': None
+        }
+    ],
+    'TAP_SCHEMA.tables': [
+        # TAP_SCHEMA tables
+        {
+            'schema_name': 'TAP_SCHEMA',
+            'table_name': 'schemas',
+            'table_type': 'table',
+            'description': 'List of schemas in this TAP service',
+            'utype': None
+        },
+        {
+            'schema_name': 'TAP_SCHEMA',
+            'table_name': 'tables',
+            'table_type': 'table',
+            'description': 'List of tables in this TAP service',
+            'utype': None
+        },
+        {
+            'schema_name': 'TAP_SCHEMA',
+            'table_name': 'columns',
+            'table_type': 'table',
+            'description': 'List of columns in all tables',
+            'utype': None
+        },
+        {
+            'schema_name': 'TAP_SCHEMA',
+            'table_name': 'keys',
+            'table_type': 'table',
+            'description': 'List of foreign keys',
+            'utype': None
+        },
+        {
+            'schema_name': 'TAP_SCHEMA',
+            'table_name': 'key_columns',
+            'table_type': 'table',
+            'description': 'List of columns that participate in foreign keys',
+            'utype': None
+        },
+        # Public schema tables
+        {
+            'schema_name': 'public',
+            'table_name': 'ztf_dr14',
+            'table_type': 'table',
+            'description': 'ZTF Data Release 14',
+            'utype': None
+        },
+        {
+            'schema_name': 'public',
+            'table_name': 'gaia_dr3',
+            'table_type': 'table',
+            'description': 'Gaia Data Release 3',
+            'utype': None
+        }
+    ],
+    'TAP_SCHEMA.columns': [
+        # TAP_SCHEMA.schemas columns
+        {
+            'table_name': 'TAP_SCHEMA.schemas',
+            'column_name': 'schema_name',
+            'description': 'Schema name',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 256,
+            'principal': 1,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.schemas',
+            'column_name': 'description',
+            'description': 'Schema description',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 1024,
+            'principal': 0,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.schemas',
+            'column_name': 'utype',
+            'description': 'UType for schema',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 512,
+            'principal': 0,
+            'indexed': 0,
+            'std': 1
+        },
+        # TAP_SCHEMA.tables columns
+        {
+            'table_name': 'TAP_SCHEMA.tables',
+            'column_name': 'schema_name',
+            'description': 'Schema name',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 256,
+            'principal': 1,
+            'indexed': 1,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.tables',
+            'column_name': 'table_name',
+            'description': 'Table name',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 256,
+            'principal': 1,
+            'indexed': 1,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.tables',
+            'column_name': 'table_type',
+            'description': 'Table type (table or view)',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 16,
+            'principal': 1,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.tables',
+            'column_name': 'description',
+            'description': 'Table description',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 1024,
+            'principal': 0,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.tables',
+            'column_name': 'utype',
+            'description': 'UType for table',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 512,
+            'principal': 0,
+            'indexed': 0,
+            'std': 1
+        },
+        # TAP_SCHEMA.columns columns
+        {
+            'table_name': 'TAP_SCHEMA.columns',
+            'column_name': 'table_name',
+            'description': 'Fully qualified table name',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 256,
+            'principal': 1,
+            'indexed': 1,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.columns',
+            'column_name': 'column_name',
+            'description': 'Column name',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 256,
+            'principal': 1,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.columns',
+            'column_name': 'description',
+            'description': 'Column description',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 1024,
+            'principal': 0,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.columns',
+            'column_name': 'unit',
+            'description': 'Unit of measure',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 64,
+            'principal': 0,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.columns',
+            'column_name': 'ucd',
+            'description': 'UCD of column',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 64,
+            'principal': 0,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.columns',
+            'column_name': 'utype',
+            'description': 'UType for column',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 512,
+            'principal': 0,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.columns',
+            'column_name': 'datatype',
+            'description': 'ADQL datatype',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 64,
+            'principal': 1,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.columns',
+            'column_name': 'size',
+            'description': 'Size for variable-length types',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'int',
+            'size': None,
+            'principal': 0,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.columns',
+            'column_name': 'principal',
+            'description': '1 if column is principal',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'int',
+            'size': None,
+            'principal': 0,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.columns',
+            'column_name': 'indexed',
+            'description': '1 if column is indexed',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'int',
+            'size': None,
+            'principal': 0,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.columns',
+            'column_name': 'std',
+            'description': '1 if column is defined by a standard',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'int',
+            'size': None,
+            'principal': 0,
+            'indexed': 0,
+            'std': 1
+        },
+        # TAP_SCHEMA.keys columns
+        {
+            'table_name': 'TAP_SCHEMA.keys',
+            'column_name': 'key_id',
+            'description': 'Unique key identifier',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 256,
+            'principal': 1,
+            'indexed': 1,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.keys',
+            'column_name': 'from_table',
+            'description': 'Fully qualified table name',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 256,
+            'principal': 1,
+            'indexed': 1,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.keys',
+            'column_name': 'target_table',
+            'description': 'Target table name',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 256,
+            'principal': 1,
+            'indexed': 1,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.keys',
+            'column_name': 'description',
+            'description': 'Key description',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 1024,
+            'principal': 0,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.keys',
+            'column_name': 'utype',
+            'description': 'UType for key',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 512,
+            'principal': 0,
+            'indexed': 0,
+            'std': 1
+        },
+        # TAP_SCHEMA.key_columns columns
+        {
+            'table_name': 'TAP_SCHEMA.key_columns',
+            'column_name': 'key_id',
+            'description': 'Key identifier',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 256,
+            'principal': 1,
+            'indexed': 1,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.key_columns',
+            'column_name': 'from_column',
+            'description': 'Column in from_table',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 256,
+            'principal': 1,
+            'indexed': 0,
+            'std': 1
+        },
+        {
+            'table_name': 'TAP_SCHEMA.key_columns',
+            'column_name': 'target_column',
+            'description': 'Column in target_table',
+            'unit': None,
+            'ucd': None,
+            'utype': None,
+            'datatype': 'char',
+            'size': 256,
+            'principal': 1,
+            'indexed': 0,
+            'std': 1
+        },
+        # Public schema table columns (examples)
+        {
+            'table_name': 'public.ztf_dr14',
+            'column_name': 'objectid',
+            'description': 'Unique object identifier',
+            'unit': None,
+            'ucd': 'meta.id;meta.main',
+            'utype': None,
+            'datatype': 'long',
+            'size': None,
+            'principal': 1,
+            'indexed': 1,
+            'std': 0
+        },
+        {
+            'table_name': 'public.ztf_dr14',
+            'column_name': 'ra',
+            'description': 'Right Ascension',
+            'unit': 'deg',
+            'ucd': 'pos.eq.ra;meta.main',
+            'utype': None,
+            'datatype': 'double',
+            'size': None,
+            'principal': 1,
+            'indexed': 1,
+            'std': 0
+        },
+        {
+            'table_name': 'public.ztf_dr14',
+            'column_name': 'dec',
+            'description': 'Declination',
+            'unit': 'deg',
+            'ucd': 'pos.eq.dec;meta.main',
+            'utype': None,
+            'datatype': 'double',
+            'size': None,
+            'principal': 1,
+            'indexed': 1,
+            'std': 0
+        },
+        {
+            'table_name': 'public.ztf_dr14',
+            'column_name': 'mag',
+            'description': 'Mean magnitude',
+            'unit': 'mag',
+            'ucd': 'phot.mag',
+            'utype': None,
+            'datatype': 'double',
+            'size': None,
+            'principal': 1,
+            'indexed': 0,
+            'std': 0
+        },
+        {
+            'table_name': 'public.gaia_dr3',
+            'column_name': 'source_id',
+            'description': 'Unique source identifier',
+            'unit': None,
+            'ucd': 'meta.id;meta.main',
+            'utype': None,
+            'datatype': 'long',
+            'size': None,
+            'principal': 1,
+            'indexed': 1,
+            'std': 0
+        },
+        {
+            'table_name': 'public.gaia_dr3',
+            'column_name': 'ra',
+            'description': 'Right Ascension',
+            'unit': 'deg',
+            'ucd': 'pos.eq.ra;meta.main',
+            'utype': None,
+            'datatype': 'double',
+            'size': None,
+            'principal': 1,
+            'indexed': 1,
+            'std': 0
+        },
+        {
+            'table_name': 'public.gaia_dr3',
+            'column_name': 'dec',
+            'description': 'Declination',
+            'unit': 'deg',
+            'ucd': 'pos.eq.dec;meta.main',
+            'utype': None,
+            'datatype': 'double',
+            'size': None,
+            'principal': 1,
+            'indexed': 1,
+            'std': 0
+        },
+        {
+            'table_name': 'public.gaia_dr3',
+            'column_name': 'phot_g_mean_mag',
+            'description': 'G-band mean magnitude',
+            'unit': 'mag',
+            'ucd': 'phot.mag;em.opt',
+            'utype': None,
+            'datatype': 'double',
+            'size': None,
+            'principal': 1,
+            'indexed': 0,
+            'std': 0
+        }
+    ],
+    'TAP_SCHEMA.keys': [],  # No foreign keys defined in this prototype
+    'TAP_SCHEMA.key_columns': []  # No foreign key columns in this prototype
+}
+
+
+def is_tap_schema_query(table_name):
+    """Check if the query is for a TAP_SCHEMA table."""
+    if not table_name:
+        return False
+    return table_name.upper().startswith('TAP_SCHEMA.')
+
+
+def query_tap_schema(table_name, columns=None, limit=None, conditions=None):
+    """
+    Query TAP_SCHEMA metadata tables.
+    
+    Args:
+        table_name: Name of the TAP_SCHEMA table to query
+        columns: List of columns to return (None = all columns)
+        limit: Maximum number of rows to return
+        conditions: List of (column, operator, value) tuples for filtering
+        
+    Returns:
+        Tuple of (data, columns) where data is list of dicts and columns is list of column names
+    """
+    # Normalize table name - case insensitive matching
+    table_key = None
+    for key in TAP_SCHEMA_DATA.keys():
+        if key.upper() == table_name.upper():
+            table_key = key
+            break
+    
+    if table_key is None:
+        raise ValueError(f"Unknown TAP_SCHEMA table: {table_name}")
+    
+    # Get the data
+    rows = TAP_SCHEMA_DATA[table_key]
+    
+    # Apply WHERE conditions if specified
+    if conditions:
+        filtered_rows = []
+        for row in rows:
+            match = True
+            for col, op, val in conditions:
+                if col not in row:
+                    match = False
+                    break
+                row_val = row[col]
+                
+                # Handle None values
+                if row_val is None:
+                    if op == '==' and val is not None:
+                        match = False
+                        break
+                    elif op == '!=' and val is None:
+                        match = False
+                        break
+                    continue
+                
+                # Apply operator
+                if op == '==':
+                    if row_val != val:
+                        match = False
+                        break
+                elif op == '!=':
+                    if row_val == val:
+                        match = False
+                        break
+                elif op == '<':
+                    if not (row_val < val):
+                        match = False
+                        break
+                elif op == '>':
+                    if not (row_val > val):
+                        match = False
+                        break
+                elif op == '<=':
+                    if not (row_val <= val):
+                        match = False
+                        break
+                elif op == '>=':
+                    if not (row_val >= val):
+                        match = False
+                        break
+            
+            if match:
+                filtered_rows.append(row)
+        rows = filtered_rows
+    
+    # Apply limit if specified
+    if limit is not None:
+        rows = rows[:limit]
+    
+    # Determine columns to return
+    if not rows:
+        # Empty table - return empty result
+        result_columns = columns if columns and columns != ['*'] else []
+        return [], result_columns
+    
+    # Get all available columns from first row
+    available_columns = list(rows[0].keys())
+    
+    # Filter columns if specified
+    if columns and columns != ['*']:
+        result_columns = [col for col in columns if col in available_columns]
+    else:
+        result_columns = available_columns
+    
+    # Filter data to only include requested columns
+    filtered_data = []
+    for row in rows:
+        filtered_row = {col: row.get(col) for col in result_columns}
+        filtered_data.append(filtered_row)
+    
+    return filtered_data, result_columns
+
+
 def create_votable_response(data, columns, query_info):
     """
     Create a VOTable XML response.
@@ -256,72 +903,84 @@ def sync_query():
     output_format = params.get('FORMAT', 'votable').lower()
 
     try:
-        # Convert ADQL query to LSDB code using bin/adql_to_lsdb
+        # Parse the ADQL query to get entities
         entities = parse_adql_entities(query)
-
-        # Convert table names to catalog URLs (basic mapping for now)
+        
+        # Get the table name from the query
         assert entities['tables']
-        # For now, use the first table and convert to URL format
         table = entities['tables'][0]
-        # Convert table name like 'gaiadr3.gaia' to URL format
-        # catalog_prefix = "https://data.lsdb.io/hats"
-        catalog_prefix = "http://epyc.astro.washington.edu:43210/hats"
-        if '.' in table:
-            parts = table.split('.')
-            catalog_url = f"{catalog_prefix}/{parts[0]}/{parts[1]}/"
+        
+        # Check if this is a TAP_SCHEMA query
+        if is_tap_schema_query(table):
+            # Handle TAP_SCHEMA query
+            columns = entities.get('columns', ['*'])
+            limit = entities.get('limits')
+            conditions = entities.get('conditions', [])
+            
+            # Query the TAP_SCHEMA metadata
+            data, result_columns = query_tap_schema(table, columns, limit, conditions)
+            table_name = table
         else:
-            catalog_url = f"{catalog_prefix}/{table}/"
+            # Handle regular catalog query
+            # Convert table name like 'gaiadr3.gaia' to URL format
+            # catalog_prefix = "https://data.lsdb.io/hats"
+            catalog_prefix = "http://epyc.astro.washington.edu:43210/hats"
+            if '.' in table:
+                parts = table.split('.')
+                catalog_url = f"{catalog_prefix}/{parts[0]}/{parts[1]}/"
+            else:
+                catalog_url = f"{catalog_prefix}/{table}/"
 
-        search_filter = None
-        if entities.get('spatial_search'):
-            spatial = entities['spatial_search']
-            if spatial['type'] == 'ConeSearch':
-                ra = spatial['ra']
-                dec = spatial['dec']
-                filters=entities['conditions'],
-                search_filter = lsdb.ConeSearch(
-                    ra=spatial['ra'],
-                    dec=spatial['dec'],
-                    radius_arcsec=spatial['radius'] * 3600,
-                    )
+            search_filter = None
+            if entities.get('spatial_search'):
+                spatial = entities['spatial_search']
+                if spatial['type'] == 'ConeSearch':
+                    ra = spatial['ra']
+                    dec = spatial['dec']
+                    filters=entities['conditions'],
+                    search_filter = lsdb.ConeSearch(
+                        ra=spatial['ra'],
+                        dec=spatial['dec'],
+                        radius_arcsec=spatial['radius'] * 3600,
+                        )
 
-        cat = lsdb.open_catalog(
-            catalog_url,
-            columns=entities['columns'],
-            search_filter=search_filter,
-            )
-        result_df = cat.head(entities['limits'])
+            cat = lsdb.open_catalog(
+                catalog_url,
+                columns=entities['columns'],
+                search_filter=search_filter,
+                )
+            result_df = cat.head(entities['limits'])
 
-        # Convert DataFrame to VOTable data format
-        data, columns = dataframe_to_votable_data(result_df)
+            # Convert DataFrame to VOTable data format
+            data, result_columns = dataframe_to_votable_data(result_df)
 
-        # Extract table name from query for metadata using regex
-        # Good examples that match: "FROM ztf_dr14", "FROM gaia_dr3.gaia", "from MyTable WHERE"
-        # Bad examples that don't match (return 'results'): "FROMAGE", "FROM WHERE", "FROM LIMIT"
-        table_name = 'results'
-        import re
+            # Extract table name from query for metadata using regex
+            # Good examples that match: "FROM ztf_dr14", "FROM gaia_dr3.gaia", "from MyTable WHERE"
+            # Bad examples that don't match (return 'results'): "FROMAGE", "FROM WHERE", "FROM LIMIT"
+            table_name = 'results'
+            import re
 
-        # SQL keywords that should not be considered table names
-        sql_keywords = {
-            'WHERE', 'SELECT', 'ORDER', 'GROUP', 'HAVING', 'LIMIT', 'OFFSET',
-            'UNION', 'INTERSECT', 'EXCEPT', 'JOIN', 'INNER', 'LEFT', 'RIGHT',
-            'OUTER', 'CROSS', 'ON', 'AS', 'AND', 'OR', 'NOT', 'IN', 'EXISTS',
-            'BETWEEN', 'LIKE', 'IS', 'NULL', 'DISTINCT', 'ALL', 'ANY', 'SOME'
-        }
+            # SQL keywords that should not be considered table names
+            sql_keywords = {
+                'WHERE', 'SELECT', 'ORDER', 'GROUP', 'HAVING', 'LIMIT', 'OFFSET',
+                'UNION', 'INTERSECT', 'EXCEPT', 'JOIN', 'INNER', 'LEFT', 'RIGHT',
+                'OUTER', 'CROSS', 'ON', 'AS', 'AND', 'OR', 'NOT', 'IN', 'EXISTS',
+                'BETWEEN', 'LIKE', 'IS', 'NULL', 'DISTINCT', 'ALL', 'ANY', 'SOME'
+            }
 
-        # Match FROM keyword followed by table name (optionally schema.table)
-        # Pattern: \bFROM\s+ matches FROM with word boundary followed by whitespace
-        # ([a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)?) captures table or schema.table
-        match = re.search(
-            r'\bFROM\s+([a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)?)\b',
-            query, re.IGNORECASE)
+            # Match FROM keyword followed by table name (optionally schema.table)
+            # Pattern: \bFROM\s+ matches FROM with word boundary followed by whitespace
+            # ([a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)?) captures table or schema.table
+            match = re.search(
+                r'\bFROM\s+([a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)?)\b',
+                query, re.IGNORECASE)
 
-        if match:
-            candidate = match.group(1)
-            # Validate the candidate is not a SQL keyword (check table part for schema.table)
-            table_part = candidate.split('.')[-1]
-            if table_part.upper() not in sql_keywords:
-                table_name = candidate
+            if match:
+                candidate = match.group(1)
+                # Validate the candidate is not a SQL keyword (check table part for schema.table)
+                table_part = candidate.split('.')[-1]
+                if table_part.upper() not in sql_keywords:
+                    table_name = candidate
 
         # Create query info
         query_info = {
@@ -331,7 +990,7 @@ def sync_query():
 
         # Generate response based on format
         if output_format in ['votable', 'votable/td']:
-            xml_response = create_votable_response(data, columns, query_info)
+            xml_response = create_votable_response(data, result_columns, query_info)
             return Response(xml_response, mimetype='application/xml')
         else:
             error_msg = f"Unsupported format: {output_format}"

@@ -14,6 +14,12 @@ Components:
 
 ### Implemented
 - ✅ Synchronous query endpoint (`/sync`)
+- ✅ **TAP_SCHEMA Support** - Full implementation of IVOA TAP_SCHEMA metadata tables
+  - `TAP_SCHEMA.schemas` - List of available schemas
+  - `TAP_SCHEMA.tables` - List of available tables
+  - `TAP_SCHEMA.columns` - List of all columns with metadata
+  - `TAP_SCHEMA.keys` - Foreign key relationships
+  - `TAP_SCHEMA.key_columns` - Foreign key column mappings
 - ✅ Advanced ADQL query parsing using queryparser library
   - SELECT with column list or *
   - FROM with table names (including schema.table)
@@ -99,6 +105,8 @@ print(response.text)
 
 ### ADQL Query Examples
 
+#### Querying Catalog Data
+
 Select all columns with TOP:
 ```sql
 SELECT TOP 10 * FROM ztf_dr14
@@ -122,6 +130,34 @@ WHERE 1 = CONTAINS(
     POINT('ICRS', 270.0, 23.0),
     CIRCLE('ICRS', 270.0, 23.0, 0.25)
 )
+```
+
+#### Querying TAP_SCHEMA Metadata
+
+List all available schemas:
+```sql
+SELECT * FROM TAP_SCHEMA.schemas
+```
+
+List all tables in a schema:
+```sql
+SELECT table_name, description 
+FROM TAP_SCHEMA.tables 
+WHERE schema_name = 'public'
+```
+
+Get column metadata for a specific table:
+```sql
+SELECT column_name, datatype, unit, ucd, description
+FROM TAP_SCHEMA.columns
+WHERE table_name = 'public.ztf_dr14'
+```
+
+Find all indexed columns:
+```sql
+SELECT table_name, column_name 
+FROM TAP_SCHEMA.columns 
+WHERE indexed = 1
 ```
 
 ## ADQL to LSDB Conversion
@@ -159,6 +195,80 @@ cat = lsdb.open_catalog(
 result = cat.head(15)
 ```
 
+## TAP_SCHEMA
+
+This server implements the TAP_SCHEMA metadata as defined in section 4.3 of the IVOA TAP specification. TAP_SCHEMA is a set of special tables that describe the schema of the TAP service itself.
+
+### TAP_SCHEMA Tables
+
+The following TAP_SCHEMA tables are queryable via ADQL:
+
+#### TAP_SCHEMA.schemas
+Lists all schemas available in this TAP service.
+- `schema_name` - Name of the schema
+- `description` - Description of the schema
+- `utype` - UType for the schema
+
+#### TAP_SCHEMA.tables
+Lists all tables available in this TAP service.
+- `schema_name` - Schema containing the table
+- `table_name` - Name of the table
+- `table_type` - Type (usually 'table' or 'view')
+- `description` - Description of the table
+- `utype` - UType for the table
+
+#### TAP_SCHEMA.columns
+Lists all columns in all tables with detailed metadata.
+- `table_name` - Fully qualified table name (schema.table)
+- `column_name` - Name of the column
+- `description` - Description of the column
+- `unit` - Unit of measure
+- `ucd` - Unified Content Descriptor
+- `utype` - UType for the column
+- `datatype` - ADQL datatype (e.g., 'double', 'char', 'long')
+- `size` - Size for variable-length types
+- `principal` - 1 if this is a principal column, 0 otherwise
+- `indexed` - 1 if this column is indexed, 0 otherwise
+- `std` - 1 if defined by a standard, 0 otherwise
+
+#### TAP_SCHEMA.keys
+Lists foreign key relationships between tables.
+- `key_id` - Unique identifier for the key
+- `from_table` - Source table name
+- `target_table` - Target table name
+- `description` - Description of the relationship
+- `utype` - UType for the key
+
+#### TAP_SCHEMA.key_columns
+Lists the columns that participate in foreign keys.
+- `key_id` - Foreign key identifier
+- `from_column` - Column name in source table
+- `target_column` - Column name in target table
+
+### Querying TAP_SCHEMA
+
+TAP_SCHEMA tables can be queried just like any other tables using ADQL:
+
+```bash
+# Get all schemas
+curl -X POST http://localhost:5000/sync \
+  -d "REQUEST=doQuery" \
+  -d "LANG=ADQL" \
+  -d "QUERY=SELECT * FROM TAP_SCHEMA.schemas"
+
+# Get tables in a specific schema
+curl -X POST http://localhost:5000/sync \
+  -d "REQUEST=doQuery" \
+  -d "LANG=ADQL" \
+  -d "QUERY=SELECT table_name FROM TAP_SCHEMA.tables WHERE schema_name='public'"
+
+# Get column details for a specific table
+curl -X POST http://localhost:5000/sync \
+  -d "REQUEST=doQuery" \
+  -d "LANG=ADQL" \
+  -d "QUERY=SELECT column_name, datatype, unit FROM TAP_SCHEMA.columns WHERE table_name='public.ztf_dr14'"
+```
+
 ## Response Format
 
 The server returns results in VOTable format (XML). Example response:
@@ -194,6 +304,7 @@ This prototype implements the following TAP v1.1 features:
 - **Section 2.5**: ADQL query language support
 - **Section 2.7**: VOTable output format
 - **Section 2.8**: Error reporting via VOTable INFO elements
+- **Section 4.3**: TAP_SCHEMA metadata tables implementation
 
 ## Architecture
 
@@ -208,6 +319,9 @@ This prototype implements the following TAP v1.1 features:
 │  (tap_server.py)│
 └────────┬────────┘
          │
+         ├──→ TAP_SCHEMA query?
+         │    Yes: Query metadata tables
+         │    No: ↓
          ↓
 ┌─────────────────┐
 │  ADQL Parser    │
@@ -216,8 +330,8 @@ This prototype implements the following TAP v1.1 features:
          │
          ↓
 ┌─────────────────┐
-│  Sample Data    │
-│   Generator     │
+│  LSDB Catalog   │
+│  or Sample Data │
 └─────────────────┘
 ```
 
