@@ -43,6 +43,7 @@ class LSDBFormatListener(FormatListener):
             "spatial_search": None,
             "conditions": [],
             "limits": None,
+            "order_by": [],
         }
         # Track parsing context
         self._in_contains = False
@@ -420,6 +421,61 @@ class LSDBFormatListener(FormatListener):
 
         return super().enterFrom_clause(ctx)
 
+    def enterOrder_by_clause(self, ctx):
+        """Parse ORDER BY clause into a list of (column, asc_bool) tuples."""
+        children_text = [child.getText() for child in ctx.children if hasattr(child, "getText")]
+        # Extract arguments from the parsed context
+        assert children_text, "Empty order_by_clause"
+        assert children_text[0].upper() == "ORDER", "order_by_clause does not start with ORDER"
+
+        # TMP
+        print(f"ORDER BY clause tokens: {len(children_text)}: {children_text}")
+
+        # Skip ORDER and optional BY
+        idx = 1
+        if idx < len(children_text) and children_text[idx].upper() == "BY":
+            idx += 1
+        sort_spec_tokens = children_text[idx:]
+
+        # Split tokens into individual sort specification chunks separated by commas
+        spec_chunks = []
+        current_chunk = []
+        for token in sort_spec_tokens:
+            if token == ",":
+                if current_chunk:
+                    spec_chunks.append(current_chunk)
+                    current_chunk = []
+            else:
+                current_chunk.append(token)
+        if current_chunk:
+            spec_chunks.append(current_chunk)
+
+        order_by_list = []
+        for spec_tokens in spec_chunks:
+            # Determine ASC/DESC if present and remove those tokens
+            tokens_upper = [tk.upper() for tk in spec_tokens]
+            asc = True
+            if "DESC" in tokens_upper:
+                asc = False
+                spec_tokens = [tk for tk in spec_tokens if tk.upper() != "DESC"]
+            elif "ASC" in tokens_upper:
+                spec_tokens = [tk for tk in spec_tokens if tk.upper() != "ASC"]
+
+            # Reconstruct column name from remaining tokens and strip quotes
+            column_name = "".join(spec_tokens).strip()
+            if (column_name.startswith("'") and column_name.endswith("'")) or (
+                column_name.startswith('"') and column_name.endswith('"')
+            ):
+                column_name = column_name[1:-1]
+
+            if column_name:
+                order_by_list.append((column_name, asc))
+
+        print(f"Parsed ORDER BY: {order_by_list}")
+
+        # Store into entities
+        self.entities["order_by"] = order_by_list
+
     def get_entities(self):
         return self.entities
 
@@ -515,6 +571,14 @@ def format_lsdb_code(entities: dict) -> str:
         code += f"result = cat.head({limit_value})\n"
     else:
         code += "result = cat.compute()\n"
+
+    # Apply ORDER BY using pandas if requested
+    order_by = entities.get("order_by") or []
+    if order_by:
+        cols = ", ".join(repr(col) for col, _ in order_by)
+        asc_list = ", ".join("True" if asc else "False" for _, asc in order_by)
+        # Use sort_values and reassign to result
+        code += f"result = result.sort_values(by=[{cols}], ascending=[{asc_list}])\n"
 
     return code
 
