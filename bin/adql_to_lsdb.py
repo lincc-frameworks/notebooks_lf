@@ -184,6 +184,8 @@ class LSDBFormatListener(FormatListener):
                 if (text := str(child)) not in ("(", ")", ","):
                     args.append(text)
 
+        # Merge unary signs with following numeric tokens (e.g., '-', '10.5' -> '-10.5')
+        args = self._merge_unary_signs(args)
         return args
 
     def _extract_values_from_node(self, node):
@@ -200,6 +202,30 @@ class LSDBFormatListener(FormatListener):
                 values.append(text)
 
         return values
+
+    def _merge_unary_signs(self, tokens):
+        """
+        Merge unary '+' or '-' tokens with immediately following numeric tokens,
+        turning ['-', '10.5'] into ['-10.5'] so downstream parsing sees signed numbers.
+        """
+        merged = []
+        i = 0
+        while i < len(tokens):
+            t = tokens[i]
+            if t in ("-", "+") and i + 1 < len(tokens) and self._looks_like_number(tokens[i + 1]):
+                merged.append(t + tokens[i + 1])
+                i += 2
+            else:
+                merged.append(t)
+                i += 1
+        return merged
+
+    def _looks_like_number(self, s: str) -> bool:
+        try:
+            float(s)
+            return True
+        except ValueError:
+            return False
 
     def enterSelect_list(self, ctx):
         """Parse the SELECT list to extract column names."""
@@ -315,6 +341,7 @@ class LSDBFormatListener(FormatListener):
         Examples:
         - 'phot_g_mean_mag < 10' -> ('phot_g_mean_mag', '<', 10)
         - "phot_variable_flag = 'VARIABLE'" -> ('phot_variable_flag', '==', 'VARIABLE')
+        - 'dec >= -30' -> ('dec', '>=', -30)
         """
         # Get all tokens from the comparison
         tokens = []
@@ -323,6 +350,9 @@ class LSDBFormatListener(FormatListener):
                 text = child.getText().strip()
                 if text:
                     tokens.append(text)
+
+        # Merge unary signs so we treat ['-', '30'] as ['-30']
+        tokens = self._merge_unary_signs(tokens)
 
         # Look for basic pattern: column operator value
         if len(tokens) >= 3:
@@ -344,7 +374,7 @@ class LSDBFormatListener(FormatListener):
         return operator_map.get(sql_operator, sql_operator)
 
     def _parse_value(self, value_text):
-        """Parse a value, handling strings, numbers, etc."""
+        """Parse a value, handling strings, numbers (incl. negative and scientific), etc."""
         # Remove quotes from string literals
         if value_text.startswith("'") and value_text.endswith("'"):
             return value_text[1:-1]  # Remove single quotes

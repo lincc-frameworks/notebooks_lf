@@ -1,0 +1,6 @@
+SELECT TOP 10
+    designation,ra,dec 
+FROM ztf_dr22
+WHERE CONTAINS(
+    POINT('ICRS', ra, dec),
+    POLYGON('ICRS', 280.0, 1.2e-3, 266.0, 2.0, 266.0, -3.0)) = 1
