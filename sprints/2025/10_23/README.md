@@ -14,6 +14,8 @@ Remember to record!!
 
 ## Olivia
 
+ADQL-to-LSDB translator extended support
+
 ## Sean
 
 [LSDB Macauff](run_macauff_lsdb.ipynb)
