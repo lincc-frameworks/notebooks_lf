@@ -224,7 +224,7 @@ class LSDBFormatListener(FormatListener):
         try:
             float(s)
             return True
-        except Exception:
+        except ValueError:
             return False
 
     def enterSelect_list(self, ctx):
