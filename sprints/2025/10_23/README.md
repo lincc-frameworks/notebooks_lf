@@ -10,7 +10,7 @@ Remember to record!!
 
 - [Speeding up tests](https://lincc-ppt.readthedocs.io/en/latest/practices/pytest_timing.html)
 - https://github.com/astronomy-commons/lsdb/issues/1100
-- And SVGs
+- [flame chart svg](./profile_all_concat.svg)
 
 ## Olivia
 
