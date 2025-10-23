@@ -16,6 +16,8 @@ Remember to record!!
 
 ## Sean
 
+[LSDB Macauff](run_macauff_lsdb.ipynb)
+
 ## Derek
 
 ADQL-to-LSDB translator wrapped in simple (and incomplete) TAP server
