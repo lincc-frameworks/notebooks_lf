@@ -8,6 +8,10 @@ Remember to record!!
 
 ## Melissa
 
+- [Speeding up tests](https://lincc-ppt.readthedocs.io/en/latest/practices/pytest_timing.html)
+- https://github.com/astronomy-commons/lsdb/issues/1100
+- And SVGs
+
 ## Olivia
 
 ## Sean
