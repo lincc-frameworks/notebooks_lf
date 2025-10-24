@@ -422,30 +422,42 @@ class LSDBFormatListener(FormatListener):
         return super().enterFrom_clause(ctx)
 
     def _extract_sort_tokens(self, ctx):
-        """Extract sort tokens from the ORDER BY clause context."""
+        """Extract sort tokens from the ORDER BY clause context.
+
+        Expects tree structure such as:
+        child: <class 'antlr4.tree.Tree.TerminalNodeImpl'> - ORDER
+        child: <class 'antlr4.tree.Tree.TerminalNodeImpl'> - BY
+        child: <class 'queryparser.adql.ADQLParser.ADQLParser.Sort_specification_listContext'> - ra,decDESC
+        """
         sort_tokens = []
         for child in ctx.children:
             if hasattr(child, "children"):
                 # Non-terminal node
                 spec = self._parse_sort_specification(child)
-                if spec:
-                    if isinstance(spec, list):
-                        sort_tokens.extend(spec)
-                    else:
-                        sort_tokens.append(spec)
+                sort_tokens.extend(spec)
             else:
                 # Terminal node
                 text = child.getText().strip()
                 if text and text not in (",", "ORDER", "BY"):
-                    sort_tokens.append(text)
+                    raise NotImplementedError(f"Unexpected terminal node in ORDER BY clause: '{text}'")
         return sort_tokens
 
     def _parse_sort_specification(self, node):
-        """Parse individual sort specification from the parse tree node."""
+        """Parse individual sort specification from the parse tree node.
+
+        Expects tree structure such as:
+        child: <class 'queryparser.adql.ADQLParser.ADQLParser.Sort_specificationContext'> - ra
+        child: <class 'antlr4.tree.Tree.TerminalNodeImpl'> - ,
+        child: <class 'queryparser.adql.ADQLParser.ADQLParser.Sort_specificationContext'> - decDESC
+
+        Sort_specificationContext nodes are then parsed to extract column and ASC/DESC.
+        """
         tokens = []
         for child in node.children:
+            # Only interested in non-terminal nodes
             if hasattr(child, "children"):
                 for grandchild in child.children:
+                    # Here is where we expect to find column names and ASC/DESC
                     if hasattr(grandchild, "getText"):
                         text = grandchild.getText().strip()
                         if text and text not in (",", "ORDER", "BY"):
