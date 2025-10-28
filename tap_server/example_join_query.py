@@ -17,18 +17,18 @@ def example_join_query(db: TAPSchemaDatabase):
     Demonstrate the JOIN query between schemas and tables.
     
     This is the key query mentioned in the issue:
-    SELECT * FROM schemas INNER JOIN tables 
-    ON tables.schema_name = schemas.schema_name
+    SELECT * FROM tap_schema.schemas INNER JOIN tap_schema.tables 
+    ON tap_schema.tables.schema_name = tap_schema.schemas.schema_name
     """
     print("=" * 80)
-    print("Example 1: JOIN schemas and tables")
+    print("Example 1: JOIN tap_schema.schemas and tap_schema.tables")
     print("=" * 80)
     
     sql = """
         SELECT * 
-        FROM schemas 
-        INNER JOIN tables 
-        ON tables.schema_name = schemas.schema_name
+        FROM "tap_schema.schemas" 
+        INNER JOIN "tap_schema.tables" 
+        ON "tap_schema.tables".schema_name = "tap_schema.schemas".schema_name
     """
     
     print(f"Query:\n{sql}\n")
@@ -70,8 +70,8 @@ def example_filtered_join(db: TAPSchemaDatabase):
             schemas.description AS schema_description,
             tables.table_name,
             tables.description AS table_description
-        FROM schemas 
-        INNER JOIN tables 
+        FROM "tap_schema.schemas" AS schemas
+        INNER JOIN "tap_schema.tables" AS tables
         ON tables.schema_name = schemas.schema_name
         WHERE schemas.schema_name = 'public'
     """
@@ -102,7 +102,7 @@ def example_simple_queries(db: TAPSchemaDatabase):
     # Query all schemas
     print("\nAll schemas:")
     print("-" * 40)
-    sql = "SELECT schema_name, description FROM schemas"
+    sql = 'SELECT schema_name, description FROM "tap_schema.schemas"'
     results = db.query(sql)
     for row in results:
         print(f"  {row['schema_name']}: {row['description']}")
@@ -110,7 +110,7 @@ def example_simple_queries(db: TAPSchemaDatabase):
     # Query tables in public schema
     print("\nTables in 'public' schema:")
     print("-" * 40)
-    sql = "SELECT table_name, description FROM tables WHERE schema_name = ?"
+    sql = 'SELECT table_name, description FROM "tap_schema.tables" WHERE schema_name = ?'
     results = db.query(sql, ('public',))
     for row in results:
         print(f"  {row['table_name']}: {row['description']}")
@@ -118,7 +118,7 @@ def example_simple_queries(db: TAPSchemaDatabase):
     # Count columns per table
     print("\nColumn count per table:")
     print("-" * 40)
-    sql = "SELECT table_name, COUNT(*) as column_count FROM columns GROUP BY table_name"
+    sql = 'SELECT table_name, COUNT(*) as column_count FROM "tap_schema.columns" GROUP BY table_name'
     results = db.query(sql)
     for row in results:
         print(f"  {row['table_name']}: {row['column_count']} columns")
@@ -133,7 +133,7 @@ def example_advanced_join(db: TAPSchemaDatabase):
     This shows joining schemas, tables, and columns to get complete metadata.
     """
     print("=" * 80)
-    print("Example 4: Three-way JOIN - schemas, tables, and columns")
+    print("Example 4: Three-way JOIN - tap_schema.schemas, tap_schema.tables, and tap_schema.columns")
     print("=" * 80)
     
     sql = """
@@ -144,9 +144,9 @@ def example_advanced_join(db: TAPSchemaDatabase):
             c.datatype,
             c.unit,
             c.description
-        FROM schemas s
-        INNER JOIN tables t ON t.schema_name = s.schema_name
-        INNER JOIN columns c ON c.table_name = s.schema_name || '.' || t.table_name
+        FROM "tap_schema.schemas" s
+        INNER JOIN "tap_schema.tables" t ON t.schema_name = s.schema_name
+        INNER JOIN "tap_schema.columns" c ON c.table_name = s.schema_name || '.' || t.table_name
         WHERE s.schema_name = 'public'
         ORDER BY t.table_name, c.column_name
         LIMIT 10

@@ -43,6 +43,8 @@ tap_schema_db = TAPSchemaDatabase(TAP_SCHEMA_DB_PATH)
 
 def is_tap_schema_query(query_str: str):
     """Check if the query is for a TAP_SCHEMA table."""
+    if not query_str:
+        return False
     return 'tap_schema.' in query_str.lower()
 
 

@@ -27,8 +27,8 @@ def test_is_tap_schema_query():
 
 def test_query_schemas():
     """Test querying the schemas table."""
-    print("\nTesting query_tap_schema('TAP_SCHEMA.schemas')...")
-    data, columns = query_tap_schema('TAP_SCHEMA.schemas')
+    print("\nTesting query_tap_schema with SELECT on tap_schema.schemas...")
+    data, columns = query_tap_schema('SELECT * FROM "tap_schema.schemas"')
     
     assert len(data) == 2, f"Expected 2 schemas, got {len(data)}"
     assert 'schema_name' in columns, "Expected 'schema_name' in columns"
@@ -43,8 +43,8 @@ def test_query_schemas():
 
 def test_query_tables():
     """Test querying the tables table."""
-    print("\nTesting query_tap_schema('TAP_SCHEMA.tables')...")
-    data, columns = query_tap_schema('TAP_SCHEMA.tables')
+    print("\nTesting query_tap_schema with SELECT on tap_schema.tables...")
+    data, columns = query_tap_schema('SELECT * FROM "tap_schema.tables"')
     
     assert len(data) == 7, f"Expected 7 tables, got {len(data)}"
     assert 'schema_name' in columns, "Expected 'schema_name' in columns"
@@ -57,9 +57,7 @@ def test_query_with_filter():
     """Test querying with WHERE conditions."""
     print("\nTesting query with WHERE filter...")
     data, columns = query_tap_schema(
-        'TAP_SCHEMA.tables',
-        columns=['table_name', 'description'],
-        conditions=[('schema_name', '==', 'public')]
+        'SELECT table_name, description FROM "tap_schema.tables" WHERE schema_name = \'public\''
     )
     
     assert len(data) == 2, f"Expected 2 tables in public schema, got {len(data)}"
@@ -74,8 +72,7 @@ def test_query_with_limit():
     """Test querying with LIMIT."""
     print("\nTesting query with LIMIT...")
     data, columns = query_tap_schema(
-        'TAP_SCHEMA.columns',
-        limit=5
+        'SELECT * FROM "tap_schema.columns" LIMIT 5'
     )
     
     assert len(data) == 5, f"Expected 5 rows with LIMIT 5, got {len(data)}"
@@ -86,8 +83,7 @@ def test_query_specific_columns():
     """Test querying specific columns."""
     print("\nTesting query with specific columns...")
     data, columns = query_tap_schema(
-        'TAP_SCHEMA.schemas',
-        columns=['schema_name']
+        'SELECT schema_name FROM "tap_schema.schemas"'
     )
     
     assert len(columns) == 1, f"Expected 1 column, got {len(columns)}"
