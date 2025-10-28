@@ -10,7 +10,7 @@ This prototype returns sample data instead of executing actual queries against a
 
 from flask import Flask, request, Response
 import xml.etree.ElementTree as ET
-from datetime import datetime
+import datetime
 import sys
 import os
 
@@ -28,93 +28,33 @@ from tap_schema_db import TAPSchemaDatabase
 
 app = Flask(__name__)
 
+# What is actually getting called?
+@app.before_request
+def log_request_info():
+    print(f'Request URL: {request.url}')
+    print(f'Request Method: {request.method}')
+    print(f'Request Headers: {request.headers}')
+
 # Initialize TAP schema database
 # The database will be created if it doesn't exist when the server starts
 TAP_SCHEMA_DB_PATH = os.path.join(os.path.dirname(__file__), 'tap_schema.db')
 tap_schema_db = TAPSchemaDatabase(TAP_SCHEMA_DB_PATH)
 
 
-
-
-def is_tap_schema_query(table_name):
+def is_tap_schema_query(query_str: str):
     """Check if the query is for a TAP_SCHEMA table."""
-    if not table_name:
-        return False
-    return table_name.upper().startswith('TAP_SCHEMA.')
+    return 'tap_schema.' in query_str.lower()
 
 
-def query_tap_schema(table_name, columns=None, limit=None, conditions=None):
+def query_tap_schema(query_str: str):
     """
     Query TAP_SCHEMA metadata tables using SQLite.
-    
-    This function constructs and executes SQL queries against the TAP_SCHEMA database.
-    It supports SELECT, WHERE, and LIMIT clauses.
-    
-    Args:
-        table_name: Name of the TAP_SCHEMA table to query (e.g., 'TAP_SCHEMA.schemas')
-        columns: List of columns to return (None or ['*'] = all columns)
-        limit: Maximum number of rows to return
-        conditions: List of (column, operator, value) tuples for filtering
-        
+
     Returns:
         Tuple of (data, columns) where data is list of dicts and columns is list of column names
     """
-    # Extract the table name (everything after 'TAP_SCHEMA.')
-    if '.' in table_name:
-        table_part = table_name.split('.', 1)[1]
-    else:
-        table_part = table_name
-        
-    # Validate table name (security check - prevent SQL injection)
-    valid_tables = ['schemas', 'tables', 'columns', 'keys', 'key_columns']
-    if table_part.lower() not in valid_tables:
-        raise ValueError(f"Unknown TAP_SCHEMA table: {table_name}")
-    
-    # Build SELECT clause
-    if columns and columns != ['*']:
-        # Sanitize column names (only allow alphanumeric and underscore)
-        safe_columns = []
-        for col in columns:
-            if col.replace('_', '').isalnum():
-                safe_columns.append(col)
-        select_clause = ', '.join(safe_columns) if safe_columns else '*'
-    else:
-        select_clause = '*'
-    
-    # Build WHERE clause
-    where_clause = ''
-    params = []
-    if conditions:
-        where_parts = []
-        for col, op, val in conditions:
-            # Sanitize column name
-            if not col.replace('_', '').isalnum():
-                continue
-                
-            # Map Python operators to SQL operators
-            sql_op = op
-            if op == '==':
-                sql_op = '='
-            elif op == '!=':
-                sql_op = '<>'
-                
-            where_parts.append(f"{col} {sql_op} ?")
-            params.append(val)
-            
-        if where_parts:
-            where_clause = ' WHERE ' + ' AND '.join(where_parts)
-    
-    # Build LIMIT clause
-    limit_clause = ''
-    if limit is not None:
-        limit_clause = f' LIMIT {int(limit)}'
-    
-    # Construct SQL query
-    sql = f"SELECT {select_clause} FROM {table_part}{where_clause}{limit_clause}"
-    
-    # Execute query
     try:
-        data, result_columns = tap_schema_db.query_with_columns(sql, tuple(params) if params else None)
+        data, result_columns = tap_schema_db.query_with_columns(query_str, None)
         return data, result_columns
     except Exception as e:
         # If query fails, return empty result
@@ -158,7 +98,7 @@ def create_votable_response(data, columns, query_info):
 
     ET.SubElement(resource, 'INFO', {
         'name': 'TIMESTAMP',
-        'value': datetime.utcnow().isoformat()
+        'value': datetime.datetime.now(datetime.UTC).isoformat()
     })
 
     # Add TABLE element
@@ -353,28 +293,23 @@ def sync_query():
     output_format = params.get('FORMAT', 'votable').lower()
 
     try:
-        # Parse the ADQL query to get entities
-        entities = parse_adql_entities(query)
-        
-        # Get the table name from the query
-        assert entities['tables']
-        table = entities['tables'][0]
-        
         # Check if this is a TAP_SCHEMA query
-        if is_tap_schema_query(table):
-            # Handle TAP_SCHEMA query
-            columns = entities.get('columns', ['*'])
-            limit = entities.get('limits')
-            conditions = entities.get('conditions', [])
-            
+        if is_tap_schema_query(query):
             # Query the TAP_SCHEMA metadata
-            data, result_columns = query_tap_schema(table, columns, limit, conditions)
-            table_name = table
+            data, result_columns = query_tap_schema(query)
         else:
+            # Parse the ADQL query to get entities
+            entities = parse_adql_entities(query)
+
+            # Get the table name from the query
+            assert entities['tables']
+            table = entities['tables'][0]
+
             # Handle regular catalog query
             # Convert table name like 'gaiadr3.gaia' to URL format
             # catalog_prefix = "https://data.lsdb.io/hats"
-            catalog_prefix = "http://epyc.astro.washington.edu:43210/hats"
+            # catalog_prefix = "http://epyc.astro.washington.edu:43210/hats"
+            catalog_prefix = "/epyc/data3/hats/catalogs"
             if '.' in table:
                 parts = table.split('.')
                 catalog_url = f"{catalog_prefix}/{parts[0]}/{parts[1]}/"
@@ -388,6 +323,7 @@ def sync_query():
                     ra = spatial['ra']
                     dec = spatial['dec']
                     filters=entities['conditions'],
+                    print(filters)
                     search_filter = lsdb.ConeSearch(
                         ra=spatial['ra'],
                         dec=spatial['dec'],
@@ -398,6 +334,7 @@ def sync_query():
                 catalog_url,
                 columns=entities['columns'],
                 search_filter=search_filter,
+                # filters=filters,  # what is wrong with these?  The error messages are atrociously novel
                 )
             result_df = cat.head(entities['limits'])
 
@@ -530,7 +467,8 @@ def tables():
 
 
 if __name__ == '__main__':
+    port = 43213
     print("Starting TAP Server Prototype...")
-    print("Server will be available at http://localhost:5000")
+    print(f"Server will be available at http://localhost:{port}")
     print("Press Ctrl+C to stop the server")
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)
