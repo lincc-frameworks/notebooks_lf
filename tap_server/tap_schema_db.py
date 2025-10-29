@@ -69,53 +69,53 @@ class TAPSchemaDatabase:
         Create the TAP_SCHEMA tables in the database.
         
         This method creates the following tables according to TAP 1.1 spec:
-        - tap_schema.schemas: List of schemas in the TAP service
-        - tap_schema.tables: List of tables in the TAP service
-        - tap_schema.columns: List of columns in all tables
-        - tap_schema.keys: Foreign key relationships
-        - tap_schema.key_columns: Columns participating in foreign keys
+        - schemas: List of schemas in the TAP service
+        - tables: List of tables in the TAP service
+        - columns: List of columns in all tables
+        - keys: Foreign key relationships
+        - key_columns: Columns participating in foreign keys
         
         If tables already exist, this method does nothing (idempotent).
         """
         self.connect()
         cursor = self.connection.cursor()
         
-        # Create schemas table with tap_schema prefix
+        # Create schemas table
         cursor.execute('''
-            CREATE TABLE IF NOT EXISTS "tap_schema.schemas" (
+            CREATE TABLE IF NOT EXISTS schemas (
                 schema_name TEXT PRIMARY KEY,
                 description TEXT,
                 utype TEXT
             )
         ''')
         
-        # Create tables table with tap_schema prefix
+        # Create tables table
         cursor.execute('''
-            CREATE TABLE IF NOT EXISTS "tap_schema.tables" (
+            CREATE TABLE IF NOT EXISTS tables (
                 schema_name TEXT NOT NULL,
                 table_name TEXT NOT NULL,
                 table_type TEXT,
                 description TEXT,
                 utype TEXT,
                 PRIMARY KEY (schema_name, table_name),
-                FOREIGN KEY (schema_name) REFERENCES "tap_schema.schemas"(schema_name)
+                FOREIGN KEY (schema_name) REFERENCES schemas(schema_name)
             )
         ''')
         
         # Create indexes for common queries
         cursor.execute('''
-            CREATE INDEX IF NOT EXISTS idx_tap_schema_tables_schema_name 
-            ON "tap_schema.tables"(schema_name)
+            CREATE INDEX IF NOT EXISTS idx_tables_schema_name 
+            ON tables(schema_name)
         ''')
         
         cursor.execute('''
-            CREATE INDEX IF NOT EXISTS idx_tap_schema_tables_table_name 
-            ON "tap_schema.tables"(table_name)
+            CREATE INDEX IF NOT EXISTS idx_tables_table_name 
+            ON tables(table_name)
         ''')
         
-        # Create columns table with tap_schema prefix
+        # Create columns table
         cursor.execute('''
-            CREATE TABLE IF NOT EXISTS "tap_schema.columns" (
+            CREATE TABLE IF NOT EXISTS columns (
                 table_name TEXT NOT NULL,
                 column_name TEXT NOT NULL,
                 description TEXT,
@@ -132,13 +132,13 @@ class TAPSchemaDatabase:
         ''')
         
         cursor.execute('''
-            CREATE INDEX IF NOT EXISTS idx_tap_schema_columns_table_name 
-            ON "tap_schema.columns"(table_name)
+            CREATE INDEX IF NOT EXISTS idx_columns_table_name 
+            ON columns(table_name)
         ''')
         
-        # Create keys table with tap_schema prefix
+        # Create keys table
         cursor.execute('''
-            CREATE TABLE IF NOT EXISTS "tap_schema.keys" (
+            CREATE TABLE IF NOT EXISTS keys (
                 key_id TEXT PRIMARY KEY,
                 from_table TEXT NOT NULL,
                 target_table TEXT NOT NULL,
@@ -148,29 +148,29 @@ class TAPSchemaDatabase:
         ''')
         
         cursor.execute('''
-            CREATE INDEX IF NOT EXISTS idx_tap_schema_keys_from_table 
-            ON "tap_schema.keys"(from_table)
+            CREATE INDEX IF NOT EXISTS idx_keys_from_table 
+            ON keys(from_table)
         ''')
         
         cursor.execute('''
-            CREATE INDEX IF NOT EXISTS idx_tap_schema_keys_target_table 
-            ON "tap_schema.keys"(target_table)
+            CREATE INDEX IF NOT EXISTS idx_keys_target_table 
+            ON keys(target_table)
         ''')
         
-        # Create key_columns table with tap_schema prefix
+        # Create key_columns table
         cursor.execute('''
-            CREATE TABLE IF NOT EXISTS "tap_schema.key_columns" (
+            CREATE TABLE IF NOT EXISTS key_columns (
                 key_id TEXT NOT NULL,
                 from_column TEXT NOT NULL,
                 target_column TEXT NOT NULL,
                 PRIMARY KEY (key_id, from_column),
-                FOREIGN KEY (key_id) REFERENCES "tap_schema.keys"(key_id)
+                FOREIGN KEY (key_id) REFERENCES keys(key_id)
             )
         ''')
         
         cursor.execute('''
-            CREATE INDEX IF NOT EXISTS idx_tap_schema_key_columns_key_id 
-            ON "tap_schema.key_columns"(key_id)
+            CREATE INDEX IF NOT EXISTS idx_key_columns_key_id 
+            ON key_columns(key_id)
         ''')
         
         self.connection.commit()
@@ -187,7 +187,7 @@ class TAPSchemaDatabase:
         self.connect()
         cursor = self.connection.cursor()
         cursor.execute(
-            'INSERT OR REPLACE INTO "tap_schema.schemas" (schema_name, description, utype) VALUES (?, ?, ?)',
+            'INSERT OR REPLACE INTO schemas (schema_name, description, utype) VALUES (?, ?, ?)',
             (schema_name, description, utype)
         )
         self.connection.commit()
@@ -207,7 +207,7 @@ class TAPSchemaDatabase:
         self.connect()
         cursor = self.connection.cursor()
         cursor.execute(
-            '''INSERT OR REPLACE INTO "tap_schema.tables" 
+            '''INSERT OR REPLACE INTO tables 
                (schema_name, table_name, table_type, description, utype) 
                VALUES (?, ?, ?, ?, ?)''',
             (schema_name, table_name, table_type, description, utype)
@@ -243,7 +243,7 @@ class TAPSchemaDatabase:
         column_names = ', '.join(columns)
         
         cursor.execute(
-            f'INSERT OR REPLACE INTO "tap_schema.columns" ({column_names}) VALUES ({placeholders})',
+            f'INSERT OR REPLACE INTO columns ({column_names}) VALUES ({placeholders})',
             values
         )
         self.connection.commit()
@@ -263,7 +263,7 @@ class TAPSchemaDatabase:
         self.connect()
         cursor = self.connection.cursor()
         cursor.execute(
-            '''INSERT OR REPLACE INTO "tap_schema.keys" 
+            '''INSERT OR REPLACE INTO keys 
                (key_id, from_table, target_table, description, utype) 
                VALUES (?, ?, ?, ?, ?)''',
             (key_id, from_table, target_table, description, utype)
@@ -282,7 +282,7 @@ class TAPSchemaDatabase:
         self.connect()
         cursor = self.connection.cursor()
         cursor.execute(
-            '''INSERT OR REPLACE INTO "tap_schema.key_columns" 
+            '''INSERT OR REPLACE INTO key_columns 
                (key_id, from_column, target_column) 
                VALUES (?, ?, ?)''',
             (key_id, from_column, target_column)
@@ -370,11 +370,11 @@ class TAPSchemaDatabase:
         cursor = self.connection.cursor()
         
         # Delete in order to respect foreign key constraints
-        cursor.execute('DELETE FROM "tap_schema.key_columns"')
-        cursor.execute('DELETE FROM "tap_schema.keys"')
-        cursor.execute('DELETE FROM "tap_schema.columns"')
-        cursor.execute('DELETE FROM "tap_schema.tables"')
-        cursor.execute('DELETE FROM "tap_schema.schemas"')
+        cursor.execute('DELETE FROM key_columns')
+        cursor.execute('DELETE FROM keys')
+        cursor.execute('DELETE FROM columns')
+        cursor.execute('DELETE FROM tables')
+        cursor.execute('DELETE FROM schemas')
         
         self.connection.commit()
         
@@ -387,11 +387,11 @@ class TAPSchemaDatabase:
         self.connect()
         cursor = self.connection.cursor()
         
-        cursor.execute('DROP TABLE IF EXISTS "tap_schema.key_columns"')
-        cursor.execute('DROP TABLE IF EXISTS "tap_schema.keys"')
-        cursor.execute('DROP TABLE IF EXISTS "tap_schema.columns"')
-        cursor.execute('DROP TABLE IF EXISTS "tap_schema.tables"')
-        cursor.execute('DROP TABLE IF EXISTS "tap_schema.schemas"')
+        cursor.execute('DROP TABLE IF EXISTS key_columns')
+        cursor.execute('DROP TABLE IF EXISTS keys')
+        cursor.execute('DROP TABLE IF EXISTS columns')
+        cursor.execute('DROP TABLE IF EXISTS tables')
+        cursor.execute('DROP TABLE IF EXISTS schemas')
         
         self.connection.commit()
         
@@ -401,17 +401,11 @@ class TAPSchemaDatabase:
         
         Args:
             table_name: Name of the table (schemas, tables, columns, keys, key_columns)
-                       Can be with or without tap_schema. prefix
             
         Returns:
             Number of rows in the table
         """
         self.connect()
         cursor = self.connection.cursor()
-        
-        # If table_name doesn't have tap_schema prefix, add it
-        if not table_name.startswith('tap_schema.'):
-            table_name = f'tap_schema.{table_name}'
-        
-        cursor.execute(f'SELECT COUNT(*) FROM "{table_name}"')
+        cursor.execute(f'SELECT COUNT(*) FROM {table_name}')
         return cursor.fetchone()[0]

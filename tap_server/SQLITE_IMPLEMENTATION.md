@@ -16,14 +16,14 @@ The TAP_SCHEMA storage layer consists of three main components:
 
 ### Database Schema
 
-The SQLite database implements five tables as defined in the TAP 1.1 specification. **Important:** All table names include the `tap_schema.` prefix (e.g., `"tap_schema.schemas"`) to comply with the TAP specification's fully-qualified table naming convention.
+The SQLite database implements five tables as defined in the TAP 1.1 specification:
 
-#### `tap_schema.schemas`
+#### `schemas`
 - `schema_name` (TEXT, PRIMARY KEY): Name of the schema
 - `description` (TEXT): Schema description
 - `utype` (TEXT): UType for the schema
 
-#### `tap_schema.tables`
+#### `tables`
 - `schema_name` (TEXT, FOREIGN KEY): Schema containing the table
 - `table_name` (TEXT): Name of the table
 - `table_type` (TEXT): Type of table ('table' or 'view')
@@ -31,7 +31,7 @@ The SQLite database implements five tables as defined in the TAP 1.1 specificati
 - `utype` (TEXT): UType for the table
 - PRIMARY KEY: (schema_name, table_name)
 
-#### `tap_schema.columns`
+#### `columns`
 - `table_name` (TEXT): Fully qualified table name (schema.table)
 - `column_name` (TEXT): Name of the column
 - `description` (TEXT): Column description
@@ -45,14 +45,14 @@ The SQLite database implements five tables as defined in the TAP 1.1 specificati
 - `std` (INTEGER): 1 if defined by a standard, 0 otherwise
 - PRIMARY KEY: (table_name, column_name)
 
-#### `tap_schema.keys`
+#### `keys`
 - `key_id` (TEXT, PRIMARY KEY): Unique key identifier
 - `from_table` (TEXT): Source table name
 - `target_table` (TEXT): Target table name
 - `description` (TEXT): Key description
 - `utype` (TEXT): UType for the key
 
-#### `tap_schema.key_columns`
+#### `key_columns`
 - `key_id` (TEXT, FOREIGN KEY): Foreign key identifier
 - `from_column` (TEXT): Column name in source table
 - `target_column` (TEXT): Column name in target table
@@ -73,9 +73,9 @@ The implementation uses SQLite's native SQL engine, enabling:
 Example JOIN query (as required in issue #45):
 ```sql
 SELECT * 
-FROM "tap_schema.schemas"
-INNER JOIN "tap_schema.tables" 
-ON "tap_schema.tables".schema_name = "tap_schema.schemas".schema_name
+FROM schemas 
+INNER JOIN tables 
+ON tables.schema_name = schemas.schema_name
 ```
 
 #### 2. Zero External Dependencies
@@ -90,7 +90,7 @@ The SQLite database file can be inspected using standard tools:
 ```bash
 sqlite3 tap_schema.db
 .tables
-SELECT * FROM "tap_schema.schemas";
+SELECT * FROM schemas;
 ```
 
 **GUI Tools:**
@@ -136,21 +136,21 @@ from tap_schema_db import TAPSchemaDatabase
 # Connect to database
 with TAPSchemaDatabase('tap_schema.db') as db:
     # Simple query
-    results = db.query('SELECT * FROM "tap_schema.schemas"')
+    results = db.query("SELECT * FROM schemas")
     for row in results:
         print(f"{row['schema_name']}: {row['description']}")
     
     # Parameterized query
     results = db.query(
-        'SELECT * FROM "tap_schema.tables" WHERE schema_name = ?',
+        "SELECT * FROM tables WHERE schema_name = ?",
         ('public',)
     )
     
     # JOIN query
     results = db.query("""
         SELECT s.schema_name, s.description, t.table_name
-        FROM "tap_schema.schemas" s
-        INNER JOIN "tap_schema.tables" t ON t.schema_name = s.schema_name
+        FROM schemas s
+        INNER JOIN tables t ON t.schema_name = s.schema_name
     """)
 ```
 

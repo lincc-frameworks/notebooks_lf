@@ -306,7 +306,7 @@ def main():
         print("\nYou can inspect the database with:")
         print(f"  sqlite3 {args.db_path}")
         print("  .tables")
-        print('  SELECT * FROM "tap_schema.schemas";')
+        print("  SELECT * FROM schemas;")
 
 
 if __name__ == '__main__':

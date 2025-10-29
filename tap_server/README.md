@@ -233,19 +233,18 @@ The `--clear` flag will delete existing data before repopulating.
 # Open the database
 sqlite3 tap_schema.db
 
-# List all tables (note: they have tap_schema. prefix)
+# List all tables
 .tables
 
 # View schema structure
-.schema "tap_schema.schemas"
+.schema schemas
 
 # Query data
-SELECT * FROM "tap_schema.schemas";
+SELECT * FROM schemas;
 
-# Execute JOINs (the desired query format)
-SELECT * FROM "tap_schema.schemas" 
-INNER JOIN "tap_schema.tables" 
-ON "tap_schema.tables".schema_name = "tap_schema.schemas".schema_name;
+# Execute JOINs
+SELECT * FROM schemas 
+INNER JOIN tables ON tables.schema_name = schemas.schema_name;
 
 # Exit
 .quit
@@ -258,35 +257,32 @@ from tap_schema_db import TAPSchemaDatabase
 # Connect to database
 with TAPSchemaDatabase('tap_schema.db') as db:
     # Simple query
-    results = db.query('SELECT * FROM "tap_schema.schemas"')
+    results = db.query("SELECT * FROM schemas")
     
     # Query with JOIN
     results = db.query("""
-        SELECT * FROM "tap_schema.schemas" 
-        INNER JOIN "tap_schema.tables" 
-        ON "tap_schema.tables".schema_name = "tap_schema.schemas".schema_name
-        WHERE "tap_schema.schemas".schema_name = ?
+        SELECT * FROM schemas 
+        INNER JOIN tables ON tables.schema_name = schemas.schema_name
+        WHERE schemas.schema_name = ?
     """, ('public',))
     
     # Get results with column names
-    data, columns = db.query_with_columns('SELECT * FROM "tap_schema.tables"')
+    data, columns = db.query_with_columns("SELECT * FROM tables")
 ```
 
 See `example_join_query.py` for more examples of JOIN queries and complex SQL operations.
 
 ### TAP_SCHEMA Tables
 
-The following TAP_SCHEMA tables are queryable via ADQL or SQL. Note that in the SQLite database, these tables have the `tap_schema.` prefix (e.g., `"tap_schema.schemas"`), which allows queries to use the fully-qualified table names as per the TAP specification:
+The following TAP_SCHEMA tables are queryable via ADQL or SQL:
 
-#### tap_schema.schemas
-
-#### tap_schema.schemas
+#### TAP_SCHEMA.schemas
 Lists all schemas available in this TAP service.
 - `schema_name` - Name of the schema
 - `description` - Description of the schema
 - `utype` - UType for the schema
 
-#### tap_schema.tables
+#### TAP_SCHEMA.tables
 Lists all tables available in this TAP service.
 - `schema_name` - Schema containing the table
 - `table_name` - Name of the table
@@ -294,7 +290,7 @@ Lists all tables available in this TAP service.
 - `description` - Description of the table
 - `utype` - UType for the table
 
-#### tap_schema.columns
+#### TAP_SCHEMA.columns
 Lists all columns in all tables with detailed metadata.
 - `table_name` - Fully qualified table name (schema.table)
 - `column_name` - Name of the column
@@ -308,7 +304,7 @@ Lists all columns in all tables with detailed metadata.
 - `indexed` - 1 if this column is indexed, 0 otherwise
 - `std` - 1 if defined by a standard, 0 otherwise
 
-#### tap_schema.keys
+#### TAP_SCHEMA.keys
 Lists foreign key relationships between tables.
 - `key_id` - Unique identifier for the key
 - `from_table` - Source table name
@@ -316,7 +312,7 @@ Lists foreign key relationships between tables.
 - `description` - Description of the relationship
 - `utype` - UType for the key
 
-#### tap_schema.key_columns
+#### TAP_SCHEMA.key_columns
 Lists the columns that participate in foreign keys.
 - `key_id` - Foreign key identifier
 - `from_column` - Column name in source table
