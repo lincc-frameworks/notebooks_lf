@@ -10,6 +10,7 @@ This prototype returns sample data instead of executing actual queries against a
 
 from flask import Flask, request, Response
 import xml.etree.ElementTree as ET
+from xml.dom import minidom
 import datetime
 import sys
 import os
@@ -43,6 +44,8 @@ tap_schema_db = TAPSchemaDatabase(TAP_SCHEMA_DB_PATH, qualified='tap_schema')
 
 def is_tap_schema_query(query_str: str):
     """Check if the query is for a TAP_SCHEMA table."""
+    if not query_str:
+        return False
     return 'tap_schema.' in query_str.lower()
 
 
@@ -136,11 +139,24 @@ def create_votable_response(data, columns, query_info):
             value = row_data.get(col, '')
             td.text = str(value) if value is not None else ''
 
-    # Convert to string
+    # Convert to string with pretty printing
     xml_str = ET.tostring(votable, encoding='unicode', method='xml')
-
-    # Add XML declaration
-    return '<?xml version="1.0" encoding="UTF-8"?>\n' + xml_str
+    
+    # Parse and format with minidom for indentation
+    dom = minidom.parseString(xml_str)
+    pretty_xml = dom.toprettyxml(indent="  ", encoding=None)
+    
+    # Remove the extra XML declaration that minidom adds (we'll add our own)
+    lines = pretty_xml.split('\n')
+    if lines[0].startswith('<?xml'):
+        lines = lines[1:]
+    
+    # Remove empty lines at the end
+    while lines and not lines[-1].strip():
+        lines.pop()
+    
+    # Add XML declaration and return
+    return '<?xml version="1.0" encoding="UTF-8"?>\n' + '\n'.join(lines)
 
 
 def create_error_votable(error_message, query=''):
@@ -177,8 +193,24 @@ def create_error_votable(error_message, query=''):
             'value': query
         })
 
+    # Convert to string with pretty printing
     xml_str = ET.tostring(votable, encoding='unicode', method='xml')
-    return '<?xml version="1.0" encoding="UTF-8"?>\n' + xml_str
+    
+    # Parse and format with minidom for indentation
+    dom = minidom.parseString(xml_str)
+    pretty_xml = dom.toprettyxml(indent="  ", encoding=None)
+    
+    # Remove the extra XML declaration that minidom adds (we'll add our own)
+    lines = pretty_xml.split('\n')
+    if lines[0].startswith('<?xml'):
+        lines = lines[1:]
+    
+    # Remove empty lines at the end
+    while lines and not lines[-1].strip():
+        lines.pop()
+    
+    # Add XML declaration and return
+    return '<?xml version="1.0" encoding="UTF-8"?>\n' + '\n'.join(lines)
 
 
 def dataframe_to_votable_data(df):
