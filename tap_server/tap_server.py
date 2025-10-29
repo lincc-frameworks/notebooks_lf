@@ -297,6 +297,8 @@ def sync_query():
         if is_tap_schema_query(query):
             # Query the TAP_SCHEMA metadata
             data, result_columns = query_tap_schema(query)
+            # NOTE: Not sure this is quite right.  What comes back from caltech TAP?
+            table_name = 'tap_schema'
         else:
             # Parse the ADQL query to get entities
             entities = parse_adql_entities(query)

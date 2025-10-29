@@ -46,6 +46,8 @@ class TAPSchemaDatabase:
             self.connection = sqlite3.connect(self.db_path)
             # Enable foreign key constraints
             self.connection.execute('PRAGMA foreign_keys = ON')
+            # Attach as TAP_SCHEMA for conformance with protocol
+            self.connection.execute("attach database ? as tap_schema;", (self.db_path,))
             # Use Row factory for dictionary-like access
             self.connection.row_factory = sqlite3.Row
             
