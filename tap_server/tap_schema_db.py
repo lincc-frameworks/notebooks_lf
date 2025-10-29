@@ -29,15 +29,18 @@ class TAPSchemaDatabase:
     SQLite tools (CLI: sqlite3, GUI: DB Browser for SQLite, etc.)
     """
     
-    def __init__(self, db_path: str = 'tap_schema.db'):
+    def __init__(self, db_path: str = 'tap_schema.db', qualified=''):
         """
         Initialize the TAP schema database connection.
         
         Args:
             db_path: Path to the SQLite database file. If the file doesn't exist,
                     it will be created when initialize_schema() is called.
+            qualified: attach to this database qualified as this identifier,
+                    if non-blank.
         """
         self.db_path = db_path
+        self.qualified = qualified
         self.connection = None
         
     def connect(self):
@@ -46,8 +49,9 @@ class TAPSchemaDatabase:
             self.connection = sqlite3.connect(self.db_path)
             # Enable foreign key constraints
             self.connection.execute('PRAGMA foreign_keys = ON')
-            # Attach as TAP_SCHEMA for conformance with protocol
-            self.connection.execute("attach database ? as tap_schema;", (self.db_path,))
+            if self.qualified:
+                # Attach as TAP_SCHEMA for conformance with protocol
+                self.connection.execute("ATTACH DATABASE ? as ?;", (self.db_path, self.qualified))
             # Use Row factory for dictionary-like access
             self.connection.row_factory = sqlite3.Row
             

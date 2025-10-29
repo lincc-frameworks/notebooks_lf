@@ -38,7 +38,7 @@ def log_request_info():
 # Initialize TAP schema database
 # The database will be created if it doesn't exist when the server starts
 TAP_SCHEMA_DB_PATH = os.path.join(os.path.dirname(__file__), 'tap_schema.db')
-tap_schema_db = TAPSchemaDatabase(TAP_SCHEMA_DB_PATH)
+tap_schema_db = TAPSchemaDatabase(TAP_SCHEMA_DB_PATH, qualified='tap_schema')
 
 
 def is_tap_schema_query(query_str: str):
