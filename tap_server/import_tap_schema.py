@@ -108,9 +108,10 @@ class TAPSchemaImporter:
         Returns:
             List of dictionaries containing the query results
         """
-        # Validate table_name to prevent injection (allow only alphanumeric and underscores)
-        if not table_name.replace('_', '').isalnum():
-            raise ValueError(f"Invalid table name: {table_name}")
+        # Validate table_name using whitelist of allowed TAP_SCHEMA tables
+        allowed_tables = {'schemas', 'tables', 'columns', 'keys', 'key_columns'}
+        if table_name not in allowed_tables:
+            raise ValueError(f"Invalid table name: {table_name}. Must be one of {allowed_tables}")
             
         query = f"SELECT * FROM TAP_SCHEMA.{table_name}"
         if where_clause:
@@ -303,11 +304,14 @@ class TAPSchemaImporter:
                 
                 # Import key columns
                 key_id = key_data.get('key_id')
-                escaped_key_id = self._escape_adql_string(str(key_id))
-                key_columns = self.query_tap_schema_table(
-                    'key_columns',
-                    f"key_id = '{escaped_key_id}'"
-                )
+                if key_id is not None:
+                    escaped_key_id = self._escape_adql_string(str(key_id))
+                    key_columns = self.query_tap_schema_table(
+                        'key_columns',
+                        f"key_id = '{escaped_key_id}'"
+                    )
+                else:
+                    key_columns = []
                 
                 for kc_data in key_columns:
                     self.db.insert_key_column(

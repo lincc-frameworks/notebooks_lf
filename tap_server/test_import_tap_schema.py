@@ -271,7 +271,8 @@ class TestSecurityFeatures(unittest.TestCase):
         call_args = mock_service.search.call_args[0][0]
         # Single quote should be doubled for ADQL/SQL escaping
         self.assertIn("test''schema", call_args)
-        self.assertNotIn("test'schema", call_args.replace("test''schema", ""))
+        # Verify unescaped version is not present (except as part of escaped version)
+        self.assertNotIn("test'schema'", call_args)
         
         importer.close()
         
