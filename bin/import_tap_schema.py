@@ -134,7 +134,9 @@ class TAPSchemaImporter:
         """Query tap_schema.schemas table."""
         query = "SELECT schema_name, description FROM tap_schema.schemas"
         if schema_name:
-            query += f" WHERE schema_name = '{schema_name}'"
+            # Escape single quotes to prevent SQL injection
+            escaped_name = schema_name.replace("'", "''")
+            query += f" WHERE schema_name = '{escaped_name}'"
 
         logger.info(f"Querying schemas: {query}")
 
@@ -159,9 +161,13 @@ class TAPSchemaImporter:
         conditions = []
 
         if schema_name:
-            conditions.append(f"schema_name = '{schema_name}'")
+            # Escape single quotes to prevent SQL injection
+            escaped_name = schema_name.replace("'", "''")
+            conditions.append(f"schema_name = '{escaped_name}'")
         if table_name:
-            conditions.append(f"table_name = '{table_name}'")
+            # Escape single quotes to prevent SQL injection
+            escaped_name = table_name.replace("'", "''")
+            conditions.append(f"table_name = '{escaped_name}'")
 
         if conditions:
             query += " WHERE " + " AND ".join(conditions)
@@ -193,7 +199,9 @@ class TAPSchemaImporter:
         conditions = []
 
         if table_name:
-            conditions.append(f"table_name = '{table_name}'")
+            # Escape single quotes to prevent SQL injection
+            escaped_name = table_name.replace("'", "''")
+            conditions.append(f"table_name = '{escaped_name}'")
         elif schema_name:
             # If only schema is specified, get columns for all tables in that schema
             query = """
@@ -201,7 +209,9 @@ class TAPSchemaImporter:
             FROM tap_schema.columns c
             JOIN tap_schema.tables t ON c.table_name = t.table_name
             """
-            conditions.append(f"t.schema_name = '{schema_name}'")
+            # Escape single quotes to prevent SQL injection
+            escaped_name = schema_name.replace("'", "''")
+            conditions.append(f"t.schema_name = '{escaped_name}'")
 
         if conditions:
             query += " WHERE " + " AND ".join(conditions)
