@@ -6,7 +6,11 @@ A prototype implementation of a TAP (Table Access Protocol) server following the
 
 This TAP server prototype accepts ADQL (Astronomical Data Query Language) queries and returns results in VOTable format. The server is built using Flask and integrates with the `bin/adql_to_lsdb` module to convert ADQL queries to LSDB-compatible operations.
 
+**NEW**: TAP_SCHEMA metadata is now stored in a SQLite database, providing native SQL query support including JOINs, WHERE clauses, and aggregations. The database uses Python's built-in `sqlite3` module with no external dependencies.
+
 Components:
+- **TAP Schema Database** (`tap_schema_db.py`): SQLite-based storage for TAP_SCHEMA metadata
+- **TAP Schema Initialization** (`tap_schema_init.py`): Script to create and populate the metadata database
 - **ADQL to LSDB Converter** (`../bin/adql_to_lsdb.py`): Comprehensive ADQL parser using queryparser library
 - **TAP Server** (`tap_server.py`): Flask-based HTTP server implementing TAP protocol endpoints
 
@@ -14,12 +18,14 @@ Components:
 
 ### Implemented
 - ✅ Synchronous query endpoint (`/sync`)
-- ✅ **TAP_SCHEMA Support** - Full implementation of IVOA TAP_SCHEMA metadata tables
+- ✅ **TAP_SCHEMA Support** - SQLite-based storage with native SQL query execution
   - `TAP_SCHEMA.schemas` - List of available schemas
   - `TAP_SCHEMA.tables` - List of available tables
   - `TAP_SCHEMA.columns` - List of all columns with metadata
   - `TAP_SCHEMA.keys` - Foreign key relationships
   - `TAP_SCHEMA.key_columns` - Foreign key column mappings
+  - Native SQL support for JOINs, WHERE, ORDER BY, GROUP BY, and aggregations
+  - Database inspectable with standard SQLite tools (CLI, DB Browser, etc.)
 - ✅ Advanced ADQL query parsing using queryparser library
   - SELECT with column list or *
   - FROM with table names (including schema.table)
@@ -46,6 +52,13 @@ Components:
 ```bash
 pip install -r requirements.txt
 ```
+
+2. Initialize the TAP_SCHEMA database:
+```bash
+python tap_schema_init.py
+```
+
+This will create `tap_schema.db` with sample metadata for the TAP service.
 
 ## Usage
 
@@ -199,9 +212,69 @@ result = cat.head(15)
 
 This server implements the TAP_SCHEMA metadata as defined in section 4.3 of the IVOA TAP specification. TAP_SCHEMA is a set of special tables that describe the schema of the TAP service itself.
 
+**Storage Implementation**: TAP_SCHEMA data is stored in a SQLite database (`tap_schema.db`) using Python's built-in `sqlite3` module. This provides:
+- Native SQL query execution (no custom query logic needed)
+- Support for complex queries including JOINs, WHERE, ORDER BY, GROUP BY
+- Database inspectable with standard SQLite tools (CLI: `sqlite3`, GUI: DB Browser for SQLite)
+- No external dependencies beyond Python's standard library
+- Easy to extend for future requirements
+
+### Database Management
+
+#### Initialize/Recreate the Database
+```bash
+python tap_schema_init.py [--db-path tap_schema.db] [--clear]
+```
+
+The `--clear` flag will delete existing data before repopulating.
+
+#### Inspect the Database with SQLite CLI
+```bash
+# Open the database
+sqlite3 tap_schema.db
+
+# List all tables
+.tables
+
+# View schema structure
+.schema schemas
+
+# Query data
+SELECT * FROM schemas;
+
+# Execute JOINs
+SELECT * FROM schemas 
+INNER JOIN tables ON tables.schema_name = schemas.schema_name;
+
+# Exit
+.quit
+```
+
+#### Using the Database in Python
+```python
+from tap_schema_db import TAPSchemaDatabase
+
+# Connect to database
+with TAPSchemaDatabase('tap_schema.db') as db:
+    # Simple query
+    results = db.query("SELECT * FROM schemas")
+    
+    # Query with JOIN
+    results = db.query("""
+        SELECT * FROM schemas 
+        INNER JOIN tables ON tables.schema_name = schemas.schema_name
+        WHERE schemas.schema_name = ?
+    """, ('public',))
+    
+    # Get results with column names
+    data, columns = db.query_with_columns("SELECT * FROM tables")
+```
+
+See `example_join_query.py` for more examples of JOIN queries and complex SQL operations.
+
 ### TAP_SCHEMA Tables
 
-The following TAP_SCHEMA tables are queryable via ADQL:
+The following TAP_SCHEMA tables are queryable via ADQL or SQL:
 
 #### TAP_SCHEMA.schemas
 Lists all schemas available in this TAP service.
@@ -320,7 +393,13 @@ This prototype implements the following TAP v1.1 features:
 └────────┬────────┘
          │
          ├──→ TAP_SCHEMA query?
-         │    Yes: Query metadata tables
+         │    Yes: ↓
+         │    ┌──────────────────┐
+         │    │ TAP Schema DB    │
+         │    │ (SQLite)         │
+         │    │ - Native SQL     │
+         │    │ - JOINs, WHERE   │
+         │    └──────────────────┘
          │    No: ↓
          ↓
 ┌─────────────────┐
@@ -335,6 +414,56 @@ This prototype implements the following TAP v1.1 features:
 └─────────────────┘
 ```
 
+## Module Reference
+
+### `tap_schema_db.py`
+Database operations module for TAP_SCHEMA metadata storage.
+
+**Key Classes:**
+- `TAPSchemaDatabase`: Main database operations class
+
+**Key Methods:**
+- `initialize_schema()`: Create TAP_SCHEMA tables
+- `insert_schema()`, `insert_table()`, `insert_column()`: Add metadata
+- `query()`: Execute arbitrary SQL queries
+- `query_with_columns()`: Execute SQL and get column names
+
+**Usage:**
+```python
+from tap_schema_db import TAPSchemaDatabase
+
+with TAPSchemaDatabase('tap_schema.db') as db:
+    db.initialize_schema()
+    db.insert_schema('myschema', 'My Schema')
+    results = db.query("SELECT * FROM schemas")
+```
+
+### `tap_schema_init.py`
+Initialization script to create and populate the TAP_SCHEMA database.
+
+**Usage:**
+```bash
+python tap_schema_init.py [--db-path tap_schema.db] [--clear]
+```
+
+**Options:**
+- `--db-path`: Path to database file (default: tap_schema.db)
+- `--clear`: Clear existing data before populating
+
+### `example_join_query.py`
+Example script demonstrating SQL JOIN queries on TAP_SCHEMA.
+
+**Usage:**
+```bash
+python example_join_query.py [--db-path tap_schema.db]
+```
+
+**Examples Included:**
+1. Basic JOIN between schemas and tables
+2. JOIN with WHERE clause filtering
+3. Simple queries without JOINs
+4. Three-way JOIN across schemas, tables, and columns
+
 ## Future Work
 
 This prototype provides a foundation for:
@@ -342,9 +471,10 @@ This prototype provides a foundation for:
 1. **Real Query Execution**: Integration with LSDB to execute queries against HiPSCat catalogs
 2. **Asynchronous Queries**: Implement `/async` endpoint for long-running queries
 3. **Additional Formats**: Support for CSV, JSON, FITS output formats
-4. **Advanced ADQL**: Support for JOINs, subqueries, geometric functions
+4. **Advanced ADQL**: Support for JOINs, subqueries, geometric functions (catalog JOINs, not TAP_SCHEMA JOINs)
 5. **Performance**: Query optimization and result caching
 6. **Security**: Authentication, rate limiting, and query validation
+7. **Metadata Import**: Tools to import metadata from LSDB catalogs into TAP_SCHEMA database
 
 ## References
 
