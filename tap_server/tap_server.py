@@ -65,6 +65,35 @@ def query_tap_schema(query_str: str):
         return [], []
 
 
+def format_xml_with_indentation(element):
+    """
+    Format an XML element with proper indentation.
+    
+    Args:
+        element: An ElementTree Element to format
+        
+    Returns:
+        String containing formatted XML with proper indentation
+    """
+    # Convert to string
+    xml_str = ET.tostring(element, encoding='unicode', method='xml')
+    
+    # Parse and format with minidom for indentation
+    dom = minidom.parseString(xml_str)
+    pretty_xml = dom.toprettyxml(indent="  ", encoding=None)
+    
+    # Remove the extra XML declaration that minidom adds (we'll add our own)
+    lines = pretty_xml.split('\n')
+    if lines[0].startswith('<?xml'):
+        lines = lines[1:]
+    
+    # Remove empty lines at the end
+    while lines and not lines[-1].strip():
+        lines.pop()
+    
+    # Add XML declaration and return
+    return '<?xml version="1.0" encoding="UTF-8"?>\n' + '\n'.join(lines)
+
 
 def create_votable_response(data, columns, query_info):
     """
@@ -139,24 +168,8 @@ def create_votable_response(data, columns, query_info):
             value = row_data.get(col, '')
             td.text = str(value) if value is not None else ''
 
-    # Convert to string with pretty printing
-    xml_str = ET.tostring(votable, encoding='unicode', method='xml')
-    
-    # Parse and format with minidom for indentation
-    dom = minidom.parseString(xml_str)
-    pretty_xml = dom.toprettyxml(indent="  ", encoding=None)
-    
-    # Remove the extra XML declaration that minidom adds (we'll add our own)
-    lines = pretty_xml.split('\n')
-    if lines[0].startswith('<?xml'):
-        lines = lines[1:]
-    
-    # Remove empty lines at the end
-    while lines and not lines[-1].strip():
-        lines.pop()
-    
-    # Add XML declaration and return
-    return '<?xml version="1.0" encoding="UTF-8"?>\n' + '\n'.join(lines)
+    # Format and return the XML with proper indentation
+    return format_xml_with_indentation(votable)
 
 
 def create_error_votable(error_message, query=''):
@@ -193,24 +206,8 @@ def create_error_votable(error_message, query=''):
             'value': query
         })
 
-    # Convert to string with pretty printing
-    xml_str = ET.tostring(votable, encoding='unicode', method='xml')
-    
-    # Parse and format with minidom for indentation
-    dom = minidom.parseString(xml_str)
-    pretty_xml = dom.toprettyxml(indent="  ", encoding=None)
-    
-    # Remove the extra XML declaration that minidom adds (we'll add our own)
-    lines = pretty_xml.split('\n')
-    if lines[0].startswith('<?xml'):
-        lines = lines[1:]
-    
-    # Remove empty lines at the end
-    while lines and not lines[-1].strip():
-        lines.pop()
-    
-    # Add XML declaration and return
-    return '<?xml version="1.0" encoding="UTF-8"?>\n' + '\n'.join(lines)
+    # Format and return the XML with proper indentation
+    return format_xml_with_indentation(votable)
 
 
 def dataframe_to_votable_data(df):
