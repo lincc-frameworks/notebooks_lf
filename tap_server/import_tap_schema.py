@@ -245,9 +245,6 @@ class TAPSchemaImporter:
                 
             logger.info(f"  Importing {len(columns)} columns for {table_name}")
             
-            # Determine the table name to use for storing columns
-            stored_table_name = local_table_name if local_table_name and len(table_names) == 1 else col_data.get('table_name') if 'col_data' in locals() else table_name
-            
             for col_data in columns:
                 # Map column metadata to database fields
                 kwargs = {}
@@ -257,7 +254,7 @@ class TAPSchemaImporter:
                     if value is not None:
                         kwargs[field] = value
                 
-                # Use local_table_name if provided and importing a single table        
+                # Use local_table_name if provided and importing a single table, otherwise use original table name        
                 stored_table_name = local_table_name if local_table_name and len(table_names) == 1 else col_data.get('table_name')
                 
                 self.db.insert_column(
