@@ -11,6 +11,7 @@ This TAP server prototype accepts ADQL (Astronomical Data Query Language) querie
 Components:
 - **TAP Schema Database** (`tap_schema_db.py`): SQLite-based storage for TAP_SCHEMA metadata
 - **TAP Schema Initialization** (`tap_schema_init.py`): Script to create and populate the metadata database
+- **TAP Schema Import** (`import_tap_schema.py`): CLI tool to import metadata from external TAP servers
 - **ADQL to LSDB Converter** (`../bin/adql_to_lsdb.py`): Comprehensive ADQL parser using queryparser library
 - **TAP Server** (`tap_server.py`): Flask-based HTTP server implementing TAP protocol endpoints
 
@@ -51,6 +52,7 @@ Components:
 1. Install dependencies:
 ```bash
 pip install -r requirements.txt
+pip install pyvo  # Required for importing from external TAP servers
 ```
 
 2. Initialize the TAP_SCHEMA database:
@@ -59,6 +61,17 @@ python tap_schema_init.py
 ```
 
 This will create `tap_schema.db` with sample metadata for the TAP service.
+
+3. (Optional) Import real catalog metadata from external TAP servers:
+```bash
+# Import Gaia DR3 from ESA Gaia TAP server
+python import_tap_schema.py --url https://gea.esac.esa.int/tap-server/tap --schema gaiadr3
+
+# Import WISE AllWISE from IRSA
+python import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --schema wise_allwise
+```
+
+See the [TAP Schema Import Tool](#tap-schema-import-tool) section for more details.
 
 ## Usage
 
@@ -341,6 +354,142 @@ curl -X POST http://localhost:5000/sync \
   -d "LANG=ADQL" \
   -d "QUERY=SELECT column_name, datatype, unit FROM TAP_SCHEMA.columns WHERE table_name='public.ztf_dr14'"
 ```
+
+## TAP Schema Import Tool
+
+The `import_tap_schema.py` tool allows you to populate your local TAP_SCHEMA database with real catalog metadata from external TAP servers. This enables your TAP service to provide accurate schema information for astronomical catalogs without manually entering the metadata.
+
+### Features
+
+- Query external TAP servers for schema metadata
+- Import complete catalog schemas including tables and columns
+- Support for foreign key relationships
+- Graceful error handling for network issues and incomplete metadata
+- Verbose logging for debugging
+- Compatible with any IVOA TAP 1.1 compliant server
+
+### Usage
+
+#### Basic Import
+
+Import a catalog schema from an external TAP server:
+
+```bash
+python import_tap_schema.py --url <TAP_URL> --schema <schema_name>
+```
+
+#### Examples
+
+Import Gaia DR3 from ESA Gaia TAP server:
+```bash
+python import_tap_schema.py --url https://gea.esac.esa.int/tap-server/tap --schema gaiadr3
+```
+
+Import WISE AllWISE catalog from IRSA:
+```bash
+python import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --schema wise_allwise
+```
+
+Import to a custom database location:
+```bash
+python import_tap_schema.py --url <TAP_URL> --schema <schema> --db-path /path/to/my_db.sqlite
+```
+
+Enable verbose logging:
+```bash
+python import_tap_schema.py --url <TAP_URL> --schema <schema> --verbose
+```
+
+Skip foreign key import (faster):
+```bash
+python import_tap_schema.py --url <TAP_URL> --schema <schema> --no-keys
+```
+
+#### Command-Line Options
+
+- `--url <URL>` (required): URL of the external TAP server
+- `--schema <name>` (required): Name of the schema/catalog to import
+- `--db-path <path>`: Path to local SQLite database (default: `tap_schema.db`)
+- `--no-keys`: Skip importing foreign key relationships
+- `--verbose` or `-v`: Enable verbose debug logging
+
+#### Programmatic Usage
+
+You can also use the import tool programmatically:
+
+```python
+from import_tap_schema import TAPSchemaImporter
+from tap_schema_db import TAPSchemaDatabase
+
+# Import schema metadata
+tap_url = 'https://gea.esac.esa.int/tap-server/tap'
+with TAPSchemaImporter(tap_url, 'my_catalog.db') as importer:
+    importer.import_schema_metadata('gaiadr3', include_keys=True)
+
+# Query the imported metadata
+with TAPSchemaDatabase('my_catalog.db') as db:
+    tables = db.query("SELECT * FROM tables WHERE schema_name = 'gaiadr3'")
+    for table in tables:
+        print(f"Table: {table['table_name']}")
+```
+
+### Workflow Example
+
+1. **Import catalog metadata** from an external TAP server:
+   ```bash
+   python import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --schema gaiadr3
+   ```
+
+2. **Inspect the imported metadata** with SQLite:
+   ```bash
+   sqlite3 tap_schema.db
+   sqlite> SELECT * FROM tables WHERE schema_name = 'gaiadr3';
+   sqlite> SELECT column_name, datatype, unit FROM columns WHERE table_name = 'gaiadr3.gaia_source' LIMIT 10;
+   ```
+
+3. **Start your TAP server** to serve the metadata:
+   ```bash
+   python tap_server.py
+   ```
+
+4. **Query the metadata** via TAP protocol:
+   ```bash
+   curl -X POST http://localhost:5000/sync \
+     -d "REQUEST=doQuery" \
+     -d "LANG=ADQL" \
+     -d "QUERY=SELECT * FROM TAP_SCHEMA.tables WHERE schema_name='gaiadr3'"
+   ```
+
+### Supported TAP Services
+
+The import tool works with any IVOA TAP 1.1 compliant service, including:
+
+- **ESA Gaia Archive**: https://gea.esac.esa.int/tap-server/tap
+- **IRSA (Caltech)**: https://irsa.ipac.caltech.edu/TAP
+- **CADC**: https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/tap
+- **GAVO Data Center**: https://dc.zah.uni-heidelberg.de/tap
+- Many other astronomical data archives
+
+### Error Handling
+
+The tool handles common issues gracefully:
+
+- **Network errors**: Connection failures are reported with clear error messages
+- **Missing schemas**: If a schema is not found, the tool will attempt to import tables anyway
+- **Incomplete metadata**: Missing fields are handled as NULL values
+- **Foreign key errors**: If the TAP server doesn't support foreign keys, the import continues without them
+
+For detailed error information, use the `--verbose` flag.
+
+### Testing
+
+Run the test suite to verify the import tool:
+
+```bash
+python -m unittest test_import_tap_schema -v
+```
+
+See `example_import_usage.py` for more detailed examples.
 
 ## Response Format
 
