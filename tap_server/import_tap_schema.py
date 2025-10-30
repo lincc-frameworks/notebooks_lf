@@ -460,7 +460,7 @@ Examples:
   python import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --table gaia_dr3_source
   
   # Import a table with a different local name
-  python import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --table gaia_dr3_source --table-name my_gaia_table
+  python import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --table gaia_dr3_source --local-table-name my_gaia_table
   
   # Import from Gaia TAP server
   python import_tap_schema.py --url https://gea.esac.esa.int/tap-server/tap --schema gaiadr3
@@ -491,7 +491,7 @@ Examples:
     )
     
     parser.add_argument(
-        '--table-name',
+        '--local-table-name',
         help='Optional local name for the imported table (only valid with --table). '
              'Use this to store the table with a different name in the local database.'
     )
@@ -517,9 +517,9 @@ Examples:
     
     args = parser.parse_args()
     
-    # Validate that --table-name is only used with --table
-    if args.table_name and not args.table:
-        parser.error("--table-name can only be used with --table")
+    # Validate that --local-table-name is only used with --table
+    if args.local_table_name and not args.table:
+        parser.error("--local-table-name can only be used with --table")
     
     # Set logging level
     if args.verbose:
@@ -534,8 +534,8 @@ Examples:
         print(f"Schema: {args.schema}")
     else:
         print(f"Table: {args.table}")
-        if args.table_name:
-            print(f"Local table name: {args.table_name}")
+        if args.local_table_name:
+            print(f"Local table name: {args.local_table_name}")
     print(f"Database: {args.db_path}")
     print("=" * 70)
     
@@ -551,9 +551,9 @@ Examples:
                 success = importer.import_table_by_name(
                     args.table,
                     include_keys=not args.no_keys,
-                    local_table_name=args.table_name
+                    local_table_name=args.local_table_name
                 )
-                display_table_name = args.table_name if args.table_name else args.table
+                display_table_name = args.local_table_name if args.local_table_name else args.table
                 query_hint = f"SELECT * FROM tables WHERE table_name = '{display_table_name}';"
             
             if success:
