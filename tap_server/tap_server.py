@@ -65,6 +65,46 @@ def query_tap_schema(query_str: str):
         return [], []
 
 
+def get_column_metadata(table_name: str):
+    """
+    Get column metadata from tap_schema.db for a given table.
+
+    Args:
+        table_name: The table name to fetch metadata for (e.g., 'ztf_dr14' or 'public.ztf_dr14')
+
+    Returns:
+        Dictionary mapping column names to metadata dicts with keys: datatype, unit, ucd, description
+    """
+    if not table_name:
+        return {}
+    
+    # Try the table name as-is first
+    query = "SELECT column_name, datatype, unit, ucd, description FROM columns WHERE table_name = ?"
+    try:
+        tap_schema_db.connect()
+        results = tap_schema_db.query(query, (table_name,))
+        
+        # If no results and table_name doesn't have schema prefix, try with 'public.' prefix
+        if not results and '.' not in table_name:
+            results = tap_schema_db.query(query, (f'public.{table_name}',))
+        
+        # Build metadata dictionary
+        metadata = {}
+        for row in results:
+            col_name = row['column_name']
+            metadata[col_name] = {
+                'datatype': row.get('datatype', 'char'),
+                'unit': row.get('unit', ''),
+                'ucd': row.get('ucd', ''),
+                'description': row.get('description', '')
+            }
+        
+        return metadata
+    except Exception as e:
+        print(f"Error fetching column metadata for {table_name}: {e}")
+        return {}
+
+
 def format_xml_with_indentation(element):
     """
     Format an XML element with proper indentation.
@@ -95,7 +135,7 @@ def format_xml_with_indentation(element):
     return '<?xml version="1.0" encoding="UTF-8"?>\n' + '\n'.join(lines)
 
 
-def create_votable_response(data, columns, query_info):
+def create_votable_response(data, columns, query_info, column_metadata=None):
     """
     Create a VOTable XML response.
 
@@ -103,6 +143,8 @@ def create_votable_response(data, columns, query_info):
         data: List of dictionaries containing row data
         columns: List of column names
         query_info: Dictionary with query metadata
+        column_metadata: Optional dictionary mapping column names to metadata dicts
+                        (with keys: datatype, unit, ucd, description)
 
     Returns:
         String containing VOTable XML
@@ -140,19 +182,30 @@ def create_votable_response(data, columns, query_info):
     for col in columns:
         field_attrs = {
             'name': col,
-            'datatype': 'double',  # Simplified - in real implementation would detect type
+            'datatype': 'double',  # Default datatype
             'unit': ''
         }
-        # Handle special astronomical columns
-        if col.lower() in ['ra', 'ra_deg']:
-            field_attrs['unit'] = 'deg'
-            field_attrs['ucd'] = 'pos.eq.ra;meta.main'
-        elif col.lower() in ['dec', 'dec_deg']:
-            field_attrs['unit'] = 'deg'
-            field_attrs['ucd'] = 'pos.eq.dec;meta.main'
-        elif col.lower() in ['mag', 'magnitude']:
-            field_attrs['unit'] = 'mag'
-            field_attrs['ucd'] = 'phot.mag'
+        
+        # Use column metadata from tap_schema.db if available
+        if column_metadata and col in column_metadata:
+            meta = column_metadata[col]
+            if meta.get('datatype'):
+                field_attrs['datatype'] = meta['datatype']
+            if meta.get('unit'):
+                field_attrs['unit'] = meta['unit']
+            if meta.get('ucd'):
+                field_attrs['ucd'] = meta['ucd']
+        else:
+            # Fallback: Handle special astronomical columns with hard-coded values
+            if col.lower() in ['ra', 'ra_deg']:
+                field_attrs['unit'] = 'deg'
+                field_attrs['ucd'] = 'pos.eq.ra;meta.main'
+            elif col.lower() in ['dec', 'dec_deg']:
+                field_attrs['unit'] = 'deg'
+                field_attrs['ucd'] = 'pos.eq.dec;meta.main'
+            elif col.lower() in ['mag', 'magnitude']:
+                field_attrs['unit'] = 'mag'
+                field_attrs['ucd'] = 'phot.mag'
 
         ET.SubElement(table, 'FIELD', field_attrs)
 
@@ -400,6 +453,9 @@ def sync_query():
                 if table_part.upper() not in sql_keywords:
                     table_name = candidate
 
+        # Get column metadata from tap_schema.db
+        column_metadata = get_column_metadata(table_name)
+
         # Create query info
         query_info = {
             'query': query,
@@ -408,7 +464,7 @@ def sync_query():
 
         # Generate response based on format
         if output_format in ['votable', 'votable/td']:
-            xml_response = create_votable_response(data, result_columns, query_info)
+            xml_response = create_votable_response(data, result_columns, query_info, column_metadata)
             return Response(xml_response, mimetype='application/xml')
         else:
             error_msg = f"Unsupported format: {output_format}"
