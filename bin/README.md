@@ -1,6 +1,6 @@
 # bin Directory
 
-This directory contains scripts to be run by LSDB maintainers for managing and monitoring GitHub issues across the organization.
+This directory contains utility scripts for LSDB maintainers, including tools for managing GitHub issues and importing TAP schema metadata.
 
 ## Prerequisites
 
@@ -19,9 +19,71 @@ Before running the scripts in this directory, ensure you have the following:
    ```bash
    pip install -r requirements.txt
    ```
-   This will install the `human_readable` and `requests` packages, which provide human-readable formatting for dates and times, and HTTP request functionality.
+   This will install the required packages including `human_readable`, `requests`, `pyvo`, and other dependencies.
 
 ## Scripts
+
+### import_tap_schema.py
+
+This script imports TAP schema metadata from an external TAP server (such as IRSA or ESA Gaia) into a local SQLite database. It queries the remote TAP server for schema, table, and column metadata, then populates a local `tap_schema.db` file with this information.
+
+#### Features
+- Queries external TAP servers for schema metadata
+- Supports filtering by schema/catalog name or specific table
+- Creates and populates a local SQLite database with TAP schema structure
+- Handles schemas, tables, and columns metadata
+- Provides detailed logging and error reporting
+- Uses IVOA TAP protocol standards
+
+#### Usage
+
+**Import a complete catalog/schema** (e.g., Gaia DR3 from IRSA):
+```bash
+./import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --catalog gaiadr3
+```
+
+**Import from ESA Gaia TAP service**:
+```bash
+./import_tap_schema.py --url https://gea.esac.esa.int/tap-server/tap --schema gaiadr3
+```
+
+**Import a specific table**:
+```bash
+./import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --table gaiadr3.gaia_source
+```
+
+**Use custom database path**:
+```bash
+./import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --catalog gaiadr3 --db-path /path/to/tap_schema.db
+```
+
+**Enable verbose logging**:
+```bash
+./import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --catalog gaiadr3 --verbose
+```
+
+#### Command-line Options
+
+- `--url`: TAP service URL (required)
+- `--catalog` or `--schema`: Catalog/schema name to import
+- `--table`: Specific table name to import (can include schema prefix, e.g., `schema.table`)
+- `--db-path`: Path to SQLite database file (default: `tap_schema.db` in current directory)
+- `--verbose` or `-v`: Enable verbose logging
+
+#### Database Structure
+
+The script creates a SQLite database with the following tables:
+
+- `schemas`: Schema metadata (schema_name, schema_description)
+- `tables`: Table metadata (table_name, schema_name, table_description)
+- `columns`: Column metadata (table_name, column_name, ucd, unit, datatype, description)
+
+#### Example Workflow
+
+1. Install dependencies: `pip install -r requirements.txt`
+2. Run import: `./import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --catalog gaiadr3`
+3. Inspect the database: `sqlite3 tap_schema.db "SELECT * FROM tables;"`
+4. Use the populated database with your TAP service implementation
 
 ### gh_issues_external.py
 
