@@ -20,7 +20,6 @@ Reference:
 import argparse
 import sys
 import logging
-from typing import List, Dict, Any, Optional
 import pyvo
 
 from tap_schema_db import TAPSchemaDatabase
@@ -97,7 +96,7 @@ class TAPSchemaImporter:
         """Context manager exit."""
         self.close()
         
-    def query_tap_schema_table(self, table_name: str, where_clause: str = None) -> List[Dict[str, Any]]:
+    def query_tap_schema_table(self, table_name: str, where_clause: str = None) -> list[dict[str, any]]:
         """
         Query a TAP_SCHEMA table from the external TAP server.
         
@@ -174,7 +173,7 @@ class TAPSchemaImporter:
             )
             logger.info(f"✓ Imported schema metadata")
         
-    def import_tables(self, schema_name: str) -> List[str]:
+    def import_tables(self, schema_name: str) -> list[str]:
         """
         Import tables for a schema from the external TAP server.
         
@@ -220,7 +219,7 @@ class TAPSchemaImporter:
             
         return table_names
         
-    def import_columns(self, table_names: List[str]):
+    def import_columns(self, table_names: list[str]):
         """
         Import columns for specified tables from the external TAP server.
         
@@ -264,7 +263,7 @@ class TAPSchemaImporter:
             
         logger.info(f"✓ Imported {total_columns} total columns")
         
-    def import_keys(self, table_names: List[str]):
+    def import_keys(self, table_names: list[str]):
         """
         Import foreign keys for specified tables from the external TAP server.
         
@@ -372,16 +371,16 @@ class TAPSchemaImporter:
                 utype=table_data.get('utype')
             )
             
-            # Build fully qualified table name
-            full_table_name = f"{schema_name}.{table_name}" if schema_name else table_name
-            logger.info(f"✓ Imported table: {full_table_name}")
+            # Use table name as-is from the TAP server (not schema.table format)
+            # Some TAP servers store table_name in columns without schema prefix
+            logger.info(f"✓ Imported table: {table_name} (schema: {schema_name})")
             
-            # Import columns for this table
-            self.import_columns([full_table_name])
+            # Import columns for this table using the table name as-is
+            self.import_columns([table_name])
             
             # Import foreign keys if requested
             if include_keys:
-                self.import_keys([full_table_name])
+                self.import_keys([table_name])
             
             logger.info("=" * 70)
             logger.info("Import completed successfully!")

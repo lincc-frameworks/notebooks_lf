@@ -348,11 +348,12 @@ class TestTableImport(unittest.TestCase):
         mock_schema_result.__iter__ = Mock(return_value=iter([mock_schema_row]))
         
         # Mock columns result
+        # Note: TAP servers may store table_name without schema prefix in columns table
         mock_columns_result = Mock()
         mock_columns_result.fieldnames = ['table_name', 'column_name', 'datatype', 'description']
         mock_column_rows = [
             {
-                'table_name': 'gaia_dr3.gaia_dr3_source',
+                'table_name': 'gaia_dr3_source',
                 'column_name': 'source_id',
                 'datatype': 'long',
                 'description': 'Unique source identifier'
@@ -396,7 +397,8 @@ class TestTableImport(unittest.TestCase):
             self.assertEqual(tables[0]['table_name'], 'gaia_dr3_source')
             
             # Verify columns were inserted
-            columns = db.query("SELECT * FROM columns WHERE table_name = 'gaia_dr3.gaia_dr3_source'")
+            # Columns are stored with table_name as returned by TAP server
+            columns = db.query("SELECT * FROM columns WHERE table_name = 'gaia_dr3_source'")
             self.assertEqual(len(columns), 1)
             self.assertEqual(columns[0]['column_name'], 'source_id')
         
