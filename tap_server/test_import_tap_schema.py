@@ -308,6 +308,101 @@ class TestSecurityFeatures(unittest.TestCase):
         importer.close()
 
 
+class TestTableImport(unittest.TestCase):
+    """Test importing by table name."""
+    
+    def setUp(self):
+        """Set up test fixtures."""
+        self.temp_db = tempfile.NamedTemporaryFile(delete=False, suffix='.db')
+        self.temp_db.close()
+        self.db_path = self.temp_db.name
+        
+    def tearDown(self):
+        """Clean up test fixtures."""
+        if os.path.exists(self.db_path):
+            os.unlink(self.db_path)
+            
+    @patch('import_tap_schema.pyvo.dal.TAPService')
+    def test_import_table_by_name(self, mock_tap_service):
+        """Test importing a specific table by name."""
+        # Mock table lookup result
+        mock_table_result = Mock()
+        mock_table_result.fieldnames = ['schema_name', 'table_name', 'table_type', 'description', 'utype']
+        mock_table_row = {
+            'schema_name': 'gaia_dr3',
+            'table_name': 'gaia_dr3_source',
+            'table_type': 'table',
+            'description': 'Gaia DR3 source catalog',
+            'utype': None
+        }
+        mock_table_result.__iter__ = Mock(return_value=iter([mock_table_row]))
+        
+        # Mock schema lookup result
+        mock_schema_result = Mock()
+        mock_schema_result.fieldnames = ['schema_name', 'description', 'utype']
+        mock_schema_row = {
+            'schema_name': 'gaia_dr3',
+            'description': 'Gaia Data Release 3',
+            'utype': None
+        }
+        mock_schema_result.__iter__ = Mock(return_value=iter([mock_schema_row]))
+        
+        # Mock columns result
+        mock_columns_result = Mock()
+        mock_columns_result.fieldnames = ['table_name', 'column_name', 'datatype', 'description']
+        mock_column_rows = [
+            {
+                'table_name': 'gaia_dr3.gaia_dr3_source',
+                'column_name': 'source_id',
+                'datatype': 'long',
+                'description': 'Unique source identifier'
+            }
+        ]
+        mock_columns_result.__iter__ = Mock(return_value=iter(mock_column_rows))
+        
+        # Set up mock service to return different results based on query
+        mock_service = Mock()
+        def search_side_effect(query):
+            if 'TAP_SCHEMA.tables' in query and 'gaia_dr3_source' in query:
+                return mock_table_result
+            elif 'TAP_SCHEMA.schemas' in query:
+                return mock_schema_result
+            elif 'TAP_SCHEMA.columns' in query:
+                return mock_columns_result
+            else:
+                # Return empty result for keys queries
+                empty_result = Mock()
+                empty_result.fieldnames = []
+                empty_result.__iter__ = Mock(return_value=iter([]))
+                return empty_result
+        
+        mock_service.search.side_effect = search_side_effect
+        mock_tap_service.return_value = mock_service
+        
+        importer = TAPSchemaImporter('http://test.tap.server', self.db_path)
+        importer.connect()
+        
+        # Import table by name
+        success = importer.import_table_by_name('gaia_dr3_source', include_keys=False)
+        
+        # Verify success
+        self.assertTrue(success)
+        
+        # Verify table was inserted into database
+        with TAPSchemaDatabase(self.db_path) as db:
+            tables = db.query("SELECT * FROM tables WHERE table_name = 'gaia_dr3_source'")
+            self.assertEqual(len(tables), 1)
+            self.assertEqual(tables[0]['schema_name'], 'gaia_dr3')
+            self.assertEqual(tables[0]['table_name'], 'gaia_dr3_source')
+            
+            # Verify columns were inserted
+            columns = db.query("SELECT * FROM columns WHERE table_name = 'gaia_dr3.gaia_dr3_source'")
+            self.assertEqual(len(columns), 1)
+            self.assertEqual(columns[0]['column_name'], 'source_id')
+        
+        importer.close()
+
+
 class TestDatabaseOperations(unittest.TestCase):
     """Test database operations used by the importer."""
     

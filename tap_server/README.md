@@ -390,6 +390,11 @@ Import WISE AllWISE catalog from IRSA:
 python import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --schema wise_allwise
 ```
 
+Import a specific table by name:
+```bash
+python import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --table gaia_dr3_source
+```
+
 Import to a custom database location:
 ```bash
 python import_tap_schema.py --url <TAP_URL> --schema <schema> --db-path /path/to/my_db.sqlite
@@ -397,7 +402,7 @@ python import_tap_schema.py --url <TAP_URL> --schema <schema> --db-path /path/to
 
 Enable verbose logging:
 ```bash
-python import_tap_schema.py --url <TAP_URL> --schema <schema> --verbose
+python import_tap_schema.py --url <TAP_URL> --table <table> --verbose
 ```
 
 Skip foreign key import (faster):
@@ -408,10 +413,13 @@ python import_tap_schema.py --url <TAP_URL> --schema <schema> --no-keys
 #### Command-Line Options
 
 - `--url <URL>` (required): URL of the external TAP server
-- `--schema <name>` (required): Name of the schema/catalog to import
+- `--schema <name>`: Name of the schema/catalog to import (mutually exclusive with `--table`)
+- `--table <name>`: Name of a specific table to import (mutually exclusive with `--schema`)
 - `--db-path <path>`: Path to local SQLite database (default: `tap_schema.db`)
 - `--no-keys`: Skip importing foreign key relationships
 - `--verbose` or `-v`: Enable verbose debug logging
+
+**Note**: You must specify either `--schema` to import an entire schema or `--table` to import a specific table, but not both.
 
 #### Programmatic Usage
 
@@ -421,10 +429,14 @@ You can also use the import tool programmatically:
 from import_tap_schema import TAPSchemaImporter
 from tap_schema_db import TAPSchemaDatabase
 
-# Import schema metadata
+# Import entire schema metadata
 tap_url = 'https://gea.esac.esa.int/tap-server/tap'
 with TAPSchemaImporter(tap_url, 'my_catalog.db') as importer:
     importer.import_schema_metadata('gaiadr3', include_keys=True)
+
+# Or import a specific table by name
+with TAPSchemaImporter(tap_url, 'my_catalog.db') as importer:
+    importer.import_table_by_name('gaia_dr3_source', include_keys=True)
 
 # Query the imported metadata
 with TAPSchemaDatabase('my_catalog.db') as db:

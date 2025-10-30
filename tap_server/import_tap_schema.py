@@ -327,6 +327,74 @@ class TAPSchemaImporter:
             logger.warning(f"Could not import foreign keys: {e}")
             logger.info("Continuing without foreign key metadata...")
             
+    def import_table_by_name(self, table_name: str, include_keys: bool = True):
+        """
+        Import metadata for a specific table by its name from external TAP server.
+        
+        This method queries the TAP_SCHEMA.tables to find the table and its schema,
+        then imports all metadata for that table.
+        
+        Args:
+            table_name: Name of the table to import (e.g., 'gaia_dr3_source')
+            include_keys: Whether to import foreign key relationships
+            
+        Returns:
+            True if import successful, False otherwise
+        """
+        try:
+            logger.info(f"Looking up table: {table_name}")
+            
+            # Query for the table to find its schema
+            escaped_table = self._escape_adql_string(table_name)
+            tables = self.query_tap_schema_table(
+                'tables',
+                f"table_name = '{escaped_table}'"
+            )
+            
+            if not tables:
+                logger.error(f"Table '{table_name}' not found on TAP server")
+                return False
+            
+            table_data = tables[0]
+            schema_name = table_data.get('schema_name')
+            
+            logger.info(f"Found table '{table_name}' in schema '{schema_name}'")
+            
+            # Import the schema first
+            self.import_schema(schema_name)
+            
+            # Insert the table metadata
+            self.db.insert_table(
+                schema_name=schema_name,
+                table_name=table_data.get('table_name'),
+                table_type=table_data.get('table_type', 'table'),
+                description=table_data.get('description'),
+                utype=table_data.get('utype')
+            )
+            
+            # Build fully qualified table name
+            full_table_name = f"{schema_name}.{table_name}" if schema_name else table_name
+            logger.info(f"✓ Imported table: {full_table_name}")
+            
+            # Import columns for this table
+            self.import_columns([full_table_name])
+            
+            # Import foreign keys if requested
+            if include_keys:
+                self.import_keys([full_table_name])
+            
+            logger.info("=" * 70)
+            logger.info("Import completed successfully!")
+            logger.info(f"  Table: {table_name}")
+            logger.info(f"  Schema: {schema_name}")
+            logger.info("=" * 70)
+            
+            return True
+            
+        except Exception as e:
+            logger.error(f"Import failed: {e}")
+            raise
+    
     def import_schema_metadata(self, schema_name: str, include_keys: bool = True):
         """
         Import complete metadata for a schema from external TAP server.
@@ -373,8 +441,11 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Import Gaia DR3 schema from IRSA
+  # Import entire Gaia DR3 schema from IRSA
   python import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --schema gaiadr3
+  
+  # Import a specific table by name
+  python import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --table gaia_dr3_source
   
   # Import from Gaia TAP server
   python import_tap_schema.py --url https://gea.esac.esa.int/tap-server/tap --schema gaiadr3
@@ -383,7 +454,7 @@ Examples:
   python import_tap_schema.py --url <TAP_URL> --schema <schema> --db-path /path/to/db.sqlite
   
   # Skip foreign key import for faster processing
-  python import_tap_schema.py --url <TAP_URL> --schema <schema> --no-keys
+  python import_tap_schema.py --url <TAP_URL> --table <table> --no-keys
         """
     )
     
@@ -393,10 +464,15 @@ Examples:
         help='URL of the external TAP server (e.g., https://irsa.ipac.caltech.edu/TAP)'
     )
     
-    parser.add_argument(
+    # Create mutually exclusive group for schema or table
+    target_group = parser.add_mutually_exclusive_group(required=True)
+    target_group.add_argument(
         '--schema',
-        required=True,
         help='Name of the schema/catalog to import (e.g., gaiadr3, wise_allwise)'
+    )
+    target_group.add_argument(
+        '--table',
+        help='Name of a specific table to import (e.g., gaia_dr3_source)'
     )
     
     parser.add_argument(
@@ -429,22 +505,33 @@ Examples:
     print("TAP Schema Import Tool")
     print("=" * 70)
     print(f"TAP Server: {args.url}")
-    print(f"Schema: {args.schema}")
+    if args.schema:
+        print(f"Schema: {args.schema}")
+    else:
+        print(f"Table: {args.table}")
     print(f"Database: {args.db_path}")
     print("=" * 70)
     
     try:
         with TAPSchemaImporter(args.url, args.db_path) as importer:
-            success = importer.import_schema_metadata(
-                args.schema,
-                include_keys=not args.no_keys
-            )
+            if args.schema:
+                success = importer.import_schema_metadata(
+                    args.schema,
+                    include_keys=not args.no_keys
+                )
+                query_hint = f"SELECT * FROM tables WHERE schema_name = '{args.schema}';"
+            else:
+                success = importer.import_table_by_name(
+                    args.table,
+                    include_keys=not args.no_keys
+                )
+                query_hint = f"SELECT * FROM tables WHERE table_name = '{args.table}';"
             
             if success:
                 print("\n✓ Import completed successfully!")
                 print(f"\nYou can now query the metadata using:")
                 print(f"  sqlite3 {args.db_path}")
-                print(f"  SELECT * FROM tables WHERE schema_name = '{args.schema}';")
+                print(f"  {query_hint}")
                 sys.exit(0)
             else:
                 print("\n✗ Import failed!")
