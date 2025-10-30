@@ -219,12 +219,14 @@ class TAPSchemaImporter:
             
         return table_names
         
-    def import_columns(self, table_names: list[str]):
+    def import_columns(self, table_names: list[str], local_table_name: str = None):
         """
         Import columns for specified tables from the external TAP server.
         
         Args:
             table_names: List of fully qualified table names
+            local_table_name: Optional local name to use for storing columns.
+                            Only used when importing a single table with a different name.
         """
         logger.info(f"Importing columns for {len(table_names)} tables")
         
@@ -251,9 +253,12 @@ class TAPSchemaImporter:
                     value = col_data.get(field)
                     if value is not None:
                         kwargs[field] = value
-                        
+                
+                # Use local_table_name if provided and importing a single table, otherwise use original table name        
+                stored_table_name = local_table_name if local_table_name and len(table_names) == 1 else col_data.get('table_name')
+                
                 self.db.insert_column(
-                    table_name=col_data.get('table_name'),
+                    table_name=stored_table_name,
                     column_name=col_data.get('column_name'),
                     **kwargs
                 )
@@ -326,7 +331,7 @@ class TAPSchemaImporter:
             logger.warning(f"Could not import foreign keys: {e}")
             logger.info("Continuing without foreign key metadata...")
             
-    def import_table_by_name(self, table_name: str, include_keys: bool = True):
+    def import_table_by_name(self, table_name: str, include_keys: bool = True, local_table_name: str = None):
         """
         Import metadata for a specific table by its name from external TAP server.
         
@@ -336,6 +341,8 @@ class TAPSchemaImporter:
         Args:
             table_name: Name of the table to import (e.g., 'gaia_dr3_source')
             include_keys: Whether to import foreign key relationships
+            local_table_name: Optional name to use when storing the table locally.
+                            If not provided, the original table name is used.
             
         Returns:
             True if import successful, False otherwise
@@ -362,10 +369,13 @@ class TAPSchemaImporter:
             # Import the schema first
             self.import_schema(schema_name)
             
+            # Determine the name to use for storing the table locally
+            stored_table_name = local_table_name if local_table_name else table_data.get('table_name')
+            
             # Insert the table metadata
             self.db.insert_table(
                 schema_name=schema_name,
-                table_name=table_data.get('table_name'),
+                table_name=stored_table_name,
                 table_type=table_data.get('table_type', 'table'),
                 description=table_data.get('description'),
                 utype=table_data.get('utype')
@@ -373,10 +383,13 @@ class TAPSchemaImporter:
             
             # Use table name as-is from the TAP server (not schema.table format)
             # Some TAP servers store table_name in columns without schema prefix
-            logger.info(f"✓ Imported table: {table_name} (schema: {schema_name})")
+            if local_table_name:
+                logger.info(f"✓ Imported table: {table_name} as '{stored_table_name}' (schema: {schema_name})")
+            else:
+                logger.info(f"✓ Imported table: {table_name} (schema: {schema_name})")
             
             # Import columns for this table using the table name as-is
-            self.import_columns([table_name])
+            self.import_columns([table_name], local_table_name=stored_table_name)
             
             # Import foreign keys if requested
             if include_keys:
@@ -446,6 +459,9 @@ Examples:
   # Import a specific table by name
   python import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --table gaia_dr3_source
   
+  # Import a table with a different local name
+  python import_tap_schema.py --url https://irsa.ipac.caltech.edu/TAP --table gaia_dr3_source --local-table-name my_gaia_table
+  
   # Import from Gaia TAP server
   python import_tap_schema.py --url https://gea.esac.esa.int/tap-server/tap --schema gaiadr3
   
@@ -475,6 +491,12 @@ Examples:
     )
     
     parser.add_argument(
+        '--local-table-name',
+        help='Optional local name for the imported table (only valid with --table). '
+             'Use this to store the table with a different name in the local database.'
+    )
+    
+    parser.add_argument(
         '--db-path',
         default='tap_schema.db',
         help='Path to the local SQLite database (default: tap_schema.db)'
@@ -495,6 +517,10 @@ Examples:
     
     args = parser.parse_args()
     
+    # Validate that --local-table-name is only used with --table
+    if args.local_table_name and not args.table:
+        parser.error("--local-table-name can only be used with --table")
+    
     # Set logging level
     if args.verbose:
         logger.setLevel(logging.DEBUG)
@@ -508,6 +534,8 @@ Examples:
         print(f"Schema: {args.schema}")
     else:
         print(f"Table: {args.table}")
+        if args.local_table_name:
+            print(f"Local table name: {args.local_table_name}")
     print(f"Database: {args.db_path}")
     print("=" * 70)
     
@@ -522,9 +550,11 @@ Examples:
             else:
                 success = importer.import_table_by_name(
                     args.table,
-                    include_keys=not args.no_keys
+                    include_keys=not args.no_keys,
+                    local_table_name=args.local_table_name
                 )
-                query_hint = f"SELECT * FROM tables WHERE table_name = '{args.table}';"
+                display_table_name = args.local_table_name if args.local_table_name else args.table
+                query_hint = f"SELECT * FROM tables WHERE table_name = '{display_table_name}';"
             
             if success:
                 print("\n✓ Import completed successfully!")

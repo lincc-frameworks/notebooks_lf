@@ -403,6 +403,101 @@ class TestTableImport(unittest.TestCase):
             self.assertEqual(columns[0]['column_name'], 'source_id')
         
         importer.close()
+    
+    @patch('import_tap_schema.pyvo.dal.TAPService')
+    def test_import_table_with_local_name(self, mock_tap_service):
+        """Test importing a table with a different local name."""
+        # Mock table lookup result
+        mock_table_result = Mock()
+        mock_table_result.fieldnames = ['schema_name', 'table_name', 'table_type', 'description', 'utype']
+        mock_table_row = {
+            'schema_name': 'gaia_dr3',
+            'table_name': 'gaia_dr3_source',
+            'table_type': 'table',
+            'description': 'Gaia DR3 source catalog',
+            'utype': None
+        }
+        mock_table_result.__iter__ = Mock(return_value=iter([mock_table_row]))
+        
+        # Mock schema lookup result
+        mock_schema_result = Mock()
+        mock_schema_result.fieldnames = ['schema_name', 'description', 'utype']
+        mock_schema_row = {
+            'schema_name': 'gaia_dr3',
+            'description': 'Gaia Data Release 3',
+            'utype': None
+        }
+        mock_schema_result.__iter__ = Mock(return_value=iter([mock_schema_row]))
+        
+        # Mock columns result
+        mock_columns_result = Mock()
+        mock_columns_result.fieldnames = ['table_name', 'column_name', 'datatype', 'description']
+        mock_column_rows = [
+            {
+                'table_name': 'gaia_dr3_source',
+                'column_name': 'source_id',
+                'datatype': 'long',
+                'description': 'Unique source identifier'
+            },
+            {
+                'table_name': 'gaia_dr3_source',
+                'column_name': 'ra',
+                'datatype': 'double',
+                'description': 'Right ascension'
+            }
+        ]
+        mock_columns_result.__iter__ = Mock(return_value=iter(mock_column_rows))
+        
+        # Set up mock service to return different results based on query
+        mock_service = Mock()
+        def search_side_effect(query):
+            if 'TAP_SCHEMA.tables' in query and 'gaia_dr3_source' in query:
+                return mock_table_result
+            elif 'TAP_SCHEMA.schemas' in query:
+                return mock_schema_result
+            elif 'TAP_SCHEMA.columns' in query:
+                return mock_columns_result
+            else:
+                # Return empty result for keys queries
+                empty_result = Mock()
+                empty_result.fieldnames = []
+                empty_result.__iter__ = Mock(return_value=iter([]))
+                return empty_result
+        
+        mock_service.search.side_effect = search_side_effect
+        mock_tap_service.return_value = mock_service
+        
+        importer = TAPSchemaImporter('http://test.tap.server', self.db_path)
+        importer.connect()
+        
+        # Import table with a different local name
+        success = importer.import_table_by_name('gaia_dr3_source', include_keys=False, local_table_name='my_custom_table')
+        
+        # Verify success
+        self.assertTrue(success)
+        
+        # Verify table was inserted with the custom name
+        with TAPSchemaDatabase(self.db_path) as db:
+            tables = db.query("SELECT * FROM tables WHERE table_name = 'my_custom_table'")
+            self.assertEqual(len(tables), 1)
+            self.assertEqual(tables[0]['schema_name'], 'gaia_dr3')
+            self.assertEqual(tables[0]['table_name'], 'my_custom_table')
+            
+            # Verify the original table name is not in the database
+            original_tables = db.query("SELECT * FROM tables WHERE table_name = 'gaia_dr3_source'")
+            self.assertEqual(len(original_tables), 0)
+            
+            # Verify columns were inserted with the custom table name
+            columns = db.query("SELECT * FROM columns WHERE table_name = 'my_custom_table'")
+            self.assertEqual(len(columns), 2)
+            self.assertEqual(columns[0]['column_name'], 'source_id')
+            self.assertEqual(columns[1]['column_name'], 'ra')
+            
+            # Verify columns are not stored with the original table name
+            original_columns = db.query("SELECT * FROM columns WHERE table_name = 'gaia_dr3_source'")
+            self.assertEqual(len(original_columns), 0)
+        
+        importer.close()
 
 
 class TestDatabaseOperations(unittest.TestCase):
