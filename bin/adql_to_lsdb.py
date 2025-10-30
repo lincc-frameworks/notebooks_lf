@@ -75,8 +75,8 @@ class LSDBFormatListener(FormatListener):
         if self._current_circle:
             self.entities["spatial_search"] = {
                 "type": "ConeSearch",
-                "ra": self._current_point["ra"],
-                "dec": self._current_point["dec"],
+                "ra": self._current_circle["ra"],
+                "dec": self._current_circle["dec"],
                 "radius": self._current_circle["radius"],
             }
         elif self._current_polygon:
