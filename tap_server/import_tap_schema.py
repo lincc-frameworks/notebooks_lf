@@ -52,6 +52,20 @@ class TAPSchemaImporter:
         self.service = None
         self.db = None
         
+    @staticmethod
+    def _escape_adql_string(value: str) -> str:
+        """
+        Escape a string value for safe use in ADQL queries.
+        
+        Args:
+            value: String to escape
+            
+        Returns:
+            Escaped string safe for ADQL query
+        """
+        # Escape single quotes by doubling them (SQL/ADQL standard)
+        return value.replace("'", "''")
+        
     def connect(self):
         """Connect to both the TAP service and local database."""
         logger.info(f"Connecting to TAP service: {self.tap_url}")
@@ -94,6 +108,10 @@ class TAPSchemaImporter:
         Returns:
             List of dictionaries containing the query results
         """
+        # Validate table_name to prevent injection (allow only alphanumeric and underscores)
+        if not table_name.replace('_', '').isalnum():
+            raise ValueError(f"Invalid table name: {table_name}")
+            
         query = f"SELECT * FROM TAP_SCHEMA.{table_name}"
         if where_clause:
             query += f" WHERE {where_clause}"
@@ -109,8 +127,12 @@ class TAPSchemaImporter:
                 for col_name in result.fieldnames:
                     value = row[col_name]
                     # Handle masked values (NULLs)
-                    if hasattr(value, 'mask') and value.mask:
-                        value = None
+                    try:
+                        if hasattr(value, 'mask') and value.mask:
+                            value = None
+                    except (AttributeError, ValueError):
+                        # If mask check fails, keep the original value
+                        pass
                     row_dict[col_name] = value
                 data.append(row_dict)
             return data
@@ -129,9 +151,10 @@ class TAPSchemaImporter:
         logger.info(f"Importing schema: {schema_name}")
         
         # Query for the schema
+        escaped_schema = self._escape_adql_string(schema_name)
         schemas = self.query_tap_schema_table(
             'schemas', 
-            f"schema_name = '{schema_name}'"
+            f"schema_name = '{escaped_schema}'"
         )
         
         if not schemas:
@@ -163,9 +186,10 @@ class TAPSchemaImporter:
         logger.info(f"Importing tables for schema: {schema_name}")
         
         # Query for tables in the schema
+        escaped_schema = self._escape_adql_string(schema_name)
         tables = self.query_tap_schema_table(
             'tables',
-            f"schema_name = '{schema_name}'"
+            f"schema_name = '{escaped_schema}'"
         )
         
         if not tables:
@@ -207,9 +231,10 @@ class TAPSchemaImporter:
         total_columns = 0
         for table_name in table_names:
             # Query for columns in this table
+            escaped_table = self._escape_adql_string(table_name)
             columns = self.query_tap_schema_table(
                 'columns',
-                f"table_name = '{table_name}'"
+                f"table_name = '{escaped_table}'"
             )
             
             if not columns:
@@ -278,9 +303,10 @@ class TAPSchemaImporter:
                 
                 # Import key columns
                 key_id = key_data.get('key_id')
+                escaped_key_id = self._escape_adql_string(str(key_id))
                 key_columns = self.query_tap_schema_table(
                     'key_columns',
-                    f"key_id = '{key_id}'"
+                    f"key_id = '{escaped_key_id}'"
                 )
                 
                 for kc_data in key_columns:

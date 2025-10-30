@@ -234,6 +234,79 @@ class TestTAPSchemaImporter(unittest.TestCase):
         importer.close()
 
 
+class TestSecurityFeatures(unittest.TestCase):
+    """Test security features of the importer."""
+    
+    def setUp(self):
+        """Set up test fixtures."""
+        self.temp_db = tempfile.NamedTemporaryFile(delete=False, suffix='.db')
+        self.temp_db.close()
+        self.db_path = self.temp_db.name
+        
+    def tearDown(self):
+        """Clean up test fixtures."""
+        if os.path.exists(self.db_path):
+            os.unlink(self.db_path)
+            
+    @patch('import_tap_schema.pyvo.dal.TAPService')
+    def test_adql_string_escaping(self, mock_tap_service):
+        """Test that single quotes in schema names are properly escaped."""
+        mock_result = Mock()
+        mock_result.fieldnames = ['schema_name']
+        mock_result.__iter__ = Mock(return_value=iter([]))
+        
+        mock_service = Mock()
+        mock_service.search.return_value = mock_result
+        mock_tap_service.return_value = mock_service
+        
+        importer = TAPSchemaImporter('http://test.tap.server', self.db_path)
+        importer.connect()
+        
+        # Try to import a schema with a single quote (potential SQL injection)
+        schema_name = "test'schema"
+        importer.import_schema(schema_name)
+        
+        # Verify the query was called with escaped quotes
+        mock_service.search.assert_called()
+        call_args = mock_service.search.call_args[0][0]
+        # Single quote should be doubled for ADQL/SQL escaping
+        self.assertIn("test''schema", call_args)
+        self.assertNotIn("test'schema", call_args.replace("test''schema", ""))
+        
+        importer.close()
+        
+    @patch('import_tap_schema.pyvo.dal.TAPService')
+    def test_table_name_validation(self, mock_tap_service):
+        """Test that invalid table names are rejected."""
+        # Set up mock result for valid queries
+        mock_result = Mock()
+        mock_result.fieldnames = ['test']
+        mock_result.__iter__ = Mock(return_value=iter([]))
+        
+        mock_service = Mock()
+        mock_service.search.return_value = mock_result
+        mock_tap_service.return_value = mock_service
+        
+        importer = TAPSchemaImporter('http://test.tap.server', self.db_path)
+        importer.connect()
+        
+        # Try to query with an invalid table name (potential injection)
+        with self.assertRaises(ValueError):
+            importer.query_tap_schema_table('tables; DROP TABLE schemas--')
+        
+        with self.assertRaises(ValueError):
+            importer.query_tap_schema_table('../etc/passwd')
+        
+        # Valid table names should work
+        try:
+            importer.query_tap_schema_table('tables')
+            importer.query_tap_schema_table('key_columns')
+        except ValueError:
+            self.fail("Valid table names should not raise ValueError")
+        
+        importer.close()
+
+
 class TestDatabaseOperations(unittest.TestCase):
     """Test database operations used by the importer."""
     
