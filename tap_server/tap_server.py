@@ -196,6 +196,10 @@ def create_votable_response(data, columns, query_info, column_metadata=None):
             if meta.get('ucd'):
                 field_attrs['ucd'] = meta['ucd']
         else:
+            # Warn about missing metadata
+            table_name = query_info.get('table', 'unknown')
+            print(f"WARNING: Missing metadata for column '{col}' in table '{table_name}'. Using fallback values.")
+            
             # Fallback: Handle special astronomical columns with hard-coded values
             if col.lower() in ['ra', 'ra_deg']:
                 field_attrs['unit'] = 'deg'
