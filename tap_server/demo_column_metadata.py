@@ -4,12 +4,8 @@ Demonstration script showing how column metadata is retrieved from tap_schema.db
 and used in VOTable responses.
 """
 
-import sys
 import os
 import xml.etree.ElementTree as ET
-
-# Add the tap_server directory to the path
-sys.path.insert(0, os.path.dirname(__file__))
 
 from tap_schema_db import TAPSchemaDatabase
 
@@ -99,12 +95,12 @@ def demonstrate_votable_field_generation():
     for row in results:
         field_attrs = {
             'name': row['column_name'],
-            'datatype': row['datatype'] if row['datatype'] else 'char'
+            'datatype': row.get('datatype', 'char')
         }
         
-        if row['unit']:
+        if row.get('unit'):
             field_attrs['unit'] = row['unit']
-        if row['ucd']:
+        if row.get('ucd'):
             field_attrs['ucd'] = row['ucd']
         
         field = ET.SubElement(table, 'FIELD', field_attrs)
