@@ -422,7 +422,8 @@ def sync_query():
                 catalog_url,
                 columns=entities['columns'],
                 search_filter=search_filter,
-                # filters=filters,  # what is wrong with these?  The error messages are atrociously novel
+                # NOTE: these filters sort of work, but fail with string values like "VARIABLE"
+                filters=filters,
                 )
             result_df = cat.head(entities['limits'])
 
