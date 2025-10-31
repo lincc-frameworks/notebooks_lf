@@ -514,47 +514,98 @@ def capabilities():
     return Response(xml, mimetype='application/xml')
 
 
+def generate_tables_xml():
+    """
+    Generate tables metadata XML from tap_schema.db.
+    
+    Returns:
+        String containing tableset XML with schemas, tables, and columns
+    """
+    # Create tableset root element
+    tableset = ET.Element('tableset', {
+        'xmlns': 'http://www.ivoa.net/xml/VODataService/v1.1'
+    })
+    
+    try:
+        # Query schemas from database
+        tap_schema_db.connect()
+        schemas = tap_schema_db.query("SELECT schema_name, description FROM schemas ORDER BY schema_name")
+        
+        for schema_row in schemas:
+            schema_name = schema_row['schema_name']
+            
+            # Create schema element
+            schema_elem = ET.SubElement(tableset, 'schema')
+            name_elem = ET.SubElement(schema_elem, 'name')
+            name_elem.text = schema_name
+            
+            if schema_row.get('description'):
+                desc_elem = ET.SubElement(schema_elem, 'description')
+                desc_elem.text = schema_row['description']
+            
+            # Query tables for this schema
+            tables = tap_schema_db.query(
+                "SELECT table_name, description FROM tables WHERE schema_name = ? ORDER BY table_name",
+                (schema_name,)
+            )
+            
+            for table_row in tables:
+                table_name = table_row['table_name']
+                
+                # Create table element
+                table_elem = ET.SubElement(schema_elem, 'table')
+                table_name_elem = ET.SubElement(table_elem, 'name')
+                table_name_elem.text = table_name
+                
+                if table_row.get('description'):
+                    table_desc_elem = ET.SubElement(table_elem, 'description')
+                    table_desc_elem.text = table_row['description']
+                
+                # Query columns for this table
+                # Table names in columns table are fully qualified (schema.table)
+                full_table_name = f"{schema_name}.{table_name}"
+                columns = tap_schema_db.query(
+                    "SELECT column_name, datatype, unit, ucd, description FROM columns WHERE table_name = ? ORDER BY column_name",
+                    (full_table_name,)
+                )
+                
+                for column_row in columns:
+                    # Create column element
+                    column_elem = ET.SubElement(table_elem, 'column')
+                    
+                    col_name_elem = ET.SubElement(column_elem, 'name')
+                    col_name_elem.text = column_row['column_name']
+                    
+                    if column_row.get('datatype'):
+                        datatype_elem = ET.SubElement(column_elem, 'dataType')
+                        datatype_elem.text = column_row['datatype']
+                    
+                    if column_row.get('unit'):
+                        unit_elem = ET.SubElement(column_elem, 'unit')
+                        unit_elem.text = column_row['unit']
+                    
+                    if column_row.get('ucd'):
+                        ucd_elem = ET.SubElement(column_elem, 'ucd')
+                        ucd_elem.text = column_row['ucd']
+                    
+                    if column_row.get('description'):
+                        col_desc_elem = ET.SubElement(column_elem, 'description')
+                        col_desc_elem.text = column_row['description']
+        
+        # Format and return the XML with proper indentation
+        return format_xml_with_indentation(tableset)
+        
+    except Exception as e:
+        # Note: Using print() for consistency with existing error handling in this file
+        print(f"ERROR: Failed to generate tables XML from tap_schema.db: {e}")
+        # Return minimal valid XML on error
+        return '<?xml version="1.0" encoding="UTF-8"?>\n<tableset xmlns="http://www.ivoa.net/xml/VODataService/v1.1"/>'
+
+
 @app.route('/tables')
 def tables():
-    """Return available tables metadata."""
-    xml = """<?xml version="1.0" encoding="UTF-8"?>
-<tableset xmlns="http://www.ivoa.net/xml/VODataService/v1.1">
-    <schema>
-        <name>tap_schema</name>
-        <description>Sample astronomical catalogs</description>
-        <table>
-            <name>ztf_dr14</name>
-            <description>ZTF Data Release 14 (sample)</description>
-            <column>
-                <name>id</name>
-                <dataType>long</dataType>
-                <description>Object ID</description>
-            </column>
-            <column>
-                <name>ra</name>
-                <dataType>double</dataType>
-                <unit>deg</unit>
-                <ucd>pos.eq.ra;meta.main</ucd>
-                <description>Right Ascension</description>
-            </column>
-            <column>
-                <name>dec</name>
-                <dataType>double</dataType>
-                <unit>deg</unit>
-                <ucd>pos.eq.dec;meta.main</ucd>
-                <description>Declination</description>
-            </column>
-            <column>
-                <name>mag</name>
-                <dataType>double</dataType>
-                <unit>mag</unit>
-                <ucd>phot.mag</ucd>
-                <description>Magnitude</description>
-            </column>
-        </table>
-    </schema>
-</tableset>
-"""
+    """Return available tables metadata from tap_schema.db."""
+    xml = generate_tables_xml()
     return Response(xml, mimetype='application/xml')
 
 
