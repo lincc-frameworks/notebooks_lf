@@ -121,50 +121,6 @@ class TestCapabilitiesEndpoint(unittest.TestCase):
                 f"Required geometric function '{required}' not found in capabilities"
             )
 
-    def test_circle_feature(self):
-        """Test that CIRCLE is listed as a supported feature."""
-        response = self.client.get('/capabilities')
-        root = ET.fromstring(response.data)
-        
-        ns = {'vosi': 'http://www.ivoa.net/xml/VOSICapabilities/v1.0'}
-        features = root.findall('.//vosi:languageFeatures/vosi:feature/vosi:form', ns)
-        feature_names = [f.text for f in features]
-        
-        self.assertIn('CIRCLE', feature_names, "CIRCLE feature not found")
-
-    def test_point_feature(self):
-        """Test that POINT is listed as a supported feature."""
-        response = self.client.get('/capabilities')
-        root = ET.fromstring(response.data)
-        
-        ns = {'vosi': 'http://www.ivoa.net/xml/VOSICapabilities/v1.0'}
-        features = root.findall('.//vosi:languageFeatures/vosi:feature/vosi:form', ns)
-        feature_names = [f.text for f in features]
-        
-        self.assertIn('POINT', feature_names, "POINT feature not found")
-
-    def test_contains_feature(self):
-        """Test that CONTAINS is listed as a supported feature."""
-        response = self.client.get('/capabilities')
-        root = ET.fromstring(response.data)
-        
-        ns = {'vosi': 'http://www.ivoa.net/xml/VOSICapabilities/v1.0'}
-        features = root.findall('.//vosi:languageFeatures/vosi:feature/vosi:form', ns)
-        feature_names = [f.text for f in features]
-        
-        self.assertIn('CONTAINS', feature_names, "CONTAINS feature not found")
-
-    def test_polygon_feature(self):
-        """Test that POLYGON is listed as a supported feature."""
-        response = self.client.get('/capabilities')
-        root = ET.fromstring(response.data)
-        
-        ns = {'vosi': 'http://www.ivoa.net/xml/VOSICapabilities/v1.0'}
-        features = root.findall('.//vosi:languageFeatures/vosi:feature/vosi:form', ns)
-        feature_names = [f.text for f in features]
-        
-        self.assertIn('POLYGON', feature_names, "POLYGON feature not found")
-
 
 if __name__ == '__main__':
     unittest.main()
