@@ -529,7 +529,7 @@ def generate_tables_xml():
     try:
         # Query schemas from database
         tap_schema_db.connect()
-        schemas = tap_schema_db.query("SELECT * FROM schemas ORDER BY schema_name")
+        schemas = tap_schema_db.query("SELECT schema_name, description FROM schemas ORDER BY schema_name")
         
         for schema_row in schemas:
             schema_name = schema_row['schema_name']
@@ -545,7 +545,7 @@ def generate_tables_xml():
             
             # Query tables for this schema
             tables = tap_schema_db.query(
-                "SELECT * FROM tables WHERE schema_name = ? ORDER BY table_name",
+                "SELECT table_name, description FROM tables WHERE schema_name = ? ORDER BY table_name",
                 (schema_name,)
             )
             
@@ -565,7 +565,7 @@ def generate_tables_xml():
                 # Table names in columns table are fully qualified (schema.table)
                 full_table_name = f"{schema_name}.{table_name}"
                 columns = tap_schema_db.query(
-                    "SELECT * FROM columns WHERE table_name = ? ORDER BY column_name",
+                    "SELECT column_name, datatype, unit, ucd, description FROM columns WHERE table_name = ? ORDER BY column_name",
                     (full_table_name,)
                 )
                 
@@ -596,7 +596,8 @@ def generate_tables_xml():
         return format_xml_with_indentation(tableset)
         
     except Exception as e:
-        print(f"Error generating tables XML: {e}")
+        # Note: Using print() for consistency with existing error handling in this file
+        print(f"ERROR: Failed to generate tables XML from tap_schema.db: {e}")
         # Return minimal valid XML on error
         return '<?xml version="1.0" encoding="UTF-8"?>\n<tableset xmlns="http://www.ivoa.net/xml/VODataService/v1.1"/>'
 

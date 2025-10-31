@@ -9,6 +9,7 @@ import tempfile
 import os
 import sys
 import xml.etree.ElementTree as ET
+from contextlib import contextmanager
 
 # Add the tap_server directory to the path
 sys.path.insert(0, os.path.dirname(__file__))
@@ -16,14 +17,43 @@ sys.path.insert(0, os.path.dirname(__file__))
 from tap_schema_db import TAPSchemaDatabase
 
 
+@contextmanager
+def patch_tap_schema_db(test_db_path):
+    """
+    Context manager to temporarily patch the global tap_schema_db with a test database.
+    
+    Args:
+        test_db_path: Path to the test database file
+        
+    Yields:
+        The patched global tap_schema_db object
+    """
+    from tap_server import tap_schema_db as global_db
+    
+    # Save original state
+    original_path = global_db.db_path
+    original_connection = global_db.connection
+    
+    # Patch with test database
+    global_db.db_path = test_db_path
+    global_db.connection = None  # Force reconnect
+    
+    try:
+        yield global_db
+    finally:
+        # Restore original state
+        global_db.db_path = original_path
+        global_db.connection = original_connection
+
+
 class TestTablesEndpoint(unittest.TestCase):
     """Test the tables endpoint and generate_tables_xml function."""
     
     def setUp(self):
         """Create a temporary database for testing."""
-        self.temp_db = tempfile.NamedTemporaryFile(delete=False, suffix='.db')
-        self.temp_db.close()
-        self.db_path = self.temp_db.name
+        # Use mkstemp for better control and security
+        fd, self.db_path = tempfile.mkstemp(suffix='.db')
+        os.close(fd)  # Close the file descriptor immediately
         
         # Initialize database with test data
         with TAPSchemaDatabase(self.db_path) as db:
@@ -44,20 +74,17 @@ class TestTablesEndpoint(unittest.TestCase):
     
     def tearDown(self):
         """Clean up temporary database."""
-        if os.path.exists(self.db_path):
-            os.unlink(self.db_path)
+        try:
+            if hasattr(self, 'db_path') and os.path.exists(self.db_path):
+                os.unlink(self.db_path)
+        except Exception as e:
+            print(f"Warning: Failed to clean up temporary database: {e}")
     
     def test_generate_tables_xml_structure(self):
         """Test that generate_tables_xml creates valid XML."""
-        # Import the function (need to patch the global tap_schema_db first)
-        from tap_server import generate_tables_xml, tap_schema_db as global_db
+        from tap_server import generate_tables_xml
         
-        # Temporarily replace the global database with our test database
-        original_path = global_db.db_path
-        global_db.db_path = self.db_path
-        global_db.connection = None  # Force reconnect
-        
-        try:
+        with patch_tap_schema_db(self.db_path):
             xml_str = generate_tables_xml()
             
             # Parse XML to verify it's valid
@@ -122,22 +149,12 @@ class TestTablesEndpoint(unittest.TestCase):
             # col2 should not have unit or ucd
             self.assertIsNone(col2.find('vod:unit', ns))
             self.assertIsNone(col2.find('vod:ucd', ns))
-            
-        finally:
-            # Restore original database path
-            global_db.db_path = original_path
-            global_db.connection = None
     
     def test_tables_endpoint_with_flask(self):
         """Test the /tables endpoint using Flask test client."""
-        from tap_server import app, tap_schema_db as global_db
+        from tap_server import app
         
-        # Temporarily replace the global database with our test database
-        original_path = global_db.db_path
-        global_db.db_path = self.db_path
-        global_db.connection = None
-        
-        try:
+        with patch_tap_schema_db(self.db_path):
             with app.test_client() as client:
                 response = client.get('/tables')
                 
@@ -158,11 +175,6 @@ class TestTablesEndpoint(unittest.TestCase):
                 schemas = root.findall('vod:schema', ns)
                 schema_names = [s.find('vod:name', ns).text for s in schemas]
                 self.assertIn('test_schema', schema_names)
-                
-        finally:
-            # Restore original database path
-            global_db.db_path = original_path
-            global_db.connection = None
 
 
 if __name__ == '__main__':
