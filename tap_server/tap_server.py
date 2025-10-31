@@ -503,6 +503,20 @@ def capabilities():
         <language>
             <name>ADQL</name>
             <version ivo-id="ivo://ivoa.net/std/ADQL#v2.0">2.0</version>
+            <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adqlgeo">
+                <feature>
+                    <form>CIRCLE</form>
+                </feature>
+                <feature>
+                    <form>POINT</form>
+                </feature>
+                <feature>
+                    <form>CONTAINS</form>
+                </feature>
+                <feature>
+                    <form>POLYGON</form>
+                </feature>
+            </languageFeatures>
         </language>
         <outputFormat>
             <mime>application/xml</mime>
