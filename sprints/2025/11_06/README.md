@@ -4,15 +4,28 @@ Remember to record!!
 
 ## Doug
 
+(incubator things)
+
 ## Sandro
+
+- something PPDB - maybe the hats-import part of it.
 
 ## Kostya
 
+- hug your face
+
 ## Sean
+
+OoO
 
 ## Derek
 
+- TAP service.
+- (stretch) left join progress
+
 ## Melissa
+
+- VOParquet metadata generation.
 
 # Seeking feedback
 
