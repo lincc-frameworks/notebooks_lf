@@ -422,12 +422,30 @@ class LSDBFormatListener(FormatListener):
         return super().enterFrom_clause(ctx)
 
     def _extract_sort_tokens(self, ctx):
-        """Extract sort tokens from the ORDER BY clause context.
+        """Extract sort tokens from an ORDER BY clause.
 
-        Expects tree structure such as:
-        child: <class 'antlr4.tree.Tree.TerminalNodeImpl'> - ORDER
-        child: <class 'antlr4.tree.Tree.TerminalNodeImpl'> - BY
-        child: <class 'queryparser.adql.ADQLParser.ADQLParser.Sort_specification_listContext'> - ra,decDESC
+        Parameters
+        ----------
+        ctx : ADQLParser.Order_by_clauseContext
+            The ORDER BY parse subtree.
+
+        Notes
+        -----
+        Expected tree shape, for example query "ORDER BY ra, dec DESC":
+
+            ORDER BY
+            └── Sort_specification_list  (text: "ra,decDESC")
+                ├── Sort_specification   (text: "ra")
+                │   └── Sort_key         (text: "ra")
+                ├── ','                  (comma)
+                └── Sort_specification   (text: "decDESC")
+                    ├── Sort_key         (text: "dec")
+                    └── Ordering_specification (text: "DESC")
+
+        Returns
+        -------
+        list of str
+            List of sort tokens in order, e.g. ['ra', 'dec', 'DESC']
         """
         sort_tokens = []
         for child in ctx.children:
