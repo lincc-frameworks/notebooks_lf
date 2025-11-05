@@ -43,6 +43,7 @@ class LSDBFormatListener(FormatListener):
             "spatial_search": None,
             "conditions": [],
             "limits": None,
+            "order_by": [],
         }
         # Track parsing context
         self._in_contains = False
@@ -420,6 +421,91 @@ class LSDBFormatListener(FormatListener):
 
         return super().enterFrom_clause(ctx)
 
+    def _extract_sort_tokens(self, ctx):
+        """Extract sort tokens from an ORDER BY clause.
+
+        Parameters
+        ----------
+        ctx : ADQLParser.Order_by_clauseContext
+            The ORDER BY parse subtree.
+
+        Notes
+        -----
+        Expected tree shape, for example query "ORDER BY ra, dec DESC":
+
+            ORDER BY
+            └── Sort_specification_list  (text: "ra,decDESC")
+                ├── Sort_specification   (text: "ra")
+                │   └── Sort_key         (text: "ra")
+                ├── ','                  (comma)
+                └── Sort_specification   (text: "decDESC")
+                    ├── Sort_key         (text: "dec")
+                    └── Ordering_specification (text: "DESC")
+
+        Returns
+        -------
+        list of str
+            List of sort tokens in order, e.g. ['ra', 'dec', 'DESC']
+        """
+        sort_tokens = []
+        for child in ctx.children:
+            if hasattr(child, "children"):
+                # Non-terminal node
+                spec = self._parse_sort_specification(child)
+                sort_tokens.extend(spec)
+            else:
+                # Terminal node
+                text = child.getText().strip()
+                if text and text not in (",", "ORDER", "BY"):
+                    raise NotImplementedError(f"Unexpected terminal node in ORDER BY clause: '{text}'")
+        return sort_tokens
+
+    def _parse_sort_specification(self, node):
+        """Parse individual sort specification from the parse tree node.
+
+        Expects tree structure such as:
+        child: <class 'queryparser.adql.ADQLParser.ADQLParser.Sort_specificationContext'> - ra
+        child: <class 'antlr4.tree.Tree.TerminalNodeImpl'> - ,
+        child: <class 'queryparser.adql.ADQLParser.ADQLParser.Sort_specificationContext'> - decDESC
+
+        Sort_specificationContext nodes are then parsed to extract column and ASC/DESC.
+        """
+        tokens = []
+        for child in node.children:
+            # Only interested in non-terminal nodes
+            if hasattr(child, "children"):
+                for grandchild in child.children:
+                    # Here is where we expect to find column names and ASC/DESC
+                    if hasattr(grandchild, "getText"):
+                        text = grandchild.getText().strip()
+                        if text and text not in (",", "ORDER", "BY"):
+                            tokens.append(text)
+        return tokens
+
+    def enterOrder_by_clause(self, ctx):
+        """Parse ORDER BY clause into a list of (column, asc_bool) tuples."""
+        order_by_list = self._extract_sort_tokens(ctx)
+
+        # Arrange into (column, asc_bool) tuples
+        order_by_tuples = []
+        i = 0
+        while i < len(order_by_list):
+            col = order_by_list[i]
+            asc = True  # Default to ascending
+            if i + 1 < len(order_by_list):
+                next_token = order_by_list[i + 1].upper()
+                if next_token == "ASC":
+                    asc = True
+                    i += 1  # Skip next token
+                elif next_token == "DESC":
+                    asc = False
+                    i += 1  # Skip next token
+            order_by_tuples.append((col, asc))
+            i += 1
+
+        # Store into entities
+        self.entities["order_by"] = order_by_tuples
+
     def get_entities(self):
         return self.entities
 
@@ -515,6 +601,14 @@ def format_lsdb_code(entities: dict) -> str:
         code += f"result = cat.head({limit_value})\n"
     else:
         code += "result = cat.compute()\n"
+
+    # Apply ORDER BY using pandas if requested
+    order_by = entities.get("order_by") or []
+    if order_by:
+        cols = ", ".join(repr(col) for col, _ in order_by)
+        asc_list = ", ".join("True" if asc else "False" for _, asc in order_by)
+        # Use sort_values and reassign to result
+        code += f"result = result.sort_values(by=[{cols}], ascending=[{asc_list}])\n"
 
     return code
 
