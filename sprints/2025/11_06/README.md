@@ -1,5 +1,10 @@
 Remember to record!!
 
+
+## Kostya
+
+- hug your face [NB](hf-s3-xmatch.ipynb)
+
 ## Olivia
 
 ## Doug
@@ -9,10 +14,6 @@ Remember to record!!
 ## Sandro
 
 - something PPDB - maybe the hats-import part of it.
-
-## Kostya
-
-- hug your face
 
 ## Sean
 
