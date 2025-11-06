@@ -410,7 +410,7 @@ def sync_query():
                 if spatial['type'] == 'ConeSearch':
                     ra = spatial['ra']
                     dec = spatial['dec']
-                    filters=entities['conditions'],
+                    filters=entities['conditions']
                     print(filters)
                     search_filter = lsdb.ConeSearch(
                         ra=spatial['ra'],
