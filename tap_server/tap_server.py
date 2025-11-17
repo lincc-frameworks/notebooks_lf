@@ -397,7 +397,8 @@ def sync_query():
             # Convert table name like 'gaiadr3.gaia' to URL format
             # catalog_prefix = "https://data.lsdb.io/hats"
             # catalog_prefix = "http://epyc.astro.washington.edu:43210/hats"
-            catalog_prefix = "/epyc/data3/hats/catalogs"
+            # catalog_prefix = "/epyc/data3/hats/catalogs"
+            catalog_prefix = "/var/www/data.lsdb.io/html/hats"
             if '.' in table:
                 parts = table.split('.')
                 catalog_url = f"{catalog_prefix}/{parts[0]}/{parts[1]}/"
