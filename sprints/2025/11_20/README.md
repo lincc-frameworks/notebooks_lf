@@ -23,7 +23,7 @@ Related: Import Pipeline page/diagram [on this branch](https://github.com/astron
 - [Crossmatching kwargs](https://github.com/astronomy-commons/lsdb/issues/946)
 
 ## Sean
-- [Map partitions running locally on single partition](./map_partition_local.ipynb)
+- [Map partitions running locally on single partition](./map_partitions_local.ipynb)
 - [explode](./explode.ipynb)
 
 _If your demo will be long, or you want to have a discussion, please put your name at the end_
