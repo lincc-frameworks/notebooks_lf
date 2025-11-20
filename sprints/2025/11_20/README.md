@@ -21,9 +21,17 @@ Related: Import Pipeline page/diagram [on this branch](https://github.com/astron
 ## Sandro
 - [HATS always downloads the whole parquet file over HTTP](https://github.com/astronomy-commons/hats/issues/592)
 - [Crossmatching kwargs](https://github.com/astronomy-commons/lsdb/issues/946)
+    - HOMEWORK - please make some prototype example calls of crossmatch for discussion
 
 ## Sean
 - [Map partitions running locally on single partition](./map_partitions_local.ipynb)
+    - Decisions:
+        - `map_partitions` should continue to return a catalog.
+        - name the argument something more like `compute_single_partition`
+        - this is an incremental feature toward alternate execution graph.
 - [explode](./explode.ipynb)
+    - Decisions:
+        - let's not add this into the API
+        - create a notebook [here](https://docs.lsdb.io/en/latest/tutorial_toc/toc_nested.html) to talk about exploding from nested into individual rows.
 
 _If your demo will be long, or you want to have a discussion, please put your name at the end_
