@@ -8,7 +8,12 @@ Remember to record!!
 ## Sean
 ## Kostya
 ## Wilson
+
 ## Olivia
+_Not demoing this but: [hats#599](https://github.com/astronomy-commons/hats/pull/599) and [hats-import#631](https://github.com/astronomy-commons/hats-import/pull/631) in final comments stage_
+
+Related: Import Pipeline page/diagram [on this branc]([url](https://github.com/astronomy-commons/hats-import/tree/u/olynn/docs-diagram-demo))h (but I'll just show my local render)
+
 ## Doug
 ## Derek
 
