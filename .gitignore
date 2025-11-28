@@ -65,6 +65,9 @@ db.sqlite3-journal
 instance/
 .webassets-cache
 
+# TAP server database (regenerate with tap_schema_init.py)
+tap_server/tap_schema.db
+
 # Scrapy stuff:
 .scrapy
 

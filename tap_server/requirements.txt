@@ -1,0 +1,5 @@
+lsdb
+Flask>=2.0.0
+queryparser-python3
+pandas
+pyvo>=1.4
