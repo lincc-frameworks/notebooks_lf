@@ -1,4 +1,5 @@
-Remember to record!!
+Share link: https://cmu.zoom.us/rec/share/pun7IlqdgMrtoi1YcGi_fxXfO4J2GzU4vabKFjUvkIpoTOxJcQBRMCAXmzk7OBC3.wRbczT-ImYk0qNmw
+Passcode: S8Til*6*
 
 ## Olivia
 
