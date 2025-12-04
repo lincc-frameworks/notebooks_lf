@@ -21,6 +21,8 @@ Remember to record!!
 
 ## Sean
 
+[Explode Docs Notebook](https://lsdb--1155.org.readthedocs.build/en/1155/tutorials/pre_executed/explode_lightcurves.html)
+
 ## Melissa
 
 New dashboards:
