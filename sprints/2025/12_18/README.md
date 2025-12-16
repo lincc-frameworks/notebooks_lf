@@ -1,6 +1,9 @@
 Remember to record!!
 
 ## Derek
+
+LSDB in TOPCAT via TAP server
+
 ## Wilson
 ## Olivia
 ## Doug
