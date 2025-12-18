@@ -44,7 +44,8 @@ AND phot_variable_flag = 'VARIABLE'
 
 ## Melissa
 
-nested light curve import
+* [too boring] nested light curve import
+* https://app.reviewnb.com/lsst-sitcom/linccf/pull/19/
 
 ## Sean
 
