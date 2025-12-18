@@ -48,6 +48,7 @@ AND phot_variable_flag = 'VARIABLE'
 ## Sean
 
 - [Explicit Skymaps](explicit_skymaps.ipynb)
+- IO Benchmarking
 
 ## Kostya
 
