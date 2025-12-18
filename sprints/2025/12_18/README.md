@@ -65,7 +65,7 @@ AND phot_variable_flag = 'VARIABLE'
 
 
 ## Olivia
-- [`from_dataframe` arg naming for bytewise partitioning](https://github.com/lincc-frameworks/notebooks_lf/blob/main/sprints/2025/12_18/2025-12-18%20-%20from_dataframe.ipynb)
+- Note that formatting is a little messed up for version hosted here (both the intro image and the diagram) but keeping it for archival purposes: [`from_dataframe` arg naming for bytewise partitioning](https://github.com/lincc-frameworks/notebooks_lf/blob/main/sprints/2025/12_18/2025-12-18%20-%20from_dataframe.ipynb)
 
 ## Sean
 - IO Benchmarking
