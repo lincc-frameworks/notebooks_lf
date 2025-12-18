@@ -20,9 +20,9 @@ LSDB in TOPCAT via TAP server. How to use it:
    other than "TAP_1_gaia_dr3.gaia". But the results are available;
    you just have to choose an icon on from the ribbon at the top
    (or its menu equivalent) to display them.
-   a. View > Table Data will show your query in a spreadsheet-like format.
-   b. Graphics > Sky Plot will show your query in a 2-D format.
-   c. Graphics > Cube Plot will show a 3-D representation.
+   - View > Table Data will show your query in a spreadsheet-like format.
+   - Graphics > Sky Plot will show your query in a 2-D format.
+   - Graphics > Cube Plot will show a 3-D representation.
 
 ```sql
 SELECT TOP 15
