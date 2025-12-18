@@ -47,6 +47,8 @@ AND phot_variable_flag = 'VARIABLE'
 
 ## Sean
 
+- [Explicit Skymaps](explicit_skymaps.ipynb)
+
 ## Kostya
 
 - [Epoch propagation NB](https://docs.lsdb.io/en/latest/tutorials/pre_executed/dp1-gaia-epoch-prop.html)
