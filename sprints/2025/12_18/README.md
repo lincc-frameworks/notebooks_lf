@@ -38,8 +38,6 @@ AND phot_variable_flag = 'VARIABLE'
 
 ## Wilson
 
-## Olivia
-
 ## Doug
 
 ## Melissa
@@ -62,3 +60,7 @@ AND phot_variable_flag = 'VARIABLE'
 ## Kostya
 
 - Generate `README.md` for catalogs? https://github.com/astronomy-commons/hats/issues/615
+
+
+## Olivia
+- `from_dataframe` arg naming for bytewise partitioning
