@@ -6,6 +6,9 @@ Feather vs Parquet
 
 ## Olivia
 ## Melissa
+
+[Nested light curve pipeline](./generate_data_demo.ipynb)
+
 ## Sean
 ## Doug
 ## KelliAnn
