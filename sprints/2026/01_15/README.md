@@ -12,6 +12,9 @@ Remember to record!!
 [Astropy Table loader](./astropy_table.ipynb)
 
 ## KelliAnn
+Setting ZSTD compression
+[Issue](https://github.com/astronomy-commons/lsdb/issues/1088)
+[PR (still WIP)](https://github.com/astronomy-commons/lsdb/pull/1195)
 
 ## Derek
 
