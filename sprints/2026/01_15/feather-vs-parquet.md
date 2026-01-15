@@ -149,3 +149,18 @@ Read uncompressed feather with memmap: 3.7 ms
 ```
 
 Even uncompressed Parquet is much smaller thanks to its encodings.
+
+### Feather pros and cons
+
+#### Pros
+- Highly compatible with Arrow.
+- Easy to convert from Parquet.
+- Supports random access for both rows and columns when the file is uncompressed and stored locally.
+- Reads and writes are less computational intensive.
+
+#### Cons
+- File sizes are large.
+- Lacks the "smart" optimizations found in Parquet: no advanced compression, no encodings, no statistics; it is just Arrow buffer dumps plus table metadata.
+- No such a thing as "Feather datasets" or metadata files.
+- Very limited `pyarrow` read interface: no native column selection, no filtering, etc.
+- The limited interface means no random access for remote file systems with the current `pyarrow`.
