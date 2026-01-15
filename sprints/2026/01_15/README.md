@@ -8,6 +8,8 @@ Remember to record!!
 
 ## Sean
 
+[lsdb benchmarking](https://github.com/lincc-frameworks/lsdb-benchmarking)
+
 ## Doug
 [Astropy Table loader](./astropy_table.ipynb)
 
