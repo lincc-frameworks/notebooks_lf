@@ -1,4 +1,6 @@
-Remember to record!!
+Duration: 00:28:53
+Share link: https://cmu.zoom.us/rec/share/C-n-jAA4tLfl8m6Khbf4LotZgaV-SsK1k_tNh8uKy6wo5bNfksEXJfT5a0d93pAm.71URbCivp39LefIK
+Passcode: N19?&Qyu
 
 ## Olivia
 
