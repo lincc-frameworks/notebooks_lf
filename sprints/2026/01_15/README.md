@@ -9,6 +9,7 @@ Remember to record!!
 ## Sean
 
 ## Doug
+[Astropy Table loader](./astropy_table.ipynb)
 
 ## KelliAnn
 
