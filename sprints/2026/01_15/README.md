@@ -1,9 +1,5 @@
 Remember to record!!
 
-## Kostya
-
-<feather-vs-parquet.md>
-
 ## Olivia
 ## Melissa
 
@@ -14,6 +10,10 @@ Remember to record!!
 ## KelliAnn
 ## Derek
 ## Sandro
+
+## Kostya
+
+[feather-vs-parquet.md](./feather-vs-parquet.md)
 
 # Seeking feedback
 
