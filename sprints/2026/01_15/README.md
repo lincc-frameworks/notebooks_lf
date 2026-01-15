@@ -1,15 +1,22 @@
 Remember to record!!
 
 ## Olivia
+
 ## Melissa
 
 [Nested light curve pipeline](./generate_data_demo.ipynb)
 
 ## Sean
+
 ## Doug
+
 ## KelliAnn
+
 ## Derek
+
 ## Sandro
+
+[Nested improvements and catalog sizes](./nested_and_catalog_sizes.ipynb)
 
 ## Kostya
 
