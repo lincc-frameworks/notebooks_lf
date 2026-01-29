@@ -12,8 +12,9 @@ Remember to record!!
 ## Derek
 ## Doug
 [from_flat development](./from_flat.ipynb)
+
 ## Olivia
-Iterate by row group on import
+[Iterate by row group on import](./import-by-row-group.ipynb)
 
 ## KelliAnn
 ## Sandro
