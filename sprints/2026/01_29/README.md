@@ -5,6 +5,7 @@ Remember to record!!
 ## Sean
 ## Derek
 ## Doug
+[from_flat development](./from_flat.ipynb)
 ## Olivia
 ## KelliAnn
 ## Sandro
