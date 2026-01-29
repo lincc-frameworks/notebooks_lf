@@ -5,6 +5,9 @@ Remember to record!!
 [feather-vs-parquet.md](../01_15/feather-vs-parquet.md)
 
 ## Melissa
+
+[caching per-pixel-statistics](./cache.md)
+
 ## Sean
 ## Derek
 ## Doug
