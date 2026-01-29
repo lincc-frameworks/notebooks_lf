@@ -13,6 +13,8 @@ Remember to record!!
 ## Doug
 [from_flat development](./from_flat.ipynb)
 ## Olivia
+Iterate by row group on import
+
 ## KelliAnn
 ## Sandro
 
