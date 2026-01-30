@@ -1,4 +1,6 @@
-Remember to record!!
+* Duration: 00:39:11
+* Share link: https://cmu.zoom.us/rec/share/eDSFxS9PXQNI6mz82zDxemo6Xm6gN-L6sOXIdMti7AbJMoBP8m77TQUhqSGc1VDC.jqhtTN1bhUn5Y4N3
+* Passcode: DSdH38h@
 
 ## Kostya
 
