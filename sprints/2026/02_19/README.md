@@ -2,6 +2,7 @@ Remember to record!!
 
 ## Derek
 ## Doug
+* [Catalog Streaming](./catalog_streaming.ipynb)
 ## Sandro
 ## Kostya
 ## Melissa
