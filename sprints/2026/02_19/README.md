@@ -13,6 +13,7 @@ Remember to record!!
 ## Kostya
 
 - [`light-curve` + `nested-pandas`](./light-curve-nested-pandas.md)
+- README.md generation update, [examples](https://gist.github.com/hombit/6fadfabf39217a754debabdec4adb7bd)
 
 ## Melissa
 
