@@ -12,6 +12,8 @@ Remember to record!!
 
 ## Kostya
 
+- [`light-curve` + `nested-pandas`](./light-curve-nested-pandas.md)
+
 ## Melissa
 
 ## Sean
