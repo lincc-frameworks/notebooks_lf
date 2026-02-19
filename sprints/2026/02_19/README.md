@@ -1,13 +1,23 @@
 Remember to record!!
 
 ## Derek
+
 ## Doug
-* [Catalog Streaming](./catalog_streaming.ipynb)
+
+- [Catalog Streaming](./catalog_streaming.ipynb)
+
 ## Sandro
+
+- [PPDB in HATS: demo and validation](./ppdb_hats.ipynb)
+
 ## Kostya
+
 ## Melissa
+
 ## Sean
+
 ## KelliAnn
+
 ## Olivia
 
 # Seeking feedback
