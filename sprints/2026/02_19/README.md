@@ -17,6 +17,8 @@ Remember to record!!
 
 ## Melissa
 
+- [extra reads](./extra_reads.md)
+
 ## Sean
 
 ## KelliAnn
