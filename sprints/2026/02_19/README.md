@@ -21,6 +21,9 @@ Remember to record!!
 
 ## Sean
 
+- [lazy est size](./lazy_est_size.ipynb)
+- [resume to hats](./resume_to_hats.ipynb)
+
 ## KelliAnn
 
 ## Olivia
