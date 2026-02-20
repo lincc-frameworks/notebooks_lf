@@ -1,4 +1,5 @@
-Remember to record!!
+* Shareable link: https://cmu.zoom.us/rec/share/t5bgJwXAhAPGpgKgMdeD5diMfs_zI6Evf-K9uqTX0wClH6Z-9NcZiqWImLR-Jhvb.k23MrAxn_1-ZQQNs
+* Passcode: `BB**R?n7`
 
 ## Derek
 
