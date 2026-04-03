@@ -27,6 +27,9 @@ DESI DR1 Import
 
 ## Sean
 
+- [Lazy Size Estimates](./lazy_size.ipynb)
+- [Dask String Tasks](./dask_pyarrow_string.ipynb)
+
 ## Derek
 
 # Seeking feedback
