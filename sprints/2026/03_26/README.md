@@ -10,6 +10,7 @@ Remember to record!!
 
 - [Import with existing pixels](./import_existing_partitioning.ipynb)
 - [Plotting for lsdb-benchmarking (w/ Sean)](https://github.com/lincc-frameworks/lsdb-benchmarking/compare/main...plotting)
+- [A start to testing dask-on-ray](./dask-on-ray.ipynb)
 
 ## Melissa
 
