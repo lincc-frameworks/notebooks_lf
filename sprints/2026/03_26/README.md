@@ -1,7 +1,7 @@
 Remember to record!!
 
 ## Doug
-- Delayed LSDB Streaming
+- [Delayed LSDB Streaming](./delayed_streaming.ipynb)
 ## KelliAnn
 ## Sandro
 ## Melissa
