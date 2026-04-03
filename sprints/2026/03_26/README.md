@@ -6,6 +6,12 @@ Remember to record!!
 ## Melissa
 ## Kostya
 ## Olivia
+DESI DR1 Import
+- My project repo is here:
+  - https://github.com/olivialynn/DESI-Crossmatch-Project/tree/main
+  - (private, since I don't know what the data rights are for DESI DR1)
+- But I will share from my IDE cause it's prettier 🙂
+
 ## Sean
 ## Derek
 
