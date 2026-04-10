@@ -2,28 +2,28 @@
   {
     "radius_deg": 1,
     "n_partitions": 4,
-    "dask_time": 9.038859844207764,
-    "dask_peak_gb": 1.6207504272460938,
-    "ray_time": 6.33432149887085,
-    "ray_peak_cluster_gb": 1.934364,
+    "dask_time": 8.899879455566406,
+    "dask_peak_gb": 1.6126670837402344,
+    "ray_time": 6.237532377243042,
+    "ray_peak_cluster_gb": 1.115368,
     "ray_peak_object_store_gb": 0.0
   },
   {
     "radius_deg": 5,
     "n_partitions": 33,
-    "dask_time": 18.298353672027588,
-    "dask_peak_gb": 3.9302215576171875,
-    "ray_time": 16.733673572540283,
-    "ray_peak_cluster_gb": 8.369772,
-    "ray_peak_object_store_gb": 1.386667139828205
+    "dask_time": 18.06223440170288,
+    "dask_peak_gb": 4.123638153076172,
+    "ray_time": 16.31731104850769,
+    "ray_peak_cluster_gb": 7.73212,
+    "ray_peak_object_store_gb": 1.5129817361012101
   },
   {
     "radius_deg": 10,
     "n_partitions": 161,
-    "dask_time": 57.43709135055542,
-    "dask_peak_gb": 14.521881103515625,
-    "ray_time": 57.52863001823425,
-    "ray_peak_cluster_gb": 1.93662,
-    "ray_peak_object_store_gb": 0.0
+    "dask_time": 58.603362798690796,
+    "dask_peak_gb": 14.247974395751953,
+    "ray_time": 59.028770208358765,
+    "ray_peak_cluster_gb": 15.224488000000001,
+    "ray_peak_object_store_gb": 2.79440494813025
   }
 ]
