@@ -1,0 +1,29 @@
+[
+  {
+    "radius_deg": 1,
+    "n_partitions": 4,
+    "dask_time": 8.899879455566406,
+    "dask_peak_gb": 1.6126670837402344,
+    "ray_time": 6.237532377243042,
+    "ray_peak_cluster_gb": 1.115368,
+    "ray_peak_object_store_gb": 0.0
+  },
+  {
+    "radius_deg": 5,
+    "n_partitions": 33,
+    "dask_time": 18.06223440170288,
+    "dask_peak_gb": 4.123638153076172,
+    "ray_time": 16.31731104850769,
+    "ray_peak_cluster_gb": 7.73212,
+    "ray_peak_object_store_gb": 1.5129817361012101
+  },
+  {
+    "radius_deg": 10,
+    "n_partitions": 161,
+    "dask_time": 58.603362798690796,
+    "dask_peak_gb": 14.247974395751953,
+    "ray_time": 59.028770208358765,
+    "ray_peak_cluster_gb": 15.224488000000001,
+    "ray_peak_object_store_gb": 2.79440494813025
+  }
+]
