@@ -1,9 +1,17 @@
 Remember to record!!
 
+## Melissa
+
+[Issue 607](https://github.com/astronomy-commons/hats/issues/607) - cache root-level metadata
+
+Which has morphed into caching the parquet statistics for "faster" reads and manipulation.
+
+- [before](./demo.may7.a.ipynb)
+- [after](./demo.may7.b.ipynb)
+
 ## Kostya
 ## Sandro
 ## Derek
-## Melissa
 ## KelliAnn
 ## Olivia
 ## Doug
