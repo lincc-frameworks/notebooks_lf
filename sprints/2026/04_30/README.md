@@ -19,6 +19,7 @@ Which has morphed into caching the parquet statistics for "faster" reads and man
 * [Operations Intro - Dask Presentation Subset](https://github.com/lincc-frameworks/notebooks_lf/blob/main/dask_demo_day/operations_demo.ipynb)
 ## Sean
 * [Dask Visualization Intro - Dask Presentation Subset](https://github.com/lincc-frameworks/notebooks_lf/blob/main/dask_demo_day/visualization%20demo.ipynb)
+* [Operations Compute Bar](./ComputeBar.ipynb)
 
 # Seeking feedback
 
