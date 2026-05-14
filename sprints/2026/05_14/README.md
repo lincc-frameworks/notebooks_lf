@@ -12,6 +12,7 @@ https://docs.lsdb.io/en/latest/tutorials/pre_executed/using_rubin_data.html#
 ## Sean
 ## Derek
 ## Sandro
+Updates to data.lsdb.io
 
 # Seeking feedback
 
