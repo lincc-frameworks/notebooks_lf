@@ -5,6 +5,10 @@ Remember to record!!
 ## KelliAnn
 ## Kostya
 ## Melissa
+
+https://docs.lsdb.io/en/latest/data-access/VO.html
+https://docs.lsdb.io/en/latest/tutorials/pre_executed/using_rubin_data.html#
+
 ## Sean
 ## Derek
 ## Sandro
