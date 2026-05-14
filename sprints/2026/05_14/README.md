@@ -1,6 +1,7 @@
 Remember to record!!
 
 ## Doug
+data.lsdb.io Starter Notebook Template
 ## Olivia
 ## KelliAnn
 ## Kostya
