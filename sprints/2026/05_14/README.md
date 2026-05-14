@@ -3,6 +3,8 @@ Remember to record!!
 ## Doug
 data.lsdb.io Starter Notebook Template
 ## Olivia
+- DP1 Notebook
+- Also, the tech talk documentation
 ## KelliAnn
 ## Kostya
 ## Melissa
