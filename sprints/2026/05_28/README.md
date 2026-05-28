@@ -1,7 +1,6 @@
 Remember to record!!
 
-## Derek
-## Doug
+## Doug - Nothing Interesting this time
 ## Olivia
 ## Kostya
 ## Sean
