@@ -8,7 +8,8 @@ DESI x DP1/DP2: [notebook](https://github.com/olivialynn/DESI-Crossmatch-Project
 ## Kostya
 ## Sean
 
-[Some Operations Work](./ops.ipynb)
+- [Some Operations Work](./ops.ipynb)
+- Public files in DASH
 
 ## KelliAnn
 
