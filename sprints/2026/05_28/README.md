@@ -7,6 +7,9 @@ DESI x DP1/DP2: [notebook](https://github.com/olivialynn/DESI-Crossmatch-Project
 
 ## Kostya
 ## Sean
+
+[Some Operations Work](./ops.ipynb)
+
 ## KelliAnn
 
 ## Melissa
