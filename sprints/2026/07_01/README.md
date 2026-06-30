@@ -5,6 +5,7 @@ Remember to record!!
 ## Heather
 
 ## Doug
+CatalogStreams with Operations [LINK TBD]
 
 ## Melissa - away this week
 
