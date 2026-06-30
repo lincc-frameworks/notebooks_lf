@@ -3,6 +3,7 @@ Remember to record!!
 ## Sean
 
 ## Heather
+[lsdb-rubin flux to magnitude conversion]('heather_20260701_flux2mag.ipynb')
 
 ## Doug
 CatalogStreams with Operations [LINK TBD]
