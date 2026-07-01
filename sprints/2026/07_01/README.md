@@ -8,7 +8,7 @@ Remember to record!!
 
 ## Doug
 
-CatalogStreams with Operations [LINK TBD]
+[CatalogStreams with Operations](./streaming_with_operations.ipynb)
 
 ## Melissa - away this week
 
