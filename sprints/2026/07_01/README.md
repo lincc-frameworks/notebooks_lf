@@ -14,6 +14,8 @@ CatalogStreams with Operations [LINK TBD]
 
 ## Olivia
 
+- Mem size partitioning optimizations
+
 ## Sandro
 
 - Import of Rubin alert archive
