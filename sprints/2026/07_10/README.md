@@ -13,6 +13,7 @@ Remember to record!!
 ## Heather
 
 ## Doug
+A note on large_strings in nested-pandas/pandas 3
 
 # Seeking feedback
 
