@@ -25,6 +25,11 @@ Remember to record!!
 
 ## Sandro
 
+Transferring data from USDF to RSP 
+- navigating SSH connections to transfer nodes
+- tools (scp/rsync/rclone)
+- estimated transfer speeds
+
 ## Heather
 
 ## Doug
