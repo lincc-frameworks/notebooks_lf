@@ -23,6 +23,8 @@ Remember to record!!
 
 ## Sean
 
+- DP2 partitioning with memory size importing
+
 ## Sandro
 
 Transferring data from USDF to RSP 
