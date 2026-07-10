@@ -2,8 +2,6 @@ Remember to record!!
 
 <img width="3790" height="1592" alt="image" src="https://github.com/user-attachments/assets/b639ffe2-ee99-4df6-817a-0220ddc133ee" />
 
-## Kostya
-
 ## Olivia
 
 - Mem size partitioning
@@ -38,6 +36,11 @@ Have been testing on DP1, need to test on DP2 before release
 
 ## Doug
 [A note on large_strings in nested-pandas/pandas 3](./pandas3_large_strings.ipynb)
+
+
+## Kostya
+
+Micro-demo on access speed to HATS catalogs: https://github.com/astronomy-commons/lsdb/issues/1442#issuecomment-4843131218
 
 # Seeking feedback
 
