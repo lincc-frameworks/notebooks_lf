@@ -1,4 +1,7 @@
-Remember to record!!
+## Zoom Recording
+
+- Shareable link: https://cmu.zoom.us/rec/share/Pfin0AGWLAgI5QaP4xj1N9qK8OmUpP-QNdEZAVpkIkcVurdspkmZyAAHTljajqhk.ndDANcdwiZgTVNeZ
+- Passcode: ^A1S92G#
 
 <img width="3790" height="1592" alt="image" src="https://github.com/user-attachments/assets/b639ffe2-ee99-4df6-817a-0220ddc133ee" />
 
