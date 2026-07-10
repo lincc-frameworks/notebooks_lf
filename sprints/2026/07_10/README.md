@@ -13,7 +13,7 @@ Remember to record!!
 ## Heather
 
 ## Doug
-A note on large_strings in nested-pandas/pandas 3
+[A note on large_strings in nested-pandas/pandas 3](./pandas3_large_strings.ipynb)
 
 # Seeking feedback
 
