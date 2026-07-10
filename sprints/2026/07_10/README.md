@@ -31,6 +31,8 @@ Transferring data from USDF to RSP
 - estimated transfer speeds
 
 ## Heather
+DP2 tutorial notebooks (WIP)
+Have been testing on DP1, need to test on DP2 before release
 
 ## Doug
 [A note on large_strings in nested-pandas/pandas 3](./pandas3_large_strings.ipynb)
