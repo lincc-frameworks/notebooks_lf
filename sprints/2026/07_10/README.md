@@ -1,10 +1,23 @@
 Remember to record!!
 
+<img width="3790" height="1592" alt="image" src="https://github.com/user-attachments/assets/b639ffe2-ee99-4df6-817a-0220ddc133ee" />
+
 ## Kostya
 
 ## Olivia
 
 ## Melissa
+
+1. Nice-to-have lsdb-rubin Dask Clients tuned for RSP
+    1. requires a conda build of lsdb-rubin
+    2. requires a conda build of skymap-converter 
+    3. https://github.com/conda-forge/staged-recipes/pull/34148
+2. Cut LSDB v0.10.0
+    1. delegates to interrupts (Doug!)
+3. Add new static files in DASH
+    1. https://github.com/astronomy-commons/hats/pull/704
+    2. https://github.com/astronomy-commons/hats-import/pull/698
+    3. Adds testing against `full` (optional) dependencies
 
 ## Sean
 
