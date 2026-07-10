@@ -6,6 +6,8 @@ Remember to record!!
 
 ## Olivia
 
+- Mem size partitioning
+
 ## Melissa
 
 1. Nice-to-have lsdb-rubin Dask Clients tuned for RSP
