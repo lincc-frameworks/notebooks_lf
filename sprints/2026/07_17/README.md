@@ -34,7 +34,7 @@ APDB x DP2 documentation notebooks:
 ## Doug
 
 - [Photo Z Hats Import Notebook](https://github.com/lsst-so/linccf/blob/main/internal/catalog_imports/dp2_pz_import.ipynb)
-- DP2 x Gaia Simple Crossmatch NB
+- [DP2 x Gaia Large Crossmatch NB](https://github.com/lsst-so/linccf/blob/dp2_full_xmatch/demo_notebooks/DP2/full_dp2_crossmatches.ipynb)
 
 # Seeking feedback
 
