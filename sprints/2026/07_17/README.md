@@ -1,5 +1,8 @@
 Remember to record!!
 
+<img width="824" height="190" alt="Weekly_plans_07_17_26" src="https://github.com/user-attachments/assets/3eb04c4f-27a8-405f-9a65-0dd04c75d795" />
+
+
 ## Olivia (links to be added)
 
 - DP2 version of lsst/tutorial-notebooks
