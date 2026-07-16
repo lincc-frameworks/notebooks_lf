@@ -7,6 +7,8 @@ Remember to record!!
 [Lynx × LSDB ML notebook](https://lightcurvelynx.readthedocs.io/en/latest/notebooks/pre_executed/data_driven_noise_dp1.html)
 
 ## Heather
+Updated tutorial notebooks in response to feedback  
+Got more feedback and currently updating now...
 
 ## Sean
 
