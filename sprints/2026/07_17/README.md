@@ -1,6 +1,9 @@
 Remember to record!!
 
-## Olivia
+## Olivia (links to be added)
+- DP2 version of lsst/tutorial-notebooks
+- LSDB page for dp2.lsst.io
+- (more, perhaps...)
 
 ## Kostya
 
