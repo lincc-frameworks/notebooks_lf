@@ -19,6 +19,10 @@ Topics:
 
 ## Sandro
 
+APDB x DP2 documentation notebooks:
+- Finding alerts host galaxies
+- [stretch goal] Finding historical DIA object
+
 ## Doug
 
 # Seeking feedback
