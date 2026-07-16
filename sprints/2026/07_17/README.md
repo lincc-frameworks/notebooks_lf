@@ -8,7 +8,6 @@ Remember to record!!
 
 ## Heather
 Updated tutorial notebooks in response to feedback  
-Got more feedback and currently updating now...
 
 ## Sean
 
