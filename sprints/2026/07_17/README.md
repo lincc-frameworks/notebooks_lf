@@ -10,6 +10,11 @@ Remember to record!!
 
 ## Melissa
 
+Topics:
+- index on nested ID
+- [stretch goal] dask clients tuned to RSP
+- [stretch goal] DP1/DP2 field search
+
 ## Sandro
 
 ## Doug
