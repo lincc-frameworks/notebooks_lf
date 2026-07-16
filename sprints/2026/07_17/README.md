@@ -4,6 +4,8 @@ Remember to record!!
 
 ## Kostya
 
+[Lynx × LSDB ML notebook](https://lightcurvelynx.readthedocs.io/en/latest/notebooks/pre_executed/data_driven_noise_dp1.html)
+
 ## Heather
 
 ## Sean
