@@ -26,6 +26,8 @@ APDB x DP2 documentation notebooks:
 - [stretch goal] Finding historical DIA object
 
 ## Doug
+- [Photo Z Hats Import Notebook](https://github.com/lsst-so/linccf/blob/main/internal/catalog_imports/dp2_pz_import.ipynb)
+- DP2 x Gaia Simple Crossmatch NB
 
 # Seeking feedback
 
