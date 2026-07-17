@@ -1,4 +1,9 @@
-Remember to record!!
+## Recording:
+
+- Shareable link: https://cmu.zoom.us/rec/share/5hXIPqhfthJSO6pIfx-ZmC9uYlst1nl8EWvs7q3wxqGZr1bvVq8Kfm_7mqm86-3o.4lNJygOBhAxcoPK5
+- Passcode: `%#1wJ2B*`
+
+
 
 <img width="824" height="190" alt="Weekly_plans_07_17_26" src="https://github.com/user-attachments/assets/3eb04c4f-27a8-405f-9a65-0dd04c75d795" />
 
