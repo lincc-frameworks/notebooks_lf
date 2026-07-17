@@ -2,13 +2,6 @@ Remember to record!!
 
 <img width="824" height="190" alt="Weekly_plans_07_17_26" src="https://github.com/user-attachments/assets/3eb04c4f-27a8-405f-9a65-0dd04c75d795" />
 
-
-## Olivia (links to be added)
-
-- DP2 version of lsst/tutorial-notebooks
-- LSDB page for dp2.lsst.io
-- (more, perhaps...)
-
 ## Kostya
 
 [Lynx × LSDB ML notebook](https://lightcurvelynx.readthedocs.io/en/latest/notebooks/pre_executed/data_driven_noise_dp1.html)
@@ -33,6 +26,15 @@ APDB x DP2 documentation notebooks:
 
 ## Mayur
 
+
+
+## Olivia
+
+- DP2 version of lsst/tutorial-notebooks
+- LSDB page for dp2.lsst.io
+- Mem size partitioning - no further post-partitioning merging can be done now :)
+
+
 # Seeking feedback
 
 ## Melissa
@@ -45,3 +47,17 @@ Topics:
 - [stretch goal] DP1/DP2 field search
 
 _If your demo will be long, or you want to have a discussion, please put your name at the end_
+
+
+
+
+
+
+---
+
+- Catalog page in our API Reference
+- Display subcolumns in nested column
+- Index catalogs and id_search
+- lsdb-rubin 1-line LC plot
+
+
