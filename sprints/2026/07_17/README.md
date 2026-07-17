@@ -19,14 +19,6 @@ Updated tutorial notebooks in response to feedback
 
 ## Sean
 
-## Melissa
-
-Topics:
-
-- index on nested ID
-- [stretch goal] dask clients tuned to RSP
-- [stretch goal] DP1/DP2 field search
-
 ## Sandro
 
 APDB x DP2 documentation notebooks:
@@ -40,5 +32,14 @@ APDB x DP2 documentation notebooks:
 - [DP2 x Gaia Large Crossmatch NB](https://github.com/lsst-so/linccf/blob/dp2_full_xmatch/demo_notebooks/DP2/full_dp2_crossmatches.ipynb)
 
 # Seeking feedback
+
+## Melissa
+
+Topics:
+
+- index on nested ID
+- what was i supposed to do with all those issues overnight?
+- [stretch goal] dask clients tuned to RSP
+- [stretch goal] DP1/DP2 field search
 
 _If your demo will be long, or you want to have a discussion, please put your name at the end_
