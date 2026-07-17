@@ -50,14 +50,3 @@ _If your demo will be long, or you want to have a discussion, please put your na
 
 
 
-
-
-
----
-
-- Catalog page in our API Reference
-- Display subcolumns in nested column
-- Index catalogs and id_search
-- lsdb-rubin 1-line LC plot
-
-
