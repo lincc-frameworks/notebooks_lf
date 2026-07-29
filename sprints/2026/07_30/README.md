@@ -9,12 +9,12 @@ See [`test_to_hats.py`](https://github.com/astronomy-commons/lsdb/pull/1519/chan
 
 Arg | Status
 ------|------
+row_group_kwargs | implemented and tested
 create_parquet_metadata | already implemented, added test
 create_per_partition_statistics | already implemented, added test
 should_write_skymap | already implemented, added test
-write_table_kwargs | already implemented, addd test
-row_group_kwargs | in progress, need help with design
-drop_empty_siblings | not started, need help with design
+write_table_kwargs | already implemented, added test
+drop_empty_siblings | blocked, need help with design
 columns | not started
 
 ## Sean
