@@ -25,4 +25,4 @@ columns | not started
 
 _If your demo will be long, or you want to have a discussion, please put your name at the end_
 
-[Heather] need help writing row groups!
+[Heather] DRY implementation of row groups
