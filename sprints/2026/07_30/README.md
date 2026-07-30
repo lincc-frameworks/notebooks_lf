@@ -1,6 +1,10 @@
 Remember to record!!
 
 ## Olivia
+Documentation: 
+- As a follow-up to the Rubin DP@ tutorial notebook standardization work done last week,
+- Applying notebook standardization rules to our robot and human guides
+- Plus, trying out a (semi) one-shot application of the guide to our existing notebooks
 
 ## Heather
 Have been working on [adding args to `write_catalog()`](https://github.com/astronomy-commons/lsdb/issues/1361) to give it similar features to `hats_import.ImportArguments`.
