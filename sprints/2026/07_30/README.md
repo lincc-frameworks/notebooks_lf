@@ -23,7 +23,7 @@ columns | not started
 
 ## Sean
 
-- Progress bars
+- [Progress bars](./progressbar.ipynb)
 
 ## Doug
 [Playing with pure nested-pandas representations of Image Cutouts](./npd_images.ipynb)
