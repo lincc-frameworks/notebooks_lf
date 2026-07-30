@@ -30,3 +30,4 @@ Playing with pure nested-pandas representations of Image Cutouts
 _If your demo will be long, or you want to have a discussion, please put your name at the end_
 
 [Heather] DRY implementation of row groups
+[Olivia] Dask dashboard links
