@@ -24,7 +24,7 @@ columns | not started
 ## Sean
 
 ## Doug
-Playing with pure nested-pandas representations of Image Cutouts
+[Playing with pure nested-pandas representations of Image Cutouts](./npd_images.ipynb)
 # Seeking feedback
 
 _If your demo will be long, or you want to have a discussion, please put your name at the end_
