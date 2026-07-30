@@ -2,7 +2,7 @@ Remember to record!!
 
 ## Olivia
 Documentation: 
-- As a follow-up to the Rubin DP@ tutorial notebook standardization work done last week,
+- As a follow-up to the Rubin DP2 tutorial notebook standardization work done last week,
 - Applying notebook standardization rules to our robot and human guides
 - Plus, trying out a (semi) one-shot application of the guide to our existing notebooks
 
