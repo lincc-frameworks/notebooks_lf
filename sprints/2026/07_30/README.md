@@ -23,6 +23,8 @@ columns | not started
 
 ## Sean
 
+- Progress bars
+
 ## Doug
 [Playing with pure nested-pandas representations of Image Cutouts](./npd_images.ipynb)
 # Seeking feedback
