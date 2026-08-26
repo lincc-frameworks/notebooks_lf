@@ -1,7 +1,5 @@
 Remember to record!!
 
-## Olivia
-
 ## Heather
 
 ## Sean
