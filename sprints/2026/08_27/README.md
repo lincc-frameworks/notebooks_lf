@@ -8,7 +8,7 @@ Remember to record!!
 ## Sean
 
 ## Doug
-- [Core + Extension Catalogs Prototype](TBD)
+- [Core + Extension Catalogs Prototype](./core_ext_prototype.ipynb)
 ## Kostya
 
 ## Sandro
