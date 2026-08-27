@@ -13,6 +13,7 @@ Remember to record!!
 ## Sandro
 
 - [Sliver of DP2](./rubin_dp2_sliver.ipynb)
+- [Plotting broadband SED](https://lsdb-rubin--89.org.readthedocs.build/en/89/notebooks/plot_seds.html)
 
 # Seeking feedback
 
