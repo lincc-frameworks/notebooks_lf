@@ -5,8 +5,6 @@ Remember to record!!
 - [`hats/pixel_math/test_spatial_index.py`](https://github.com/astronomy-commons/hats/pull/730/changes#diff-c1782fae8535bb0197e137d1eae8841c0ef063defb572523e730069fbd90fd76)
 - Previously I reported that the parquet metadata `num_row_groups` seemed to be inaccurate. In reality, my test was reading the wrong file. I updated the test and now the `num_row_groups` is working as expected.
 
-## Sean
-
 ## Doug
 - [Core + Extension Catalogs Prototype](./core_ext_prototype.ipynb)
 ## Kostya
