@@ -206,6 +206,9 @@
   2026-07 (0, 8)                                  10,151,678             -2.436     50.385     -7.457    -1.8     0.113
   allwise (3, 176)                               313,736,222             -0.111    649.099    +10.324     0.3       0.8
   neowise (6, 3926)                               78,240,465             +0.185    155.207     +4.601     0.9     0.377
+  dia_object_lc (10, 11272951)      110,900,438             +1.617    475.252    +14.168     2.5     0.035  *
+  object_lc (7, 171593)             320,939,119             -0.101    403.560    +29.352     1.6     0.155
+  object_photoz (5, 12104)           88,154,370             +0.011      8.142     -0.583    -2.4    0.0417  *
 
   file               catalog and (Norder, Npix), or the file name where the path carries no pixel
   baseline, bytes    size of the baseline copy, written as hats-import writes today: compression=ZSTD, compression_level=15
@@ -217,6 +220,8 @@
   * 9 faster, 9 slower, of 55 files. Two identical copies still differ
     at 95% about once in twenty, so a handful of stars here is noise, not a result.
 ```
+
+Bottom three are DP2.
 
 ### Use "byte stream split" encoding for float-typed columns
 
