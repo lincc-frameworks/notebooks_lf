@@ -3,6 +3,7 @@ Remember to record!!
 ## Olivia
 
 ## Heather
+ra/dec parsing and error messages
 
 ## Sean
 
