@@ -22,7 +22,7 @@ https://github.com/hombit/hats-api
 
 See [`/api/v1/docs`](https://hats.homb.it/api/v1/docs) for auto-generated OpenAPI documentation.
 
-<img width="842" height="831" alt="Screenshot 2026-09-17 at 12 13 21" src="https://github.com/user-attachments/assets/10fcffa2-ca59-44b2-a88c-c7f19605c496" />
+<img width="1048" height="979" alt="Screenshot 2026-09-17 at 15 41 19" src="https://github.com/user-attachments/assets/6801677b-6cd7-4fef-ae2a-d84215623a80" />
 
 
 ### Is it ready to replace Apache at Epyc for data.lsdb.io?
