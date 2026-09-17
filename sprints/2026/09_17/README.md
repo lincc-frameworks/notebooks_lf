@@ -13,6 +13,8 @@ ra/dec parsing and error messages
 
 ## Melissa
 
+[Collection with absolute paths](./delucchi/mixed_fs_collection.ipynb)
+
 ## Sandro
 
 # Seeking feedback
