@@ -1,6 +1,8 @@
 # HATS-API
 ## Proof-of-Concept web server for HATS
 
+https://github.com/hombit/hats-api
+
 ### Problems I'm trying to solve
 
 - Rethink `lsdb-server` with DataFusion, support of spatial queries, and HATS catalogs.
