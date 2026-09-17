@@ -9,7 +9,7 @@ Remember to record!!
 
 ## Sean
 
-[NPD Tenspr Arrays](./tensor_array_demo.ipynb)
+[NPD Tensor Arrays](./tensor_array_demo.ipynb)
 
 ## Doug
 
