@@ -9,6 +9,8 @@ Remember to record!!
 
 ## Sean
 
+[NPD Tenspr Arrays](./tensor_array_demo.ipynb)
+
 ## Doug
 
 [Tokenized data in HATS](./tokenized_hats.ipynb)
