@@ -8,6 +8,7 @@ ra/dec parsing and error messages
 ## Sean
 
 ## Doug
+[Tokenized data in HATS](./tokenized_hats.ipynb)
 
 ## Kostya
 
