@@ -18,9 +18,12 @@ https://github.com/hombit/hats-api
 - `/`: File server, e.g. `lsdb-server` replacement. See CMU-hosted <https://hats.homb.it>
 - `/api/v1/simple/hats`, `/api/v1/simple/hats`, `/api/v1/simple/hats/plan`: similar functionality, but different API interface (POST with JSON body) and supports remote URLs.
 - `/api/v1/adql`: ADQL via POST with JSON body, supports remote URLs.
-- (Almost there) `/api/v1/tap`: TAP with sync ADQL, works vs pre-configured list of catalogs only.
+- `/api/v1/tap`: TAP with sync ADQL, works vs pre-configured list of catalogs only.
 
 See [`/api/v1/docs`](https://hats.homb.it/api/v1/docs) for auto-generated OpenAPI documentation.
+
+<img width="842" height="831" alt="Screenshot 2026-09-17 at 12 13 21" src="https://github.com/user-attachments/assets/10fcffa2-ca59-44b2-a88c-c7f19605c496" />
+
 
 ### Is it ready to replace Apache at Epyc for data.lsdb.io?
 
