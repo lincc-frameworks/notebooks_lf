@@ -1,4 +1,7 @@
-Remember to record!!
+# Recording
+
+- Shareable link: https://cmu.zoom.us/rec/share/yrTLEqN5IJdFyL8L9rPEs27O97aHTELTLMJVFqfHyoSf6TgdTzES0QuZuKX-ar9S.31yB_5LZNq3yXWXn
+- Passcode: `3V3z1y1*`
 
 ## Olivia
 
