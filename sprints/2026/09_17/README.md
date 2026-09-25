@@ -1,15 +1,22 @@
-Remember to record!!
+# Recording
+
+- Shareable link: https://cmu.zoom.us/rec/share/yrTLEqN5IJdFyL8L9rPEs27O97aHTELTLMJVFqfHyoSf6TgdTzES0QuZuKX-ar9S.31yB_5LZNq3yXWXn
+- Passcode: `3V3z1y1*`
 
 ## Olivia
 
 ## Heather
-ra/dec parsing and error messages
+
+1. ra/dec parsing and error messages (TY Sean, Neven, Kostya, Melissa, Katarzyna for the feedback!)
+2. FYI, [the first of 3 PRs that will finish off `write_catalog()` args has been approved](https://github.com/astronomy-commons/hats/pull/730), so I'll be wrapping up that work in the next few days.
 
 ## Sean
 
+[NPD Tensor Arrays](./tensor_array_demo.ipynb)
+
 ## Doug
 
-## Kostya
+[Tokenized data in HATS](./tokenized_hats.ipynb)
 
 ## Melissa
 
@@ -17,6 +24,16 @@ ra/dec parsing and error messages
 
 ## Sandro
 
+- Updates to the HATS registry
+- [Benchmarks for the alert archive](./benchmarks-alert-archive.ipynb)
+
 # Seeking feedback
 
+
 _If your demo will be long, or you want to have a discussion, please put your name at the end_
+
+[Heather] Can you all please remind me best practices for [merging a PR](https://github.com/astronomy-commons/hats/pull/730)? Should I squash? Should I rebase? Or just merge? (TY Kostya for the feedback!)
+
+## Kostya
+- [Parquet write flags](./kostya/parquet-write-params)
+- [HATS API](./kostya/hats-api)
