@@ -1,4 +1,4 @@
-# Versions of the published 2026-09 runs (Python 3.13.13, conda env lsdb-py313-linux on SLAC SDF);
+# Versions of the published 2026-09 runs (Python 3.13.13 on SLAC SDF);
 # every results/<config>/settings.json records the versions it ran with.
 lsdb==0.10.4
 hats==0.10.4
@@ -9,8 +9,6 @@ numpy==2.4.6
 pandas==2.3.3
 pyarrow==23.0.1
 scipy==1.17.1
-# smatch 0.10.2 is Erin Sheldon's HEALPix matcher, built from source. The PyPI / conda-forge "smatch" is an unrelated NLP tool.
-smatch @ git+https://github.com/esheldon/smatch.git
 # figure generation (make_plot_notebook.py + jupyter nbconvert --execute)
 matplotlib
 jupyter

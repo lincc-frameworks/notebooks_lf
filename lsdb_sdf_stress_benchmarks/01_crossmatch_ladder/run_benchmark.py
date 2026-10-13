@@ -6,7 +6,7 @@ Same design: nearest-neighbour crossmatch of a ZTF objects table against Gaia DR
 row count scaled through a ladder of sky selections, each tool timed with time.monotonic(), several
 repeats, median with 10th/90th percentiles in the plot.
 
-Changes vs 2025 (see README.md for the full list):
+Changes vs 2025 (see NOTES.md for the full list):
 * SDF paths; ZTF DR23 objects instead of ZTF DR14 (not mirrored on SDF).
 * Explicit column lists (Gaia on SDF has no hats_cols_default).
 * Ladder = cone steps inside the smallest ZTF partition + the k partitions nearest to it.
@@ -1039,7 +1039,7 @@ def calibrate_cones(args):
 def parse_args(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--columns", choices=["default", "radec"], default="default")
-    p.add_argument("--algos", default="lsdb,astropy,smatch", help="comma list of lsdb,astropy,smatch,scipy,stilts")
+    p.add_argument("--algos", default="lsdb", help="comma list of lsdb,astropy,smatch,scipy,stilts")
     p.add_argument("--stilts-jar", default=STILTS_JAR_DEFAULT)
     p.add_argument("--workers", default="1,4,16", help="comma list of Dask worker counts")
     p.add_argument("--steps", default="cone:115,cone:375,cone:1150,cone:3700,pixels:1,pixels:2,pixels:4,pixels:8,pixels:16,pixels:32,pixels:64,pixels:128",

@@ -23,8 +23,8 @@ bench() { echo "##### $(date '+%F %T') bench $*"; taskset -c "$CPUS" "$PY" "$HER
   --tool-threads "$TOOL_THREADS" --tool-mode "$TOOL_MODE" --time-cap-s "$TIME_CAP_S" --seed "$SEED" --output write "$@" 2>&1 | grep --line-buffered -vE "FutureWarning|warnings.warn|dashboard link|DeprecationWarning"; }
 
 echo "##### steps: $STEPS"
-ALL="${ALGOS:-lsdb,astropy,smatch,scipy,stilts}"   # ALGOS=... to run a subset (e.g. without the time-capped plain smatch call)
-# 1. every tool, every step; LSDB 1/4/16 workers x 1 thread
+ALL="${ALGOS:-lsdb}"   # LSDB only by default; ALGOS=lsdb,astropy,smatch,scipy,stilts reproduces the tool comparison (NOTES.md)
+# 1. every step; LSDB 1/4/16 workers x 1 thread (plus the ALGOS tools, if any)
 bench --config-name cones --columns default --algos "$ALL" --workers 1,4,16 --n-runs "$N_RUNS" --steps "$STEPS"
 # 2. only RA and Dec columns, LSDB 16 workers
 bench --config-name cones_radec --columns radec --algos lsdb --workers 16 --n-runs "$N_RUNS" --steps "$STEPS"

@@ -4,7 +4,7 @@
 # usage: ./run_all_smoke.sh      env: ONLY="02_dp2_lightcurve_scan 04_lsdb_read_path" PY=... BENCH_SCRATCH=...
 set -uo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"; cd "$HERE"
-ONLY="${ONLY:-01_crossmatch_ladder 02_dp2_lightcurve_scan 03_hats_reencode 04_lsdb_read_path 05_dp2_gaia_crossmatch}"
+ONLY="${ONLY:-01_crossmatch_ladder 02_dp2_lightcurve_scan 03_hats_reencode 04_lsdb_read_path}"
 declare -A status; fail=0
 for d in $ONLY; do
   echo "##### $(date '+%F %T') $d"; T0=$(date +%s)

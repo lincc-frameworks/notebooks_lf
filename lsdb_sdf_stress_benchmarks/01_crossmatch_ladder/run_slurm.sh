@@ -1,7 +1,7 @@
 #!/bin/bash
 # The largest default-column LSDB steps on a DEDICATED SLURM node (milano: 2 x AMD EPYC 7713, 128 cores,
 # 480 GB, no hyperthreading). On the shared interactive node the 16 x 8 GB workers were restarted for
-# exceeding their memory budget at pixels:1024 and pixels:1791 (see README), so those two points are
+# exceeding their memory budget at pixels:1024 and pixels:1791 (see NOTES.md), so those two points are
 # re-measured here with the same 32-core pinning and a 256 GB cap (16 GB per worker). pixels:512 is
 # repeated as the overlap point with the interactive-node curve.
 # Results go to results/default_slurm/ (the contaminated results/default/ JSONs are kept).

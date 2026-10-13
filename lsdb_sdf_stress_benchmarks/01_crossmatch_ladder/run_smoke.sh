@@ -1,10 +1,10 @@
 #!/bin/bash
-# Smoke test: every tool on three small cone steps (10, 1e3 and 1e5 ZTF rows around the seed partition), one repeat,
+# Smoke test: LSDB on three small cone steps (10, 1e3 and 1e5 ZTF rows around the seed partition), one repeat,
 # 8 physical cores, 32 GB cap. Checks the Python environment, access to the catalogs, the output path and the Dask
 # scratch dir before a real sweep. Records go to results/smoke/ (overwritten on every run) and a summary is printed.
 #
 # usage: ./run_smoke.sh [extra run_benchmark.py args]
-#   ALGOS=lsdb,astropy,scipy   (default: lsdb,astropy,smatch,scipy,stilts; drop smatch/stilts if they are not installed)
+#   ALGOS=lsdb                 (default; the comparison tools astropy,smatch,scipy,stilts can be added, see NOTES.md)
 #   N_CPUS=8  MEM_CAP_GB=32  TOOL_THREADS=4  WORKERS=1,4  STEPS=cone:...  PY=<python with lsdb>
 #   XMATCH_OUT_DIR=<dir>      where the result catalogs are written (see run_benchmark.py --out-dir)
 set -uo pipefail
@@ -12,7 +12,7 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Python with lsdb installed: $PY, else the lsdb-py313-linux env of the published runs, else `python` on PATH
 if [ -z "${PY:-}" ]; then PY=/sdf/group/rubin/user/ncaplar/conda_envs/lsdb-py313-linux/bin/python; [ -x "$PY" ] || PY=python; fi
 N_CPUS="${N_CPUS:-8}"; MEM_CAP_GB="${MEM_CAP_GB:-32}"; TOOL_THREADS="${TOOL_THREADS:-4}"
-ALGOS="${ALGOS:-lsdb,astropy,smatch,scipy,stilts}"; WORKERS="${WORKERS:-1,4}"
+ALGOS="${ALGOS:-lsdb}"; WORKERS="${WORKERS:-1,4}"
 SEED="${SEED:-4,715}"
 # radii from results/cone_calibration_cones.json: 10, 1e3 and 1e5 left rows, all inside the seed partition
 STEPS="${STEPS:-cone:26.51309,cone:254.488,cone:1563.811}"

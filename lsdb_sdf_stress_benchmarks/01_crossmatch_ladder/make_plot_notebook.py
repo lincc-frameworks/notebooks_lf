@@ -53,7 +53,7 @@ Plotted quantity per tool, per ladder step:
   `SkyCoord` construction).
 * **smatch** = the same pyarrow read + Gaia/margin merge + cone filter + `smatch.match(ztf, r, gaia, maxmatch=1)` + parquet
   write (native mode). With `--smatch-config`, the plotted series passes the Gaia side in random order (smatch's HEALPix
-  tree is an unbalanced BST that HATS order degenerates into a chain, see README); the plain call stays as `smatch_plain`.
+  tree is an unbalanced BST that HATS order degenerates into a chain, see NOTES.md); the plain call stays as `smatch_plain`.
 
 Point = median over repeats; error bars = 10th/90th percentile; x = number of crossmatched rows, or of left-catalog
 (ZTF) rows in the selection when the notebook was generated with `--x left`.

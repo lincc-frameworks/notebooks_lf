@@ -1,7 +1,7 @@
 #!/bin/bash
 # smatch on the 2026-09-17 cone ladder with its second (Gaia) argument passed in RANDOM order (`--smatch-shuffle`):
 # smatch 0.10.2 builds an unbalanced BST keyed by nside-4096 pixel from that argument, and HATS order degenerates it into a
-# chain (see README). Same node, cap, threads and steps as run_all_cones.sh; results in results/cones_smatch_shuffled/,
+# chain (see NOTES.md). Same node, cap, threads and steps as run_all_cones.sh; results in results/cones_smatch_shuffled/,
 # plotted with `make_plot_notebook.py --smatch-config cones_smatch_shuffled`. Resumable.
 # usage: nohup ./run_smatch_shuffled.sh > results/logs/run_smatch_shuffled_<ts>.log 2>&1 &
 set -uo pipefail
