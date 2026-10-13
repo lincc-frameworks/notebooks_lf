@@ -1,0 +1,36 @@
+{
+ "step": "cone:26.51309",
+ "kind": "cone",
+ "value": 26.51309,
+ "n_ztf_partitions": 1,
+ "n_gaia_partitions": 1,
+ "left_rows": 10,
+ "run": 0,
+ "tool": "scipy",
+ "ok": true,
+ "measurements": {
+  "gaia_pyarrow": {
+   "time": 0.12244672188535333,
+   "result_length": 802760
+  },
+  "gaia_margin_pyarrow": {
+   "time": 0.010735942050814629,
+   "result_length": 3221
+  },
+  "merge_right": {
+   "time": 0.1586877377703786,
+   "result_length": 805591
+  },
+  "right_rows": 805591,
+  "scipy_xmatch": {
+   "time": 0.7329917508177459,
+   "result_length": 0
+  },
+  "left_rows": 10,
+  "n_chunks": 1
+ },
+ "peak_rss_child": 800141312,
+ "peak_rss": 1166270464,
+ "wall": 3.6748469988815486,
+ "left_rows_read": 2958067
+}

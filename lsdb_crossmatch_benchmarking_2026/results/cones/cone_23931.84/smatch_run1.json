@@ -1,0 +1,14 @@
+{
+ "step": "cone:23931.84",
+ "kind": "cone",
+ "value": 23931.84,
+ "n_ztf_partitions": 17,
+ "n_gaia_partitions": 4,
+ "left_rows": 30000015,
+ "left_rows_read": 65681570,
+ "run": 1,
+ "tool": "smatch",
+ "tool_mode": "native",
+ "ok": false,
+ "skipped": "an earlier step ran longer than the 1800 s time cap"
+}

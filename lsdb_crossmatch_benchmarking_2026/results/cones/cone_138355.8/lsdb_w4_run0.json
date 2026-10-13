@@ -1,0 +1,17 @@
+{
+ "step": "cone:138355.8",
+ "kind": "cone",
+ "value": 138355.8,
+ "n_ztf_partitions": 341,
+ "n_gaia_partitions": 47,
+ "left_rows": 1000000093,
+ "left_rows_read": 1149819911,
+ "run": 0,
+ "tool": "lsdb",
+ "workers": 4,
+ "threads_per_worker": 1,
+ "lsdb_crossmatch": {
+  "time": 633.6118589770049,
+  "result_length": 198955959
+ }
+}

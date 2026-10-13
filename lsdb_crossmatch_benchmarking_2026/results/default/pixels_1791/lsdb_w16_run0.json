@@ -1,0 +1,15 @@
+{
+ "step": "pixels:1791",
+ "kind": "pixels",
+ "value": 1791,
+ "n_ztf_partitions": 1791,
+ "n_gaia_partitions": 1252,
+ "run": 0,
+ "tool": "lsdb",
+ "workers": 16,
+ "threads_per_worker": 1,
+ "lsdb_crossmatch": {
+  "time": 852.1093629579991,
+  "result_length": 3850910406
+ }
+}

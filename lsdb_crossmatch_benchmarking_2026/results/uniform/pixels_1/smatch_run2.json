@@ -1,0 +1,34 @@
+{
+ "step": "pixels:1",
+ "kind": "pixels",
+ "value": 1,
+ "n_ztf_partitions": 1,
+ "n_gaia_partitions": 1,
+ "run": 2,
+ "tool": "smatch",
+ "ok": true,
+ "measurements": {
+  "gaia_pyarrow": {
+   "time": 0.15048145921900868,
+   "result_length": 802760
+  },
+  "gaia_margin_pyarrow": {
+   "time": 0.014597859233617783,
+   "result_length": 3221
+  },
+  "merge_right": {
+   "time": 0.1604073061607778,
+   "result_length": 805591
+  },
+  "right_rows": 805591,
+  "smatch_xmatch": {
+   "time": 2.5496385446749628,
+   "result_length": 411119
+  },
+  "left_rows": 2958067,
+  "n_chunks": 1
+ },
+ "peak_rss_child": 523243520,
+ "peak_rss": 1182437376,
+ "wall": 12.836370080243796
+}

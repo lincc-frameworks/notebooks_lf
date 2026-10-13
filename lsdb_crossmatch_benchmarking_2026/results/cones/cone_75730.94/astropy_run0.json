@@ -1,0 +1,18 @@
+{
+ "step": "cone:75730.94",
+ "kind": "cone",
+ "value": 75730.94,
+ "n_ztf_partitions": 113,
+ "n_gaia_partitions": 14,
+ "left_rows": 299999972,
+ "left_rows_read": 385540317,
+ "run": 0,
+ "tool": "astropy",
+ "tool_mode": "native",
+ "smatch_shuffle": null,
+ "ok": false,
+ "oom": true,
+ "error": "killed: RSS 128.1 GiB > cap",
+ "peak_rss": 137550606336,
+ "wall": 780.4189011859708
+}

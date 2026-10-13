@@ -1,0 +1,97 @@
+{
+ "seed": {
+  "ra": 124.99999999999999,
+  "dec": 63.44828368030105,
+  "order": 4,
+  "pixel": 484,
+  "rows": 2149225
+ },
+ "steps": [
+  {
+   "step": "cone:80",
+   "ztf_partitions": 1,
+   "gaia_partitions": 1,
+   "result_rows": 50,
+   "time_s": 19.36
+  },
+  {
+   "step": "cone:250",
+   "ztf_partitions": 1,
+   "gaia_partitions": 1,
+   "result_rows": 442,
+   "time_s": 9.45
+  },
+  {
+   "step": "cone:800",
+   "ztf_partitions": 1,
+   "gaia_partitions": 1,
+   "result_rows": 4799,
+   "time_s": 8.35
+  },
+  {
+   "step": "cone:2500",
+   "ztf_partitions": 1,
+   "gaia_partitions": 1,
+   "result_rows": 45519,
+   "time_s": 8.94
+  },
+  {
+   "step": "pixels:1",
+   "ztf_partitions": 1,
+   "gaia_partitions": 1,
+   "result_rows": 469610,
+   "time_s": 9.72
+  },
+  {
+   "step": "pixels:2",
+   "ztf_partitions": 2,
+   "gaia_partitions": 1,
+   "result_rows": 1101245,
+   "time_s": 9.21
+  },
+  {
+   "step": "pixels:4",
+   "ztf_partitions": 4,
+   "gaia_partitions": 1,
+   "result_rows": 2387519,
+   "time_s": 9.87
+  },
+  {
+   "step": "pixels:8",
+   "ztf_partitions": 8,
+   "gaia_partitions": 2,
+   "result_rows": 6199990,
+   "time_s": 21.46
+  },
+  {
+   "step": "pixels:16",
+   "ztf_partitions": 16,
+   "gaia_partitions": 3,
+   "result_rows": 12311112,
+   "time_s": 8.16
+  },
+  {
+   "step": "pixels:32",
+   "ztf_partitions": 32,
+   "gaia_partitions": 7,
+   "result_rows": 27823066,
+   "time_s": 13.49
+  },
+  {
+   "step": "pixels:64",
+   "ztf_partitions": 64,
+   "gaia_partitions": 14,
+   "result_rows": 51621216,
+   "time_s": 14.17
+  },
+  {
+   "step": "pixels:128",
+   "ztf_partitions": 128,
+   "gaia_partitions": 21,
+   "result_rows": 114161302,
+   "time_s": 27.37
+  }
+ ],
+ "workers": 16,
+ "threads": 2
+}

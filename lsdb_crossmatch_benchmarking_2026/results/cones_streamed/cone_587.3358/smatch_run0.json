@@ -1,0 +1,36 @@
+{
+ "step": "cone:587.3358",
+ "kind": "cone",
+ "value": 587.3358,
+ "n_ztf_partitions": 1,
+ "n_gaia_partitions": 1,
+ "left_rows": 10000,
+ "run": 0,
+ "tool": "smatch",
+ "ok": true,
+ "measurements": {
+  "gaia_pyarrow": {
+   "time": 0.12242961721494794,
+   "result_length": 802760
+  },
+  "gaia_margin_pyarrow": {
+   "time": 0.01780701894313097,
+   "result_length": 3221
+  },
+  "merge_right": {
+   "time": 0.16129003837704659,
+   "result_length": 805591
+  },
+  "right_rows": 805591,
+  "smatch_xmatch": {
+   "time": 0.7182444632053375,
+   "result_length": 1358
+  },
+  "left_rows": 10000,
+  "n_chunks": 1
+ },
+ "peak_rss_child": 826142720,
+ "peak_rss": 1026228224,
+ "wall": 4.310268487315625,
+ "left_rows_read": 2958067
+}

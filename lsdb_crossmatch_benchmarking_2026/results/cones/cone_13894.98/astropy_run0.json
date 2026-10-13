@@ -1,0 +1,52 @@
+{
+ "step": "cone:13894.98",
+ "kind": "cone",
+ "value": 13894.98,
+ "n_ztf_partitions": 8,
+ "n_gaia_partitions": 2,
+ "left_rows": 10000004,
+ "left_rows_read": 38892116,
+ "run": 0,
+ "tool": "astropy",
+ "tool_mode": "native",
+ "ok": true,
+ "measurements": {
+  "ztf_pyarrow": {
+   "time": 0.9980741459876299,
+   "result_length": 38892116
+  },
+  "gaia_pyarrow": {
+   "time": 0.1513139889575541,
+   "result_length": 1564178
+  },
+  "gaia_margin_pyarrow": {
+   "time": 0.015635361894965172,
+   "result_length": 10775
+  },
+  "merge_right": {
+   "time": 0.26717686001211405,
+   "result_length": 1572578
+  },
+  "cone_filter": {
+   "time": 4.414994589053094,
+   "result_length": 10000004
+  },
+  "left_rows": 10000004,
+  "right_rows": 1572578,
+  "skycoords": {
+   "time": 0.09239531215280294,
+   "result_length": null
+  },
+  "astropy_xmatch": {
+   "time": 14.554377298336476,
+   "result_length": 1373233
+  },
+  "astropy_write": {
+   "time": 1.7382091488689184,
+   "result_length": 1373233
+  }
+ },
+ "peak_rss_child": 1767034880,
+ "peak_rss": 9233362944,
+ "wall": 25.788762633688748
+}

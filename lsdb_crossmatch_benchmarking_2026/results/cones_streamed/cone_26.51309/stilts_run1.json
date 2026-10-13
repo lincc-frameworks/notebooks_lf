@@ -1,0 +1,31 @@
+{
+ "step": "cone:26.51309",
+ "kind": "cone",
+ "value": 26.51309,
+ "n_ztf_partitions": 1,
+ "n_gaia_partitions": 1,
+ "left_rows": 10,
+ "run": 1,
+ "tool": "stilts",
+ "ok": true,
+ "measurements": {
+  "ztf_io": {
+   "time": 4.4781559580005705,
+   "result_length": null
+  },
+  "gaia_io": {
+   "time": 5.7781652943231165,
+   "result_length": null
+  },
+  "stilts_xmatch": {
+   "time": 1.7140583479776978,
+   "result_length": 0
+  },
+  "left_rows": null,
+  "right_rows": null
+ },
+ "peak_rss_child": 175452160,
+ "peak_rss": 2992893952,
+ "wall": 15.740547800902277,
+ "left_rows_read": 2958067
+}

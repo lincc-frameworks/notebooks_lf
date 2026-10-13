@@ -1,0 +1,29 @@
+{
+ "step": "pixels:16",
+ "kind": "pixels",
+ "value": 16,
+ "n_ztf_partitions": 16,
+ "n_gaia_partitions": 3,
+ "run": 0,
+ "tool": "stilts",
+ "ok": true,
+ "measurements": {
+  "ztf_io": {
+   "time": 101.69455723604187,
+   "result_length": null
+  },
+  "gaia_io": {
+   "time": 13.773896063212305,
+   "result_length": null
+  },
+  "stilts_xmatch": {
+   "time": 84.07939779711887,
+   "result_length": 6586678
+  },
+  "left_rows": null,
+  "right_rows": null
+ },
+ "peak_rss_child": 170328064,
+ "peak_rss": 38940950528,
+ "wall": 206.22207179898396
+}

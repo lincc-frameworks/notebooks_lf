@@ -1,0 +1,34 @@
+{
+ "step": "pixels:8",
+ "kind": "pixels",
+ "value": 8,
+ "n_ztf_partitions": 8,
+ "n_gaia_partitions": 3,
+ "run": 1,
+ "tool": "astropy",
+ "ok": true,
+ "measurements": {
+  "gaia_pyarrow": {
+   "time": 0.21171211497858167,
+   "result_length": 2166096
+  },
+  "gaia_margin_pyarrow": {
+   "time": 0.017780904192477465,
+   "result_length": 5955
+  },
+  "merge_right": {
+   "time": 0.5633991379290819,
+   "result_length": 2169941
+  },
+  "right_rows": 2169941,
+  "astropy_xmatch": {
+   "time": 36.405332677066326,
+   "result_length": 3199440
+  },
+  "left_rows": 23758504,
+  "n_chunks": 8
+ },
+ "peak_rss_child": 762597376,
+ "peak_rss": 2614374400,
+ "wall": 41.42614436801523
+}

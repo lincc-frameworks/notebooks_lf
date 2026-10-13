@@ -1,0 +1,149 @@
+{
+ "seed": {
+  "ra": 216.8181818181818,
+  "dec": 57.39952353962295,
+  "order": 4,
+  "pixel": 715,
+  "rows": 2958067
+ },
+ "targets": [
+  {
+   "target": 1,
+   "radius_arcsec": 8.437894,
+   "radius_deg": 0.0023438594444444446,
+   "left_rows": 1,
+   "ztf_partitions": 1
+  },
+  {
+   "target": 3,
+   "radius_arcsec": 15.32955,
+   "radius_deg": 0.0042582083333333335,
+   "left_rows": 3,
+   "ztf_partitions": 1
+  },
+  {
+   "target": 10,
+   "radius_arcsec": 26.51309,
+   "radius_deg": 0.007364747222222222,
+   "left_rows": 10,
+   "ztf_partitions": 1
+  },
+  {
+   "target": 30,
+   "radius_arcsec": 58.038,
+   "radius_deg": 0.016121666666666666,
+   "left_rows": 30,
+   "ztf_partitions": 1
+  },
+  {
+   "target": 100,
+   "radius_arcsec": 98.72446,
+   "radius_deg": 0.02742346111111111,
+   "left_rows": 100,
+   "ztf_partitions": 1
+  },
+  {
+   "target": 300,
+   "radius_arcsec": 165.5816,
+   "radius_deg": 0.04599488888888889,
+   "left_rows": 300,
+   "ztf_partitions": 1
+  },
+  {
+   "target": 1000,
+   "radius_arcsec": 254.488,
+   "radius_deg": 0.07069111111111111,
+   "left_rows": 1000,
+   "ztf_partitions": 1
+  },
+  {
+   "target": 3000,
+   "radius_arcsec": 372.8226,
+   "radius_deg": 0.10356183333333334,
+   "left_rows": 3000,
+   "ztf_partitions": 1
+  },
+  {
+   "target": 10000,
+   "radius_arcsec": 587.3358,
+   "radius_deg": 0.16314883333333333,
+   "left_rows": 10000,
+   "ztf_partitions": 1
+  },
+  {
+   "target": 30000,
+   "radius_arcsec": 912.8864,
+   "radius_deg": 0.25357955555555556,
+   "left_rows": 30000,
+   "ztf_partitions": 1
+  },
+  {
+   "target": 100000,
+   "radius_arcsec": 1563.811,
+   "radius_deg": 0.4343919444444444,
+   "left_rows": 100000,
+   "ztf_partitions": 1
+  },
+  {
+   "target": 300000,
+   "radius_arcsec": 2605.741,
+   "radius_deg": 0.7238169444444444,
+   "left_rows": 300000,
+   "ztf_partitions": 1
+  },
+  {
+   "target": 1000000,
+   "radius_arcsec": 4429.416,
+   "radius_deg": 1.2303933333333334,
+   "left_rows": 1000000,
+   "ztf_partitions": 1
+  },
+  {
+   "target": 3000000,
+   "radius_arcsec": 7466.107,
+   "radius_deg": 2.073918611111111,
+   "left_rows": 3000001,
+   "ztf_partitions": 6
+  },
+  {
+   "target": 10000000,
+   "radius_arcsec": 13894.98,
+   "radius_deg": 3.8597166666666665,
+   "left_rows": 10000004,
+   "ztf_partitions": 8
+  },
+  {
+   "target": 30000000,
+   "radius_arcsec": 23931.84,
+   "radius_deg": 6.647733333333333,
+   "left_rows": 30000015,
+   "ztf_partitions": 17
+  },
+  {
+   "target": 100000000,
+   "radius_arcsec": 44133.7,
+   "radius_deg": 12.25936111111111,
+   "left_rows": 100000015,
+   "ztf_partitions": 42
+  },
+  {
+   "target": 300000000,
+   "radius_arcsec": 75730.94,
+   "radius_deg": 21.036372222222223,
+   "left_rows": 299999972,
+   "ztf_partitions": 113
+  },
+  {
+   "target": 1000000000,
+   "radius_arcsec": 138355.8,
+   "radius_deg": 38.43216666666666,
+   "left_rows": 1000000093,
+   "ztf_partitions": 341
+  }
+ ],
+ "steps": "cone:8.437894,cone:15.32955,cone:26.51309,cone:58.038,cone:98.72446,cone:165.5816,cone:254.488,cone:372.8226,cone:587.3358,cone:912.8864,cone:1563.811,cone:2605.741,cone:4429.416,cone:7466.107,cone:13894.98,cone:23931.84,cone:44133.7,cone:75730.94,cone:138355.8",
+ "search_radius_deg": 50.371991613589415,
+ "rows_within_search": 1737341055,
+ "ztf_path": "/sdf/data/rubin/cosmicdata/lsdb/ztf_dr23/objects",
+ "timestamp_utc": "2026-09-17T19:21:00+00:00"
+}

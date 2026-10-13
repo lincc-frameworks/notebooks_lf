@@ -1,0 +1,49 @@
+{
+ "step": "cone:2605.741",
+ "kind": "cone",
+ "value": 2605.741,
+ "n_ztf_partitions": 1,
+ "n_gaia_partitions": 1,
+ "left_rows": 300000,
+ "left_rows_read": 2958067,
+ "run": 2,
+ "tool": "smatch",
+ "tool_mode": "native",
+ "smatch_shuffle": true,
+ "ok": true,
+ "measurements": {
+  "ztf_pyarrow": {
+   "time": 0.1479984587058425,
+   "result_length": 2958067
+  },
+  "gaia_pyarrow": {
+   "time": 0.07732480997219682,
+   "result_length": 802760
+  },
+  "gaia_margin_pyarrow": {
+   "time": 0.010010180994868279,
+   "result_length": 3221
+  },
+  "merge_right": {
+   "time": 0.14739188831299543,
+   "result_length": 805591
+  },
+  "cone_filter": {
+   "time": 0.3084933031350374,
+   "result_length": 300000
+  },
+  "left_rows": 300000,
+  "right_rows": 805591,
+  "smatch_xmatch": {
+   "time": 0.8228298951871693,
+   "result_length": 41921
+  },
+  "smatch_write": {
+   "time": 0.10524277482181787,
+   "result_length": 41921
+  }
+ },
+ "peak_rss_child": 596373504,
+ "peak_rss": 1102254080,
+ "wall": 4.638545271009207
+}

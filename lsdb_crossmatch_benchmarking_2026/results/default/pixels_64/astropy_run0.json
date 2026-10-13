@@ -1,0 +1,14 @@
+{
+ "step": "pixels:64",
+ "kind": "pixels",
+ "value": 64,
+ "n_ztf_partitions": 64,
+ "n_gaia_partitions": 14,
+ "run": 0,
+ "tool": "astropy",
+ "ok": false,
+ "oom": true,
+ "error": "killed: RSS 128.0 GiB > cap",
+ "peak_rss": 137471528960,
+ "wall": 451.166969913058
+}

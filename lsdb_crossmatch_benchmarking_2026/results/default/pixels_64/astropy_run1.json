@@ -1,0 +1,11 @@
+{
+ "step": "pixels:64",
+ "kind": "pixels",
+ "value": 64,
+ "n_ztf_partitions": 64,
+ "n_gaia_partitions": 14,
+ "run": 1,
+ "tool": "astropy",
+ "ok": false,
+ "skipped": "an earlier step ran out of memory"
+}

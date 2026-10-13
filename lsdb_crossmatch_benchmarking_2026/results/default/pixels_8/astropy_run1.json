@@ -1,0 +1,41 @@
+{
+ "step": "pixels:8",
+ "kind": "pixels",
+ "value": 8,
+ "n_ztf_partitions": 8,
+ "n_gaia_partitions": 2,
+ "run": 1,
+ "tool": "astropy",
+ "ok": true,
+ "measurements": {
+  "ztf_pyarrow": {
+   "time": 0.7643068581819534,
+   "result_length": 29602682
+  },
+  "gaia_pyarrow": {
+   "time": 0.16729035507887602,
+   "result_length": 2495641
+  },
+  "gaia_margin_pyarrow": {
+   "time": 0.014710691757500172,
+   "result_length": 8993
+  },
+  "merge_right": {
+   "time": 0.600608897395432,
+   "result_length": 2502454
+  },
+  "left_rows": 29602682,
+  "right_rows": 2502454,
+  "skycoords": {
+   "time": 0.27831810619682074,
+   "result_length": null
+  },
+  "astropy_xmatch": {
+   "time": 45.49774521961808,
+   "result_length": 6199990
+  }
+ },
+ "peak_rss_child": 5791383552,
+ "peak_rss": 23562747904,
+ "wall": 54.04419974796474
+}
