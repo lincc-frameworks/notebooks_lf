@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Crossmatch performance benchmark: LSDB vs astropy vs smatch (2026 rerun on SLAC SDF).
 
-Derived from ../lsdb_crossmatch_benchmarking/run_benchmark.py (Sean McGuire, Feb 2025, PSC Bridges-2).
+Derived from ../../lsdb_crossmatch_benchmarking/run_benchmark.py (Sean McGuire, Feb 2025, PSC Bridges-2).
 Same design: nearest-neighbour crossmatch of a ZTF objects table against Gaia DR3 within 10 arcsec,
 row count scaled through a ladder of sky selections, each tool timed with time.monotonic(), several
 repeats, median with 10th/90th percentiles in the plot.

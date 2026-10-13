@@ -44,7 +44,7 @@ md(
     """# Crossmatch performance by tool (2026 rerun on SLAC SDF)
 
 Reads the per-run JSON files written by `run_benchmark.py` under `results/<config>/<step>/{lsdb_w<w>,astropy,smatch}_run<i>.json`
-and reproduces the layout of the Feb 2025 figure (`../lsdb_crossmatch_benchmarking/plot_benchmark.ipynb`).
+and reproduces the layout of the Feb 2025 figure (`../../lsdb_crossmatch_benchmarking/plot_benchmark.ipynb`).
 
 Plotted quantity per tool, per ladder step:
 * **LSDB (w worker threads)** = wall time of `crossmatch(...).map_partitions(len).compute()` (reads + matches).

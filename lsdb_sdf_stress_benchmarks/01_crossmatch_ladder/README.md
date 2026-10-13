@@ -1,7 +1,7 @@
 # LSDB crossmatch benchmarking, 2026 rerun (SLAC SDF)
 
 Fresh timings for the "Crossmatch Performance by Tool" figure (LSDB docs, `tutorials/performance.rst`;
-LSDB talks). Same design as the Feb 2025 benchmark in `../lsdb_crossmatch_benchmarking/`
+LSDB talks). Same design as the Feb 2025 benchmark in `../../lsdb_crossmatch_benchmarking/`
 (Sean McGuire, PSC Bridges-2), re-run with current software on a shared SDF interactive node.
 
 Three sweeps live here. The first (2026-09-15, `results/default`, `results/radec`, `results/default_slurm`) kept the
