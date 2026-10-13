@@ -1,8 +1,7 @@
 # LSDB / HATS stress workloads for SLAC SDF
 
 Four workloads that load the HATS/LSDB software stack with real catalogs on SDF. Each one has a short smoke test and
-a full-scale run. Each README records the timings we measured in 2026, so a rerun on new hardware or storage can be
-compared against them.
+a full-scale run. Each README records the timings measured in 2026.
 
 All catalogs are read in place from `/sdf/data/rubin`. 
 
@@ -47,7 +46,7 @@ All catalogs are read in place from `/sdf/data/rubin`.
 ## Expected problems
 
 - **Worker memory (01).** One LSDB crossmatch task in the dense Galactic plane uses up to ~6 GiB of resident memory.
-  Give each worker 16 GB.
+  Give each worker at least 16 GB.
 - **Metadata size (03).** During the DP2 import, rewriting `_metadata` for DP2 `object_lc` hit the 4 GB size limit
   of Parquet's metadata serialization (Thrift). Workload 03 runs the same code path; run it on DP2
   `object_collection` to reach that limit.
