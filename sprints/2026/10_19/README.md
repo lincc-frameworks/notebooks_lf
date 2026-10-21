@@ -12,8 +12,6 @@
 
 ## Kostya
 
-## Heather
-
 ## Doug
 
 ## Melissa
