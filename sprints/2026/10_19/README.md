@@ -21,8 +21,6 @@
 
 ## Melissa
 
-## Katarzyna
-
 ## Sandro
 
 Alert benchmarks dashboard ([alert-dashboard.lsdb.io](https://alert-dashboard.lsdb.io))
