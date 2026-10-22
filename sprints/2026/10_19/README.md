@@ -17,7 +17,7 @@
 ## Kostya
 
 ## Doug
-Genesis Milestone 2 Catalog Creation
+[Genesis Milestone 2 Catalog Creation](https://github.com/lincc-frameworks/notebooks_lf/blob/main/genesis/milestone2.ipynb)
 
 ## Melissa
 
