@@ -2,7 +2,7 @@
 
 # Recording
 
-*Remember to record*
+- Shareable link: https://washington.zoom.us/rec/share/FZkZ6J1Vav6yh3RdE8ypS_7QH9tMG7vAAjP8UlnEOYTD6MhRhLU_4oLmS_4UcYC5.oZAREzGI6vuZOLAU
 
 ## Olivia
 - Did we used to rotate demo order? 🤔
