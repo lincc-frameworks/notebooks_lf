@@ -34,4 +34,4 @@ Alert benchmarks dashboard ([alert-dashboard.lsdb.io](https://alert-dashboard.ls
 - [Heather] [RTD Crossmatch tab could list crossmatch methods, what do you think?](https://github.com/astronomy-commons/lsdb/pull/1661)
 
 ## Sean
-- [Tensor Series](./tensorseriesdemo)
+- [Tensor Series](./tensorseriesdemo.ipynb)
