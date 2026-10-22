@@ -8,7 +8,7 @@
 - Did we used to rotate demo order? 🤔
 - Nightly alert-archive benchmarking suite:
   - [PR description](https://github.com/lincc-frameworks/alert-archive/pull/8); see detailed information at the [README](https://github.com/lincc-frameworks/alert-archive/blob/8bdbd9c495f653c913df5d8c6a32bccec858b29b/benchmarks/README.md)
-- Additionally, Alert reader (but I imagine there isn't time for both)
+- Additionally, AlertReader (but I imagine there isn't time for both)
   - https://github.com/lincc-frameworks/alert-archive/pull/14
 
 ## Heather
