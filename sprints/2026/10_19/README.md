@@ -12,8 +12,6 @@
 - In-Progress: [release v0.11.1](https://github.com/astronomy-commons/lsdb/issues/1662)
 - In-Progress: [add `lsdb.crossmatch` to RTD structure](https://github.com/astronomy-commons/lsdb/pull/1661)
 
-## Sean
-
 ## Kostya
 
 - [`hats-query` status update](./hats-query-demo.ipynb)
@@ -29,3 +27,6 @@ Alert benchmarks dashboard ([alert-dashboard.lsdb.io](https://alert-dashboard.ls
 
 # Seeking feedback
 - [Heather] [RTD Crossmatch tab could list crossmatch methods, what do you think?](https://github.com/astronomy-commons/lsdb/pull/1661)
+
+## Sean
+- Tensor Series
