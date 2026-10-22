@@ -4,23 +4,21 @@
 
 *Remember to record*
 
-## Olivia
+## Kostya
 
-## Heather
+## Melissa
 
 ## Sean
 
-## Kostya
+## Sandro
 
 ## Heather
 
 ## Doug
 
-## Melissa
-
 ## Katarzyna
 
-## Sandro
+## Olivia
 
 # Seeking feedback
 

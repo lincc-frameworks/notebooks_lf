@@ -6,23 +6,21 @@ Featuring GAIA DR4
 
 *Remember to record*
 
-## Olivia
-
-## Heather
-
-## Sean
-
-## Kostya
-
-## Heather
-
-## Doug
+## Katarzyna
 
 ## Melissa
 
-## Katarzyna
+## Sean
+
+## Doug
+
+## Heather
+
+## Olivia
 
 ## Sandro
+
+## Kostya
 
 # Seeking feedback
 
