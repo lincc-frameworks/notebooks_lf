@@ -16,6 +16,8 @@
 
 ## Kostya
 
+- [`hats-query` status update](./hats-query-demo.ipynb)
+
 ## Doug
 [Genesis Milestone 2 Catalog Creation](https://github.com/lincc-frameworks/notebooks_lf/blob/main/genesis/milestone2.ipynb)
 
