@@ -12,12 +12,6 @@ import requests
 
 import lsdb
 
-## Credentials for TNS BOT
-TNS_API_KEY = os.environ["TNS_API_KEY"]
-TNS_BOT_ID = os.environ["TNS_BOT_ID"]
-TNS_BOT_NAME = os.environ["TNS_BOT_NAME"]
-
-
 ## Directory where TNS catalogs are saved
 tns_dir = Path("/epyc/data3/hats/catalogs/tns")
 
@@ -43,15 +37,11 @@ def import_tns():
 
 
 def download_latest_table():
-    with requests.post(
-        "https://www.wis-tns.org/system/files/tns_public_objects/tns_public_objects.csv.zip",
+    with requests.get(
+        "https://www.wis-tns.org/sites/default/files/tns_public_objects/tns_public_objects.csv.zip",
         headers={
-            "user-agent": 'tns_marker{{"tns_id":"{id}","type":"bot","name":"{name}"}}'.format(
-                id=TNS_BOT_ID,
-                name=TNS_BOT_NAME,
-            )
+            "user-agent": 'tns_marker{{"tns_id":0, "type":"guest", "name":"LINCC Frameworks"}}'
         },
-        data={"api_key": (None, TNS_API_KEY)},
     ) as response:
         data = BytesIO(response.content)
         return pd.read_csv(data, skiprows=1, compression="zip")
