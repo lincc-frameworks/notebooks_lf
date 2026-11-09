@@ -1,4 +1,4 @@
-# Demos for the week of November 2
+# Demos for the week of November 9
 
 # Recording
 
