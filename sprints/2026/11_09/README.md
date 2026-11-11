@@ -14,6 +14,8 @@
 
 ## Sandro
 
+Registering catalogs on OpenMetadata (AmSC)
+
 ## Kostya
 
 ## Doug
