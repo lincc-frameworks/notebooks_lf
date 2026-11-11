@@ -8,6 +8,8 @@
 
 ## Melissa
 
+[Fixes for static file generation on import](./fix_744.ipyng)
+
 ## Sean
 
 ## Olivia
