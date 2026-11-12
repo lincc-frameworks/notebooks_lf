@@ -24,7 +24,7 @@ Registering catalogs on OpenMetadata (AmSC)
 [LSDB-ML Torch Dataloader](./lsdb_torch.ipynb)
 
 ## Heather
-No updates.
+No updates; but seeking advice on [testing margin catalog for emptiness](https://github.com/astronomy-commons/lsdb/actions/runs/41914175083/job/126869326511?pr=1677#step:6:1062)
 
 # Seeking feedback
 
