@@ -25,6 +25,7 @@ Registering catalogs on OpenMetadata (AmSC)
 [LSDB-ML Torch Dataloader](./lsdb_torch.ipynb)
 
 ## Heather
+No updates.
 
 # Seeking feedback
 
