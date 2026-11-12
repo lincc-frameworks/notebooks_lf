@@ -10,8 +10,6 @@
 
 [Fixes for static file generation on import](./fix_744.ipyng)
 
-## Sean
-
 ## Olivia
 [Alert Archive RTD](https://alert-archive.readthedocs.io/en/latest/index.html)
 
@@ -29,4 +27,7 @@ Registering catalogs on OpenMetadata (AmSC)
 No updates.
 
 # Seeking feedback
+
+## Sean
+[Tensors in Nested]
 
