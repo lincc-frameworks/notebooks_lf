@@ -21,7 +21,8 @@ Registering catalogs on OpenMetadata (AmSC)
 ## Kostya
 
 ## Doug
-LSDB-ML Torch Dataloader
+
+[LSDB-ML Torch Dataloader](./lsdb_torch.ipynb)
 
 ## Heather
 
