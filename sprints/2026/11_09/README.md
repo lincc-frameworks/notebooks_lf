@@ -29,5 +29,5 @@ No updates.
 # Seeking feedback
 
 ## Sean
-[Tensors in Nested]
+[Tensors in Nested](./tensors_and_nested_demo.ipynb)
 
