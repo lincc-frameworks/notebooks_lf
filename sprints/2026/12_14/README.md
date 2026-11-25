@@ -4,6 +4,8 @@
 
 *Remember to record*
 
+## Taben
+
 ## Doug
 
 ## Sean
@@ -13,8 +15,6 @@
 ## Olivia
 
 ## Sandro
-
-## Katarzyna
 
 ## Kostya
 

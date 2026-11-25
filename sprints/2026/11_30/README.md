@@ -6,8 +6,6 @@ Featuring GAIA DR4
 
 *Remember to record*
 
-## Katarzyna
-
 ## Melissa
 
 ## Sean
@@ -21,6 +19,8 @@ Featuring GAIA DR4
 ## Sandro
 
 ## Kostya
+
+## Taben
 
 # Seeking feedback
 
