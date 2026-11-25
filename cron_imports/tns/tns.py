@@ -13,7 +13,7 @@ import requests
 import lsdb
 
 ## Directory where TNS catalogs are saved
-tns_dir = Path("/epyc/data3/hats/catalogs/tns")
+tns_dir = Path("/astro/store/shire/hats/catalogs/tns")
 
 
 ## Handling dates
